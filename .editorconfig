@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# IDE0004: 删除不必要的转换
+dotnet_diagnostic.IDE0004.severity = none
