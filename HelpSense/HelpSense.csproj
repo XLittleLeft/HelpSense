@@ -70,6 +70,10 @@
     <Compile Include="Helper\LobbyLocationType.cs" />
     <Compile Include="Helper\RespawnHelper.cs" />
     <Compile Include="Helper\SCPHPChangeSystem.cs" />
+    <Compile Include="Helper\HintProviderHelper.cs" />
+    <Compile Include="Hint\DefaultHintProvider.cs" />
+    <Compile Include="Hint\HintServiceMeowProvider.cs" />
+    <Compile Include="Hint\IHintProvider.cs" />
     <Compile Include="MonoBehaviors\PlayerGlowBehavior.cs" />
     <Compile Include="MonoBehaviors\PlayerLightBehavior.cs" />
     <Compile Include="Patches\MaxHealthGetPatch.cs" />
