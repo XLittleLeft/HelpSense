@@ -189,6 +189,7 @@ namespace HelpSense
             if (Player == null || string.IsNullOrEmpty(Player.UserId)) return;
             XHelper.PlayerList.Add(Player);
             XHelper.SpecialPlayerList.Add(Player);
+            XHelper.HintProviderList.Add(HintProviderHelper.CreateHintProvider(Player));
 
             if (Config.SavePlayersInfo)
             {
@@ -259,7 +260,7 @@ namespace HelpSense
             {
                 Timing.CallDelayed(1f, () =>
                 {
-                    Player.ReceiveHint(TranslateConfig.WelcomeMessage.Replace("%playername%", Player.Nickname), Config.WelcomeTime);
+                    Player.GetHintProvider().ShowHint(TranslateConfig.WelcomeMessage.Replace("%playername%", Player.Nickname), Config.WelcomeTime);
                 });
             }
         }
@@ -346,7 +347,7 @@ namespace HelpSense
                     if (NewRole == RoleTypeId.ChaosConscript)
                     {
                         Player.AddItem(ItemType.SCP268);
-                        Player.ReceiveHint(TranslateConfig.SCP029EscapeHint, 3f);
+                        Player.GetHintProvider().ShowHint(TranslateConfig.SCP029EscapeHint, 3f);
                     }
                 });
             }
@@ -358,7 +359,7 @@ namespace HelpSense
                     {
                         var firearm = Player.ReferenceHub.inventory.ServerAddItem(ItemType.ParticleDisruptor) as ParticleDisruptor;
                         firearm.Status = new FirearmStatus(5, FirearmStatusFlags.MagazineInserted, firearm.GetCurrentAttachmentsCode());
-                        Player.ReceiveHint(TranslateConfig.SCP703EscapeHint, 3f);
+                        Player.GetHintProvider().ShowHint(TranslateConfig.SCP703EscapeHint, 3f);
                     }
                 });
             }
@@ -588,7 +589,7 @@ namespace HelpSense
 
                         XHelper.Mybroadcast(Player, "<size=80><color=#00ffffff>你是SCP-703</color></size>", 10, Broadcast.BroadcastFlags.Normal);
 
-                        Player.ReceiveHint("<align=center><voffset=28em><size=70><color=#00ffffff>每过一段时间你会获得随机物品</color></size></voffset></align>", 10);
+                        Player.GetHintProvider().ShowHint("<align=center><voffset=28em><size=70><color=#00ffffff>每过一段时间你会获得随机物品</color></size></voffset></align>", 10);
 
                         Scp703Handle = Timing.RunCoroutine(XHelper.RandomItem(Player).CancelWith(Player.GameObject));
                     };
@@ -607,7 +608,7 @@ namespace HelpSense
 
                         XHelper.Mybroadcast(Player, "<size=60><color=#ff0000ff>你是SCP-029“暗影之女”</color></size>", 10, Broadcast.BroadcastFlags.Normal);
 
-                        Player.ReceiveHint("<voffset=28em><size=40><color=#ff0000ff>杀戮所有你敌对的人</color></size></voffset>", 10);
+                        Player.GetHintProvider().ShowHint("<voffset=28em><size=40><color=#ff0000ff>杀戮所有你敌对的人</color></size></voffset>", 10);
 
                         Player.ClearInventory();
 
@@ -662,7 +663,7 @@ namespace HelpSense
                         Player.GameObject.AddComponent<PlayerGlowBehavior>();
 
                         Player.SendBroadcast("你是 <color=yellow>SCP-1093 人灯</color>" , 6 , BroadcastFlags.Normal);
-                        Player.ReceiveHint("持续照亮附近5米范围,并影响附近1米范围内的人受到辐射伤害(每秒扣1血)\n你的头似乎是虚无的,所以任何人对你头部是没有伤害的" , 6);
+                        Player.GetHintProvider().ShowHint("持续照亮附近5米范围,并影响附近1米范围内的人受到辐射伤害(每秒扣1血)\n你的头似乎是虚无的,所以任何人对你头部是没有伤害的" , 6);
                     }
                 });
             }
@@ -727,7 +728,7 @@ namespace HelpSense
                                 {
                                     anbaoplayer.ClearInventory();
 
-                                    anbaoplayer.ReceiveHint("<size=60><color=#E5DADA>你是安保队长</color></size>", 5);
+                                    anbaoplayer.GetHintProvider().ShowHint("<size=60><color=#E5DADA>你是安保队长</color></size>", 5);
 
                                     anbaoplayer.AddItem(ItemType.ArmorHeavy);
                                     anbaoplayer.AddItem(ItemType.Medkit);
@@ -891,14 +892,14 @@ namespace HelpSense
                     Player.RemoveItem(Item);
                     var items = Player.AddItem(ItemType.SCP2176);
                     scp1068base = items;
-                    Player.ReceiveHint("你捡起了<color=red>SCP-1068</color> 无害核弹！");
+                    Player.GetHintProvider().ShowHint("你捡起了<color=red>SCP-1068</color> 无害核弹！");
                 }
                 if (Item.Info.Serial == scp1056id && Item.Info.ItemId is ItemType.Medkit && Config.SCP1056)
                 {
                     Player.RemoveItem(Item);
                     var items = Player.AddItem(ItemType.Medkit);
                     scp1056base = items;
-                    Player.ReceiveHint("你捡起了<color=red>SCP-1056</color> 缩小仪！");
+                    Player.GetHintProvider().ShowHint("你捡起了<color=red>SCP-1056</color> 缩小仪！");
                 }
             });
             return true;
@@ -941,7 +942,7 @@ namespace HelpSense
                         if (Items.Value.ItemTypeId.IsWeapon())
                         {
                             Player.DropItem(Items.Value);
-                            Player.ReceiveHint("<color=red><size=60>你合你牛魔枪呢?</size></color>");
+                            Player.GetHintProvider().ShowHint("<color=red><size=60>你合你牛魔枪呢?</size></color>");
                             Player.Damage(5, "你合你牛魔枪呢?");
                             Player.SendBroadcast("<color=red><size=60>你合你牛魔枪呢?</color>", 3);
                             Player.SendConsoleMessage("你合你牛魔枪呢?");
@@ -961,7 +962,7 @@ namespace HelpSense
             if (scp1056base != null && Item == scp1056base)
             {
                 Player.SetPlayerScale(Config.SCP1056X);
-                Player.ReceiveHint("boom!你变小了!!!");
+                Player.GetHintProvider().ShowHint("boom!你变小了!!!");
             }
         }
 
@@ -1006,7 +1007,7 @@ namespace HelpSense
             {
                 foreach (Player player in XHelper.PlayerList)
                 {
-                    player.ReceiveHint(TranslateConfig.RoundEndInfo, 10);
+                    player.GetHintProvider().ShowHint(TranslateConfig.RoundEndInfo, 10);
                 }
             }
             if (Config.EnableFriendlyFire)
@@ -1018,7 +1019,7 @@ namespace HelpSense
                 {
                     foreach (Player player in XHelper.PlayerList)
                     {
-                        player.ReceiveHint(TranslateConfig.FFMessage, 15);
+                        player.GetHintProvider().ShowHint(TranslateConfig.FFMessage, 15);
                     }
                 }
                 else
@@ -1453,7 +1454,7 @@ namespace HelpSense
                     Player.SetPlayerScale(0.8f);
 
                     Player.SendBroadcast("你成为了<color=red>SCP-191 机械少女</color>", 6);
-                    Player.ReceiveHint("因为你的身体的改造，你对除了电磁和爆炸伤害的抗性很高", 6);
+                    Player.GetHintProvider().ShowHint("因为你的身体的改造，你对除了电磁和爆炸伤害的抗性很高", 6);
 
                     Player.AddItem(ItemType.ArmorCombat);
                     Player.AddItem(ItemType.GunFSP9);

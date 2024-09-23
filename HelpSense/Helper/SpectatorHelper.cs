@@ -43,7 +43,7 @@ namespace HelpSense.Helper
                         .Replace("(COLOR)", player.ReferenceHub.roleManager.CurrentRole.RoleColor.ToHex()
                         .Replace("<br>", "\n"));
 
-                player.ReceiveHint(spectatorList, 2f);
+                player.GetHintProvider().ShowHint(spectatorList, 2f);
             }
         }
     }
