@@ -56,3 +56,5 @@ Download the **latest zip file from the Release section** and extract everything
 - SrLicht
 - 1312255201
 - MrAfitol
+- Michal78900
+- MeowServer
