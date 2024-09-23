@@ -59,6 +59,7 @@
     <Compile Include="Commands\VersionCommand.cs" />
     <Compile Include="Commands\ZiJiuCommand.cs" />
     <Compile Include="ConfigSystem\Config.cs" />
+    <Compile Include="ConfigSystem\TranslateConfig.cs" />
     <Compile Include="Handler\LobbyLocationHandler.cs" />
     <Compile Include="Helper\HideTutorialsHelper.cs" />
     <Compile Include="Helper\SCPHelper.cs" />

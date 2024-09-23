@@ -31,8 +31,6 @@ namespace HelpSense.ConfigSystem
         /// </summary>
         [Description("是否打开入服欢迎")]
         public bool EnableWelcomeInfo { get; set; } = true;
-        [Description("当玩家进入服务器的欢迎消息")]
-        public string WelcomeMessage { get; set; } = "欢迎 %playername%~";
         [Description("欢迎消息显示时长")]
         public ushort WelcomeTime { get; set; } = 5;
         /// <summary>
@@ -40,8 +38,6 @@ namespace HelpSense.ConfigSystem
         /// </summary>
         [Description("是否打开回合结束消息")]
         public bool EnableRoundEndInfo { get; set; } = true;
-        [Description("回合结束消息")]
-        public string RoundEndInfo { get; set; } = "回合结束啦！不要离开，下局再见ヾ(￣▽￣)~";
         /// <summary>
         /// ///////////////////////////////////
         /// </summary>
@@ -51,8 +47,6 @@ namespace HelpSense.ConfigSystem
         public float OverriddenFriendlyFireMultiplier { get; set; } = 1f;
         [Description("通知玩家的消息类型，广播/提示")]
         public MessageType FriendlyFireNotifyingType { get; set; } = MessageType.Hint;
-        [Description("友伤开启时玩家将收到的消息")]
-        public string FFMessage { get; set; } = "<align=center><voffset=28em> <color=#F6511D> ~友伤已开启~ </color></voffset></align>";
         [Description("显示友伤消息多长时间")]
         public float FFMessageDuration { get; set; } = 0.3f;
         [Description("回合结束把所有人变成同一阵营的人一起互相van♂")]
@@ -64,29 +58,6 @@ namespace HelpSense.ConfigSystem
         /// </summary>
         [Description("开启开局所有人都变成教程角色在一起van")]
         public bool EnableRoundWaitingLobby { get; set; } = true;
-        [Description("显示距离启动还剩多少时间，或者服务器状态")]
-        public string TitleText { get; set; } = "<size=50><color=#F0FF00><b>正在等待玩家, {seconds}</b></color></size>";
-
-        [Description("显示玩家数量的文本")]
-        public string PlayerCountText { get; set; } = "<size=40><color=#FFA600><i>{players}</i></color></size>";
-
-        [Description("如果大厅被锁定显示的消息")]
-        public string ServerPauseText { get; set; } = "服务器已暂停";
-
-        [Description("第二行的消息")]
-        public string SecondLeftText { get; set; } = "还剩 {seconds}";
-
-        [Description("多行的消息")]
-        public string SecondsLeftText { get; set; } = "还剩 {seconds}";
-
-        [Description("回合开始时显示的消息")]
-        public string RoundStartText { get; set; } = "回合开始";
-
-        [Description("当服务器当玩家加入时显示的消息")]
-        public string PlayerJoinText { get; set; } = "玩家加入";
-
-        [Description("当服务器上有多个玩家加入时显示的消息")]
-        public string PlayersJoinText { get; set; } = "名玩家加入";
 
         [Description("大厅速度加成")]
         public byte MovementBoostIntensity { get; set; } = 50;
@@ -186,10 +157,6 @@ namespace HelpSense.ConfigSystem
         /// </summary>
         [Description("启用多变保安队")]
         public bool EnableBaoAn { get; set; } = true;
-        [Description("保安叛变显示的公告")]
-        public string BaoAnPB { get; set; } = "<size=60><color=#ff0000ff>[警告]</color>此设施警卫已被混沌分裂者策反</size>";
-        [Description("保安为精英队显示的公告")]
-        public string BaoAnJY { get; set; } = "<size=60><color=#00ffffff>[通知]</color>此设施警卫为九尾狐精英队员，保安实力大增</size>";
         /// <summary>
         /// /////////////////////////////////////////////////
         /// </summary>
@@ -208,12 +175,6 @@ namespace HelpSense.ConfigSystem
         public bool EnableSpectatorList { get; set; } = false;
         [Description("观战列表忽略身份")]
         public HashSet<string> IgnoredRoles { get; set; } = new HashSet<string>();
-
-        [Description("观战列表标题")]
-        public string Title { get; set; } = "<align=right><size=45%><color=(COLOR)><b>观察者 ((COUNT)):</b></color></size></align>";
-
-        [Description("观战列表格式")]
-        public string Names { get; set; } = "<align=right><size=45%><color=(COLOR)><br>(NAME)</color></size></align>";
         /// <summary>
         /// /////////////////////////////////////////////////
         /// </summary>
@@ -235,7 +196,7 @@ namespace HelpSense.ConfigSystem
         [Description("广播管理员干的事")]
         public bool AdminLogShow { get; set; } = false;
         [Description("记录管理日志地址")]
-        public string AdminLogPath { get; set; } = "C:\\Users\\Administrator\\Desktop\\管理记录.txt";
+        public string AdminLogPath { get; set; } = $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\管理记录.txt";
         [Description("隐藏教程角色")]
         public bool HideTutorials { get; set; } = false;
         [Description("自救指令")]

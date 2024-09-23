@@ -200,7 +200,7 @@ namespace HelpSense
 
             if (Config.SavePlayersInfo && Player.DoNotTrack)
             {
-                Player.SendBroadcast("你打开了DNT，请关闭，否则某些插件无法正常运行", 10);
+                Player.SendBroadcast(TranslateConfig.DNTWarning, 10);
             }
 
             if (Config.EnableRoundWaitingLobby)
@@ -259,7 +259,7 @@ namespace HelpSense
             {
                 Timing.CallDelayed(1f, () =>
                 {
-                    Player.ReceiveHint(Config.WelcomeMessage.Replace("%playername%", Player.Nickname), Config.WelcomeTime);
+                    Player.ReceiveHint(TranslateConfig.WelcomeMessage.Replace("%playername%", Player.Nickname), Config.WelcomeTime);
                 });
             }
         }
@@ -285,11 +285,11 @@ namespace HelpSense
                 }
                 if (Target.RoleName == "SCP-073" && Attacker.Team != Target.Team && Attacker.IsHuman && Target.Team is not Team.ChaosInsurgency)
                 {
-                    Attacker.Damage(Config.SCP073RRD, "SCP-073反伤");
+                    Attacker.Damage(Config.SCP073RRD, TranslateConfig.SCP073DamageReason);
                 }
                 else if (Attacker.Team != Target.Team && Attacker.IsSCP && Target.RoleName == "SCP-073" && Target.Team is not Team.ChaosInsurgency)
                 {
-                    Attacker.Damage(Config.SCP073SCPRD, "SCP-073反伤");
+                    Attacker.Damage(Config.SCP073SCPRD, TranslateConfig.SCP073DamageReason);
                 }
                 if ((Attacker.RoleName == "SCP-191" && Target.Team is Team.SCPs) || (Target.RoleName == "SCP-191" && Attacker.Team is Team.SCPs))
                 {
@@ -338,7 +338,6 @@ namespace HelpSense
 
             if (Player.RoleName == "SCP-029")
             {
-                Log.Debug("SCP029逃离", Config.Debug);
                 Timing.CallDelayed(1f, () =>
                 {
                     Player.EffectsManager.ChangeState<MovementBoost>(25);
@@ -347,20 +346,19 @@ namespace HelpSense
                     if (NewRole == RoleTypeId.ChaosConscript)
                     {
                         Player.AddItem(ItemType.SCP268);
-                        Player.ReceiveHint("成功逃离设施变为混沌得到混沌分裂者的一个遗产", 3f);
+                        Player.ReceiveHint(TranslateConfig.SCP029EscapeHint, 3f);
                     }
                 });
             }
             if (Player.RoleName == "SCP-703")
             {
-                Log.Debug("SCP703逃离", Config.Debug);
                 Timing.CallDelayed(1f, () =>
                 {
                     if (NewRole == RoleTypeId.NtfSpecialist)
                     {
                         var firearm = Player.ReferenceHub.inventory.ServerAddItem(ItemType.ParticleDisruptor) as ParticleDisruptor;
                         firearm.Status = new FirearmStatus(5, FirearmStatusFlags.MagazineInserted, firearm.GetCurrentAttachmentsCode());
-                        Player.ReceiveHint("成功逃离设施成为九尾狐收容专家，获得3x", 3f);
+                        Player.ReceiveHint(TranslateConfig.SCP703EscapeHint, 3f);
                     }
                 });
             }
@@ -388,7 +386,7 @@ namespace HelpSense
                     {
                         SkynetSpawned = true;
                         Cassie.Clear();
-                        XHelper.MessageTranslated($"MTFUnit Kappa , 10 , and , Mu , 7 , designated scan neck , HasEntered , they will help contain scp 0 7 9 , AllRemaining , AwaitingRecontainment {XHelper.PlayerList.Where(x => x.IsSCP).Count()} SCPSubjects", $"机动特遣队Kappa-10和Mu-7代号天网已经进入设施,他们会帮助舞步者一号收容SCP-079,建议所有幸存人员执行标准撤离方案,直到MTF小队到达你的地点,目前还剩{XHelper.PlayerList.Where(x => x.IsSCP).Count()}个SCP");
+                        XHelper.MessageTranslated($"MTFUnit Kappa , 10 , and , Mu , 7 , designated scan neck , HasEntered , they will help contain scp 0 7 9 , AllRemaining , AwaitingRecontainment {XHelper.PlayerList.Where(x => x.IsSCP).Count()} SCPSubjects", TranslateConfig.SkynetCassie.Replace("%SCPNum%" , XHelper.PlayerList.Where(x => x.IsSCP).Count().ToString()));
 
                         foreach (Player Player in Players)
                         {
@@ -398,16 +396,16 @@ namespace HelpSense
                             switch (Player.Role)
                             {
                                 case RoleTypeId.NtfPrivate:
-                                    Player.Mybroadcast("<size=70><color=#0051FF>你是机动特遣队-天网 新兵</color></size>", 5, Broadcast.BroadcastFlags.Normal);
-                                    Player.CustomInfo = "天网 新兵";
+                                    Player.Mybroadcast($"<size=70><color=#0051FF>{TranslateConfig.SkynetPrivateBroadcast}</color></size>", 5, Broadcast.BroadcastFlags.Normal);
+                                    Player.CustomInfo = TranslateConfig.SkynetPrivateCustomInfo;
                                     break;
                                 case RoleTypeId.NtfSergeant:
-                                    Player.Mybroadcast("<size=70><color=#0051FF>你是机动特遣队-天网 中士</color></size>", 5, Broadcast.BroadcastFlags.Normal);
-                                    Player.CustomInfo = "天网 中士";
+                                    Player.Mybroadcast($"<size=70><color=#0051FF>{TranslateConfig.SkynetSergeantBroadcast}</color></size>", 5, Broadcast.BroadcastFlags.Normal);
+                                    Player.CustomInfo = TranslateConfig.SkynetSergeantCustomInfo;
                                     break;
                                 case RoleTypeId.NtfCaptain:
-                                    Player.Mybroadcast("<size=70><color=#0051FF>你是机动特遣队-天网 指挥官</color></size>", 5, Broadcast.BroadcastFlags.Normal);
-                                    Player.CustomInfo = "天网 指挥官";
+                                    Player.Mybroadcast($"<size=70><color=#0051FF>{TranslateConfig.SkynetCaptainBroadcast}</color></size>", 5, Broadcast.BroadcastFlags.Normal);
+                                    Player.CustomInfo = TranslateConfig.SkynetCaptainCustomInfo;
                                     break;
                             }
                         }
@@ -696,7 +694,7 @@ namespace HelpSense
                                     player1.AddItem(ItemType.Radio);
                                 }
                             }
-                            XHelper.Allbroadcast(Config.BaoAnPB, 10, BroadcastFlags.Normal);
+                            XHelper.Allbroadcast(TranslateConfig.BaoAnPB, 10, BroadcastFlags.Normal);
                             break;
                         case 1:
                             {
@@ -719,7 +717,7 @@ namespace HelpSense
                                         players.AddItem(ItemType.GrenadeHE);
                                     }
                                 }
-                                XHelper.Allbroadcast(Config.BaoAnJY, 10, BroadcastFlags.Normal);
+                                XHelper.Allbroadcast(TranslateConfig.BaoAnJY, 10, BroadcastFlags.Normal);
                                 break;
                             }
                         case 2:
@@ -1008,7 +1006,7 @@ namespace HelpSense
             {
                 foreach (Player player in XHelper.PlayerList)
                 {
-                    player.ReceiveHint(Config.RoundEndInfo, 10);
+                    player.ReceiveHint(TranslateConfig.RoundEndInfo, 10);
                 }
             }
             if (Config.EnableFriendlyFire)
@@ -1020,7 +1018,7 @@ namespace HelpSense
                 {
                     foreach (Player player in XHelper.PlayerList)
                     {
-                        player.ReceiveHint(Config.FFMessage, 15);
+                        player.ReceiveHint(TranslateConfig.FFMessage, 15);
                     }
                 }
                 else
@@ -1029,7 +1027,7 @@ namespace HelpSense
 
                     foreach (Player player in XHelper.PlayerList)
                     {
-                        player.SendBroadcast(Config.FFMessage, (ushort)Config.FFMessageDuration);
+                        player.SendBroadcast(TranslateConfig.FFMessage, (ushort)Config.FFMessageDuration);
                     }
                 }
                 typeof(AttackerDamageHandler).GetMethod("RefreshConfigs", BindingFlags.Static | BindingFlags.NonPublic).Invoke(null, null);
@@ -1503,5 +1501,7 @@ namespace HelpSense
 
         [PluginConfig]
         public Config Config;
+        [PluginConfig("TranslateConfig.yml")]
+        public TranslateConfig TranslateConfig;
     }
 }

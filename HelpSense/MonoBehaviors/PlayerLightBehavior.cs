@@ -12,7 +12,6 @@ namespace HelpSense.MonoBehaviors
     {
         private Player _player;
         private LightSourceToy _glowLight;
-        private bool flag = true;
         void Awake()
         {
             _player = Player.Get(gameObject);

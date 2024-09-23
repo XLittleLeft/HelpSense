@@ -17,12 +17,12 @@ namespace HelpSense.Helper
             {
                 yield return Timing.WaitForSeconds(1);
 
-                StringBuilder list = StringBuilderPool.Shared.Rent().Append(Plugin.Instance.Config.Title);
+                StringBuilder list = StringBuilderPool.Shared.Rent().Append(Plugin.Instance.TranslateConfig.Title);
 
                 int count = 0;
                 foreach (Player splayer in XHelper.PlayerList.Where(x => x.Team == Team.Dead))
                 {
-                    if (Plugin.Instance.Config.Names.Contains("(NONE)")) break;
+                    if (Plugin.Instance.TranslateConfig.Names.Contains("(NONE)")) break;
 
                     if (((SpectatorRole)splayer.ReferenceHub.roleManager.CurrentRole).SyncedSpectatedNetId != player.NetworkId) continue;
 
@@ -32,7 +32,7 @@ namespace HelpSense.Helper
                         Plugin.Instance.Config.IgnoredRoles.Contains(splayer.ReferenceHub.serverRoles.name))
                         continue;
 
-                    list.Append(Plugin.Instance.Config.Names.Replace("(NAME)", splayer.Nickname));
+                    list.Append(Plugin.Instance.TranslateConfig.Names.Replace("(NAME)", splayer.Nickname));
                     count++;
                 }
 
