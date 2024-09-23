@@ -1,5 +1,7 @@
 # HelpSense
 
+[中文自述文件](README_CN.md)
+
 # Function:
 
 Player information storage (such as time spent on the server, number of kills, damage value, number of character changes, etc.) & Infinite Ammo & Initial materials & Round start and end messages
