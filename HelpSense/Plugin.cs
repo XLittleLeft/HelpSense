@@ -109,7 +109,7 @@ namespace HelpSense
         public ushort scp1056id = 0;
         public ItemBase scp1056base;
 
-        [PluginEntryPoint("HelpSense", "1.3.5", "HelpSense综合服务器插件", "X小左")]
+        [PluginEntryPoint("HelpSense", "1.3.4", "HelpSense综合服务器插件", "X小左")]
         void LoadPlugin()
         {
             Instance = this;
@@ -189,6 +189,7 @@ namespace HelpSense
             if (Player == null || string.IsNullOrEmpty(Player.UserId)) return;
             XHelper.PlayerList.Add(Player);
             XHelper.SpecialPlayerList.Add(Player);
+            XHelper.HintProviderList.Add(HintProviderHelper.CreateHintProvider(Player));
 
             if (Config.SavePlayersInfo)
             {
@@ -259,7 +260,7 @@ namespace HelpSense
             {
                 Timing.CallDelayed(1f, () =>
                 {
-                    Player.ReceiveHint(TranslateConfig.WelcomeMessage.Replace("%playername%", Player.Nickname), Config.WelcomeTime);
+                    Player.GetHintProvider().ShowHint(TranslateConfig.WelcomeMessage.Replace("%playername%", Player.Nickname), Config.WelcomeTime);
                 });
             }
         }
@@ -346,7 +347,7 @@ namespace HelpSense
                     if (NewRole == RoleTypeId.ChaosConscript)
                     {
                         Player.AddItem(ItemType.SCP268);
-                        Player.ReceiveHint(TranslateConfig.SCP029EscapeHint, 3f);
+                        Player.GetHintProvider().ShowHint(TranslateConfig.SCP029EscapeHint, 3f);
                     }
                 });
             }
@@ -358,7 +359,7 @@ namespace HelpSense
                     {
                         var firearm = Player.ReferenceHub.inventory.ServerAddItem(ItemType.ParticleDisruptor) as ParticleDisruptor;
                         firearm.Status = new FirearmStatus(5, FirearmStatusFlags.MagazineInserted, firearm.GetCurrentAttachmentsCode());
-                        Player.ReceiveHint(TranslateConfig.SCP703EscapeHint, 3f);
+                        Player.GetHintProvider().ShowHint(TranslateConfig.SCP703EscapeHint, 3f);
                     }
                 });
             }
@@ -421,7 +422,7 @@ namespace HelpSense
                             if (XHelper.PlayerList.Where(x => x.Role is RoleTypeId.Scp096).FirstOrDefault() != null)
                             {
                                 Cassie.Clear();
-                                XHelper.MessageTranslated($"MTFUnit Eta , 10 , designated see no evil , HasEntered , they will help contain scp 0 9 6 , AllRemaining , AwaitingRecontainment {XHelper.PlayerList.Where(x => x.IsSCP).Count()} SCPSubjects", TranslateConfig.SeeNoEvilCassie.Replace("%SCPNum%" , XHelper.PlayerList.Where(x => x.IsSCP).Count().ToString()));
+                                XHelper.MessageTranslated($"MTFUnit Eta , 10 , designated see no evil , HasEntered , they will help contain scp 0 9 6 , AllRemaining , AwaitingRecontainment {XHelper.PlayerList.Where(x => x.IsSCP).Count()} SCPSubjects", $"机动特遣队Eta-10代号非礼勿视已经进入设施,他们会帮助收容SCP-096,建议所有幸存人员执行标准撤离方案,直到MTF小队到达你的地点,目前还剩{XHelper.PlayerList.Where(x => x.IsSCP).Count()}个SCP");
                                 SeeSpawned = true;
                                 foreach (Player Player in Players)
                                 {
@@ -429,16 +430,16 @@ namespace HelpSense
                                     switch (Player.Role)
                                     {
                                         case RoleTypeId.NtfPrivate:
-                                            Player.Mybroadcast($"<size=70><color=#0051FF>{TranslateConfig.SeeNoEvilPrivateBroadcast}</color></size>", 5, Broadcast.BroadcastFlags.Normal);
-                                            Player.CustomInfo = TranslateConfig.SeeNoEvilPrivateCustomInfo;
+                                            Player.Mybroadcast("<size=70><color=#0051FF>你是机动特遣队-非礼勿视 新兵</color></size>", 5, Broadcast.BroadcastFlags.Normal);
+                                            Player.CustomInfo = "非礼勿视 新兵";
                                             break;
                                         case RoleTypeId.NtfSergeant:
-                                            Player.Mybroadcast($"<size=70><color=#0051FF>{TranslateConfig.SeeNoEvilSergeantBroadcast}</color></size>", 5, Broadcast.BroadcastFlags.Normal);
-                                            Player.CustomInfo = TranslateConfig.SeeNoEvilSergeantCustomInfo;
+                                            Player.Mybroadcast("<size=70><color=#0051FF>你是机动特遣队-非礼勿视 中士</color></size>", 5, Broadcast.BroadcastFlags.Normal);
+                                            Player.CustomInfo = "非礼勿视 中士";
                                             break;
                                         case RoleTypeId.NtfCaptain:
-                                            Player.Mybroadcast($"<size=70><color=#0051FF>{TranslateConfig.SeeNoEvilCaptainBroadcast}</color></size>", 5, Broadcast.BroadcastFlags.Normal);
-                                            Player.CustomInfo = TranslateConfig.SeeNoEvilCaptainCustomInfo;
+                                            Player.CustomInfo = "非礼勿视 指挥官";
+                                            Player.Mybroadcast("<size=70><color=#0051FF>你是机动特遣队-非礼勿视 指挥官</color></size>", 5, Broadcast.BroadcastFlags.Normal);
                                             break;
                                     }
                                     Player.Position = RoomIdentifier.AllRoomIdentifiers.Where(x => x.Name is RoomName.Outside).FirstOrDefault().transform.TransformPoint(62.93f, -8.35f, -51.26f);
@@ -483,11 +484,11 @@ namespace HelpSense
 
                         SpawnLeader = true;
 
-                        ChaosLeader = new SCPHelper(Player, 150, TranslateConfig.ChaosLeaderRoleName, "green");
+                        ChaosLeader = new SCPHelper(Player, 150, "混沌领导者", "green");
 
                         Player.ClearBroadcasts();
 
-                        XHelper.Mybroadcast(Player, TranslateConfig.ChaosLeaderSpawnBroadcast, 10, Broadcast.BroadcastFlags.Normal);
+                        XHelper.Mybroadcast(Player, "<size=80><color=#00ff00ff>你是混沌分裂者 领导者</color></size>", 10, Broadcast.BroadcastFlags.Normal);
 
                         var firearm = Player.AddItem(ItemType.ParticleDisruptor) as ParticleDisruptor;
                         firearm.Status = new FirearmStatus(5, FirearmStatusFlags.MagazineInserted, firearm.GetCurrentAttachmentsCode());
@@ -520,7 +521,7 @@ namespace HelpSense
 
                         SCP2936 = new SCPHelper(Player, 300, "SCP-2936-1", "red");
 
-                        Player.SendBroadcast(TranslateConfig.SCP29361SpawnBroadcast, 6);
+                        Player.SendBroadcast("<size=70>你是 <color=red>SCP-2936-1 巨型德国机器人</color></size>", 6);
 
                         Player.SetPlayerScale(2f);
                     }
@@ -540,7 +541,7 @@ namespace HelpSense
 
                         if (Player.Team is PlayerRoles.Team.ChaosInsurgency)
                         {
-                            Player.SendBroadcast(TranslateConfig.SCP073AbelSpawnBroadcast, 6);
+                            Player.SendBroadcast("你是<color=green>SCP-073 亚伯</color>", 6);
 
                             Player.ClearInventory();
                             for (int i = 0; i < 8; i++)
@@ -552,7 +553,7 @@ namespace HelpSense
                         }
                         else
                         {
-                            Player.SendBroadcast(TranslateConfig.SCP073CainSpawnBroadcast, 6);
+                            Player.SendBroadcast("你是<color=green>SCP-073 该隐</color>", 6);
                         }
                         Player.EffectsManager.EnableEffect<DamageReduction>();
                         Player.EffectsManager.ChangeState<DamageReduction>(Config.SCP073DD);
@@ -568,7 +569,11 @@ namespace HelpSense
         {
             if (Config.SavePlayersInfo)
             {
-                Timing.RunCoroutine(InfoExtension.CollectInfo());
+                if (CollectInfohandle.IsRunning)
+                {
+                    Timing.KillCoroutines(CollectInfohandle);
+                }
+                CollectInfohandle = Timing.RunCoroutine(InfoExtension.CollectInfo());
                 Log.Debug("开始收集玩家信息");
             }
             if (Config.EnableSCP703)
@@ -582,11 +587,11 @@ namespace HelpSense
 
                         Player.ClearBroadcasts();
 
-                        XHelper.Mybroadcast(Player, TranslateConfig.SCP703SpawnBroadcast, 10, Broadcast.BroadcastFlags.Normal);
+                        XHelper.Mybroadcast(Player, "<size=80><color=#00ffffff>你是SCP-703</color></size>", 10, Broadcast.BroadcastFlags.Normal);
 
-                        Player.ReceiveHint(TranslateConfig.SCP703SkillIntroduction, 10);
+                        Player.GetHintProvider().ShowHint("<align=center><voffset=28em><size=70><color=#00ffffff>每过一段时间你会获得随机物品</color></size></voffset></align>", 10);
 
-                        Timing.RunCoroutine(XHelper.RandomItem(Player).CancelWith(Player.GameObject));
+                        Scp703Handle = Timing.RunCoroutine(XHelper.RandomItem(Player).CancelWith(Player.GameObject));
                     };
                 });
             }
@@ -601,9 +606,9 @@ namespace HelpSense
 
                         Player.ClearBroadcasts();
 
-                        XHelper.Mybroadcast(Player, TranslateConfig.SCP029SpawnBroadcast, 10, Broadcast.BroadcastFlags.Normal);
+                        XHelper.Mybroadcast(Player, "<size=60><color=#ff0000ff>你是SCP-029“暗影之女”</color></size>", 10, Broadcast.BroadcastFlags.Normal);
 
-                        Player.ReceiveHint(TranslateConfig.SCP029SkillIntroduction, 10);
+                        Player.GetHintProvider().ShowHint("<voffset=28em><size=40><color=#ff0000ff>杀戮所有你敌对的人</color></size></voffset>", 10);
 
                         Player.ClearInventory();
 
@@ -636,7 +641,7 @@ namespace HelpSense
 
                         Player.AddItem(ItemType.KeycardGuard);
 
-                        Player.SendBroadcast(TranslateConfig.SCP347SpawnBroadcast, 6);
+                        Player.SendBroadcast("你是<color=red>SCP-347 隐形女</color>", 6);
 
                         Player.EffectsManager.EnableEffect<Invisible>();
 
@@ -657,8 +662,8 @@ namespace HelpSense
 
                         Player.GameObject.AddComponent<PlayerGlowBehavior>();
 
-                        Player.SendBroadcast(TranslateConfig.SCP1093SpawnBroadcast , 6 , BroadcastFlags.Normal);
-                        Player.ReceiveHint(TranslateConfig.SCP1093SkillIntroduction , 6);
+                        Player.SendBroadcast("你是 <color=yellow>SCP-1093 人灯</color>" , 6 , BroadcastFlags.Normal);
+                        Player.GetHintProvider().ShowHint("持续照亮附近5米范围,并影响附近1米范围内的人受到辐射伤害(每秒扣1血)\n你的头似乎是虚无的,所以任何人对你头部是没有伤害的" , 6);
                     }
                 });
             }
@@ -690,7 +695,7 @@ namespace HelpSense
                                     player1.AddItem(ItemType.Radio);
                                 }
                             }
-                            XHelper.Allbroadcast(TranslateConfig.GuardMutinyBroadcast, 10, BroadcastFlags.Normal);
+                            XHelper.Allbroadcast(TranslateConfig.BaoAnPB, 10, BroadcastFlags.Normal);
                             break;
                         case 1:
                             {
@@ -713,7 +718,7 @@ namespace HelpSense
                                         players.AddItem(ItemType.GrenadeHE);
                                     }
                                 }
-                                XHelper.Allbroadcast(TranslateConfig.EliteGuardBroadcast, 10, BroadcastFlags.Normal);
+                                XHelper.Allbroadcast(TranslateConfig.BaoAnJY, 10, BroadcastFlags.Normal);
                                 break;
                             }
                         case 2:
@@ -723,7 +728,7 @@ namespace HelpSense
                                 {
                                     anbaoplayer.ClearInventory();
 
-                                    anbaoplayer.ReceiveHint(TranslateConfig.GuardCaptainSpawnBroadcast, 5);
+                                    anbaoplayer.GetHintProvider().ShowHint("<size=60><color=#E5DADA>你是安保队长</color></size>", 5);
 
                                     anbaoplayer.AddItem(ItemType.ArmorHeavy);
                                     anbaoplayer.AddItem(ItemType.Medkit);
@@ -775,17 +780,28 @@ namespace HelpSense
             }
             if (Config.EnableRespawnTimer)
             {
-                Timing.RunCoroutine(RespawnHelper.TimerCoroutine());
+                if (_timerCoroutine.IsRunning)
+                    Timing.KillCoroutines(_timerCoroutine);
+
+                _timerCoroutine = Timing.RunCoroutine(RespawnHelper.TimerCoroutine());
             }
             Timing.CallDelayed(30f, () =>
             {
-                Timing.RunCoroutine(XHelper.AutoX());
+                if (messageCoroutine.IsRunning)
+                {
+                    Timing.KillCoroutines(messageCoroutine);
+                }
+                messageCoroutine = Timing.RunCoroutine(XHelper.AutoX());
             });
             Timing.CallDelayed(10f, () =>
             {
                 if (Config.EnableAutoServerMessage)
                 {
-                    Timing.RunCoroutine(XHelper.AutoSX());
+                    if (servermessageCoroutine.IsRunning)
+                    {
+                        Timing.KillCoroutines(servermessageCoroutine);
+                    }
+                    servermessageCoroutine = Timing.RunCoroutine(XHelper.AutoSX());
                 }
             });
             if (Config.SCP1068)
@@ -876,14 +892,14 @@ namespace HelpSense
                     Player.RemoveItem(Item);
                     var items = Player.AddItem(ItemType.SCP2176);
                     scp1068base = items;
-                    Player.ReceiveHint("你捡起了<color=red>SCP-1068</color> 无害核弹！");
+                    Player.GetHintProvider().ShowHint("你捡起了<color=red>SCP-1068</color> 无害核弹！");
                 }
                 if (Item.Info.Serial == scp1056id && Item.Info.ItemId is ItemType.Medkit && Config.SCP1056)
                 {
                     Player.RemoveItem(Item);
                     var items = Player.AddItem(ItemType.Medkit);
                     scp1056base = items;
-                    Player.ReceiveHint("你捡起了<color=red>SCP-1056</color> 缩小仪！");
+                    Player.GetHintProvider().ShowHint("你捡起了<color=red>SCP-1056</color> 缩小仪！");
                 }
             });
             return true;
@@ -926,6 +942,10 @@ namespace HelpSense
                         if (Items.Value.ItemTypeId.IsWeapon())
                         {
                             Player.DropItem(Items.Value);
+                            Player.GetHintProvider().ShowHint("<color=red><size=60>你合你牛魔枪呢?</size></color>");
+                            Player.Damage(5, "你合你牛魔枪呢?");
+                            Player.SendBroadcast("<color=red><size=60>你合你牛魔枪呢?</color>", 3);
+                            Player.SendConsoleMessage("你合你牛魔枪呢?");
                             Player.EffectsManager.EnableEffect<Flashed>(5);
                         }
                     }
@@ -942,7 +962,7 @@ namespace HelpSense
             if (scp1056base != null && Item == scp1056base)
             {
                 Player.SetPlayerScale(Config.SCP1056X);
-                Player.ReceiveHint("boom!你变小了!!!");
+                Player.GetHintProvider().ShowHint("boom!你变小了!!!");
             }
         }
 
@@ -981,11 +1001,13 @@ namespace HelpSense
             scp1056base = null;
             SkynetPlayers.Clear();
             SeePlayers.Clear();
+            if (Scp703Handle.IsRunning)
+                Timing.KillCoroutines(Scp703Handle);
             if (Config.EnableRoundEndInfo)
             {
                 foreach (Player player in XHelper.PlayerList)
                 {
-                    player.ReceiveHint(TranslateConfig.RoundEndInfo, 10);
+                    player.GetHintProvider().ShowHint(TranslateConfig.RoundEndInfo, 10);
                 }
             }
             if (Config.EnableFriendlyFire)
@@ -997,7 +1019,7 @@ namespace HelpSense
                 {
                     foreach (Player player in XHelper.PlayerList)
                     {
-                        player.ReceiveHint(TranslateConfig.FFMessage, 15);
+                        player.GetHintProvider().ShowHint(TranslateConfig.FFMessage, 15);
                     }
                 }
                 else
@@ -1127,6 +1149,7 @@ namespace HelpSense
                 {
                     case "SCP-703":
                         {
+                            Timing.KillCoroutines(Scp703Handle);
                             SCP703.OnPlayerDead(Player, "SCP 7 0 3 SUCCESSFULLY TERMINATED . TERMINATION CAUSE UNSPECIFIED", "SCP-703成功被消灭，具体原因未知");
                             SCP703 = null;
                             break;
@@ -1135,6 +1158,19 @@ namespace HelpSense
                         {
                             SCP029.OnPlayerDead(Player, "SCP 0 2 9 SUCCESSFULLY TERMINATED . TERMINATION CAUSE UNSPECIFIED", "SCP-029成功被消灭，具体原因未知");
                             SCP029 = null;
+                            break;
+                        }
+                    case "混沌领导者":
+                        {
+                            ChaosLeader.OnPlayerDead(Player , "" , "混沌领导者阵亡");
+                            foreach (Player Player in XHelper.PlayerList)
+                            {
+                                if (Player.Team is Team.ChaosInsurgency)
+                                {
+                                    Player.EffectsManager.DisableEffect<MovementBoost>();
+                                }
+                            }
+                            ChaosLeader = null;
                             break;
                         }
                     case "SCP-191":
@@ -1171,18 +1207,6 @@ namespace HelpSense
                             SCP1093 = null;
                             break;
                         }
-                }
-                if (Player.RoleName == TranslateConfig.ChaosLeaderRoleName)
-                {
-                    ChaosLeader.OnPlayerDead(Player, "", TranslateConfig.ChaosLeaderDeathCassie);
-                    foreach (Player Player in XHelper.PlayerList)
-                    {
-                        if (Player.Team is Team.ChaosInsurgency)
-                        {
-                            Player.EffectsManager.DisableEffect<MovementBoost>();
-                        }
-                    }
-                    ChaosLeader = null;
                 }
                 if (SkynetPlayers.Contains(Player))
                 {
@@ -1357,12 +1381,12 @@ namespace HelpSense
         {
             var sender = ev.Sender;
             var command = ev.Command;
-            Player Player = Player.Get(sender);
-            if (Player != null && !string.IsNullOrEmpty(command))
+            Player player = Player.Get(sender);
+            if (player != null && !string.IsNullOrEmpty(command))
             {
-                string note = TranslateConfig.AdminLog.Replace("%Nickname%" , Player.Nickname).Replace("%Time%" , DateTime.Now.ToString()).Replace("%Command%" , command.ToString()).Replace("%UserId%", Player.UserId);
+                string note = player.Nickname + $" 在[{DateTime.Now}]时候 | 使用了指令:" + command.ToString() + " | Steam64位ID为:" + player.UserId;
                 if (Config.AdminLogShow)
-                    XHelper.Allbroadcast("<size=30>[<color=red>管理行为监察输出记录</color>] <" + Player.Nickname + "> 在刚刚使用了指令: " + command.ToString() + "</size>", 5, BroadcastFlags.Normal);
+                    XHelper.Allbroadcast("<size=30>[<color=red>管理行为监察输出记录</color>] <" + player.Nickname + "> 在刚刚使用了指令: " + command.ToString() + "</size>", 5, BroadcastFlags.Normal);
                 Log.Info(note);
                 try
                 {
@@ -1429,8 +1453,8 @@ namespace HelpSense
 
                     Player.SetPlayerScale(0.8f);
 
-                    Player.SendBroadcast(TranslateConfig.SCP191SpawnBroadcast, 6);
-                    Player.ReceiveHint(TranslateConfig.SCP191SkillIntroduction, 6);
+                    Player.SendBroadcast("你成为了<color=red>SCP-191 机械少女</color>", 6);
+                    Player.GetHintProvider().ShowHint("因为你的身体的改造，你对除了电磁和爆炸伤害的抗性很高", 6);
 
                     Player.AddItem(ItemType.ArmorCombat);
                     Player.AddItem(ItemType.GunFSP9);
@@ -1469,6 +1493,12 @@ namespace HelpSense
             db.Dispose();
             db = null;
         }
+
+        private CoroutineHandle _timerCoroutine;
+        private CoroutineHandle messageCoroutine;
+        private CoroutineHandle servermessageCoroutine;
+        private CoroutineHandle CollectInfohandle;
+        private CoroutineHandle Scp703Handle;
 
         [PluginConfig]
         public Config Config;
