@@ -51,6 +51,7 @@ namespace HelpSense.Commands
             sb.AppendLine("Copyright © X小左 2022-2024");
 
             response = sb.ToString();
+            StringBuilderPool.Pool.Return(sb);
             return true;
         }
 

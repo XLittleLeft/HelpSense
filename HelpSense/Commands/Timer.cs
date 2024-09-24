@@ -8,7 +8,6 @@ namespace HelpSense.Commands
     [CommandHandler(typeof(ClientCommandHandler))]
     public class Timer : ICommand
     {
-
         public string Command => "timer";
 
         public string[] Aliases => Array.Empty<string>();

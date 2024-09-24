@@ -57,7 +57,7 @@
     <Compile Include="Commands\InfoCommand.cs" />
     <Compile Include="Commands\Timer.cs" />
     <Compile Include="Commands\VersionCommand.cs" />
-    <Compile Include="Commands\ZiJiuCommand.cs" />
+    <Compile Include="Commands\RescueCommand.cs" />
     <Compile Include="ConfigSystem\Config.cs" />
     <Compile Include="ConfigSystem\TranslateConfig.cs" />
     <Compile Include="Handler\LobbyLocationHandler.cs" />
