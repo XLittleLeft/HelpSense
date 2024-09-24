@@ -32,10 +32,10 @@ namespace HelpSense.Commands
 
             WaypointBase.GetRelativePosition(player.Position, out byte id, out _);
 
-            if (player == null || 
-                !player.IsAlive || 
+            if (!player.IsAlive || 
                 player.Zone is not MapGeneration.FacilityZone.None ||
-                (!WaypointBase.TryGetWaypoint(id, out WaypointBase waypoint) || waypoint is ElevatorWaypoint))
+                !WaypointBase.TryGetWaypoint(id, out WaypointBase waypoint) ||
+                waypoint is ElevatorWaypoint)
             {
                 response = "失败，可能指令未启用或者身份不允许等";
                 return false;
