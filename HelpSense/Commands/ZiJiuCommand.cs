@@ -16,25 +16,33 @@ namespace HelpSense.Commands
     {
         public string Command => "ZiJiu";
 
-        public string[] Aliases => new string[] { "ZJ" };
+        public string[] Aliases => new string[] { "Rescue", "ZJ" };
 
         public string Description => "卡虚空自救";
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            Player Player = Player.Get(sender);
-            WaypointBase.GetRelativePosition(Player.Position, out byte id, out _);
-            if (Player != null && Player.IsAlive && Player.Zone is MapGeneration.FacilityZone.None && (WaypointBase.TryGetWaypoint(id, out WaypointBase waypoint) && waypoint is not ElevatorWaypoint))
+            Player player;
+
+            if(sender is null || (player = Player.Get(sender)) is null)
             {
-                Player.IsGodModeEnabled = true;
+
+            }
+
+            WaypointBase.GetRelativePosition(player.Position, out byte id, out _);
+
+            if (player != null && player.IsAlive && player.Zone is MapGeneration.FacilityZone.None && (WaypointBase.TryGetWaypoint(id, out WaypointBase waypoint) && waypoint is not ElevatorWaypoint))
+            {
+                player.IsGodModeEnabled = true;
                 Timing.CallDelayed(1f, () =>
                 {
-                    Player.Position = XHelper.GetRandomSpawnLocation(Player.Role);
+                    Timing.CallDelayed(2f, () =>
+                    {
+                        player.IsGodModeEnabled = false;
+                    });
+                    player.Position = player.Role.GetRandomSpawnLocation();
                 });
-                Timing.CallDelayed(3f, () =>
-                {
-                    Player.IsGodModeEnabled = false;
-                });
+                
                 response = "成功";
                 return true;
             }

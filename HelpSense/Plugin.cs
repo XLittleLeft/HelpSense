@@ -109,6 +109,10 @@ namespace HelpSense
         public ushort scp1056id = 0;
         public ItemBase scp1056base;
 
+        public static System.Version PluginVersion => new System.Version(1, 3, 4);
+        public static DateTime LastUpdateTime => new DateTime(2024, 08, 07, 8, 8, 0);
+        public static System.Version RequiredGameVersion => new System.Version(13, 5, 1);
+
         [PluginEntryPoint("HelpSense", "1.3.4", "HelpSense综合服务器插件", "X小左")]
         void LoadPlugin()
         {
