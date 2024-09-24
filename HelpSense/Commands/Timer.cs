@@ -1,6 +1,4 @@
 ﻿using CommandSystem;
-using HelpSense.Helper;
-using PluginAPI.Core;
 using System;
 
 namespace HelpSense.Commands

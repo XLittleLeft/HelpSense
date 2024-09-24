@@ -1,80 +1,65 @@
-﻿using CustomPlayerEffects;
-using MEC;
-using PlayerRoles;
-using PluginAPI.Core;
-using PluginAPI.Core.Attributes;
-using PluginAPI.Enums;
+﻿using System;
+using System.IO;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
-using Random = UnityEngine.Random;
-using HarmonyLib;
-using GameCore;
-using InventorySystem;
-using PlayerStatsSystem;
+
+using PluginAPI.Core;
 using PluginAPI.Events;
-using System;
-using Log = PluginAPI.Core.Log;
-using InventorySystem.Items.Firearms;
-using MapGeneration.Distributors;
-using Respawning;
-using HelpSense.Helper;
-using System.Reflection;
-using InventorySystem.Items.Pickups;
-using Mirror;
-using Interactables.Interobjects.DoorUtils;
-using InventorySystem.Items.Keycards;
-using Serialization;
-using System.IO;
-using HelpSense.API.Features;
-using InventorySystem.Items;
-using HelpSense.Handler;
-using Footprinting;
-using InventorySystem.Items.Firearms.Attachments;
+using PluginAPI.Core.Attributes;
+
 using PlayerRoles.Voice;
-using MapGeneration;
-using PluginAPI.Core.Zones;
-using System.Threading.Tasks;
 using PlayerRoles.PlayableScps.Scp079;
-using Interactables.Interobjects;
-using InventorySystem.Items.ThrowableProjectiles;
-using HelpSense.ConfigSystem;
-using UnityEngine.UIElements;
-using PlayerRoles.Ragdolls;
-using CommandSystem;
-using static Broadcast;
-using InventorySystem.Items.Firearms.BasicMessages;
-using HelpSense.Patches;
-using InventorySystem.Items.Usables;
-using PlayerRoles.PlayableScps.Scp049;
-using PlayerRoles.PlayableScps.Scp106;
-using PlayerRoles.PlayableScps.Scp173;
 using PlayerRoles.PlayableScps.Scp096;
-using PlayerRoles.PlayableScps.Scp939;
-using LiteDB;
-using PluginAPI.Commands;
+
 using HelpSense.API;
 using HelpSense.MonoBehaviors;
+using HelpSense.Helper;
+using HelpSense.API.Features;
+using HelpSense.Handler;
+using HelpSense.ConfigSystem;
+
+using InventorySystem;
+using InventorySystem.Items;
+using InventorySystem.Items.Firearms;
+using InventorySystem.Items.Keycards;
+using InventorySystem.Items.Firearms.Attachments;
+
+using GameCore;
+using PlayerStatsSystem;
+using MapGeneration.Distributors;
+using Respawning;
+using MapGeneration;
+using Footprinting;
+using LiteDB;
+using CustomPlayerEffects;
+using MEC;
+using PlayerRoles;
+using UnityEngine;
+using HarmonyLib;
+
+using static Broadcast;
+using Log = PluginAPI.Core.Log;
 
 namespace HelpSense
 {
     public class Plugin
     {
-        Harmony Harmony = new("cn.xlittleleft.plugin");
+        private Harmony _harmony = new("cn.xlittleleft.plugin");
 
-        public LiteDatabase db;
+        public LiteDatabase Database;
 
-        public System.Random Random = new System.Random();
+        public System.Random Random = new(DateTime.Now.GetHashCode());
 
         public static string RespawnTimerDirectoryPath { get; private set; }
 
         public Vector3 LobbyPos;
 
-        public static LobbyLocationType curLobbyLocationType;
+        public static LobbyLocationType CurLobbyLocationType;
 
-        public CoroutineHandle lobbyTimer;
+        public CoroutineHandle LobbyTimer;
 
-        public string text;
+        public string Text;
 
         public static bool IsLobby = false;
 
@@ -109,24 +94,23 @@ namespace HelpSense
         public ushort scp1056id = 0;
         public ItemBase scp1056base;
       
-        public static System.Version PluginVersion => new System.Version(1, 3, 5);
-        public static DateTime LastUpdateTime => new DateTime(2024, 08, 07, 8, 8, 0);
-        public static System.Version RequiredGameVersion => new System.Version(13, 5, 1);
+        public static System.Version PluginVersion => new(1, 3, 5);
+        public static DateTime LastUpdateTime => new(2024, 08, 07, 8, 8, 0);
+        public static System.Version RequiredGameVersion => new(13, 5, 1);
       
         [PluginEntryPoint("HelpSense", "1.3.5", "HelpSense综合服务器插件", "X小左")]
-      
         void LoadPlugin()
         {
             Instance = this;
 
             if (Config.SavePlayersInfo)
             {
-                db = new LiteDatabase(Config.SavePath);
+                Database = new LiteDatabase(Config.SavePath);
             }
 
             EventManager.RegisterEvents(this);
 
-            Harmony.PatchAll();
+            _harmony.PatchAll();
 
             if (Config.EnableRespawnTimer)
             {
@@ -154,18 +138,18 @@ namespace HelpSense
                         LobbyHelper.SpawnManager();
                         GameObject.Find("StartRound").transform.localScale = Vector3.zero;
 
-                        if (lobbyTimer.IsRunning)
+                        if (LobbyTimer.IsRunning)
                         {
-                            Timing.KillCoroutines(lobbyTimer);
+                            Timing.KillCoroutines(LobbyTimer);
                         }
 
-                        if (curLobbyLocationType == LobbyLocationType.Intercom && Config.DisplayInIcom) lobbyTimer = Timing.RunCoroutine(LobbyHelper.LobbyIcomTimer());
-                        else lobbyTimer = Timing.RunCoroutine(LobbyHelper.LobbyTimer());
+                        if (CurLobbyLocationType == LobbyLocationType.Intercom && Config.DisplayInIcom) LobbyTimer = Timing.RunCoroutine(LobbyHelper.LobbyIcomTimer());
+                        else LobbyTimer = Timing.RunCoroutine(LobbyHelper.LobbyTimer());
                     });
                 }
                 catch (Exception e)
                 {
-                    Log.Error("[HelpSense] [Event: OnWaitingForPlayers] " + e.ToString());
+                    Log.Error("[HelpSense] [Event: OnWaitingForPlayers] " + e);
                 }
             }
             if (Config.EnableFriendlyFire)
@@ -221,14 +205,14 @@ namespace HelpSense
 
                             Player.IsGodModeEnabled = true;
 
-                            if (Config.LobbyInventory.Count > 0 && curLobbyLocationType != LobbyLocationType.Chaos)
+                            if (Config.LobbyInventory.Count > 0 && CurLobbyLocationType != LobbyLocationType.Chaos)
                             {
                                 foreach (var item in Config.LobbyInventory)
                                 {
                                     Player.AddItem(item);
                                 }
                             }
-                            if (curLobbyLocationType is LobbyLocationType.Chaos)
+                            if (CurLobbyLocationType is LobbyLocationType.Chaos)
                             {
                                 Player.AddItem(ItemType.ArmorHeavy);
                                 Player.AddItem(ItemType.GunAK);
@@ -1254,6 +1238,7 @@ namespace HelpSense
                 ev.Chamber.Toggle(ev.Locker);
                 return false;
             }
+
             return true;
         }
 
@@ -1263,18 +1248,13 @@ namespace HelpSense
             if (!Config.AffectGenerators || ev.Player.IsSCP || ev.Player.IsWithoutItems() ||
                 ev.Player.CurrentItem is KeycardItem || ev.GeneratorColliderId != Scp079Generator.GeneratorColliderId.Door) return true;
 
-            if (ev.Generator.HasKeycardPermission(ev.Player))
+            if (!ev.Generator.HasKeycardPermission(ev.Player) && !ev.Generator.IsUnlocked())
             {
-                if (!ev.Generator.IsUnlocked())
-                {
-                    ev.Generator.Unlock();
+                ev.Generator.Unlock();
+                ev.Generator.ServerGrantTicketsConditionally(new Footprint(ev.Player.ReferenceHub), 0.5f);
+                ev.Generator._cooldownStopwatch.Restart();
 
-                    ev.Generator.ServerGrantTicketsConditionally(new Footprint(ev.Player.ReferenceHub), 0.5f);
-
-                    ev.Generator._cooldownStopwatch.Restart();
-
-                    return false;
-                }
+                return false;
             }
 
             return true;
@@ -1283,29 +1263,17 @@ namespace HelpSense
         [PluginEvent]
         public bool OnSearchPickup(PlayerSearchPickupEvent ev)
         {
-            if (IsLobby)
-            {
-                return false;
-            }
-
-            return true;
-
+            return !IsLobby;
         }
 
         [PluginEvent]
         public bool OnPlayerDroppedItem(PlayerDropItemEvent ev)
         {
-            var Player = ev.Player;
-            var Item = ev.Item;
-
             if (IsLobby)
-            {
                 return false;
-            }
-            if (Player.RoleName == "SCP-073" && Player.Team is Team.ChaosInsurgency)
-            {
+
+            if (ev.Player.RoleName == "SCP-073" && ev.Player.Team is Team.ChaosInsurgency)
                 return false;
-            }
 
             return true;
         }
@@ -1314,9 +1282,7 @@ namespace HelpSense
         public bool OnThrowItem(PlayerThrowItemEvent ev)
         {
             if (IsLobby)
-            {
                 return false;
-            }
 
             return true;
         }
@@ -1326,22 +1292,22 @@ namespace HelpSense
         {
             if (Config.InfiniteAmmo)
                 return false;
-            else
-                return true;
+
+            return true;
         }
 
         [PluginEvent]
         void OnSkynetPlayerInteractGenerator(PlayerInteractGeneratorEvent ev)
         {
-            var Player = ev.Player;
-            var Generator = ev.Generator;
+            var player = ev.Player;
+            var generator = ev.Generator;
 
-            if (SkynetPlayers.Contains(Player))
+            if (SkynetPlayers.Contains(player))
             {
-                Generator.Network_syncTime = 50;
-                Generator._totalActivationTime = 50;
-                Generator._totalDeactivationTime = 50;
-                Generator._prevTime = 50;
+                generator.Network_syncTime = 50;
+                generator._totalActivationTime = 50;
+                generator._totalDeactivationTime = 50;
+                generator._prevTime = 50;
             }
         }
 
@@ -1353,9 +1319,9 @@ namespace HelpSense
             Player player = Player.Get(sender);
             if (player != null && !string.IsNullOrEmpty(command))
             {
-                string note = TranslateConfig.AdminLog.Replace("%Nickname%" , player.Nickname).Replace("%Time%" , DateTime.Now.ToString()).Replace("%Command%" , command.ToString()).Replace("%UserId%" , player.UserId);
+                string note = TranslateConfig.AdminLog.Replace("%Nickname%" , player.Nickname).Replace("%Time%" , DateTime.Now.ToString()).Replace("%Command%" , command).Replace("%UserId%" , player.UserId);
                 if (Config.AdminLogShow)
-                    XHelper.Allbroadcast(TranslateConfig.AdminLogBroadcast.Replace("%Nickname%" , player.Nickname).Replace("%Command%" , command.ToString()), 5, BroadcastFlags.Normal);
+                    XHelper.Allbroadcast(TranslateConfig.AdminLogBroadcast.Replace("%Nickname%" , player.Nickname).Replace("%Command%" , command), 5, BroadcastFlags.Normal);
                 Log.Info(note);
                 try
                 {
@@ -1401,7 +1367,7 @@ namespace HelpSense
         }
 
         [PluginEvent]
-        void OnRoundRestart(RoundRestartEvent ev)
+        void OnRoundRestart(RoundRestartEvent _)
         {
             XHelper.PlayerList.Clear();
             XHelper.SpecialPlayerList.Clear();
@@ -1410,57 +1376,57 @@ namespace HelpSense
         [PluginEvent]
         void OnChangeRole(PlayerChangeRoleEvent ev)
         {
-            var Player = ev.Player;
-            var OldRole = ev.OldRole.RoleTypeId;
-            var NewRole = ev.NewRole;
-            if (Player == null) return;
+            var player = ev.Player;
+            var oldRole = ev.OldRole.RoleTypeId;
+            var newRole = ev.NewRole;
+            if (player == null) return;
             Timing.CallDelayed(3f, () =>
             {
-                if (OldRole is RoleTypeId.Scp079 && NewRole is RoleTypeId.Spectator && Config.SCP191)
+                if (!(oldRole is RoleTypeId.Scp079 && newRole is RoleTypeId.Spectator && Config.SCP191))
+                    return;
+
+                SCP191 = new SCPHelper(player, RoleTypeId.Tutorial, 120, "SCP-191", "red");
+
+                player.SetPlayerScale(0.8f);
+
+                player.SendBroadcast(TranslateConfig.SCP191SpawnBroadcast, 6);
+                player.GetHintProvider().ShowHint(TranslateConfig.SCP191SkillIntroduction, 6);
+
+                player.AddItem(ItemType.ArmorCombat);
+                player.AddItem(ItemType.GunFSP9);
+                player.AddAmmo(ItemType.Ammo9x19, 60);
+                player.AddItem(ItemType.Medkit);
+
+                Player scp = XHelper.PlayerList.Where(x => x.IsSCP).ToList().RandomItem();
+                if (scp != null)
                 {
-                    SCP191 = new SCPHelper(Player,RoleTypeId.Tutorial , 120 , "SCP-191", "red");
-
-                    Player.SetPlayerScale(0.8f);
-
-                    Player.SendBroadcast(TranslateConfig.SCP191SpawnBroadcast, 6);
-                    Player.GetHintProvider().ShowHint(TranslateConfig.SCP191SkillIntroduction, 6);
-
-                    Player.AddItem(ItemType.ArmorCombat);
-                    Player.AddItem(ItemType.GunFSP9);
-                    Player.AddAmmo(ItemType.Ammo9x19, 60);
-                    Player.AddItem(ItemType.Medkit);
-
-                    Player Scp = XHelper.PlayerList.Where(x => x.IsSCP).ToList().RandomItem();
-                    if (Scp != null)
-                    {
-                        Player.Position = Scp.Position + Vector3.up * 1;
-                    }
-                    else
-                    {
-                        Player.Position = XHelper.GetRandomSpawnLocation(RoleTypeId.NtfCaptain);
-                    }
-
-                    Timing.RunCoroutine(XHelper.SCP191Handle(Player).CancelWith(Player.GameObject));
+                    player.Position = scp.Position + Vector3.up * 1;
                 }
+                else
+                {
+                    player.Position = RoleTypeId.NtfCaptain.GetRandomSpawnLocation();
+                }
+
+                Timing.RunCoroutine(XHelper.SCP191Handle(player).CancelWith(player.GameObject));
             });
 
-            if (Config.SavePlayersInfo && !Player.DoNotTrack && NewRole is not RoleTypeId.Spectator)
+            if (Config.SavePlayersInfo && !player.DoNotTrack && newRole is not RoleTypeId.Spectator)
             {
-                var PLog = Player.GetLog();
-                PLog.RolePlayed++;
-                PLog.UpdateLog();
+                var pLog = player.GetLog();
+                pLog.RolePlayed++;
+                pLog.UpdateLog();
             }
         }
 
         [PluginUnload]
         public void OnDisabled()
         {
-            Harmony.UnpatchAll(Harmony.Id);
+            _harmony.UnpatchAll(_harmony.Id);
 
             Instance = null;
-            Harmony = null;
-            db.Dispose();
-            db = null;
+            _harmony = null;
+            Database.Dispose();
+            Database = null;
         }
 
         [PluginConfig]

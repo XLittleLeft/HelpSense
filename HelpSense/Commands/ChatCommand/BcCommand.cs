@@ -15,7 +15,6 @@ namespace HelpSense.Commands.ChatCommand
 
         public string Description => "全服聊天";
 
-        //阿巴巴巴
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             Player player;
