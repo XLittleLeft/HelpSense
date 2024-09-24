@@ -176,6 +176,10 @@ namespace HelpSense.Helper
             while (true)
             {
                 yield return Timing.WaitForSeconds(6 * 60f);
+                if (Round.IsRoundEnded)
+                {
+                    yield break;
+                }
                 Allbroadcast("<size=35><align=center><color=#F6511D>此服务器在运行X小左的插件，享受你的游戏时间~</color></align></size>", 6, Broadcast.BroadcastFlags.Normal);
             }
         }
@@ -183,6 +187,10 @@ namespace HelpSense.Helper
         {
             while (true)
             {
+                if (Round.IsRoundEnded)
+                {
+                    yield break;
+                }
                 Allbroadcast(Plugin.Instance.Config.AutoServerMessageText, Plugin.Instance.Config.AutoServerMessageTimer, Broadcast.BroadcastFlags.Normal);
                 yield return Timing.WaitForSeconds(Plugin.Instance.Config.AutoServerMessageTime * 60f);
             }
@@ -203,6 +211,10 @@ namespace HelpSense.Helper
                         Player.AddItem(itemType);
                     Player.ReceiveHint("获得一件物品", 5);
                 }
+                if (!Player.IsAlive || Round.IsRoundEnded)
+                {
+                    yield break;
+                }
                 yield return Timing.WaitForSeconds(Plugin.Instance.Config.SCP703ItemTIme * 60f);
             }
         }
@@ -221,6 +233,10 @@ namespace HelpSense.Helper
                 D -= 100;
                 if (D == 0)
                     Player.Kill("电量耗尽");
+                if (!Player.IsAlive || Round.IsRoundEnded)
+                {
+                    yield break;
+                }
                 yield return Timing.WaitForSeconds(10f);
             }
         }
@@ -229,7 +245,10 @@ namespace HelpSense.Helper
             while (true)
             {
                 Player.EffectsManager.EnableEffect<Invisible>();
-
+                if (!Player.IsAlive || Round.IsRoundEnded)
+                {
+                    yield break;
+                }
                 yield return Timing.WaitForSeconds(1f);
             }
         }
@@ -448,7 +467,7 @@ namespace HelpSense.Helper
             float health = player.Health;
             int TimeChecker = 0;
 
-            while (player.IsAlive)
+            while (true)
             {
                 if (position != player.Position || health != player.Health)
                 {
@@ -465,6 +484,10 @@ namespace HelpSense.Helper
                         TimeChecker = 0;
                         player.Heal(5f);
                     }
+                }
+                if (!player.IsAlive || Round.IsRoundEnded)
+                {
+                    yield break;
                 }
                 yield return Timing.WaitForSeconds(1f);
             }

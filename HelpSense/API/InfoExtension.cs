@@ -88,6 +88,10 @@ namespace HelpSense.API
                         pLog.UpdateLog();
                     }
                 }
+                if (Round.IsRoundEnded)
+                {
+                    yield break;
+                }
             }
         }
     }
