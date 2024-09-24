@@ -1430,7 +1430,7 @@ namespace HelpSense
 
                     Player.SetPlayerScale(0.8f);
 
-                    Player.SendBroadcast("你成为了<color=red>SCP-191 机械少女</color>", 6);
+                    Player.SendBroadcast(TranslateConfig.SCP191SpawnBroadcast, 6);
                     Player.GetHintProvider().ShowHint(TranslateConfig.SCP191SkillIntroduction, 6);
 
                     Player.AddItem(ItemType.ArmorCombat);
