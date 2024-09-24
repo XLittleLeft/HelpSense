@@ -21,7 +21,7 @@ namespace HelpSense.Commands
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             var config = Plugin.Instance.Config;
-
+            
             var sb = StringBuilderPool.Pool.Get();
 
             //Version and update time
@@ -52,6 +52,7 @@ namespace HelpSense.Commands
 
             response = sb.ToString();
             StringBuilderPool.Pool.Return(sb);
+            
             return true;
         }
 

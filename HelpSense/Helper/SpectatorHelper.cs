@@ -17,7 +17,7 @@ namespace HelpSense.Helper
             {
                 yield return Timing.WaitForSeconds(1);
 
-                StringBuilder list = StringBuilderPool.Shared.Rent().Append(Plugin.Instance.TranslateConfig.TitleText);
+                StringBuilder list = StringBuilderPool.Shared.Rent().Append(Plugin.Instance.TranslateConfig.WatchListTitle);
 
                 int count = 0;
                 foreach (Player splayer in XHelper.PlayerList.Where(x => x.Team == Team.Dead))
