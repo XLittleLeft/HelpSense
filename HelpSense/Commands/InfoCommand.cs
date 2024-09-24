@@ -1,6 +1,5 @@
 ﻿using CommandSystem;
 using HelpSense.API;
-using NWAPIPermissionSystem;
 using PluginAPI.Core;
 using System;
 using System.Collections.Generic;

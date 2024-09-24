@@ -93,7 +93,7 @@ namespace HelpSense.Helper
 
                 foreach (Player ply in XHelper.PlayerList)
                 {
-                    ply.ReceiveHint(Plugin.Instance.text.ToString(), 1f);
+                    ply.GetHintProvider().ShowHint(Plugin.Instance.text.ToString(), 1f);
                 }
 
                 yield return Timing.WaitForSeconds(1f);
