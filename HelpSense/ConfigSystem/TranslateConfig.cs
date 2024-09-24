@@ -20,7 +20,8 @@ namespace HelpSense.ConfigSystem
         /// </summary>
         [Description("管理员监察输出文本")]
         public string AdminLog { get; set; } = "%Nickname%在%Time%时候 | 使用了指令:%Command% | Steam64ID:%UserId%";
-
+        [Description("管理员监察指令广播")]
+        public string AdminLogBroadcast { get; set; } = "<size=30>[<color=red>管理行为监察输出记录</color>] <%Nickname%> 在刚刚使用了指令: %Command%</size>";
         /// <summary>
         /// 
         /// </summary>
