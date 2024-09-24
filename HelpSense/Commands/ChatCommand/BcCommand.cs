@@ -48,7 +48,7 @@ namespace HelpSense.Commands.ChatCommand
                 _ => "white"
             };
 
-            XHelper.Allbroadcast($"<size={Plugin.Instance.Config.ChatSystemSize}>[<color={color}>{player.Team}</color>][全体]{player.Nickname}: {CollectionExtensions.At(arguments, 0)}</size>", 4, Broadcast.BroadcastFlags.Normal);
+            XHelper.Broadcast($"<size={Plugin.Instance.Config.ChatSystemSize}>[<color={color}>{player.Team}</color>][全体]{player.Nickname}: {CollectionExtensions.At(arguments, 0)}</size>", 4, Broadcast.BroadcastFlags.Normal);
 
             Log.Info(player.Nickname + " 发送了 " + arguments.At(0));
             response = "发送成功";

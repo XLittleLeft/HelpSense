@@ -1,44 +1,42 @@
-﻿using HelpSense.API.Features.Pool;
-using Hints;
-using InventorySystem;
-using InventorySystem.Items.Firearms;
+﻿using InventorySystem.Items.Firearms;
 using InventorySystem.Items.Firearms.Attachments;
 using InventorySystem.Items.Firearms.BasicMessages;
-using MEC;
-using Mirror;
+
 using PlayerRoles;
 using PlayerRoles.FirstPersonControl.Spawnpoints;
 using PlayerRoles.FirstPersonControl;
+
 using PluginAPI.Core;
 using PluginAPI.Core.Items;
-using Respawning;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
+using MEC;
+using Respawning;
 using UnityEngine;
-using Random = System.Random;
 using CustomPlayerEffects;
-using static Broadcast;
-using PlayerRoles.PlayableScps.Scp049.Zombies;
-using RelativePositioning;
-using UnityEngine.UIElements;
 using Interactables.Interobjects.DoorUtils;
-using AdminToys;
-using InventorySystem.Items;
+using Mirror;
+
 using HelpSense.Hint;
+using HelpSense.API.Features.Pool;
 
 namespace HelpSense.Helper
 {
     public static class XHelper
     {
-        public static Random Random = new Random();
-        public static HashSet<Player> PlayerList = new HashSet<Player>();
-        public static HashSet<Player> SpecialPlayerList = new HashSet<Player>();
-        public static HashSet<IHintProvider> HintProviderList = new HashSet<IHintProvider>();
+        public static System.Random Random = new(DateTime.Now.GetHashCode());
+        public static HashSet<Player> PlayerList = new();
+        public static HashSet<Player> SpecialPlayerList = new();
+        public static HashSet<IHintProvider> HintProviderList = new();
+
         public static Player GetRandomPlayer(RoleTypeId roleTypeId)
         {
             List<Player> players = new List<Player>();
+
             foreach (Player player in PlayerList)
             {
                 if (player.Role == roleTypeId)
@@ -46,44 +44,39 @@ namespace HelpSense.Helper
                     players.Add(player);
                 }
             }
-            if (players.Count() >= 1)
+
+            if (players.Any())
             {
-                return players[new Random().Next(0, players.Count() - 1)];
+                return players[Random.Next(0, players.Count() - 1)];
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
-        public static Player GetRandomPlayer(RoleTypeId roleTypeId , List<Player> playerlist)
+        public static Player GetRandomPlayer(RoleTypeId roleTypeId , List<Player> playerList)
         {
             List<Player> players = new List<Player>();
-            foreach (Player player in playerlist)
+            foreach (Player player in playerList)
             {
                 if (player.Role == roleTypeId)
                 {
                     players.Add(player);
                 }
             }
-            if (players.Count() >= 1)
+            if (players.Any())
             {
-                return players[new Random().Next(0, players.Count() - 1)];
+                return players[Random.Next(0, players.Count - 1)];
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
-        public static Player GetRandomPlayer(List<Player> playerlist)
+        public static Player GetRandomPlayer(List<Player> playerList)
         {
-            if (playerlist.Count() >= 1)
+            if (playerList.Any())
             {
-                return playerlist[new Random().Next(0, playerlist.Count() - 1)];
+                return playerList[Random.Next(0, playerList.Count() - 1)];
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
         public static Player GetRandomSpecialPlayer(RoleTypeId roleTypeId)
         {
@@ -95,41 +88,33 @@ namespace HelpSense.Helper
                     players.Add(player);
                 }
             }
-            if (players.Count() >= 1)
+            if (players.Any())
             {
-                var randomplayer = players[new Random().Next(0, players.Count() - 1)];
-                SpecialPlayerList.Remove(randomplayer);
-                return randomplayer;
+                var randomPlayer = players[Random.Next(0, players.Count() - 1)];
+                SpecialPlayerList.Remove(randomPlayer);
+                return randomPlayer;
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
-        public static ItemType GetRadomItem()
+        public static ItemType GetRandomItem()
         {
-            List<ItemType> itemTypes = new List<ItemType>();
-            for (int i = 1; i <= 51; i++)
-            {
-                if (!((ItemType)(i)).IsAmmo())
-                {
-                    itemTypes.Add((ItemType)(i));
-                }
-            }
-            return itemTypes[new Random().Next(0, itemTypes.Count() - 1)];
+            var allItems = Enum.GetValues(typeof(ItemType)).ToArray<ItemType>();
+
+            return allItems[Random.Next(0, allItems.Length - 1)];
         }
 
-        public static void SpawnItem(ItemType typeid, Vector3 Position, int amount = 1)
+        public static void SpawnItem(ItemType typeid, Vector3 position, int amount)
         {
             for (int i = 0; i < amount; i++)
             {
-                ItemPickup.Create(typeid, Position, new Quaternion(0, 0, 0, 0)).Spawn();
+                ItemPickup.Create(typeid, position, new Quaternion(0, 0, 0, 0)).Spawn();
             }
         }
 
-        public static ItemPickup SpawnItem(ItemType typeid, Vector3 Position)
+        public static ItemPickup SpawnItem(ItemType typeid, Vector3 position)
         {
-            var item = ItemPickup.Create(typeid, Position, new Quaternion(0, 0, 0, 0));
+            var item = ItemPickup.Create(typeid, position, new Quaternion(0, 0, 0, 0));
             item.Spawn();
             return item;
         }
@@ -139,6 +124,7 @@ namespace HelpSense.Helper
             GameObject go = target.GameObject;
             if (go.transform.localScale == scale)
                 return;
+
             try
             {
                 NetworkIdentity identity = target.ReferenceHub.networkIdentity;
@@ -172,8 +158,9 @@ namespace HelpSense.Helper
             StringBuilderPool.Pool.Return(announcement);
         }
         public static TimeSpan TimeUntilSpawnWave => TimeSpan.FromSeconds(RespawnManager.Singleton._timeForNextSequence - (float)RespawnManager.Singleton._stopwatch.Elapsed.TotalSeconds);
-        //防倒
-        public static IEnumerator<float> AutoX()
+        
+        //防倒卖
+        public static IEnumerator<float> AutoXBroadcast()
         {
             while (true)
             {
@@ -182,118 +169,108 @@ namespace HelpSense.Helper
                 {
                     yield break;
                 }
-                Allbroadcast("<size=35><align=center><color=#F6511D>此服务器在运行X小左的插件，享受你的游戏时间~</color></align></size>", 6, Broadcast.BroadcastFlags.Normal);
+                Broadcast("<size=35><align=center><color=#F6511D>此服务器在运行X小左的插件，享受你的游戏时间~</color></align></size>", 6, global::Broadcast.BroadcastFlags.Normal);
             }
         }
-        public static IEnumerator<float> AutoSX()
+
+        public static IEnumerator<float> AutoServerBroadcast()
         {
-            while (true)
+            while (!Round.IsRoundEnded)
             {
-                if (Round.IsRoundEnded)
-                {
-                    yield break;
-                }
-                Allbroadcast(Plugin.Instance.Config.AutoServerMessageText, Plugin.Instance.Config.AutoServerMessageTimer, Broadcast.BroadcastFlags.Normal);
+                Broadcast(Plugin.Instance.Config.AutoServerMessageText, Plugin.Instance.Config.AutoServerMessageTimer, global::Broadcast.BroadcastFlags.Normal);
                 yield return Timing.WaitForSeconds(Plugin.Instance.Config.AutoServerMessageTime * 60f);
             }
         }
-        public static IEnumerator<float> RandomItem(Player Player)
+
+        public static IEnumerator<float> GiveRandomItem(Player player)
         {
             while (true)
             {
-                if (!Player.IsInventoryFull)
-                {
-                    ItemType itemType = GetRadomItem();
-                    if (itemType.IsWeapon())
-                    {
-                        var firearm = Player.AddItem(itemType);
-                        ((Firearm)(firearm)).Status = new FirearmStatus(((Firearm)(firearm)).AmmoManagerModule.MaxAmmo, ((Firearm)(firearm)).Status.Flags, ((Firearm)(firearm)).GetCurrentAttachmentsCode());
-                    }
-                    else
-                        Player.AddItem(itemType);
-                    Player.GetHintProvider().ShowHint("获得一件物品", 5);
-                }
-                if (!Player.IsAlive || Round.IsRoundEnded)
+                if (!player.IsAlive || Round.IsRoundEnded)
                 {
                     yield break;
                 }
+
+                if (!player.IsInventoryFull)
+                {
+                    ItemType itemType = GetRandomItem();
+                    if (itemType.IsWeapon())
+                    {
+                        var firearm = player.AddItem(itemType);
+                        ((Firearm)firearm).Status = new FirearmStatus(((Firearm)(firearm)).AmmoManagerModule.MaxAmmo, ((Firearm)(firearm)).Status.Flags, ((Firearm)(firearm)).GetCurrentAttachmentsCode());
+                    }
+                    else
+                    {
+                        player.AddItem(itemType);
+                    }
+                    
+                    player.GetHintProvider().ShowHint("获得一件物品", 5);
+                }
+
                 yield return Timing.WaitForSeconds(Plugin.Instance.Config.SCP703ItemTIme * 60f);
             }
         }
 
-        public static IEnumerator<float> SCP191Handle(Player Player)
+        public static IEnumerator<float> SCP191Handle(Player player)
         {
-            int D = 5000;
-            while (true)
+            int d = 5000;
+            while (player.IsAlive || !Round.IsRoundEnded)
             {
-                Player.GetHintProvider().ShowHint($"<align=right><size=60><b>你目前剩余的电量:<color=yellow>{D}安</color></size></b></align>",11);
-                if (Player.Room.Name is MapGeneration.RoomName.Hcz079)
-                    if (D <= 4000)
-                        D += 1000;
-                    else if (D <= 5000)
-                        D = 5100;
-                D -= 100;
-                if (D == 0)
-                    Player.Kill("电量耗尽");
-                if (!Player.IsAlive || Round.IsRoundEnded)
+                player.GetHintProvider().ShowHint($"<align=right><size=60><b>你目前剩余的电量:<color=yellow>{d}安</color></size></b></align>",11);
+                if (player.Room.Name is MapGeneration.RoomName.Hcz079)
                 {
-                    yield break;
+                    if (d <= 4000)
+                        d += 1000;
+                    else if (d <= 5000)
+                        d = 5100;
                 }
+
+                d -= 100;
+
+                if (d <= 0)
+                    player.Kill("电量耗尽");
+
                 yield return Timing.WaitForSeconds(10f);
             }
         }
+
         public static IEnumerator<float> SCP347Handle(Player Player)
         {
-            while (true)
+            while (Player.IsAlive || !Round.IsRoundEnded)
             {
                 Player.EffectsManager.EnableEffect<Invisible>();
-                if (!Player.IsAlive || Round.IsRoundEnded)
-                {
-                    yield break;
-                }
+
                 yield return Timing.WaitForSeconds(1f);
             }
         }
 
         public static bool IsSpecialPlayer(this Player Player)
         {
-            if (Player.RoleName == "SCP-029" || Player.RoleName == "SCP-703" || Player.RoleName == "混沌领导者"
-                || Player.RoleName == "SCP-191" || Player.RoleName == "SCP-073" || Player.RoleName == "SCP-2936-1")
-            {
-                return true;
-            }
-            return false;
+            return Player.RoleName is "SCP-029" or "SCP-703" or "混沌领导者"
+                or "SCP-191" or "SCP-073" or "SCP-2936-1";
         }
 
         public static bool BreakDoor(DoorVariant Base, DoorDamageType type = DoorDamageType.ServerCommand)
         {
             if (!(Base is IDamageableDoor damageableDoor) || damageableDoor.IsDestroyed)
                 return false;
+
             damageableDoor.ServerDamage((float)ushort.MaxValue, type);
             return true;
         }
 
-        public static void ReloadWeapen(this Player player)
+        public static void ReloadWeapon(this Player player)
         {
             if (player.CurrentItem == null)
-            {
-                //手上没有物品
                 return;
-            }
-            else
-            {
-                if (player.CurrentItem is Firearm firearm)
-                {
-                    firearm.AmmoManagerModule.ServerTryReload();
-                    player.Connection.Send<RequestMessage>(new RequestMessage(firearm.ItemSerial, RequestType.Reload));
-                }
-                else
-                {
-                    //持有的物品不是一个武器
-                    return;
-                }
-            }
+
+            if (player.CurrentItem is not Firearm firearm)
+                return;
+
+            firearm.AmmoManagerModule.ServerTryReload();
+            player.Connection.Send(new RequestMessage(firearm.ItemSerial, RequestType.Reload));
         }
+
         public static bool IsAmmo(this ItemType item)
         {
             if (item != ItemType.Ammo9x19 && item != ItemType.Ammo12gauge && item != ItemType.Ammo44cal && item != ItemType.Ammo556x45)
@@ -303,6 +280,7 @@ namespace HelpSense.Helper
 
             return true;
         }
+
         public static bool IsWeapon(this ItemType type, bool checkMicro = true)
         {
             switch (type)
@@ -335,57 +313,47 @@ namespace HelpSense.Helper
 
         public static bool IsScp(this ItemType type)
         {
-            if (type != ItemType.SCP018 && type != ItemType.SCP500 && type != ItemType.SCP268 && type != ItemType.SCP207 && type != ItemType.SCP244a && type != ItemType.SCP244b && type != ItemType.SCP2176)
-            {
-                return type == ItemType.SCP1853;
-            }
-
-            return true;
+            return type is ItemType.SCP018 or ItemType.SCP500 or ItemType.SCP268 or ItemType.SCP207 or ItemType.SCP244a or ItemType.SCP244b or ItemType.SCP2176;
         }
+
         public static bool IsThrowable(this ItemType type)
         {
-            if (type != ItemType.SCP018 && type != ItemType.GrenadeHE && type != ItemType.GrenadeFlash)
-            {
-                return type == ItemType.SCP2176;
-            }
-
-            return true;
+            return type is ItemType.SCP018 or ItemType.GrenadeHE or ItemType.GrenadeFlash or ItemType.SCP2176;
         }
+
         public static bool IsMedical(this ItemType type)
         {
-            if (type != ItemType.Painkillers && type != ItemType.Medkit && type != ItemType.SCP500)
-            {
-                return type == ItemType.Adrenaline;
-            }
-
-            return true;
+            return type is ItemType.Painkillers or ItemType.Medkit or ItemType.SCP500 or ItemType.Adrenaline;
         }
+
         public static bool IsUtility(this ItemType type)
         {
-            if (type != ItemType.Flashlight)
-            {
-                return type == ItemType.Radio;
-            }
-
-            return true;
+            return type is ItemType.Flashlight or ItemType.Radio;
         }
+
         public static bool IsArmor(this ItemType type)
         {
-            if (type != ItemType.ArmorCombat && type != ItemType.ArmorHeavy)
-            {
-                return type == ItemType.ArmorLight;
-            }
-
-            return true;
+            return type is ItemType.ArmorLight or ItemType.ArmorCombat or ItemType.ArmorHeavy;
         }
+
         public static bool IsKeycard(this ItemType type)
         {
-            if (type != 0 && type != ItemType.KeycardScientist && type != ItemType.KeycardResearchCoordinator && type != ItemType.KeycardZoneManager && type != ItemType.KeycardGuard && type != ItemType.KeycardMTFPrivate && type != ItemType.KeycardContainmentEngineer && type != ItemType.KeycardMTFOperative && type != ItemType.KeycardMTFCaptain && type != ItemType.KeycardFacilityManager && type != ItemType.KeycardChaosInsurgency)
+            var keycardTypes = new HashSet<ItemType>
             {
-                return type == ItemType.KeycardO5;
-            }
+                ItemType.KeycardScientist,
+                ItemType.KeycardResearchCoordinator,
+                ItemType.KeycardZoneManager,
+                ItemType.KeycardGuard,
+                ItemType.KeycardMTFPrivate,
+                ItemType.KeycardContainmentEngineer,
+                ItemType.KeycardMTFOperative,
+                ItemType.KeycardMTFCaptain,
+                ItemType.KeycardFacilityManager,
+                ItemType.KeycardChaosInsurgency,
+                ItemType.KeycardO5
+            };
 
-            return true;
+            return keycardTypes.Contains(type);
         }
 
         public static Team GetTeam2(this RoleTypeId typeId)
@@ -422,14 +390,14 @@ namespace HelpSense.Helper
             }
         }
 
-        public static void Mybroadcast(this Player player, string text, ushort time, Broadcast.BroadcastFlags broadcastFlags)
+        public static void Broadcast(string text, ushort time, Broadcast.BroadcastFlags broadcastFlags)
         {
-            Broadcast.Singleton.GetComponent<Broadcast>().TargetAddElement(player.ReferenceHub.characterClassManager.connectionToClient, text, time, broadcastFlags);
+            global::Broadcast.Singleton.GetComponent<Broadcast>().RpcAddElement(text, time, broadcastFlags);
         }
 
-        public static void Allbroadcast(string text, ushort time, Broadcast.BroadcastFlags broadcastFlags)
+        public static void ShowBroadcast(this Player player, string text, ushort time, Broadcast.BroadcastFlags broadcastFlags)
         {
-            Broadcast.Singleton.GetComponent<Broadcast>().RpcAddElement(text, time, broadcastFlags);
+            global::Broadcast.Singleton.GetComponent<Broadcast>().TargetAddElement(player.ReferenceHub.characterClassManager.connectionToClient, text, time, broadcastFlags);
         }
 
         public static Vector3 GetRandomSpawnLocation(this RoleTypeId roleType)
@@ -452,45 +420,47 @@ namespace HelpSense.Helper
 
         public static void ChangeAppearance(this Player player, RoleTypeId type)
         {
-            foreach (var Player in PlayerList.Where(x => x.PlayerId != player.PlayerId && x.IsReady))
+            foreach (var pl in PlayerList.Where(x => x.PlayerId != player.PlayerId && x.IsReady))
             {
-                Player.Connection.Send(new RoleSyncInfo(player.ReferenceHub , type , Player.ReferenceHub));
+                pl.Connection.Send(new RoleSyncInfo(player.ReferenceHub , type , pl.ReferenceHub));
             }
         }
 
         public static bool TryGetRoleBase(this RoleTypeId roleType, out PlayerRoleBase roleBase)
         {
-            return PlayerRoleLoader.TryGetRoleTemplate<PlayerRoleBase>(roleType, out roleBase);
+            return PlayerRoleLoader.TryGetRoleTemplate(roleType, out roleBase);
         }
 
         public static IEnumerator<float> PositionCheckerCoroutine(Player player)
         {
             Vector3 position = player.Position;
             float health = player.Health;
-            int TimeChecker = 0;
+            int timeChecker = 0;
 
             while (true)
             {
                 if (position != player.Position || health != player.Health)
                 {
-                    TimeChecker = 0;
+                    timeChecker = 0;
                     position = player.Position;
                     health = player.Health;
                 }
                 else
                 {
-                    TimeChecker++;
+                    timeChecker++;
 
-                    if (TimeChecker >= 2)
+                    if (timeChecker >= 2)
                     {
-                        TimeChecker = 0;
+                        timeChecker = 0;
                         player.Heal(5f);
                     }
                 }
+
                 if (!player.IsAlive || Round.IsRoundEnded)
                 {
                     yield break;
                 }
+
                 yield return Timing.WaitForSeconds(1f);
             }
         }

@@ -386,15 +386,15 @@ namespace HelpSense
                             switch (Player.Role)
                             {
                                 case RoleTypeId.NtfPrivate:
-                                    Player.Mybroadcast($"{TranslateConfig.SkynetPrivateBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
+                                    Player.ShowBroadcast($"{TranslateConfig.SkynetPrivateBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
                                     Player.CustomInfo = TranslateConfig.SkynetPrivateCustomInfo;
                                     break;
                                 case RoleTypeId.NtfSergeant:
-                                    Player.Mybroadcast($"{TranslateConfig.SkynetSergeantBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
+                                    Player.ShowBroadcast($"{TranslateConfig.SkynetSergeantBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
                                     Player.CustomInfo = TranslateConfig.SkynetSergeantCustomInfo;
                                     break;
                                 case RoleTypeId.NtfCaptain:
-                                    Player.Mybroadcast($"{TranslateConfig.SkynetCaptainBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
+                                    Player.ShowBroadcast($"{TranslateConfig.SkynetCaptainBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
                                     Player.CustomInfo = TranslateConfig.SkynetCaptainCustomInfo;
                                     break;
                             }
@@ -419,15 +419,15 @@ namespace HelpSense
                                     switch (Player.Role)
                                     {
                                         case RoleTypeId.NtfPrivate:
-                                            Player.Mybroadcast($"{TranslateConfig.SeeNoEvilPrivateBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
+                                            Player.ShowBroadcast($"{TranslateConfig.SeeNoEvilPrivateBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
                                             Player.CustomInfo = TranslateConfig.SeeNoEvilPrivateCustomInfo;
                                             break;
                                         case RoleTypeId.NtfSergeant:
-                                            Player.Mybroadcast($"{TranslateConfig.SeeNoEvilSergeantBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
+                                            Player.ShowBroadcast($"{TranslateConfig.SeeNoEvilSergeantBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
                                             Player.CustomInfo = TranslateConfig.SeeNoEvilSergeantCustomInfo;
                                             break;
                                         case RoleTypeId.NtfCaptain:
-                                            Player.Mybroadcast($"{TranslateConfig.SeeNoEvilCaptainBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
+                                            Player.ShowBroadcast($"{TranslateConfig.SeeNoEvilCaptainBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
                                             Player.CustomInfo = TranslateConfig.SeeNoEvilCaptainCustomInfo;
                                             break;
                                     }
@@ -477,7 +477,7 @@ namespace HelpSense
 
                         Player.ClearBroadcasts();
 
-                        XHelper.Mybroadcast(Player, TranslateConfig.ChaosLeaderSpawnBroadcast, 10, Broadcast.BroadcastFlags.Normal);
+                        XHelper.ShowBroadcast(Player, TranslateConfig.ChaosLeaderSpawnBroadcast, 10, Broadcast.BroadcastFlags.Normal);
 
                         var firearm = Player.AddItem(ItemType.ParticleDisruptor) as ParticleDisruptor;
                         firearm.Status = new FirearmStatus(5, FirearmStatusFlags.MagazineInserted, firearm.GetCurrentAttachmentsCode());
@@ -572,11 +572,11 @@ namespace HelpSense
 
                         Player.ClearBroadcasts();
 
-                        XHelper.Mybroadcast(Player, TranslateConfig.SCP703SpawnBroadcast, 10, Broadcast.BroadcastFlags.Normal);
+                        XHelper.ShowBroadcast(Player, TranslateConfig.SCP703SpawnBroadcast, 10, Broadcast.BroadcastFlags.Normal);
 
                         Player.GetHintProvider().ShowHint(TranslateConfig.SCP703SkillIntroduction, 10);
 
-                        Timing.RunCoroutine(XHelper.RandomItem(Player).CancelWith(Player.GameObject));
+                        Timing.RunCoroutine(XHelper.GiveRandomItem(Player).CancelWith(Player.GameObject));
                     };
                 });
             }
@@ -591,7 +591,7 @@ namespace HelpSense
 
                         Player.ClearBroadcasts();
 
-                        XHelper.Mybroadcast(Player, TranslateConfig.SCP029SpawnBroadcast, 10, Broadcast.BroadcastFlags.Normal);
+                        XHelper.ShowBroadcast(Player, TranslateConfig.SCP029SpawnBroadcast, 10, Broadcast.BroadcastFlags.Normal);
 
                         Player.GetHintProvider().ShowHint(TranslateConfig.SCP029SkillIntroduction, 10);
 
@@ -680,7 +680,7 @@ namespace HelpSense
                                     player1.AddItem(ItemType.Radio);
                                 }
                             }
-                            XHelper.Allbroadcast(TranslateConfig.GuardMutinyBroadcast, 10, BroadcastFlags.Normal);
+                            XHelper.Broadcast(TranslateConfig.GuardMutinyBroadcast, 10, BroadcastFlags.Normal);
                             break;
                         case 1:
                             {
@@ -703,7 +703,7 @@ namespace HelpSense
                                         players.AddItem(ItemType.GrenadeHE);
                                     }
                                 }
-                                XHelper.Allbroadcast(TranslateConfig.EliteGuardBroadcast, 10, BroadcastFlags.Normal);
+                                XHelper.Broadcast(TranslateConfig.EliteGuardBroadcast, 10, BroadcastFlags.Normal);
                                 break;
                             }
                         case 2:
@@ -769,13 +769,13 @@ namespace HelpSense
             }
             Timing.CallDelayed(30f, () =>
             {
-                Timing.RunCoroutine(XHelper.AutoX());
+                Timing.RunCoroutine(XHelper.AutoXBroadcast());
             });
             Timing.CallDelayed(10f, () =>
             {
                 if (Config.EnableAutoServerMessage)
                 {
-                    Timing.RunCoroutine(XHelper.AutoSX());
+                    Timing.RunCoroutine(XHelper.AutoServerBroadcast());
                 }
             });
             if (Config.SCP1068)
@@ -944,7 +944,7 @@ namespace HelpSense
 
             if (scp1068base != null && Item == scp1068base)
             {
-                XHelper.Allbroadcast(TranslateConfig.SCP1068UsedBroadcast, 5, BroadcastFlags.Normal);
+                XHelper.Broadcast(TranslateConfig.SCP1068UsedBroadcast, 5, BroadcastFlags.Normal);
                 Server.Instance.GetComponent<AlphaWarheadController>(globalSearch: true).RpcShake(true);
             }//沙比NW写空壳核弹抖动我直接自己写一个
         }
@@ -1058,7 +1058,7 @@ namespace HelpSense
                     case InfiniteAmmoType.Normal:
                         if (Firearm.Status.Ammo != Firearm.AmmoManagerModule.MaxAmmo)
                         {
-                            Player.ReloadWeapen();
+                            Player.ReloadWeapon();
                             Firearm.Status = new FirearmStatus(Firearm.AmmoManagerModule.MaxAmmo, Firearm.Status.Flags, Firearm.GetCurrentAttachmentsCode());
                             return false;
                         }
@@ -1321,7 +1321,7 @@ namespace HelpSense
             {
                 string note = TranslateConfig.AdminLog.Replace("%Nickname%" , player.Nickname).Replace("%Time%" , DateTime.Now.ToString()).Replace("%Command%" , command).Replace("%UserId%" , player.UserId);
                 if (Config.AdminLogShow)
-                    XHelper.Allbroadcast(TranslateConfig.AdminLogBroadcast.Replace("%Nickname%" , player.Nickname).Replace("%Command%" , command), 5, BroadcastFlags.Normal);
+                    XHelper.Broadcast(TranslateConfig.AdminLogBroadcast.Replace("%Nickname%" , player.Nickname).Replace("%Command%" , command), 5, BroadcastFlags.Normal);
                 Log.Info(note);
                 try
                 {

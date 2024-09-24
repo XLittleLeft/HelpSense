@@ -39,7 +39,7 @@ namespace HelpSense.Commands.ChatCommand
 
             foreach (Player ply in XHelper.PlayerList.Where(pl => pl.RemoteAdminAccess))
             {
-                ply.Mybroadcast($"<size={Plugin.Instance.Config.ChatSystemSize}><color=red>[求助私信]{player.Nickname}: {CollectionExtensions.At(arguments, 0)}</size>", 4, Broadcast.BroadcastFlags.Normal);
+                ply.ShowBroadcast($"<size={Plugin.Instance.Config.ChatSystemSize}><color=red>[求助私信]{player.Nickname}: {CollectionExtensions.At(arguments, 0)}</size>", 4, Broadcast.BroadcastFlags.Normal);
             }
 
             Log.Info(player.Nickname + " 发送了 " + arguments.At(0));
