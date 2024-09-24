@@ -948,19 +948,6 @@ namespace HelpSense
         }
 
         [PluginEvent]
-        void OnFlashLight(PlayerToggleFlashlightEvent ev)
-        {
-            var Player = ev.Player;
-            var Item = ev.Item;
-            var Toggled = ev.IsToggled;
-
-            if (Player != null && Toggled && Item == scp1056base)
-            {
-                Player.GetPlayers().Where(x => Vector3.Distance(Player.Position, x.Position) <= 5).ToList().ForEach(x => x.IsDisarmed = true);
-            }
-        }
-
-        [PluginEvent]
         void OnPlayerThrowProjectile(PlayerThrowProjectileEvent ev)
         {
             var Player = ev.Thrower;
