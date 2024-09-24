@@ -11,7 +11,7 @@ namespace HelpSense.Commands
     public class AcCommand : ICommand
     {
 
-        public string Command { get; } = "AC";
+        public string Command => "AC";
 
         public string[] Aliases { get; } = new string[]
         {

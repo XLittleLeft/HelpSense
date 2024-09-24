@@ -26,6 +26,7 @@ using UnityEngine.UIElements;
 using Interactables.Interobjects.DoorUtils;
 using AdminToys;
 using InventorySystem.Items;
+using HelpSense.Hint;
 
 namespace HelpSense.Helper
 {
@@ -34,6 +35,7 @@ namespace HelpSense.Helper
         public static Random Random = new Random();
         public static HashSet<Player> PlayerList = new HashSet<Player>();
         public static HashSet<Player> SpecialPlayerList = new HashSet<Player>();
+        public static HashSet<IHintProvider> HintProviderList = new HashSet<IHintProvider>();
         public static Player GetRandomPlayer(RoleTypeId roleTypeId)
         {
             List<Player> players = new List<Player>();
@@ -209,7 +211,7 @@ namespace HelpSense.Helper
                     }
                     else
                         Player.AddItem(itemType);
-                    Player.ReceiveHint("获得一件物品", 5);
+                    Player.GetHintProvider().ShowHint("获得一件物品", 5);
                 }
                 if (!Player.IsAlive || Round.IsRoundEnded)
                 {
@@ -224,7 +226,7 @@ namespace HelpSense.Helper
             int D = 5000;
             while (true)
             {
-                Player.ReceiveHint($"<align=right><size=60><b>你目前剩余的电量:<color=yellow>{D}安</color></size></b></align>",11);
+                Player.GetHintProvider().ShowHint($"<align=right><size=60><b>你目前剩余的电量:<color=yellow>{D}安</color></size></b></align>",11);
                 if (Player.Room.Name is MapGeneration.RoomName.Hcz079)
                     if (D <= 4000)
                         D += 1000;
@@ -504,6 +506,19 @@ namespace HelpSense.Helper
                 return true;
             }
             return false;
+        }
+
+        public static IHintProvider GetHintProvider(this Player player)
+        {
+            var result = HintProviderList.FirstOrDefault(x => x.Player == player);
+
+            if(result == null)
+            {
+                result = HintProviderHelper.CreateHintProvider(player);
+                HintProviderList.Add(result);
+            }
+
+            return result;
         }
     }
 }

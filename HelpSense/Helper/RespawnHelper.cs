@@ -37,8 +37,7 @@ namespace HelpSense.Helper
 
         public static void ShowHint(Player player, string message, float duration = 3f)
         {
-            HintParameter[] parameters = { new StringHintParameter(message) };
-            player.ReferenceHub.networkIdentity.connectionToClient.Send(new HintMessage(new TextHint(message, parameters, durationScalar: duration)));
+            player.GetHintProvider().ShowHint(message, duration);
         }
     }
 }
