@@ -695,7 +695,7 @@ namespace HelpSense
                                     player1.AddItem(ItemType.Radio);
                                 }
                             }
-                            XHelper.Allbroadcast(TranslateConfig.BaoAnPB, 10, BroadcastFlags.Normal);
+                            XHelper.Allbroadcast(TranslateConfig.GuardMutinyBroadcast, 10, BroadcastFlags.Normal);
                             break;
                         case 1:
                             {
@@ -718,7 +718,7 @@ namespace HelpSense
                                         players.AddItem(ItemType.GrenadeHE);
                                     }
                                 }
-                                XHelper.Allbroadcast(TranslateConfig.BaoAnJY, 10, BroadcastFlags.Normal);
+                                XHelper.Allbroadcast(TranslateConfig.EliteGuardBroadcast, 10, BroadcastFlags.Normal);
                                 break;
                             }
                         case 2:

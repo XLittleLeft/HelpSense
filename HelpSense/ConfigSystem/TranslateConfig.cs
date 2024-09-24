@@ -19,7 +19,7 @@ namespace HelpSense.ConfigSystem
         /// 
         /// </summary>
         [Description("管理员监察输出文本")]
-        public string AdminLog { get; set; } = "%Nickname%在%Time%时候 | 使用了指令:%Command% | Steam64ID:%UserId%";'
+        public string AdminLog { get; set; } = "%Nickname%在%Time%时候 | 使用了指令:%Command% | Steam64ID:%UserId%";
 
         /// <summary>
         /// 
