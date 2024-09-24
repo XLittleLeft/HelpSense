@@ -82,31 +82,36 @@ namespace HelpSense.ConfigSystem
         [Description("天网机动特遣队Cassie广播")]
         public string SkynetCassie { get; set; } = "机动特遣队Kappa-10和Mu-7代号天网已经进入设施,他们会帮助舞步者一号收容SCP-079,建议所有幸存人员执行标准撤离方案,直到MTF小队到达你的地点,目前还剩%SCPNum%个SCP";
         [Description("天网机动特遣队新兵广播")]
-        public string SkynetPrivateBroadcast { get; set; } = "你是机动特遣队-天网 新兵";
+        public string SkynetPrivateBroadcast { get; set; } = "<size=70><color=#0051FF>你是机动特遣队-天网 新兵</color></size>";
         [Description("天网机动特遣队新兵自定义信息")]
         public string SkynetPrivateCustomInfo { get; set; } = "天网 新兵";
         [Description("天网机动特遣队中士广播")]
-        public string SkynetSergeantBroadcast { get; set; } = "你是机动特遣队-天网 中士";
+        public string SkynetSergeantBroadcast { get; set; } = "<size=70><color=#0051FF>你是机动特遣队-天网 中士</color></size>";
         [Description("天网机动特遣队新兵自定义信息")]
         public string SkynetSergeantCustomInfo { get; set; } = "天网 中士";
         [Description("天网机动特遣队指挥官广播")]
-        public string SkynetCaptainBroadcast { get; set; } = "你是机动特遣队-天网 指挥官";
+        public string SkynetCaptainBroadcast { get; set; } = "<size=70><color=#0051FF>你是机动特遣队-天网 指挥官</color></size>";
         [Description("天网机动特遣队指挥官自定义信息")]
         public string SkynetCaptainCustomInfo { get; set; } = "天网 指挥官";
         [Description("非礼勿视机动特遣队Cassie广播")]
         public string SeeNoEvilCassie { get; set; } = "机动特遣队Eta-10代号非礼勿视已经进入设施,他们会帮助收容SCP-096,建议所有幸存人员执行标准撤离方案,直到MTF小队到达你的地点,目前还剩%SCPNum%个SCP";
         [Description("非礼勿视机动特遣队新兵广播")]
-        public string SeeNoEvilPrivateBroadcast { get; set; } = "你是机动特遣队-非礼勿视 新兵";
+        public string SeeNoEvilPrivateBroadcast { get; set; } = "<size=70><color=#0051FF>你是机动特遣队-非礼勿视 新兵</color></size>";
         [Description("非礼勿视机动特遣队新兵自定义信息")]
         public string SeeNoEvilPrivateCustomInfo { get; set; } = "非礼勿视 新兵";
         [Description("非礼勿视机动特遣队中士广播")]
-        public string SeeNoEvilSergeantBroadcast { get; set; } = "你是机动特遣队-非礼勿视 中士";
+        public string SeeNoEvilSergeantBroadcast { get; set; } = "<size=70><color=#0051FF>你是机动特遣队-非礼勿视 中士</color></size>";
         [Description("非礼勿视机动特遣队新兵自定义信息")]
         public string SeeNoEvilSergeantCustomInfo { get; set; } = "非礼勿视 中士";
         [Description("非礼勿视机动特遣队指挥官广播")]
-        public string SeeNoEvilCaptainBroadcast { get; set; } = "你是机动特遣队-非礼勿视 指挥官";
+        public string SeeNoEvilCaptainBroadcast { get; set; } = "<size=70><color=#0051FF>你是机动特遣队-非礼勿视 指挥官</color></size>";
         [Description("非礼勿视机动特遣队指挥官自定义信息")]
         public string SeeNoEvilCaptainCustomInfo { get; set; } = "非礼勿视 指挥官";
+        /// <summary>
+        /// 
+        /// </summary>
+        [Description("特殊角色被收容Cassie后缀")]
+        public string SpecialRoleContainCassie { get; set; } = "成功被消灭，具体原因未知";
         /// <summary>
         /// 
         /// </summary>
@@ -142,5 +147,16 @@ namespace HelpSense.ConfigSystem
         public string SCP191SpawnBroadcast { get; set; } = "你成为了<color=red>SCP-191 机械少女</color>";
         [Description("SCP-191技能介绍")]
         public string SCP191SkillIntroduction { get; set; } = "因为你的身体的改造，你对除了电磁和爆炸伤害的抗性很高";
+        /// <summary>
+        /// 
+        /// </summary>
+        [Description("SCP-1056缩小仪拾取Hint")]
+        public string SCP1056PickupHint { get; set; } = "你捡起了<color=red>SCP-1056</color> 缩小仪!";
+        [Description("SCP-1056缩小仪使用Hint")]
+        public string SCP1056UsedHint { get; set; } = "boom!你变小了!!!";
+        [Description("SCP-1068无害核弹拾取Hint")]
+        public string SCP1068PickupHint { get; set; } = "你捡起了<color=red>SCP-1068</color> 无害核弹!";
+        [Description("SCP-1056无害核弹使用广播")]
+        public string SCP1068UsedBroadcast { get; set; } = "有人使用了<color=red>SCP-1068</color> 无害核弹!";
     }
 }

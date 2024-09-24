@@ -109,7 +109,7 @@ namespace HelpSense
         public ushort scp1056id = 0;
         public ItemBase scp1056base;
 
-        [PluginEntryPoint("HelpSense", "1.3.4", "HelpSense综合服务器插件", "X小左")]
+        [PluginEntryPoint("HelpSense", "1.3.5", "HelpSense综合服务器插件", "X小左")]
         void LoadPlugin()
         {
             Instance = this;
@@ -397,15 +397,15 @@ namespace HelpSense
                             switch (Player.Role)
                             {
                                 case RoleTypeId.NtfPrivate:
-                                    Player.Mybroadcast($"<size=70><color=#0051FF>{TranslateConfig.SkynetPrivateBroadcast}</color></size>", 5, Broadcast.BroadcastFlags.Normal);
+                                    Player.Mybroadcast($"{TranslateConfig.SkynetPrivateBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
                                     Player.CustomInfo = TranslateConfig.SkynetPrivateCustomInfo;
                                     break;
                                 case RoleTypeId.NtfSergeant:
-                                    Player.Mybroadcast($"<size=70><color=#0051FF>{TranslateConfig.SkynetSergeantBroadcast}</color></size>", 5, Broadcast.BroadcastFlags.Normal);
+                                    Player.Mybroadcast($"{TranslateConfig.SkynetSergeantBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
                                     Player.CustomInfo = TranslateConfig.SkynetSergeantCustomInfo;
                                     break;
                                 case RoleTypeId.NtfCaptain:
-                                    Player.Mybroadcast($"<size=70><color=#0051FF>{TranslateConfig.SkynetCaptainBroadcast}</color></size>", 5, Broadcast.BroadcastFlags.Normal);
+                                    Player.Mybroadcast($"{TranslateConfig.SkynetCaptainBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
                                     Player.CustomInfo = TranslateConfig.SkynetCaptainCustomInfo;
                                     break;
                             }
@@ -430,15 +430,15 @@ namespace HelpSense
                                     switch (Player.Role)
                                     {
                                         case RoleTypeId.NtfPrivate:
-                                            Player.Mybroadcast($"<size=70><color=#0051FF>{TranslateConfig.SeeNoEvilPrivateBroadcast}</color></size>", 5, Broadcast.BroadcastFlags.Normal);
+                                            Player.Mybroadcast($"{TranslateConfig.SeeNoEvilPrivateBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
                                             Player.CustomInfo = TranslateConfig.SeeNoEvilPrivateCustomInfo;
                                             break;
                                         case RoleTypeId.NtfSergeant:
-                                            Player.Mybroadcast($"<size=70><color=#0051FF>{TranslateConfig.SeeNoEvilSergeantBroadcast}</color></size>", 5, Broadcast.BroadcastFlags.Normal);
+                                            Player.Mybroadcast($"{TranslateConfig.SeeNoEvilSergeantBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
                                             Player.CustomInfo = TranslateConfig.SeeNoEvilSergeantCustomInfo;
                                             break;
                                         case RoleTypeId.NtfCaptain:
-                                            Player.Mybroadcast($"<size=70><color=#0051FF>{TranslateConfig.SeeNoEvilCaptainBroadcast}</color></size>", 5, Broadcast.BroadcastFlags.Normal);
+                                            Player.Mybroadcast($"{TranslateConfig.SeeNoEvilCaptainBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
                                             Player.CustomInfo = TranslateConfig.SeeNoEvilCaptainCustomInfo;
                                             break;
                                     }
@@ -484,7 +484,7 @@ namespace HelpSense
 
                         SpawnLeader = true;
 
-                        ChaosLeader = new SCPHelper(Player, 150, "混沌领导者", "green");
+                        ChaosLeader = new SCPHelper(Player, 150, TranslateConfig.ChaosLeaderRoleName, "green");
 
                         Player.ClearBroadcasts();
 
@@ -877,14 +877,14 @@ namespace HelpSense
                     Player.RemoveItem(Item);
                     var items = Player.AddItem(ItemType.SCP2176);
                     scp1068base = items;
-                    Player.GetHintProvider().ShowHint("你捡起了<color=red>SCP-1068</color> 无害核弹！");
+                    Player.GetHintProvider().ShowHint(TranslateConfig.SCP1068PickupHint);
                 }
                 if (Item.Info.Serial == scp1056id && Item.Info.ItemId is ItemType.Medkit && Config.SCP1056)
                 {
                     Player.RemoveItem(Item);
                     var items = Player.AddItem(ItemType.Medkit);
                     scp1056base = items;
-                    Player.GetHintProvider().ShowHint("你捡起了<color=red>SCP-1056</color> 缩小仪！");
+                    Player.GetHintProvider().ShowHint(TranslateConfig.SCP1056PickupHint);
                 }
             });
             return true;
@@ -943,7 +943,7 @@ namespace HelpSense
             if (scp1056base != null && Item == scp1056base)
             {
                 Player.SetPlayerScale(Config.SCP1056X);
-                Player.GetHintProvider().ShowHint("boom!你变小了!!!");
+                Player.GetHintProvider().ShowHint(TranslateConfig.SCP1056UsedHint);
             }
         }
 
@@ -968,7 +968,7 @@ namespace HelpSense
 
             if (scp1068base != null && Item == scp1068base)
             {
-                XHelper.Allbroadcast("有人使用了<color=red>SCP-1068</color> 无害核弹！", 5, BroadcastFlags.Normal);
+                XHelper.Allbroadcast(TranslateConfig.SCP1068UsedBroadcast, 5, BroadcastFlags.Normal);
                 Server.Instance.GetComponent<AlphaWarheadController>(globalSearch: true).RpcShake(true);
             }//沙比NW写空壳核弹抖动我直接自己写一个
         }
@@ -1128,25 +1128,25 @@ namespace HelpSense
                 {
                     case "SCP-703":
                         {
-                            SCP703.OnPlayerDead(Player, "SCP 7 0 3 SUCCESSFULLY TERMINATED . TERMINATION CAUSE UNSPECIFIED", "SCP-703成功被消灭，具体原因未知");
+                            SCP703.OnPlayerDead(Player, "SCP 7 0 3 SUCCESSFULLY TERMINATED . TERMINATION CAUSE UNSPECIFIED", $"SCP-703{TranslateConfig.SpecialRoleContainCassie}");
                             SCP703 = null;
                             break;
                         }
                     case "SCP-029":
                         {
-                            SCP029.OnPlayerDead(Player, "SCP 0 2 9 SUCCESSFULLY TERMINATED . TERMINATION CAUSE UNSPECIFIED", "SCP-029成功被消灭，具体原因未知");
+                            SCP029.OnPlayerDead(Player, "SCP 0 2 9 SUCCESSFULLY TERMINATED . TERMINATION CAUSE UNSPECIFIED", $"SCP-029{TranslateConfig.SpecialRoleContainCassie}");
                             SCP029 = null;
                             break;
                         }
                     case "SCP-191":
                         {
-                            SCP191.OnPlayerDead(Player, "SCP 1 9 1 SUCCESSFULLY TERMINATED . TERMINATION CAUSE UNSPECIFIED", "SCP-191成功被消灭，具体原因未知");
+                            SCP191.OnPlayerDead(Player, "SCP 1 9 1 SUCCESSFULLY TERMINATED . TERMINATION CAUSE UNSPECIFIED", $"SCP-191{TranslateConfig.SpecialRoleContainCassie}");
                             SCP191 = null;
                             break;
                         }
                     case "SCP-073":
                         {
-                            SCP073.OnPlayerDead(Player, "SCP 0 7 3 SUCCESSFULLY TERMINATED . TERMINATION CAUSE UNSPECIFIED", "SCP-073成功被消灭，具体原因未知");
+                            SCP073.OnPlayerDead(Player, "SCP 0 7 3 SUCCESSFULLY TERMINATED . TERMINATION CAUSE UNSPECIFIED", $"SCP-073{TranslateConfig.SpecialRoleContainCassie}");
                             SCP073 = null;
                             break;
                         }
@@ -1154,21 +1154,21 @@ namespace HelpSense
                         {
                             Player.EffectsManager.DisableAllEffects();
                             UnityEngine.Object.Destroy(Player.GameObject.GetComponent<PlayerLightBehavior>());
-                            SCP347.OnPlayerDead(Player, "SCP 3 4 7 SUCCESSFULLY TERMINATED . TERMINATION CAUSE UNSPECIFIED", "SCP-347成功被消灭，具体原因未知");
+                            SCP347.OnPlayerDead(Player, "SCP 3 4 7 SUCCESSFULLY TERMINATED . TERMINATION CAUSE UNSPECIFIED", $"SCP-347{TranslateConfig.SpecialRoleContainCassie}");
                             SCP347 = null;
                             break;
                         }
                     case "SCP-2936-1":
                         {
                             Player.SetPlayerScale(1f);
-                            SCP2936.OnPlayerDead(Player, "SCP 2 9 3 6 1 SUCCESSFULLY TERMINATED . TERMINATION CAUSE UNSPECIFIED", "SCP-2936-1成功被消灭，具体原因未知");
+                            SCP2936.OnPlayerDead(Player, "SCP 2 9 3 6 1 SUCCESSFULLY TERMINATED . TERMINATION CAUSE UNSPECIFIED", $"SCP-2936-1{TranslateConfig.SpecialRoleContainCassie}");
                             SCP2936 = null;
                             break;
                         }
                     case "SCP-1093":
                         {
                             UnityEngine.Object.Destroy(Player.GameObject.GetComponent<PlayerGlowBehavior>());
-                            SCP1093.OnPlayerDead(Player, "SCP 1 0 9 3 SUCCESSFULLY TERMINATED . TERMINATION CAUSE UNSPECIFIED", "SCP-1093成功被消灭，具体原因未知");
+                            SCP1093.OnPlayerDead(Player, "SCP 1 0 9 3 SUCCESSFULLY TERMINATED . TERMINATION CAUSE UNSPECIFIED", $"SCP-1093{TranslateConfig.SpecialRoleContainCassie}");
                             SCP1093 = null;
                             break;
                         }
