@@ -10,37 +10,30 @@ namespace HelpSense.Patches
     {
         public static bool Prefix(ref float __result, HealthStat __instance)
         {
-            Player Player = Player.Get(__instance.Hub);
-            if (Player.IsSCP && SCPHPChangeSystem.healthDict.TryGetValue(Player.Role, out var health))
+            Player player = Player.Get(__instance.Hub);
+
+            if (player.IsSCP && SCPHPChangeSystem.healthDict.TryGetValue(player.Role, out var health))
             {
                 __result = health;
                 return false;
             }
-            if (!Player.IsSpecialPlayer())
+
+            if (!player.IsSpecialPlayer())
             {
                 return true;
             }
-            switch (Player.RoleName)
+
+            __result = player.RoleName switch
             {
-                case "SCP-029":
-                    __result = 120;
-                    return false;
-                case "SCP-703":
-                    __result = 120;
-                    return false;
-                case "SCP-191":
-                    __result = 120;
-                    return false;
-                case "SCP-073":
-                    __result = 120;
-                    return false;
-                case "SCP-2936-1":
-                    __result = 300;
-                    return false;
-                case "混沌领导者":
-                    __result = 150;
-                    return false;
-            }
+                "SCP-029" => 120,
+                "SCP-703" => 120,
+                "SCP-191" => 120,
+                "SCP-073" => 120,
+                "SCP-2936-1" => 300,
+                "混沌领导者" => 150,
+                _ => 100
+            };
+
             return false;
         }
     }

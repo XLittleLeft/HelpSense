@@ -111,7 +111,6 @@ namespace HelpSense.Helper
                 ItemPickup.Create(typeid, position, new Quaternion(0, 0, 0, 0)).Spawn();
             }
         }
-
         public static ItemPickup SpawnItem(ItemType typeid, Vector3 position)
         {
             var item = ItemPickup.Create(typeid, position, new Quaternion(0, 0, 0, 0));
@@ -139,11 +138,8 @@ namespace HelpSense.Helper
                 Log.Info($"Set Scale error: {e}");
             }
         }
-
         public static void SetPlayerScale(this Player target, float scale) => SetPlayerScale(target, Vector3.one * scale);
-
         public static bool PlayerScaleIs(this Player target, Vector3 scale) => target.GameObject.transform.localScale == scale;
-
         public static bool PlayerScaleIs(this Player target, float scale) => PlayerScaleIs(target, Vector3.one * scale);
 
         public static void MessageTranslated(string message, string translation, bool isHeld = false, bool isNoisy = true, bool isSubtitles = true)
@@ -157,8 +153,7 @@ namespace HelpSense.Helper
             RespawnEffectsController.PlayCassieAnnouncement(announcement.ToString(), isHeld, isNoisy, isSubtitles);
             StringBuilderPool.Pool.Return(announcement);
         }
-        public static TimeSpan TimeUntilSpawnWave => TimeSpan.FromSeconds(RespawnManager.Singleton._timeForNextSequence - (float)RespawnManager.Singleton._stopwatch.Elapsed.TotalSeconds);
-        
+
         //防倒卖
         public static IEnumerator<float> AutoXBroadcast()
         {
@@ -172,7 +167,6 @@ namespace HelpSense.Helper
                 Broadcast("<size=35><align=center><color=#F6511D>此服务器在运行X小左的插件，享受你的游戏时间~</color></align></size>", 6, global::Broadcast.BroadcastFlags.Normal);
             }
         }
-
         public static IEnumerator<float> AutoServerBroadcast()
         {
             while (!Round.IsRoundEnded)
@@ -182,7 +176,7 @@ namespace HelpSense.Helper
             }
         }
 
-        public static IEnumerator<float> GiveRandomItem(Player player)
+        public static IEnumerator<float> GiveRandomItem(this Player player)
         {
             while (true)
             {
@@ -211,7 +205,7 @@ namespace HelpSense.Helper
             }
         }
 
-        public static IEnumerator<float> SCP191Handle(Player player)
+        public static IEnumerator<float> SCP191CoroutineMethod(Player player)
         {
             int d = 5000;
             while (player.IsAlive || !Round.IsRoundEnded)
@@ -233,29 +227,27 @@ namespace HelpSense.Helper
                 yield return Timing.WaitForSeconds(10f);
             }
         }
-
-        public static IEnumerator<float> SCP347Handle(Player Player)
+        public static IEnumerator<float> SCP347CoroutineMethod(Player player)
         {
-            while (Player.IsAlive || !Round.IsRoundEnded)
+            while (player.IsAlive || !Round.IsRoundEnded)
             {
-                Player.EffectsManager.EnableEffect<Invisible>();
+                player.EffectsManager.EnableEffect<Invisible>();
 
                 yield return Timing.WaitForSeconds(1f);
             }
         }
 
-        public static bool IsSpecialPlayer(this Player Player)
+        public static bool IsSpecialPlayer(this Player player)
         {
-            return Player.RoleName is "SCP-029" or "SCP-703" or "混沌领导者"
-                or "SCP-191" or "SCP-073" or "SCP-2936-1";
+            return player.RoleName is "SCP-029" or "SCP-703" or "混沌领导者" or "SCP-191" or "SCP-073" or "SCP-2936-1";
         }
 
-        public static bool BreakDoor(DoorVariant Base, DoorDamageType type = DoorDamageType.ServerCommand)
+        public static bool BreakDoor(DoorVariant doorBase, DoorDamageType type = DoorDamageType.ServerCommand)
         {
-            if (!(Base is IDamageableDoor damageableDoor) || damageableDoor.IsDestroyed)
+            if (doorBase is not IDamageableDoor damageableDoor || damageableDoor.IsDestroyed)
                 return false;
 
-            damageableDoor.ServerDamage((float)ushort.MaxValue, type);
+            damageableDoor.ServerDamage(ushort.MaxValue, type);
             return true;
         }
 
@@ -439,7 +431,7 @@ namespace HelpSense.Helper
 
             while (true)
             {
-                if (position != player.Position || health != player.Health)
+                if (position != player.Position || health.Equals(player.Health))
                 {
                     timeChecker = 0;
                     position = player.Position;
@@ -471,10 +463,12 @@ namespace HelpSense.Helper
             {
                 return true;
             }
+
             if (player1.Team is Team.ChaosInsurgency && player2.Team is Team.ClassD)
             {
                 return true;
             }
+
             return false;
         }
 

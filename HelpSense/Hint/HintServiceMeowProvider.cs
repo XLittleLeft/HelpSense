@@ -8,7 +8,7 @@ namespace HelpSense.Hint
     internal class HintServiceMeowProvider : IHintProvider
     {
         private readonly object _hint;
-        private readonly PropertyInfo _hintText;
+        private readonly PropertyInfo _hintTextProperty;
         private DateTime _timeToRemove;
 
         public Player Player { get; }
@@ -22,11 +22,11 @@ namespace HelpSense.Hint
             //Initialize hint instance
             foreach (var assembly in loadedAssemblies)
             {
-                Type hintClass = assembly.GetType("HintServiceMeow.Core.Models.Hints");
+                Type hintClass = assembly.GetType("HintServiceMeow.Core.Models.Hints.Hint");
                 if (hintClass != null)
                 {
                     _hint = Activator.CreateInstance(hintClass);
-                    _hintText = hintClass.GetProperty("Text");
+                    _hintTextProperty = hintClass.GetProperty("Text");
 
                     break;
                 }
@@ -51,13 +51,13 @@ namespace HelpSense.Hint
 
         public void ShowHint(string message, float duration)
         {
-            _hintText.SetValue(_hint, message);
+            _hintTextProperty.SetValue(_hint, message);
             _timeToRemove = DateTime.Now.AddSeconds(duration - 0.1f);
 
             Timing.CallDelayed(duration, () =>
             {
                 if (DateTime.Now > _timeToRemove)
-                    _hintText.SetValue(_hint, string.Empty);
+                    _hintTextProperty.SetValue(_hint, string.Empty);
             });
         }
     }

@@ -49,11 +49,15 @@ namespace HelpSense
 
         public LiteDatabase Database;
 
+        [PluginConfig]
+        public Config Config;
+
+        [PluginConfig("TranslateConfig.yml")]
+        public TranslateConfig TranslateConfig;
+
         public System.Random Random = new(DateTime.Now.GetHashCode());
 
         public static string RespawnTimerDirectoryPath { get; private set; }
-
-        public Vector3 LobbyPos;
 
         public static LobbyLocationType CurLobbyLocationType;
 
@@ -88,18 +92,18 @@ namespace HelpSense
         public bool SeeSpawned = false;
         public bool Scp096Enraging = false;
 
-        public ushort scp1068id = 0;
-        public ItemBase scp1068base;
+        public ushort SCP1068Id = 0;
+        public ItemBase SCP1068Base;
 
-        public ushort scp1056id = 0;
-        public ItemBase scp1056base;
+        public ushort SCP1056Id = 0;
+        public ItemBase SCP1056Base;
       
         public static System.Version PluginVersion => new(1, 3, 5);
         public static DateTime LastUpdateTime => new(2024, 08, 07, 8, 8, 0);
         public static System.Version RequiredGameVersion => new(13, 5, 1);
       
         [PluginEntryPoint("HelpSense", "1.3.5", "HelpSense综合服务器插件", "X小左")]
-        void LoadPlugin()
+        private void LoadPlugin()
         {
             Instance = this;
 
@@ -630,7 +634,7 @@ namespace HelpSense
 
                         Player.EffectsManager.EnableEffect<Invisible>();
 
-                        Timing.RunCoroutine(XHelper.SCP347Handle(Player).CancelWith(Player.GameObject));
+                        Timing.RunCoroutine(XHelper.SCP347CoroutineMethod(Player).CancelWith(Player.GameObject));
                         Player.GameObject.AddComponent<PlayerLightBehavior>();
                     }
                 });
@@ -787,7 +791,7 @@ namespace HelpSense
                         if (doors.Name is RoomName.Hcz096)
                         {
                             var item = XHelper.SpawnItem(ItemType.SCP2176, doors.transform.position);
-                            scp1068id = item.Serial;
+                            SCP1068Id = item.Serial;
                         }
                     }
                 });
@@ -798,7 +802,7 @@ namespace HelpSense
                 {
                     RoomIdentifier room173 = RoomIdentifier.AllRoomIdentifiers.Where(x => x.Name == RoomName.Lcz173).First();
                     var item = XHelper.SpawnItem(ItemType.Medkit, room173.transform.TransformPoint(new Vector3(-2.62f, 13.29f, -4.93f)));
-                    scp1056id = item.Serial;
+                    SCP1056Id = item.Serial;
                 });
             }
         }
@@ -861,18 +865,18 @@ namespace HelpSense
 
             Timing.CallDelayed(0.5f, () =>
             {
-                if (Item.Info.Serial == scp1068id && Item.Info.ItemId is ItemType.SCP2176 && Config.SCP1068)
+                if (Item.Info.Serial == SCP1068Id && Item.Info.ItemId is ItemType.SCP2176 && Config.SCP1068)
                 {
                     Player.RemoveItem(Item);
                     var items = Player.AddItem(ItemType.SCP2176);
-                    scp1068base = items;
+                    SCP1068Base = items;
                     Player.GetHintProvider().ShowHint(TranslateConfig.SCP1068PickupHint);
                 }
-                if (Item.Info.Serial == scp1056id && Item.Info.ItemId is ItemType.Medkit && Config.SCP1056)
+                if (Item.Info.Serial == SCP1056Id && Item.Info.ItemId is ItemType.Medkit && Config.SCP1056)
                 {
                     Player.RemoveItem(Item);
                     var items = Player.AddItem(ItemType.Medkit);
-                    scp1056base = items;
+                    SCP1056Base = items;
                     Player.GetHintProvider().ShowHint(TranslateConfig.SCP1056PickupHint);
                 }
             });
@@ -929,7 +933,7 @@ namespace HelpSense
             var Player = ev.Player;
             var Item = ev.Item;
 
-            if (scp1056base != null && Item == scp1056base)
+            if (SCP1056Base != null && Item == SCP1056Base)
             {
                 Player.SetPlayerScale(Config.SCP1056X);
                 Player.GetHintProvider().ShowHint(TranslateConfig.SCP1056UsedHint);
@@ -942,7 +946,7 @@ namespace HelpSense
             var Player = ev.Thrower;
             var Item = ev.Item;
 
-            if (scp1068base != null && Item == scp1068base)
+            if (SCP1068Base != null && Item == SCP1068Base)
             {
                 XHelper.Broadcast(TranslateConfig.SCP1068UsedBroadcast, 5, BroadcastFlags.Normal);
                 Server.Instance.GetComponent<AlphaWarheadController>(globalSearch: true).RpcShake(true);
@@ -952,10 +956,10 @@ namespace HelpSense
         [PluginEvent]
         void OnRoundEnd(RoundEndEvent ev)
         {
-            scp1068id = 0;
-            scp1056id = 0;
-            scp1068base = null;
-            scp1056base = null;
+            SCP1068Id = 0;
+            SCP1056Id = 0;
+            SCP1068Base = null;
+            SCP1056Base = null;
             SkynetPlayers.Clear();
             SeePlayers.Clear();
             if (Config.EnableRoundEndInfo)
@@ -1407,7 +1411,7 @@ namespace HelpSense
                     player.Position = RoleTypeId.NtfCaptain.GetRandomSpawnLocation();
                 }
 
-                Timing.RunCoroutine(XHelper.SCP191Handle(player).CancelWith(player.GameObject));
+                Timing.RunCoroutine(XHelper.SCP191CoroutineMethod(player).CancelWith(player.GameObject));
             });
 
             if (Config.SavePlayersInfo && !player.DoNotTrack && newRole is not RoleTypeId.Spectator)
@@ -1428,10 +1432,5 @@ namespace HelpSense
             Database.Dispose();
             Database = null;
         }
-
-        [PluginConfig]
-        public Config Config;
-        [PluginConfig("TranslateConfig.yml")]
-        public TranslateConfig TranslateConfig;
     }
 }
