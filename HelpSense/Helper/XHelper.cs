@@ -208,7 +208,7 @@ namespace HelpSense.Helper
         public static IEnumerator<float> SCP191CoroutineMethod(Player player)
         {
             int d = 5000;
-            while (player.IsAlive || !Round.IsRoundEnded)
+            while (!Round.IsRoundEnded && player is not null && player.IsAlive)
             {
                 player.GetHintProvider().ShowHint($"<align=right><size=60><b>你目前剩余的电量:<color=yellow>{d}安</color></size></b></align>",11);
                 if (player.Room.Name is MapGeneration.RoomName.Hcz079)
@@ -229,7 +229,7 @@ namespace HelpSense.Helper
         }
         public static IEnumerator<float> SCP347CoroutineMethod(Player player)
         {
-            while (player.IsAlive || !Round.IsRoundEnded)
+            while (!Round.IsRoundEnded && player is not null && player.IsAlive)
             {
                 player.EffectsManager.EnableEffect<Invisible>();
 
