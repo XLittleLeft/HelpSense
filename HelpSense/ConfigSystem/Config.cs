@@ -16,7 +16,7 @@ namespace HelpSense.ConfigSystem
         [Description("玩家信息储存")]
         public bool SavePlayersInfo { get; set; } = true;
         [Description("保存位置")]
-        public string SavePath { get; set; } = Path.Combine(Paths.Configs ?? Environment.CurrentDirectory, @"HelpSense_玩家信息储存.db");
+        public string SavePath { get; set; } = Path.Combine(Paths.Configs ?? Environment.CurrentDirectory, @"HelpSense_玩家信息储存.Database");
         [Description("是否打开开局给D级人员一张卡")]
         public bool EnableRoundSupplies { get; set; } = true;
         [Description("给D级人员什么卡？")]

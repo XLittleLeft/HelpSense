@@ -32,7 +32,7 @@ namespace HelpSense.API
                     RolePlayed = 0,
                     PlayerShot = 0,
                 };
-                Plugin.Instance.db.GetCollection<PlayerLog>("Players").Insert(toInsert);
+                Plugin.Instance.Database.GetCollection<PlayerLog>("Players").Insert(toInsert);
             }
 
             if (log is null)
@@ -60,7 +60,7 @@ namespace HelpSense.API
                     RolePlayed = 0,
                     PlayerShot = 0,
                 };
-                Plugin.Instance.db.GetCollection<PlayerLog>("Players").Insert(toInsert);
+                Plugin.Instance.Database.GetCollection<PlayerLog>("Players").Insert(toInsert);
             }
 
             if (log is null)
@@ -70,7 +70,7 @@ namespace HelpSense.API
 
         public static void UpdateLog(this PlayerLog log)
         {
-            Plugin.Instance.db.GetCollection<PlayerLog>("Players").Update(log);
+            Plugin.Instance.Database.GetCollection<PlayerLog>("Players").Update(log);
         }
 
         public static IEnumerator<float> CollectInfo()

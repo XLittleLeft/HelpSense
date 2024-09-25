@@ -51,13 +51,13 @@
     <Compile Include="API\Features\Pool\StringBuilderPool.cs" />
     <Compile Include="API\Features\TimerView.cs" />
     <Compile Include="API\Serialization\PlayerLog.cs" />
-    <Compile Include="Commands\AcCommand.cs" />
-    <Compile Include="Commands\BcCommand.cs" />
-    <Compile Include="Commands\CCommand.cs" />
+    <Compile Include="Commands\ChatCommand\AcCommand.cs" />
+    <Compile Include="Commands\ChatCommand\BcCommand.cs" />
+    <Compile Include="Commands\ChatCommand\CCommand.cs" />
     <Compile Include="Commands\InfoCommand.cs" />
     <Compile Include="Commands\Timer.cs" />
     <Compile Include="Commands\VersionCommand.cs" />
-    <Compile Include="Commands\ZiJiuCommand.cs" />
+    <Compile Include="Commands\RescueCommand.cs" />
     <Compile Include="ConfigSystem\Config.cs" />
     <Compile Include="ConfigSystem\TranslateConfig.cs" />
     <Compile Include="Handler\LobbyLocationHandler.cs" />

@@ -9,7 +9,7 @@ namespace HelpSense.API
 
         public static bool TryGetLog(string id, out PlayerLog log)
         {
-            log = Plugin.Instance.db.GetCollection<PlayerLog>("Players")?.FindById(id);
+            log = Plugin.Instance.Database.GetCollection<PlayerLog>("Players")?.FindById(id);
             return log != null;
         }
     }

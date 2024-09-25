@@ -20,19 +20,19 @@ namespace HelpSense.Helper
                 StringBuilder list = StringBuilderPool.Shared.Rent().Append(Plugin.Instance.TranslateConfig.WatchListTitle);
 
                 int count = 0;
-                foreach (Player splayer in XHelper.PlayerList.Where(x => x.Team == Team.Dead))
+                foreach (Player deadPlayers in XHelper.PlayerList.Where(x => x.Team == Team.Dead))
                 {
                     if (Plugin.Instance.TranslateConfig.Names.Contains("(NONE)")) break;
 
-                    if (((SpectatorRole)splayer.ReferenceHub.roleManager.CurrentRole).SyncedSpectatedNetId != player.NetworkId) continue;
+                    if (((SpectatorRole)deadPlayers.ReferenceHub.roleManager.CurrentRole).SyncedSpectatedNetId != player.NetworkId) continue;
 
-                    if (splayer.IsGlobalModerator ||
-                        (splayer.IsOverwatchEnabled) ||
-                        (splayer.IsNorthwoodStaff) ||
-                        Plugin.Instance.Config.IgnoredRoles.Contains(splayer.ReferenceHub.serverRoles.name))
+                    if (deadPlayers.IsGlobalModerator ||
+                        (deadPlayers.IsOverwatchEnabled) ||
+                        (deadPlayers.IsNorthwoodStaff) ||
+                        Plugin.Instance.Config.IgnoredRoles.Contains(deadPlayers.ReferenceHub.serverRoles.name))
                         continue;
 
-                    list.Append(Plugin.Instance.TranslateConfig.Names.Replace("(NAME)", splayer.Nickname));
+                    list.Append(Plugin.Instance.TranslateConfig.Names.Replace("(NAME)", deadPlayers.Nickname));
                     count++;
                 }
 

@@ -18,7 +18,7 @@ namespace HelpSense.Helper
                 if (Plugin.Instance.Config.PracticeHall)
                 {
                     LobbyLocationHandler.ChaosLocation();
-                    Plugin.curLobbyLocationType = LobbyLocationType.Chaos;
+                    Plugin.CurLobbyLocationType = LobbyLocationType.Chaos;
                     return;
                 }
 
@@ -28,9 +28,9 @@ namespace HelpSense.Helper
                     return;
                 }
 
-                Plugin.curLobbyLocationType = Plugin.Instance.Config.LobbyLocation.RandomItem();
+                Plugin.CurLobbyLocationType = Plugin.Instance.Config.LobbyLocation.RandomItem();
 
-                switch (Plugin.curLobbyLocationType)
+                switch (Plugin.CurLobbyLocationType)
                 {
                     case LobbyLocationType.Tower:
                         LobbyLocationHandler.TowerLocation();
@@ -58,42 +58,42 @@ namespace HelpSense.Helper
         {
             while (!Round.IsRoundStarted)
             {
-                Plugin.Instance.text = string.Empty;
+                Plugin.Instance.Text = string.Empty;
 
-                Plugin.Instance.text += Plugin.Instance.TranslateConfig.TitleText;
+                Plugin.Instance.Text += Plugin.Instance.TranslateConfig.TitleText;
 
-                Plugin.Instance.text += "\n" + Plugin.Instance.TranslateConfig.PlayerCountText;
+                Plugin.Instance.Text += "\n" + Plugin.Instance.TranslateConfig.PlayerCountText;
 
                 short NetworkTimer = GameCore.RoundStart.singleton.NetworkTimer;
 
-                Plugin.Instance.text = NetworkTimer switch
+                Plugin.Instance.Text = NetworkTimer switch
                 {
-                    -2 => Plugin.Instance.text.Replace("{seconds}", Plugin.Instance.TranslateConfig.ServerPauseText),
-                    -1 => Plugin.Instance.text.Replace("{seconds}", Plugin.Instance.TranslateConfig.RoundStartText),
-                    1 => Plugin.Instance.text.Replace("{seconds}", Plugin.Instance.TranslateConfig.SecondLeftText.Replace("{seconds}", NetworkTimer.ToString())),
-                    0 => Plugin.Instance.text.Replace("{seconds}", Plugin.Instance.TranslateConfig.RoundStartText),
-                    _ => Plugin.Instance.text.Replace("{seconds}", Plugin.Instance.TranslateConfig.SecondsLeftText.Replace("{seconds}", NetworkTimer.ToString())),
+                    -2 => Plugin.Instance.Text.Replace("{seconds}", Plugin.Instance.TranslateConfig.ServerPauseText),
+                    -1 => Plugin.Instance.Text.Replace("{seconds}", Plugin.Instance.TranslateConfig.RoundStartText),
+                    1 => Plugin.Instance.Text.Replace("{seconds}", Plugin.Instance.TranslateConfig.SecondLeftText.Replace("{seconds}", NetworkTimer.ToString())),
+                    0 => Plugin.Instance.Text.Replace("{seconds}", Plugin.Instance.TranslateConfig.RoundStartText),
+                    _ => Plugin.Instance.Text.Replace("{seconds}", Plugin.Instance.TranslateConfig.SecondsLeftText.Replace("{seconds}", NetworkTimer.ToString())),
                 };
                 if (XHelper.PlayerList.Count() == 1)
                 {
-                    Plugin.Instance.text = Plugin.Instance.text.Replace("{players}", $"{XHelper.PlayerList.Count()} " + Plugin.Instance.TranslateConfig.PlayerJoinText);
+                    Plugin.Instance.Text = Plugin.Instance.Text.Replace("{players}", $"{XHelper.PlayerList.Count()} " + Plugin.Instance.TranslateConfig.PlayerJoinText);
                 }
                 else
                 {
-                    Plugin.Instance.text = Plugin.Instance.text.Replace("{players}", $"{XHelper.PlayerList.Count()} " + Plugin.Instance.TranslateConfig.PlayersJoinText);
+                    Plugin.Instance.Text = Plugin.Instance.Text.Replace("{players}", $"{XHelper.PlayerList.Count()} " + Plugin.Instance.TranslateConfig.PlayersJoinText);
                 }
 
                 if (25 != 0 && 25 > 0)
                 {
                     for (int i = 0; i < 25; i++)
                     {
-                        Plugin.Instance.text += "\n";
+                        Plugin.Instance.Text += "\n";
                     }
                 }
 
                 foreach (Player ply in XHelper.PlayerList)
                 {
-                    ply.GetHintProvider().ShowHint(Plugin.Instance.text.ToString(), 1f);
+                    ply.GetHintProvider().ShowHint(Plugin.Instance.Text.ToString(), 1f);
                 }
 
                 yield return Timing.WaitForSeconds(1f);
@@ -104,40 +104,40 @@ namespace HelpSense.Helper
         {
             while (!Round.IsRoundStarted)
             {
-                Plugin.Instance.text = string.Empty;
+                Plugin.Instance.Text = string.Empty;
 
-                Plugin.Instance.text += Plugin.Instance.TranslateConfig.TitleText;
+                Plugin.Instance.Text += Plugin.Instance.TranslateConfig.TitleText;
 
-                Plugin.Instance.text += "\n" + Plugin.Instance.TranslateConfig.PlayerCountText;
+                Plugin.Instance.Text += "\n" + Plugin.Instance.TranslateConfig.PlayerCountText;
 
                 short NetworkTimer = GameCore.RoundStart.singleton.NetworkTimer;
 
-                Plugin.Instance.text = NetworkTimer switch
+                Plugin.Instance.Text = NetworkTimer switch
                 {
-                    -2 => Plugin.Instance.text.Replace("{seconds}", Plugin.Instance.TranslateConfig.ServerPauseText),
-                    -1 => Plugin.Instance.text.Replace("{seconds}", Plugin.Instance.TranslateConfig.RoundStartText),
-                    1 => Plugin.Instance.text.Replace("{seconds}", Plugin.Instance.TranslateConfig.SecondLeftText.Replace("{seconds}", NetworkTimer.ToString())),
-                    0 => Plugin.Instance.text.Replace("{seconds}", Plugin.Instance.TranslateConfig.RoundStartText),
-                    _ => Plugin.Instance.text.Replace("{seconds}", Plugin.Instance.TranslateConfig.SecondsLeftText.Replace("{seconds}", NetworkTimer.ToString())),
+                    -2 => Plugin.Instance.Text.Replace("{seconds}", Plugin.Instance.TranslateConfig.ServerPauseText),
+                    -1 => Plugin.Instance.Text.Replace("{seconds}", Plugin.Instance.TranslateConfig.RoundStartText),
+                    1 => Plugin.Instance.Text.Replace("{seconds}", Plugin.Instance.TranslateConfig.SecondLeftText.Replace("{seconds}", NetworkTimer.ToString())),
+                    0 => Plugin.Instance.Text.Replace("{seconds}", Plugin.Instance.TranslateConfig.RoundStartText),
+                    _ => Plugin.Instance.Text.Replace("{seconds}", Plugin.Instance.TranslateConfig.SecondsLeftText.Replace("{seconds}", NetworkTimer.ToString())),
                 };
                 if (XHelper.PlayerList.Count() == 1)
                 {
-                    Plugin.Instance.text = Plugin.Instance.text.Replace("{players}", $"{XHelper.PlayerList.Count()} " + Plugin.Instance.TranslateConfig.PlayerJoinText);
+                    Plugin.Instance.Text = Plugin.Instance.Text.Replace("{players}", $"{XHelper.PlayerList.Count()} " + Plugin.Instance.TranslateConfig.PlayerJoinText);
                 }
                 else
                 {
-                    Plugin.Instance.text = Plugin.Instance.text.Replace("{players}", $"{XHelper.PlayerList.Count()} " + Plugin.Instance.TranslateConfig.PlayersJoinText);
+                    Plugin.Instance.Text = Plugin.Instance.Text.Replace("{players}", $"{XHelper.PlayerList.Count()} " + Plugin.Instance.TranslateConfig.PlayersJoinText);
                 }
 
                 if (25 != 0 && 25 > 0)
                 {
                     for (int i = 0; i < 25; i++)
                     {
-                        Plugin.Instance.text += "\n";
+                        Plugin.Instance.Text += "\n";
                     }
                 }
 
-                IntercomDisplay._singleton.Network_overrideText = $"<size={Plugin.Instance.Config.IcomTextSize}>" + Plugin.Instance.text + "</size>";
+                IntercomDisplay._singleton.Network_overrideText = $"<size={Plugin.Instance.Config.IcomTextSize}>" + Plugin.Instance.Text + "</size>";
 
                 yield return Timing.WaitForSeconds(1f);
             }
