@@ -1,4 +1,5 @@
-﻿using MEC;
+﻿using Hints;
+using MEC;
 using PluginAPI.Core;
 using System;
 using System.Reflection;
@@ -9,6 +10,7 @@ namespace HelpSense.Hint
     {
         private readonly object _hint;
         private readonly PropertyInfo _hintTextProperty;
+
         private DateTime _timeToRemove;
 
         public Player Player { get; }
@@ -36,25 +38,25 @@ namespace HelpSense.Hint
             foreach (var assembly in loadedAssemblies)
             {
                 Type playerDisplayClass = assembly.GetType("HintServiceMeow.Core.Utilities.PlayerDisplay");
-                if (playerDisplayClass != null)
-                {
-                    MethodInfo getMethod = playerDisplayClass.GetMethod("Get", new[] { typeof(ReferenceHub) });
-                    object playerDisplay = getMethod?.Invoke(null, new object[] { player.ReferenceHub });
+                if (playerDisplayClass is null)
+                    continue;
 
-                    MethodInfo addHintMethod = playerDisplayClass.GetMethod("AddHint", new[] { _hint?.GetType() });
-                    addHintMethod?.Invoke(playerDisplay, new[] { _hint });
+                MethodInfo getMethod = playerDisplayClass.GetMethod("Get", new[] { typeof(ReferenceHub) });
+                object playerDisplay = getMethod?.Invoke(null, new object[] { player.ReferenceHub });
+                    
+                MethodInfo addHintMethod = playerDisplayClass.GetMethod("AddHint", new[] { _hint?.GetType() });
+                addHintMethod?.Invoke(playerDisplay, new[] { _hint });
 
-                    break;
-                }
+                break;
             }
         }
 
         public void ShowHint(string message, float duration)
         {
             _hintTextProperty.SetValue(_hint, message);
-            _timeToRemove = DateTime.Now.AddSeconds(duration - 0.1f);
+            _timeToRemove = DateTime.Now.AddSeconds(duration);
 
-            Timing.CallDelayed(duration, () =>
+            Timing.CallDelayed(duration + 0.1f, () =>
             {
                 if (DateTime.Now > _timeToRemove)
                     _hintTextProperty.SetValue(_hint, string.Empty);
