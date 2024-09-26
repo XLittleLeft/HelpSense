@@ -1,5 +1,6 @@
 ﻿using HelpSense.API.Features;
 using Hints;
+using HintServiceMeow.UI.Extension;
 using MEC;
 using NorthwoodLib.Pools;
 using PlayerRoles;
@@ -37,7 +38,7 @@ namespace HelpSense.Helper
 
         public static void ShowHint(Player player, string message, float duration = 3f)
         {
-            player.GetHintProvider().ShowHint(message, duration);
+            player.ReceiveHint(message, duration);//Use compatibility adapter
         }
     }
 }

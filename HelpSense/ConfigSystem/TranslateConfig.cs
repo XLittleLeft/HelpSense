@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HelpSense.Helper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -15,6 +16,16 @@ namespace HelpSense.ConfigSystem
         public string RoundEndInfo { get; set; } = "回合结束啦！不要离开，下局再见ヾ(￣▽￣)~";
         [Description("友伤开启时玩家将收到的消息")]
         public string FFMessage { get; set; } = "<align=center><voffset=28em> <color=#F6511D> ~友伤已开启~ </color></voffset></align>";
+        /// <summary>
+        /// 
+        /// </summary>
+        [Description("每种消息的名字")]
+        public Dictionary<ChatMessage.MessageType, string> MessageTypeName { get; set; } = new()
+        {
+            { ChatMessage.MessageType.AdminPrivateChat, "管理私聊" },
+            { ChatMessage.MessageType.BroadcastChat, "公共消息" },
+            { ChatMessage.MessageType.TeamChat, "队友消息" },
+        };
         /// <summary>
         /// 
         /// </summary>
@@ -59,7 +70,6 @@ namespace HelpSense.ConfigSystem
         /// </summary>
         [Description("观战列表标题")]
         public string WatchListTitle { get; set; } = "<align=right><size=45%><color=(COLOR)><b>观察者 ((COUNT)):</b></color></size></align>";
-
         [Description("观战列表格式")]
         public string Names { get; set; } = "<align=right><size=45%><color=(COLOR)><br>(NAME)</color></size></align>";
         /// <summary>

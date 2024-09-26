@@ -21,8 +21,8 @@ using CustomPlayerEffects;
 using Interactables.Interobjects.DoorUtils;
 using Mirror;
 
-using HelpSense.Hint;
 using HelpSense.API.Features.Pool;
+using HintServiceMeow.UI.Extension;
 
 namespace HelpSense.Helper
 {
@@ -31,7 +31,6 @@ namespace HelpSense.Helper
         public static System.Random Random = new(DateTime.Now.GetHashCode());
         public static HashSet<Player> PlayerList = new();
         public static HashSet<Player> SpecialPlayerList = new();
-        public static HashSet<IHintProvider> HintProviderList = new();
 
         public static Player GetRandomPlayer(RoleTypeId roleTypeId)
         {
@@ -198,7 +197,7 @@ namespace HelpSense.Helper
                         player.AddItem(itemType);
                     }
                     
-                    player.GetHintProvider().ShowHint("获得一件物品", 5);
+                    player.GetPlayerUi().CommonHint.ShowOtherHint("获得一件物品", 5);
                 }
 
                 yield return Timing.WaitForSeconds(Plugin.Instance.Config.SCP703ItemTIme * 60f);
@@ -210,7 +209,7 @@ namespace HelpSense.Helper
             int d = 5000;
             while (!Round.IsRoundEnded && player is not null && player.IsAlive)
             {
-                player.GetHintProvider().ShowHint($"<align=right><size=60><b>你目前剩余的电量:<color=yellow>{d}安</color></size></b></align>",11);
+                player.ReceiveHint($"<align=right><size=60><b>你目前剩余的电量:<color=yellow>{d}安</color></size></b></align>",11);//Use compatibility adapter
                 if (player.Room.Name is MapGeneration.RoomName.Hcz079)
                 {
                     if (d <= 4000)
@@ -470,19 +469,6 @@ namespace HelpSense.Helper
             }
 
             return false;
-        }
-
-        public static IHintProvider GetHintProvider(this Player player)
-        {
-            var result = HintProviderList.FirstOrDefault(x => x.Player == player);
-
-            if(result == null)
-            {
-                result = HintProviderHelper.CreateHintProvider(player);
-                HintProviderList.Add(result);
-            }
-
-            return result;
         }
     }
 }

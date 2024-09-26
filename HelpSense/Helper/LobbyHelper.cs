@@ -1,4 +1,5 @@
 ﻿using HelpSense.Handler;
+using HintServiceMeow.UI.Extension;
 using MEC;
 using PlayerRoles.Voice;
 using PluginAPI.Core;
@@ -83,17 +84,14 @@ namespace HelpSense.Helper
                     Plugin.Instance.Text = Plugin.Instance.Text.Replace("{players}", $"{XHelper.PlayerList.Count()} " + Plugin.Instance.TranslateConfig.PlayersJoinText);
                 }
 
-                if (25 != 0 && 25 > 0)
+                for (int i = 0; i < 25; i++)
                 {
-                    for (int i = 0; i < 25; i++)
-                    {
-                        Plugin.Instance.Text += "\n";
-                    }
+                    Plugin.Instance.Text += "\n";
                 }
 
                 foreach (Player ply in XHelper.PlayerList)
                 {
-                    ply.GetHintProvider().ShowHint(Plugin.Instance.Text.ToString(), 1f);
+                    ply.ReceiveHint(Plugin.Instance.Text.ToString(), 1f);//Use compatibility adapter
                 }
 
                 yield return Timing.WaitForSeconds(1f);
