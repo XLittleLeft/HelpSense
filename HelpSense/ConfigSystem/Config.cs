@@ -166,8 +166,6 @@ namespace HelpSense.ConfigSystem
         public int AutoServerMessageTime { get; set; } = 5;
         [Description("服务器定时广播显示多久")]
         public ushort AutoServerMessageTimer { get; set; } = 5;
-        [Description("服务器广播文本")]
-        public string AutoServerMessageText { get; set; } = "服务器广播";
         /// <summary>
         /// /////////////////////////////////////////////////
         /// </summary>

@@ -23,6 +23,7 @@ using Mirror;
 
 using HelpSense.Hint;
 using HelpSense.API.Features.Pool;
+using HelpSense.ConfigSystem;
 
 namespace HelpSense.Helper
 {
@@ -176,7 +177,7 @@ namespace HelpSense.Helper
                     yield break;
                 }
 
-                Broadcast(Plugin.Instance.Config.AutoServerMessageText, Plugin.Instance.Config.AutoServerMessageTimer, global::Broadcast.BroadcastFlags.Normal);
+                Broadcast(Plugin.Instance.TranslateConfig.AutoServerMessageText, Plugin.Instance.Config.AutoServerMessageTimer, global::Broadcast.BroadcastFlags.Normal);
                 yield return Timing.WaitForSeconds(Plugin.Instance.Config.AutoServerMessageTime * 60f);
             }
         }
@@ -203,7 +204,7 @@ namespace HelpSense.Helper
                         player.AddItem(itemType);
                     }
                     
-                    player.GetHintProvider().ShowHint("获得一件物品", 5);
+                    player.GetHintProvider().ShowHint(Plugin.Instance.TranslateConfig.SCP703ReceivedItemHint, 5);
                 }
 
                 yield return Timing.WaitForSeconds(Plugin.Instance.Config.SCP703ItemTIme * 60f);
@@ -220,7 +221,7 @@ namespace HelpSense.Helper
                     yield break;
                 }
 
-                player.GetHintProvider().ShowHint($"<align=right><size=60><b>你目前剩余的电量:<color=yellow>{d}安</color></size></b></align>",11);
+                player.GetHintProvider().ShowHint(Plugin.Instance.TranslateConfig.SCP191BatteryHintShow.Replace("%Battery%" , d.ToString()),11);
                 if (player.Room.Name is MapGeneration.RoomName.Hcz079)
                 {
                     if (d <= 4000)
@@ -254,7 +255,7 @@ namespace HelpSense.Helper
 
         public static bool IsSpecialPlayer(this Player player)
         {
-            return player.RoleName is "SCP-029" or "SCP-703" or "混沌领导者" or "SCP-191" or "SCP-073" or "SCP-2936-1";
+            return player.RoleName is "SCP-029" or "SCP-703" or "SCP-191" or "SCP-073" or "SCP-2936-1" || player.RoleName == Plugin.Instance.TranslateConfig.ChaosLeaderRoleName;
         }
 
         public static bool BreakDoor(DoorVariant doorBase, DoorDamageType type = DoorDamageType.ServerCommand)
