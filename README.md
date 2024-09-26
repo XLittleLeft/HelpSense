@@ -50,7 +50,8 @@ Download the **latest zip file from the Release section** and extract everything
 ### X小左
   **QQ:** 3298837494
 
-# Thanks list:
+## Thanks list:
+# For Development
 - moddedmcplayer
 - sssssssthedev
 - SrLicht
@@ -58,3 +59,13 @@ Download the **latest zip file from the Release section** and extract everything
 - MrAfitol
 - Michal78900
 - MeowServer
+
+# For Translation
+- English: SpankyR
+- German : moddedmcplayer
+- French: SmulCapa
+- Italian : Zurna_sever_58
+- Turkish : Xela
+- Spanish : SpankyR
+- Brazilian : zDarkzera
+- Russian : RisottoMan
