@@ -16,6 +16,8 @@ namespace HelpSense.ConfigSystem
         public string RoundEndInfo { get; set; } = "回合结束啦！不要离开，下局再见ヾ(￣▽￣)~";
         [Description("友伤开启时玩家将收到的消息")]
         public string FFMessage { get; set; } = "<align=center><voffset=28em> <color=#F6511D> ~友伤已开启~ </color></voffset></align>";
+        [Description("服务器广播文本")]
+        public string AutoServerMessageText { get; set; } = "服务器广播";
         /// <summary>
         /// 
         /// </summary>
@@ -141,6 +143,8 @@ namespace HelpSense.ConfigSystem
         public string SCP703SpawnBroadcast { get; set; } = "<size=80><color=#00ffffff>你是SCP-703</color></size>";
         [Description("SCP-703技能介绍")]
         public string SCP703SkillIntroduction { get; set; } = "<align=center><voffset=28em><size=70><color=#00ffffff>每过一段时间你会获得随机物品</color></size></voffset></align>";
+        [Description("SCP-703获得物品Hint提示")]
+        public string SCP703ReceivedItemHint { get; set; } = "获得一件物品";
         [Description("SCP-029刷新广播")]
         public string SCP029SpawnBroadcast { get; set; } = "<size=60><color=#ff0000ff>你是SCP-029“暗影之女”</color></size>";
         [Description("SCP-029技能介绍")]
@@ -157,6 +161,10 @@ namespace HelpSense.ConfigSystem
         public string SCP191SpawnBroadcast { get; set; } = "你成为了<color=red>SCP-191 机械少女</color>";
         [Description("SCP-191技能介绍")]
         public string SCP191SkillIntroduction { get; set; } = "因为你的身体的改造，你对除了电磁和爆炸伤害的抗性很高";
+        [Description("SCP-191电量显示")]
+        public string SCP191BatteryHintShow { get; set; } = "<align=right><size=60><b>你目前剩余的电量:<color=yellow>%Battery%安</color></size></b></align>";
+        [Description("SCP-191电量耗尽死亡原因")]
+        public string SCP191BatteryDepletionDeathReason { get; set; } = "电量耗尽";
         /// <summary>
         /// 
         /// </summary>

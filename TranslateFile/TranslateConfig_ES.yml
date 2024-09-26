@@ -1,0 +1,118 @@
+# Mensaje de bienvenida cuando el jugador ingresa al servidor.
+mensaje de bienvenida: Bienvenido %playername%~
+# Mensaje de fin de ronda
+round_end_info: ¡La ronda ha terminado! No te vayas, nos vemos en el próximo juego ヾ(￣▽￣)~
+# El mensaje que recibirán los jugadores cuando el daño amistoso esté habilitado
+f_f_message: <align=center><voffset=28em> <color=#F6511D> ~El daño amistoso está habilitado~ </color></voffset></align>
+# Texto de difusión del servidor
+auto_server_message_text: transmisión del servidor
+# Texto de salida del monitor del administrador
+admin_log: '%Apodo% en %Tiempo% | Comando usado: %Comando% Steam64ID:%UserId%'
+# El administrador monitorea la transmisión de comandos
+admin_log_broadcast: '<size=30>[<color=red>Registro de salida de monitoreo de comportamiento de administración</color>] <%Nickname%> acaba de usar el comando: %Command%</size>'
+# Muestra cuánto tiempo queda hasta el inicio y el estado del servidor
+title_text: <size=50><color=#F0FF00><b>Esperando al jugador, {segundos}</b></color></size>
+# Texto que muestra el número de jugadores.
+player_count_text: <size=40><color=#FFA600><i>{jugadores}</i></color></size>
+# Mensaje mostrado si el lobby está cerrado
+server_pause_text: El servidor ha sido pausado
+#Mensaje en la segunda línea
+second_left_text: quedan {segundos}
+#Varias líneas de mensajes
+second_left_text: quedan {segundos}
+# Mensaje que se muestra cuando comienza la ronda.
+round_start_text: inicio de ronda
+# El mensaje que se muestra cuando el servidor se une a un jugador.
+player_join_text: el jugador se une
+# El mensaje que se muestra cuando varios jugadores se unen al servidor.
+jugadores_join_text: los jugadores se unen
+# Anuncio mostrado cuando los guardias se amotinan
+guard_mutiny_broadcast: <size=60><color=#ff0000ff>[Advertencia]</color>Los guardias de esta instalación han sido incitados a rebelarse por la Insurgencia del Caos</size>
+# Anuncios mostrados por guardias para equipos de élite.
+elite_guard_broadcast: <size=60><color=#00ffffff>[Aviso]</color>Los guardias de esta instalación son miembros de élite del Zorro de Nueve Colas y su fuerza de seguridad ha aumentado considerablemente</size>
+# Título de la lista de observación
+watch_list_title: <align=right><size=45%><color=(COLOR)><b>Observador ((COUNT)):</b></color></size></align>
+# Formato de lista de observación
+nombres: <align=right><size=45%><color=(COLOR)><br>(NOMBRE)</color></size></align>
+Recordatorio #DNT
+d_n_t_warning: Tienes activado DNT, apágalo; de lo contrario, algunos complementos no funcionarán correctamente.
+# Causa de la lesión inversa de SCP-073
+s_c_p073_damage_reason: SCP073 daño inverso
+# SCP-029Pista de instalación de escape
+s_c_p029_escape_hint: Escapa con éxito de las instalaciones y conviértete en Caos y recibe un legado de la Insurgencia del Caos.
+#SCP-703Pista de instalación de escape
+s_c_p703_escape_hint: Escapa con éxito de las instalaciones y conviértete en un experto en contención del zorro de nueve colas, obtén 3x
+# Skynet Mobile Task Force Cassie Broadcast
+skynet_cassie: Las Fuerzas de Tarea Móvil Kappa-10 y Mu-7, con nombre en código Skynet, han ingresado a las instalaciones y ayudarán a Dancer One a contener a SCP-079. Se recomienda a todo el personal sobreviviente que siga los protocolos de evacuación estándar hasta que el equipo del DM llegue a su ubicación. Actualmente quedan %SCPNum% SCP
+# Transmisión de reclutamiento del grupo de trabajo móvil Skynet
+skynet_private_broadcast: <size=70><color=#0051FF>Eres un recluta del Mobile Task Force-Skynet</color></size>
+# Skynet Mobile Task Force recluta información personalizada
+skynet_private_custom_info: Reclutar Skynet
+# Transmisión del sargento del grupo de trabajo móvil Skynet.
+skynet_sergeant_broadcast: <size=70><color=#0051FF>Eres sargento del grupo de trabajo móvil-Skynet</color></size>
+# Skynet Mobile Task Force recluta información personalizada
+skynet_sergeant_custom_info: Sargento Skynet
+# Transmisión del comandante del grupo de trabajo móvil Skynet
+skynet_captain_broadcast: <size=70><color=#0051FF>Eres el comandante de Mobile Task Force-Skynet</color></size>
+# Información personalizada del comandante del grupo de trabajo móvil Skynet
+skynet_captain_custom_info: Comandante Skynet
+#See No Evil Mobile Task Force Cassie Transmisión
+see_no_evil_cassie: El grupo de trabajo móvil Eta-10 con nombre en código See No Evil ha ingresado a las instalaciones. Ayudarán a contener a SCP-096. Se recomienda que todo el personal sobreviviente implemente protocolos de evacuación estándar hasta que el equipo MTF llegue a su ubicación. % de SCP restantes.
+#Look No Evil Transmisión de reclutamiento del grupo de trabajo móvil
+see_no_evil_private_broadcast: <size=70><color=#0051FF>Eres un grupo de trabajo móvil; no ves ningún recluta malvado</color></size>
+# No ver información personalizada de reclutamiento del grupo de trabajo móvil malvado
+see_no_evil_private_custom_info: No ver recluta malvado
+#Look No Evil transmitido por el sargento del grupo de trabajo móvil.
+see_no_evil_sergeant_broadcast: <size=70><color=#0051FF>Eres el grupo de trabajo móvil: no veo sargento malvado</color></size>
+# No ver información personalizada de reclutamiento del grupo de trabajo móvil malvado
+see_no_evil_sergeant_custom_info: No ver sargento malvado
+#Look No Evil Transmisión del comandante del grupo de trabajo móvil
+see_no_evil_captain_broadcast: <size=70><color=#0051FF>Eres el grupo de trabajo móvil-See No Evil Commander</color></size>
+# No ver ningún mensaje personalizado malvado de Mobile Task Force Commander
+see_no_evil_captain_custom_info: No ver comandante malvado
+#Los caracteres especiales contienen el sufijo Cassie
+special_role_contain_cassie: eliminado con éxito, se desconoce el motivo específico
+#Nombre del líder del Caos
+caos_leader_role_name: Líder del caos
+#Transmisión de actualización del líder del caos
+caos_leader_spawn_broadcast: <size=80><color=#00ff00ff>Eres el líder de la Insurgencia del Caos</color></size>
+#ChaosLeaderMuerteCassie
+caos_leader_death_cassie: El líder del caos muere
+# Transmisión de actualización de SCP-2936-1
+s_c_p29361_spawn_broadcast: <size=70>Eres <color=red>SCP-2936-1 Robot alemán gigante</color></size>
+# SCP-073 Transmisión de actualización de Abel
+s_c_p073_abel_spawn_broadcast: Eres <color=green>SCP-073 Abel</color>
+# SCP-073 Actualizar transmisión
+s_c_p073_cain_spawn_broadcast: Eres <color=green>SCP-073 Caín</color>
+# SCP-703 Actualización de transmisión
+s_c_p703_spawn_broadcast: <size=80><color=#00ffffff>Eres SCP-703</color></size>
+#SCP-703 Introducción a la habilidad
+s_c_p703_skill_introduction: <align=center><voffset=28em><size=70><color=#00ffffff>Obtendrás elementos aleatorios cada vez</color></size></voffset></align>
+# SCP-703 Obtener objeto Aviso de sugerencia
+s_c_p703_received_item_hint: Recibí un artículo
+# SCP-029 Actualizar transmisión
+s_c_p029_spawn_broadcast: <size=60><color=#ff0000ff>Eres SCP-029 Hija de la Sombra </color></size>
+#SCP-029 Introducción a la habilidad
+s_c_p029_skill_introduction: <voffset=28em><size=40><color=#ff0000ff>Mata a todos los que eres hostil</color></size></voffset>
+# SCP-347 Actualización de transmisión
+s_c_p347_spawn_broadcast: Eres <color=red>SCP-347 Mujer Invisible</color>
+# SCP-1093 Actualizar transmisión
+s_c_p1093_spawn_broadcast: Eres <color=amarillo>SCP-1093 Spawn</color>
+#SCP-1093 Introducción a la habilidad
+s_c_p1093_skill_introduction: >-Ilumina continuamente un rango cercano de 5 metros y afecta a las personas dentro de un rango cercano de 1 metro para que reciban daño por radiación (se deduce 1 HP por segundo) Tu cabeza parece no ser nada, por lo que nadie puede dañarte la cabeza.
+# El capitán de la guardia actualiza la transmisión
+guard_captain_spawn_broadcast: <size=60><color=#E5DADA>Tú eres el capitán de seguridad</color></size>
+# SCP-191 Actualización de transmisión
+s_c_p191_spawn_broadcast: Te convertiste en <color=red>SCP-191 Mechanical Girl</color>
+#SCP-191 Introducción a la habilidad
+s_c_p191_skill_introduction: Debido a las modificaciones de tu cuerpo, eres altamente resistente a otros daños además de los electromagnéticos y explosivos.
+# Pantalla de energía SCP-191
+s_c_p191_battery_hint_show: <align=right><size=60><b>Capacidad restante actual de la batería: <color=Yellow>%Battery%An</color></size></b></align>
+# El dispositivo de reducción SCP-1056 detecta una pista
+s_c_p1056_pickup_hint: ¡Recogiste el reductor <color=red>SCP-1056</color>!
+# Dispositivo de reducción SCP-1056 usando Pista
+s_c_p1056_used_hint: ¡¡¡Boom! ¡¡¡Te estás haciendo más pequeño!!!
+#SCP-1068 Sugerencia para recoger una bomba nuclear inofensiva
+s_c_p1068_pickup_hint: ¡Recogiste la inofensiva bomba nuclear <color=red>SCP-1068</color>!
+# SCP-1056 Transmisión sobre el uso de bombas nucleares inofensivas
+s_c_p1068_used_broadcast: ¡Alguien usó <color=red>SCP-1068</color> una bomba nuclear inofensiva!
