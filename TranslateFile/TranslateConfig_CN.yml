@@ -6,6 +6,11 @@ round_end_info: 回合结束啦！不要离开，下局再见ヾ(￣▽￣)~
 f_f_message: <align=center><voffset=28em> <color=#F6511D> ~友伤已开启~ </color></voffset></align>
 # 服务器广播文本
 auto_server_message_text: 服务器广播
+# 每种消息的名字
+message_type_name:
+  AdminPrivateChat: 管理私聊
+  BroadcastChat: 公共消息
+  TeamChat: 队友消息
 # 管理员监察输出文本
 admin_log: '%Nickname%在%Time%时候 | 使用了指令:%Command% | Steam64ID:%UserId%'
 # 管理员监察指令广播
