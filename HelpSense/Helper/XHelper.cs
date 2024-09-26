@@ -159,7 +159,7 @@ namespace HelpSense.Helper
             while (true)
             {
                 yield return Timing.WaitForSeconds(6 * 60f);
-                if (Round.IsRoundEnded)
+                if (Round.IsRoundEnded || !Round.IsRoundStarted)
                 {
                     yield break;
                 }
@@ -168,8 +168,13 @@ namespace HelpSense.Helper
         }
         public static IEnumerator<float> AutoServerBroadcast()
         {
-            while (!Round.IsRoundEnded)
+            while (true)
             {
+                if (Round.IsRoundEnded || !Round.IsRoundStarted)
+                {
+                    yield break;
+                }
+
                 Broadcast(Plugin.Instance.Config.AutoServerMessageText, Plugin.Instance.Config.AutoServerMessageTimer, global::Broadcast.BroadcastFlags.Normal);
                 yield return Timing.WaitForSeconds(Plugin.Instance.Config.AutoServerMessageTime * 60f);
             }
@@ -179,7 +184,7 @@ namespace HelpSense.Helper
         {
             while (true)
             {
-                if (!player.IsAlive || Round.IsRoundEnded)
+                if (player is null || !player.IsAlive || Round.IsRoundEnded)
                 {
                     yield break;
                 }
@@ -207,9 +212,15 @@ namespace HelpSense.Helper
         public static IEnumerator<float> SCP191CoroutineMethod(Player player)
         {
             int d = 5000;
-            while (!Round.IsRoundEnded && player is not null && player.IsAlive)
+            while (true)
             {
+                if (player is null || !player.IsAlive || Round.IsRoundEnded)
+                {
+                    yield break;
+                }
+
                 player.ReceiveHint($"<align=right><size=60><b>你目前剩余的电量:<color=yellow>{d}安</color></size></b></align>",11);//Use compatibility adapter
+                
                 if (player.Room.Name is MapGeneration.RoomName.Hcz079)
                 {
                     if (d <= 4000)
@@ -228,8 +239,13 @@ namespace HelpSense.Helper
         }
         public static IEnumerator<float> SCP347CoroutineMethod(Player player)
         {
-            while (!Round.IsRoundEnded && player is not null && player.IsAlive)
+            while (true)
             {
+                if (player is null || !player.IsAlive || Round.IsRoundEnded)
+                {
+                    yield break;
+                }
+
                 player.EffectsManager.EnableEffect<Invisible>();
 
                 yield return Timing.WaitForSeconds(1f);
