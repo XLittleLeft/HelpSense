@@ -21,26 +21,22 @@ namespace HelpSense.ConfigSystem
         public bool EnableRoundSupplies { get; set; } = true;
         [Description("给D级人员什么卡？")]
         public ItemType ClassDCard { get; set; } = ItemType.KeycardJanitor;
-        /// <summary>
-        /// //////////////////////////////////
-        /// </summary>
+
+        // //////////////////////////////////
         [Description("给九尾指挥官刷电磁炮")]
         public bool SpawnHID { get; set; } = true;
-        /// <summary>
-        /// //////////////////////////////////
-        /// </summary>
+
+        // //////////////////////////////////
         [Description("是否打开入服欢迎")]
         public bool EnableWelcomeInfo { get; set; } = true;
         [Description("欢迎消息显示时长")]
         public ushort WelcomeTime { get; set; } = 5;
-        /// <summary>
-        /// /////////////////////////////////////////////////
-        /// </summary>
+
+        // /////////////////////////////////////////////////
         [Description("是否打开回合结束消息")]
         public bool EnableRoundEndInfo { get; set; } = true;
-        /// <summary>
-        /// ///////////////////////////////////
-        /// </summary>
+
+        // ///////////////////////////////////
         [Description("开启回合结束时开友伤")]
         public bool EnableFriendlyFire { get; set; } = true;
         [Description("覆盖友伤系数数值")]
@@ -53,9 +49,8 @@ namespace HelpSense.ConfigSystem
         public bool EnableFFRoundEndRoleChange { get; set; } = true;
         [Description("回合结束所有人变成的角色")]
         public RoleTypeId FFRoundEndRole { get; set; } = RoleTypeId.NtfCaptain;
-        /// <summary>
-        /// /////////////////////////////////////////////////
-        /// </summary>
+
+        // /////////////////////////////////////////////////
         [Description("开启开局所有人都变成教程角色在一起van")]
         public bool EnableRoundWaitingLobby { get; set; } = true;
 
@@ -100,20 +95,22 @@ namespace HelpSense.ConfigSystem
         public bool EnableChangeSCPHPSystem { get; set; } = true;
         [Description("SCP173,SCP939,SCP049,SCP049-2,SCP096,SCP106血量")]
         public List<float> SCPsHP { get; set; } = new List<float> { 4200,2700,2200,400,2500,2200};
-        /// <summary>
-        /// /////////////////////////////////////////////////
-        /// </summary>
+
+        // /////////////////////////////////////////////////
         [Description("启用.bc和.c聊天系统")]
         public bool EnableChatSystem { get; set; } = true;
-        [Description("聊天系统大小默认50")]
-        public int ChatSystemSize { get; set; } = 40;
+        [Description("聊天系统大小，默认30")]
+        public int ChatSystemSize { get; set; } = 30;
+
         [Description("启用玩家反馈管理系统")]
         public bool EnableAcSystem { get; set; } = true;
-        [Description("一个人的聊天信息显示多久/s")]
-        public ushort MessageTime { get; set; } = 4;
-        /// <summary>
-        /// /////////////////////////////////////////////////
-        /// </summary>
+        [Description("一个人的聊天信息显示多久，单位为秒")]
+        public int MessageTime { get; set; } = 10;
+
+        [Description("聊天消息的格式，可用的标签为{Message}，{MessageType}, {MessageTypeColor}, {SenderNickname}，{SenderTeam}，{SenderTeamColor}, {CountDown}")]
+        public string MessageTemplate { get; set; } = "[{CountDown}]<color={{SenderTeamColor}}>[{SenderTeam}]</color><color={MessageTypeColor}>[{MessageType}]</color>{SenderNickname}: {Message}";
+
+        // /////////////////////////////////////////////////
         [Description("启用懒人系统")]
         public bool EnableLazySystem { get; set; } = true;
         [Description("对于SCP的门也有效")]

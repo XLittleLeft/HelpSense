@@ -61,6 +61,7 @@
     <Compile Include="ConfigSystem\Config.cs" />
     <Compile Include="ConfigSystem\TranslateConfig.cs" />
     <Compile Include="Handler\LobbyLocationHandler.cs" />
+    <Compile Include="Helper\ChatHelper.cs" />
     <Compile Include="Helper\HideTutorialsHelper.cs" />
     <Compile Include="Helper\SCPHelper.cs" />
     <Compile Include="Helper\SpectatorHelper.cs" />
@@ -70,10 +71,6 @@
     <Compile Include="Helper\LobbyLocationType.cs" />
     <Compile Include="Helper\RespawnHelper.cs" />
     <Compile Include="Helper\SCPHPChangeSystem.cs" />
-    <Compile Include="Helper\HintProviderHelper.cs" />
-    <Compile Include="Hint\DefaultHintProvider.cs" />
-    <Compile Include="Hint\HintServiceMeowProvider.cs" />
-    <Compile Include="Hint\IHintProvider.cs" />
     <Compile Include="MonoBehaviors\PlayerGlowBehavior.cs" />
     <Compile Include="MonoBehaviors\PlayerLightBehavior.cs" />
     <Compile Include="Patches\MaxHealthGetPatch.cs" />
@@ -113,6 +110,10 @@
     <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\必要依赖\CommandSystem.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="HintServiceMeow-NWAPI, Version=5.2.4.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\HintServiceMeow-NWAPI.dll</HintPath>
     </Reference>
     <Reference Include="LiteDB, Version=5.0.16.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -432,10 +433,6 @@
     <Reference Include="zxing, Version=0.16.9.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\必要依赖\zxing.dll</HintPath>
-    </Reference>
-    <Reference Include="zxing.unity, Version=0.16.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\必要依赖\zxing.unity.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup />

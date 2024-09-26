@@ -40,6 +40,7 @@ using HarmonyLib;
 
 using static Broadcast;
 using Log = PluginAPI.Core.Log;
+using HintServiceMeow.UI.Extension;
 
 namespace HelpSense
 {
@@ -182,7 +183,8 @@ namespace HelpSense
             if (player == null || string.IsNullOrEmpty(player.UserId)) return;
             XHelper.PlayerList.Add(player);
             XHelper.SpecialPlayerList.Add(player);
-            XHelper.HintProviderList.Add(HintProviderHelper.CreateHintProvider(player));
+
+            ChatHelper.InitForPlayer(player);
 
             if (Config.SavePlayersInfo)
             {
@@ -253,7 +255,7 @@ namespace HelpSense
             {
                 Timing.CallDelayed(1f, () =>
                 {
-                    player.GetHintProvider().ShowHint(TranslateConfig.WelcomeMessage.Replace("%playername%", player.Nickname), Config.WelcomeTime);
+                    player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.WelcomeMessage.Replace("%playername%", player.Nickname), Config.WelcomeTime);
                 });
             }
         }
@@ -340,7 +342,7 @@ namespace HelpSense
                     if (newRole == RoleTypeId.ChaosConscript)
                     {
                         player.AddItem(ItemType.SCP268);
-                        player.GetHintProvider().ShowHint(TranslateConfig.SCP029EscapeHint);
+                        player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.SCP029EscapeHint);
                     }
                 });
             }
@@ -352,7 +354,7 @@ namespace HelpSense
                     {
                         var firearm = player.ReferenceHub.inventory.ServerAddItem(ItemType.ParticleDisruptor) as ParticleDisruptor;
                         firearm.Status = new FirearmStatus(5, FirearmStatusFlags.MagazineInserted, firearm.GetCurrentAttachmentsCode());
-                        player.GetHintProvider().ShowHint(TranslateConfig.SCP703EscapeHint);
+                        player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.SCP703EscapeHint);
                     }
                 });
             }
@@ -579,7 +581,7 @@ namespace HelpSense
 
                         Player.ShowBroadcast(TranslateConfig.SCP703SpawnBroadcast, 10, Broadcast.BroadcastFlags.Normal);
 
-                        Player.GetHintProvider().ShowHint(TranslateConfig.SCP703SkillIntroduction, 10);
+                        Player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.SCP703SkillIntroduction, 10);
 
                         Timing.RunCoroutine(Player.GiveRandomItem().CancelWith(Player.GameObject));
                     };
@@ -599,7 +601,7 @@ namespace HelpSense
 
                         player.ShowBroadcast(TranslateConfig.SCP029SpawnBroadcast, 10, Broadcast.BroadcastFlags.Normal);
 
-                        player.GetHintProvider().ShowHint(TranslateConfig.SCP029SkillIntroduction, 10);
+                        player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.SCP029SkillIntroduction, 10);
 
                         player.ClearInventory();
 
@@ -656,7 +658,7 @@ namespace HelpSense
                         player.GameObject.AddComponent<PlayerGlowBehavior>();
 
                         player.SendBroadcast(TranslateConfig.SCP1093SpawnBroadcast, 6, BroadcastFlags.Normal);
-                        player.GetHintProvider().ShowHint(TranslateConfig.SCP1093SkillIntroduction, 6);
+                        player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.SCP1093SkillIntroduction, 6);
                     }
                 });
             }
@@ -721,7 +723,7 @@ namespace HelpSense
                                 {
                                     guardPlayer.ClearInventory();
 
-                                    guardPlayer.GetHintProvider().ShowHint(TranslateConfig.GuardCaptainSpawnBroadcast, 5);
+                                    guardPlayer.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.GuardCaptainSpawnBroadcast, 5);
 
                                     guardPlayer.AddItem(ItemType.ArmorHeavy);
                                     guardPlayer.AddItem(ItemType.Medkit);
@@ -874,14 +876,14 @@ namespace HelpSense
                     player.RemoveItem(item);
                     var items = player.AddItem(ItemType.SCP2176);
                     SCP1068Base = items;
-                    player.GetHintProvider().ShowHint(TranslateConfig.SCP1068PickupHint);
+                    player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.SCP1068PickupHint);
                 }
                 if (item.Info.Serial == SCP1056Id && item.Info.ItemId is ItemType.Medkit && Config.SCP1056)
                 {
                     player.RemoveItem(item);
                     var items = player.AddItem(ItemType.Medkit);
                     SCP1056Base = items;
-                    player.GetHintProvider().ShowHint(TranslateConfig.SCP1056PickupHint);
+                    player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.SCP1056PickupHint);
                 }
             });
             return true;
@@ -940,7 +942,7 @@ namespace HelpSense
             if (SCP1056Base != null && item == SCP1056Base)
             {
                 player.SetPlayerScale(Config.SCP1056X);
-                player.GetHintProvider().ShowHint(TranslateConfig.SCP1056UsedHint);
+                player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.SCP1056UsedHint);
             }
         }
 
@@ -970,7 +972,7 @@ namespace HelpSense
             {
                 foreach (Player player in XHelper.PlayerList)
                 {
-                    player.GetHintProvider().ShowHint(TranslateConfig.RoundEndInfo, 10);
+                    player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.RoundEndInfo, 10);
                 }
             }
 
@@ -983,7 +985,7 @@ namespace HelpSense
                 {
                     foreach (Player player in XHelper.PlayerList)
                     {
-                        player.GetHintProvider().ShowHint(TranslateConfig.FFMessage, 15);
+                        player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.FFMessage, 15);
                     }
                 }
                 else
@@ -1411,7 +1413,7 @@ namespace HelpSense
                 player.SetPlayerScale(0.8f);
 
                 player.SendBroadcast(TranslateConfig.SCP191SpawnBroadcast, 6);
-                player.GetHintProvider().ShowHint(TranslateConfig.SCP191SkillIntroduction, 6);
+                player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.SCP191SkillIntroduction, 6);
 
                 player.AddItem(ItemType.ArmorCombat);
                 player.AddItem(ItemType.GunFSP9);

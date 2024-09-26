@@ -1,6 +1,6 @@
 
 
-[中文自述文件](README_CN.md)
+[中文自述文件](ReadMeFile/README_CN.md)
 
 # HelpSense
 <i>A practical plugin with a variety of features, solving all your troubles with just one plugin!</i>

@@ -12,25 +12,26 @@ namespace HelpSense.Handler
 
         public static void TowerLocation()
         {
-            int rndRoom = Random.Range(1, 6);
-
-            switch (rndRoom)
+            LobbyPosition = Random.Range(1, 6) switch
             {
-                case 1: LobbyPosition = new Vector3(162.893f, 1019.470f, -13.430f); break;
-                case 2: LobbyPosition = new Vector3(107.698f, 1014.048f, -12.555f); break;
-                case 3: LobbyPosition = new Vector3(39.262f, 1014.112f, -31.844f); break;
-                case 4: LobbyPosition = new Vector3(-15.854f, 1014.461f, -31.543f); break;
-                case 5: LobbyPosition = new Vector3(130.483f, 993.366f, 20.601f); break;
-                default: LobbyPosition = new Vector3(39.262f, 1014.112f, -31.844f); break;
-            }
+                1 => new Vector3(162.893f, 1019.470f, -13.430f),
+                2 => new Vector3(107.698f, 1014.048f, -12.555f),
+                3 => new Vector3(39.262f, 1014.112f, -31.844f),
+                4 => new Vector3(-15.854f, 1014.461f, -31.543f),
+                5 => new Vector3(130.483f, 993.366f, 20.601f),
+                _ => new Vector3(39.262f, 1014.112f, -31.844f),
+            };
         }
 
         public static void IntercomLocation()
         {
-            var IcomRoom = EntranceZone.Rooms.FirstOrDefault(x => x.GameObject.name == "EZ_Intercom");
+            var intercomRoom = EntranceZone.Rooms.FirstOrDefault(x => x.GameObject.name == "EZ_Intercom");
 
-            LobbyPosition = IcomRoom.Transform.TransformPoint(new Vector3(-4.16f, -3.860f, -2.113f));
-            LobbyRotation = Quaternion.Euler(IcomRoom.Rotation.eulerAngles.x, IcomRoom.Rotation.eulerAngles.y + 180, IcomRoom.Rotation.eulerAngles.z);
+            if (intercomRoom == null)
+                return;
+
+            LobbyPosition = intercomRoom.Transform.TransformPoint(new Vector3(-4.16f, -3.860f, -2.113f));
+            LobbyRotation = Quaternion.Euler(intercomRoom.Rotation.eulerAngles.x, intercomRoom.Rotation.eulerAngles.y + 180, intercomRoom.Rotation.eulerAngles.z);
         }
 
         public static void MountainLocation()
