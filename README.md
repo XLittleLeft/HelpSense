@@ -1,6 +1,6 @@
 
 
-[中文自述文件](ReadMeFile/README_CN.md) [O documento de auto-relato do Brasil](ReadMeFile/README_BR.md)
+[中文自述文件](ReadMeFile/README_CN.md) | [O documento de auto-relato do Brasil](ReadMeFile/README_BR.md)
 
 # HelpSense
 <i>A practical plugin with a variety of features, solving all your troubles with just one plugin!</i>
