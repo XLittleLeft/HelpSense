@@ -1,0 +1,118 @@
+# Welcome message when a player enters the server
+welcome_message: Vitaj %playername%~
+# End of round message
+round_end_info: Kolo sa skončilo! Neodchádzaj, vidíme sa nabudúceヾ(￣▽￣)~
+# Messages players will receive when friendly damage is turned on
+f_f_message: <align=center><voffset=28em> <color=#F6511D> ~Útočenie na vlastných je zapnuté~ </color></voffset></align>
+# Server broadcast text
+auto_server_message_text: Broadcast od serveru
+# Administrator monitoring output text
+admin_log: '%Nickname% v čase %Time% | Použil príkaz: %Command% | Steam64ID: %UserId%'
+# Administrator monitoring command broadcast
+admin_log_broadcast: '<size=30>[<color=red>Monitorovanie správanie adminov</color>] <%Nickname%> Práve použil príkaz: %Command%</size>'
+# Display the time left before startup and the server status
+title_text: <size=50><color=#F0FF00><b>Čaká sa na hráčov, {seconds}</b></color></size>
+# Text to display the number of players
+player_count_text: <size=40><color=#FFA600><i>{players}</i></color></size>
+# Message to display if the lobby is locked
+server_pause_text: Server pozastavený
+# Message on the second line
+second_left_text: Zostáva {seconds} sekúnd
+# Message on multiple lines
+seconds_left_text: Zostáva {seconds} sekúnd
+# Message to display when a round starts
+round_start_text: Začína kolo
+# Message to display when a player joins the server
+player_join_text: Pripojil sa hráč
+# Message to display when multiple players join the server
+players_join_text: Pripojili sa hráči
+# Announcement to display when a guard mutinies
+guard_mutiny_broadcast: <size=60><color=#ff0000ff>[Warning]</color>Tento strážca sa pripojil ku Chaos Insurgency</size>
+# Announcement to display when a guard is an elite team
+elite_guard_broadcast: <size=60><color=#00ffffff>[Notice]</color>Strážcovia tohto zariadenia sú elitnými členmi týmu Nine-Tailed Fox a sila zabezpečenia bola signifikantne zväčšená</size>
+# Watch list title
+watch_list_title: <align=right><size=45%><color=(COLOR)><b>Pozorovateľ ((COUNT)):</b></color></size></align>
+# Watch list format
+names: <align=right><size=45%><color=(COLOR)><br>(NAME)</color></size></align>
+# DNT reminder
+d_n_t_warning: Máte zapnuté DNT (Nesledovať), prosím vypnite túto funkciu aby všetky pluginy fungovali tak, ako majú
+# SCP-073 counter-injury damage reason
+s_c_p073_damage_reason: SCP073 proti-zranenie
+# SCP-029 escape facility Hint
+s_c_p029_escape_hint: Úspešne uteč a staň sa súčasťou Chaos Insurgency
+# SCP-703 escape facility Hint
+s_c_p703_escape_hint: Úspešne uteč zo zariadenia a staň sa Nine-Tailed Fox expertom na izoláciu a dostaň 3x
+# Skynet Mobile Task Force Cassie Broadcast
+skynet_cassie: Do zariadenia vstúpili mobilné operačné jednotky Kappa-10 a Mu-7 s kódovým označením Skynet. Pomôžu Dancer One zadržať SCP-079. Odporúča sa, aby všetci preživší zamestnanci vykonali štandardné evakuačné plány, kým na vaše miesto nedorazí tím MTF. V súčasnosti zostáva %SCPNum% SCP subjektov
+# Skynet Mobile Task Force New Recruit Broadcast
+skynet_private_broadcast: <size=70><color=#0051FF>Si nováčikom mobilnej operačnej jednotky Skynet</color></size>
+# Skynet Mobile Task Force New Recruit Custom Information
+skynet_private_custom_info: Skynet nováčik
+# Skynet Mobile Task Force Sergeant Broadcast
+skynet_sergeant_broadcast: <size=70><color=#0051FF>Si seržantom mobilnej operačnej jednotky Skynet</color></size>
+# Skynet Mobile Task Force Recruit Custom Info
+skynet_sergeant_custom_info: Skynet Seržant
+# Skynet Mobile Task Force Commander Broadcast
+skynet_captain_broadcast: <size=70><color=#0051FF>Si veliteľom mobilnej operačnej jednotky Skynet</color></size>
+# Skynet Mobile Task Force Commander Custom Info
+skynet_captain_custom_info: Skynet Veliteľ
+# See No Evil Mobile Task Force Cassie Broadcast
+see_no_evil_cassie: Do zariadenia vstúpila mobilná operačná skupina Eta-10 s kódovým označením See No Evil. Pomôžu zadržať SCP-096. Odporúča sa, aby všetci preživší zamestnanci postupovali podľa štandardného evakuačného plánu, kým tím MTF nedorazí na vaše miesto. V súčasnosti zostáva %SCPNum% SCP subjektov
+# See No Evil Mobile Task Force New Recruit Broadcast
+see_no_evil_private_broadcast: <size=70><color=#0051FF>Si nováčik mobilnej operačnej jednotky - See No Evil</color></size>
+# See No Evil Mobile Task Force New Recruit Custom Information
+see_no_evil_private_custom_info: See No Evil nováčik
+# See No Evil Mobile Task Force Sergeant Broadcast
+see_no_evil_sergeant_broadcast: <size=70><color=#0051FF>Si seržantom mobilnej operačnej jednotky - See No Evil</color></size>
+# See No Evil Mobile Task Force New Recruit Custom Information
+see_no_evil_sergeant_custom_info: See No Evil Seržant
+# See No Evil Mobile Task Force Commander Broadcast
+see_no_evil_captain_broadcast: <size=70><color=#0051FF>Si veliteľom mobilnej operačnej jednotky - See No Evil</color></size>
+# See No Evil Mobile Task Force commander custom information
+see_no_evil_captain_custom_info: See No Evil Veliteľ
+# Special role contained Cassie suffix
+special_role_contain_cassie: Úspešne odstránené, konkrétny dôvod nie je známy	
+# Chaos leader name
+chaos_leader_role_name: Chaos Vodca
+# Chaos leader refresh broadcast
+chaos_leader_spawn_broadcast: <size=80><color=#00ff00ff>Si vodca Povstania Chaosu</color></size>
+# Chaos leader dies Cassie
+chaos_leader_death_cassie: Vodca Chaosu umrel
+# SCP-2936-1 refresh broadcast
+s_c_p29361_spawn_broadcast: <size=70>Si <color=red>SCP-2936-1 Obrovský nemecký robot</color></size>
+# SCP-073 Abel refresh broadcast
+s_c_p073_abel_spawn_broadcast: Si <color=green>SCP-073 Abel</color>
+# SCP-073 refresh broadcast
+s_c_p073_cain_spawn_broadcast: Si <color=green>SCP-073 Cain</color>
+# SCP-703 refresh broadcast
+s_c_p703_spawn_broadcast: <size=80><color=#00ffffff>Si SCP-703</color></size>
+# SCP-703 skill introduction
+s_c_p703_skill_introduction: <align=center><voffset=28em><size=70><color=#00ffffff>Vždy raz za čas dostaneš náhodný predmet</color></size></voffset></align>
+# SCP-703 received item Hint
+s_c_p703_received_item_hint: dostal predmet
+# SCP-029 refresh broadcast
+s_c_p029_spawn_broadcast: <size=60><color=#ff0000ff>Si SCP-029 Dcéra Tieňu</color></size>
+# SCP-029 skill introduction
+s_c_p029_skill_introduction: <voffset=28em><size=40><color=#ff0000ff>Zabi všetkých svojich nepriateľov</color></size></voffset>
+# SCP-347 refresh broadcast
+s_c_p347_spawn_broadcast: Si <color=red>SCP-347 Neviditeľná Žena</color>
+# SCP-1093 refresh broadcast
+s_c_p1093_spawn_broadcast: Si <color=yellow>SCP-1093 Ľudské svetlo</color>
+# SCP-1093 Skill Introduction
+s_c_p1093_skill_introduction: >-Pretržite osvetľuje okolie na 5 metrov a pôsobí na ľudí v okruhu 1 metra, ktorí dostanú radiačné poškodenie (strata 1 zdravie za sekundu) Tvoja hlava sa zdá byť prázdna, takže nikto nemôže zraniť tvoju hlavu
+# Guard Captain refreshes broadcast
+guard_captain_spawn_broadcast: <size=60><color=#E5DADA>Si bezpečnostný kapitán</color></size>
+# SCP-191 refreshes broadcast
+s_c_p191_spawn_broadcast: Stal si sa <color=red>SCP-191 Mechanickým Dievčaťom</color>
+# SCP-191 Skill Introduction
+s_c_p191_skill_introduction: Vďaka modifikácii tvojho tela si vysoko odolní voči poškodeniu okrem elektromagnetického a výbušného.
+# SCP-191 battery display
+s_c_p191_battery_hint_show: <align=right><size=60><b>Ostávajúca betéria: <color=yellow>%Battery%A</color></size></b></align>
+# SCP-1056 Miniaturizer Pickup Hint
+s_c_p1056_pickup_hint: Zobral si <color=red>SCP-1056</color> Miniaturizér!
+# SCP-1056 Miniaturizer Use Hint
+s_c_p1056_used_hint: boom! si menší!!!
+# SCP-1068 Harmless Nuclear Bomb Pickup Hint
+s_c_p1068_pickup_hint: Zobral si <color=red>SCP-1068</color> Neškodnú Nukleárnu Bombu!
+# SCP-1056 Harmless Nuclear Bomb Used Broadcast
+s_c_p1068_used_broadcast: Niekto použil <color=red>SCP-1068</color> neškodnú nukleárnu bombu!
