@@ -1,0 +1,118 @@
+# Bir oyuncu sunucuya girdiğinde göreceği mesaj
+welcome_message: Hoşgeldin %playername%~
+# Tur sonu mesajı
+round_end_info: Tur bitti! Sakın bir yere gitme,gidiyorsan bir daha ki sefere görüşürüzヾ(￣▽￣)~
+# Dost ateşi açıldığında kullanıcıların göreceği mesaj
+f_f_message: <align=center><voffset=28em> <color=#F6511D> ~Dost ateşi açıldı~ </color></voffset></align>
+# Sunucu broadcast yazısı
+auto_server_message_text: Sunucu broadcast
+# Yönetici hareketlerini izleme çıktıları 
+admin_log: '%Nickname% kullandığı zaman %Time% | Kullandığı komut: %Command% | Steam64ID: %UserId%'
+# Yönetici izlemenin duyuru mesajı
+admin_log_broadcast: '<size=30>[<color=red>Yöetici İzleme Kayıtları</color>] <%Nickname%> Az önce kullanılan komut: %Command%</size>'
+# Sunucu başladğında ve tur başlamadan önce kalan süreyi gösteren yazı
+title_text: <size=50><color=#F0FF00><b>Oyuncular için bekleniyor, {seconds}</b></color></size>
+# Oyuncu sayısı
+player_count_text: <size=40><color=#FFA600><i>{players}</i></color></size>
+# Lobby kilitlenmişse görünen yazı
+server_pause_text: Tur durduruldu
+# Message on the second line
+second_left_text: {seconds} kaldı
+# Message on multiple lines
+seconds_left_text: {seconds} kaldı
+# Tur başladı mesajı
+round_start_text: Tur başladı
+# Bİr oyuncu katıldığında gözükecek mesaj
+player_join_text: Bir Oyuncu oyuna katıldı
+# Birden çok oyuncu katıldığında gözükecek mesaj
+players_join_text: Oyuncular oyuna katıldı
+# Tesis görevlilerinin  hainken ve kaos için çalıştığında görünecek duyuru mesajı
+guard_mutiny_broadcast: <size=60><color=#ff0000ff>[Uyarı]</color>Bu Tesis görevlileri hain ve kaos isyancıları için çalışıyorlar.</size>
+# Tesis görevlileri Elit ekip olduğu zaman görünecek duyuru
+elite_guard_broadcast: <size=60><color=#00ffffff>[Notice]</color>Bu tesisin görevlileri Dokuz Kuyruklu Tilki'nin seçkin üyeleridir ve güvenlik gücü büyük ölçüde artırılmıştır.</size>
+# İzleyici listesi başlığı
+watch_list_title: <align=right><size=45%><color=(COLOR)><b>İzleyenler ((COUNT)):</b></color></size></align>
+# İzleyen listesi formatı 
+names: <align=right><size=45%><color=(COLOR)><br>(NAME)</color></size></align>
+# DNT hatırlatıcı
+d_n_t_warning: DNT'yi açtınız, lütfen kapatın, aksi halde bazı pluginler düzgün çalışmayacak.
+# SCP-073 tarafından öldürme nedeni
+s_c_p073_damage_reason: SCP073 tarafından parçalanarak
+# SCP-029 tesisten kaçınca görünen ipucu
+s_c_p029_escape_hint: Tesisten başarıyla kaçtın ve kaos isyancılarına katılıp onları onurlandırdın.
+# SCP-703 tesisten kaçınca görünen ipucu
+s_c_p703_escape_hint: Tesisten başarıyla kaçtın ve Dokuz Kuyruklu Tilki Muhafaza Uzman oldun ayrıca 3x parçacık bozucu aldın
+# Skynet Mobil Görev Gücü tesise geldiğinde duyurulacak Cassie Yayını
+skynet_cassie: Mobil Görev Gücü Kappa-10 ve Skynet kodlu Mu-7 tesise giriş yaptı. Dancer One ekibinin SCP-079'u muhafaza altına almasına yardım edicekler. MTF ekibi bulunduğunuz yere varıncaya kadar hayatta kalan tüm personelin standart tahliye planlarını uygulaması önerilir. Şu anda tesiste %SCPNum% SCP bulunuyor
+# Skynet Mobil Görev Gücünde doğan asker broadcasti
+skynet_private_broadcast: <size=70><color=#0051FF>Sen Mobil Görev Gücü-Skynet'in Neferisin</color></size>
+# Skynet Mobil Görev Gücü Nefer bilgileri
+skynet_private_custom_info: Skynet Neferi
+# Skynet Mobil Görev Gücünde doğan Çavuş broadcasti
+skynet_sergeant_broadcast: <size=70><color=#0051FF>Sen Mobil Görev Gücü-Skynet'in Çavuşusun</color></size>
+# Skynet Mobil Görev Gücü Çavuş bilgileri
+skynet_sergeant_custom_info: Skynet Çavuşu
+# Skynet Mobil Görev Gücünde doğan Albay broadcasti
+skynet_captain_broadcast: <size=70><color=#0051FF>Sen Mobil Görev Gücü-Skynet'in Albayısın</color></size>
+# Skynet Mobil Görev Gücü Albay bilgileri
+skynet_captain_custom_info: Skynet Albayı
+# Görsel Tehlike Görev Gücü(See No Evil) tesise geldiğinde duyurulacak Cassie Yayını
+see_no_evil_cassie: Mobil Görev Gücü Eta-10 ve See No evil/Görsel Tehlike Görev Gücü tesise giriş sağladı. SCP-096'ın muhafaza edilmesine yardım edicekler. MTF ekibi bulunduğunuz yere varıncaya kadar hayatta kalan tüm personelin standart tahliye planlarını uygulaması önerilir. Şu anda tesiste %SCPNum% SCP bulunuyor
+# Görsel Tehlike Görev Gücü(See No Evil)'nde doğan Nefer broadcasti
+see_no_evil_private_broadcast: <size=70><color=#0051FF>Sen See No evil/Görsel Tehlike Görev Gücü Neferisin</color></size>
+# Görsel Tehlike Görev Gücü(See No Evil) Nefer bilgileri
+see_no_evil_private_custom_info: See No evil/Görsel Tehlike Görev Gücü Neferi
+# Görsel Tehlike Görev Gücü(See No Evil)'nde doğan Çavuş broadcasti
+see_no_evil_sergeant_broadcast: <size=70><color=#0051FF>Sen See No evil/Görsel Tehlike Görev Gücü Çavuşusun</color></size>
+# Görsel Tehlike Görev Gücü(See No Evil) Çavuş bilgileri
+see_no_evil_sergeant_custom_info: See No evil/Görsel Tehlike Görev Gücü Çavuşu
+# Görsel Tehlike Görev Gücü(See No Evil)'nde doğan Albay broadcasti
+see_no_evil_captain_broadcast: <size=70><color=#0051FF>Sen See No evil/Görsel Tehlike Görev Gücü Albayısın</color></size>
+# Görsel Tehlike Görev Gücü(See No Evil) Albay bilgileri
+see_no_evil_captain_custom_info: See No evil/Görsel Tehlike Görev Gücü Albayı
+# Özel roller için Cassie'nin Muhafaza edildi mesajı
+special_role_contain_cassie: Başarıyla termine edildi, termine nedeni bilinmiyor
+# Kaos lider adı 
+chaos_leader_role_name: Kaos Lideri
+# Kaos lider doğum broadcasti
+chaos_leader_spawn_broadcast: <size=80><color=#00ff00ff>Sen Kaos İsyancılarının Liderisin</color></size>
+# Kaos lideri ölünce olan Cassie anonsu
+chaos_leader_death_cassie: Kaos Lideri Öldü
+# SCP-2936-1 doğum broadcasti
+s_c_p29361_spawn_broadcast: <size=70>Sen <color=red>SCP-2936-1 Devasa Nazi Robotusun</color></size>
+# SCP-073 doğum Habil broadcasti
+s_c_p073_abel_spawn_broadcast: Sen Habilsin kod adın <color=green>SCP-073 </color>
+# SCP-073 doğum Kabil broadcasti 
+s_c_p073_cain_spawn_broadcast: Sen Kabilsin kod adın <color=green>SCP-073 </color>
+# SCP-703 doğum broadcasti 
+s_c_p703_spawn_broadcast: <size=80><color=#00ffffff>Sen SCP-703'sün</color></size>
+# SCP-703 beceri bilgisi
+s_c_p703_skill_introduction: <align=center><voffset=28em><size=70><color=#00ffffff>Arada bir rastgele bir öğe/eşya alacaksın</color></size></voffset></align>
+# SCP-703 eşya aldı bildirimi
+s_c_p703_received_item_hint: Bir eşya aldın
+# SCP-029 doğum broadcasti
+s_c_p029_spawn_broadcast: <size=60><color=#ff0000ff>Sen SCP-029 Karanlığın Kızısın</color></size>
+# SCP-029 beceri bilgisi
+s_c_p029_skill_introduction: <voffset=28em><size=40><color=#ff0000ff>Tüm düşmanlarını öldür</color></size></voffset>
+# SCP-347 doğum broadcasti
+s_c_p347_spawn_broadcast: Sen <color=red>SCP-347 Görünmez Kadın'sın</color>
+# SCP-1093 doğum broadcasti
+s_c_p1093_spawn_broadcast: Sen <color=yellow>SCP-1093 Işıktan Adam'sın</color>
+# SCP-1093 beceri bilgisi
+s_c_p1093_skill_introduction: >-5 metre çevreni sürekli aydınlatıyorsun ve 1 metre çevrendeki bulunan kişilerin radyasyon hasarı almasına neden oluyorsun(saniyede 1 hasar). Başının olması gereken yerde koca bir ışık var, bu nedenle kimse başınıza zarar veremez.
+# Tesis albayı doğum broadcasti
+guard_captain_spawn_broadcast: <size=60><color=#E5DADA>Sen Tesis görevlilerinin Albayısın</color></size>
+# SCP-191 doğum broadcasti
+s_c_p191_spawn_broadcast: Sen artık <color=red>SCP-191 Mekanik Kız'sın</color>
+# SCP-191 beceri bilgisi
+s_c_p191_skill_introduction: Vücut modifikasyonların sayesinde, elektromanyetik ve patlayıcı hasarlar dışında hasara karşı son derece dirençlisiniz.
+# SCP-191 Kalan batarya bilgisi
+s_c_p191_battery_hint_show: <align=right><size=60><b>Kalan Bataryan: <color=yellow>%Battery%A</color></size></b></align>
+# SCP-1056 Minyatürleştirici alma İpucu
+s_c_p1056_pickup_hint: <color=red>SCP-1056</color> Minyatürleştirici'yi aldın!
+# SCP-1056 Minyatürleştirici kullandıktan sonra ki ipucu
+s_c_p1056_used_hint: Boom! Artık daha küçüksün!!!
+# SCP-1068 Zararsız Nükleer Bomba alma ipucu
+s_c_p1068_pickup_hint: <color=red>SCP-1068</color> Zararsız Nükleer Bomba'yı aldın!
+# SCP-1056 Zararsız Nükleer Bomba kullandıktan sonra ki ipucu
+s_c_p1068_used_broadcast: Birisi <color=red>SCP-1068</color> Zararsız Nükleer Bomba'yı kullandı!
