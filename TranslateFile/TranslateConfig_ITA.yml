@@ -1,0 +1,118 @@
+# Welcome message when a player enters the server
+welcome_message: Benvenuto %playername%~
+# End of round message
+round_end_info: Il round è finito! Non andartene, ci si vede presto ヾ(￣▽￣)~
+# Messages players will receive when friendly damage is turned on
+f_f_message: <align=center><voffset=28em> <color=#F6511D> ~Fuoco amico abilitato~ </color></voffset></align>
+# Server broadcast text
+auto_server_message_text: Server broadcast
+# Administrator monitoring output text
+admin_log: '%Nickname% alle %Time% | Comando usato: %Command% | Steam64ID: %UserId%'
+# Administrator monitoring command broadcast
+admin_log_broadcast: '<size=30>[<color=red>Log del monitoraggio delle azioni degli admin</color>] <%Nickname%> Ha appena usato: %Command%</size>'
+# Display the time left before startup and the server status
+title_text: <size=50><color=#F0FF00><b>Aspettando giocatori, Tempo rimanente prima che il round parta {seconds}</b></color></size>
+# Text to display the number of players
+player_count_text: <size=40><color=#FFA600><i>{players}</i></color></size>
+# Message to display if the lobby is locked
+server_pause_text: Server in pausa
+# Message on the second line
+second_left_text: {seconds} rimanenti
+# Message on multiple lines
+seconds_left_text: {seconds} rimanenti
+# Message to display when a round starts
+round_start_text: Round incominciato
+# Message to display when a player joins the server
+player_join_text: Player entrato
+# Message to display when multiple players join the server
+players_join_text: Players entrati
+# Announcement to display when a guard mutinies
+guard_mutiny_broadcast: <size=60><color=#ff0000ff>[Warning]</color>Questa guardia della struttura adesso è alleata ai Chaos Insurgency </size>
+# Announcement to display when a guard is an elite team
+elite_guard_broadcast: <size=60><color=#00ffffff>[Notice]</color>Le guardie della facility sono adesso agenti d'elite dei Nine-Tailed Fox, la sicurezza è aumentata</size>
+# Watch list title
+watch_list_title: <align=right><size=45%><color=(COLOR)><b>Osservatore ((COUNT)):</b></color></size></align>
+# Watch list format
+names: <align=right><size=45%><color=(COLOR)><br>(NAME)</color></size></align>
+# DNT reminder
+d_n_t_warning: L'opzione DNT è attiva nelle impostazioni del client, perfavore disattivala così che i plugin possano funzionare in modo regolare
+# SCP-073 counter-injury damage reason
+s_c_p073_damage_reason: Contraccolpo di SCP073 
+# SCP-029 escape facility Hint
+s_c_p029_escape_hint: Sei scappato dalla facility e sei diventato Chaos per onorare la loro eredità
+# SCP-703 escape facility Hint
+s_c_p703_escape_hint: Successfully escape the facility to become a Nine-Tailed Fox Containment Expert, and get 3x
+# Skynet Mobile Task Force Cassie Broadcast
+skynet_cassie: Mobile Task Force Kappa-10 e Mu-7 nome in codice Skynet sono entrate facility. Aiuteranno Dancer One a contenere SCP-079. Si raccomanda che tutto il personale sopravvissuto attui piani di evacuazione standard fino all'arrivo della squadra MTF nella vostra posizione. Attualmente sono rimasti %SCPNum% SCP
+# Skynet Mobile Task Force New Recruit Broadcast
+skynet_private_broadcast: <size=70><color=#0051FF>Sei una nupva recluta dei Mobile Task Force-Skynet</color></size>
+# Skynet Mobile Task Force New Recruit Custom Information
+skynet_private_custom_info: Recluta Skynet
+# Skynet Mobile Task Force Sergeant Broadcast
+skynet_sergeant_broadcast: <size=70><color=#0051FF>Sei un sergente della Mobile Task Force-Skynet</color></size>
+# Skynet Mobile Task Force Recruit Custom Info
+skynet_sergeant_custom_info: Sergente Skynet
+# Skynet Mobile Task Force Commander Broadcast
+skynet_captain_broadcast: <size=70><color=#0051FF>Sei un comandante della Mobile Task Force-Skynet</color></size>
+# Skynet Mobile Task Force Commander Custom Info
+skynet_captain_custom_info: Comandante Skynet
+# See No Evil Mobile Task Force Cassie Broadcast
+see_no_evil_cassie: Mobile Task Force Eta-10 nome in codice See No Evil sono entrati nella facility. Aiuteranno a ricontenere SCP-096. Si raccomanda che tutto il personale sopravvissuto attui piani di evacuazione standard fino all'arrivo della squadra MTF nella vostra posizione. Attualmente sono rimasti %SCPNum% SCP
+# See No Evil Mobile Task Force New Recruit Broadcast
+see_no_evil_private_broadcast: <size=70><color=#0051FF>sei una recluta della Mobile Task Force-See No Evil</color></size>
+# See No Evil Mobile Task Force New Recruit Custom Information
+see_no_evil_private_custom_info: Recluta See No Evil
+# See No Evil Mobile Task Force Sergeant Broadcast
+see_no_evil_sergeant_broadcast: <size=70><color=#0051FF>Sei un Sergente della Mobile Task Force-See No Evil </color></size>
+# See No Evil Mobile Task Force New Recruit Custom Information
+see_no_evil_sergeant_custom_info: Sergente See No Evil
+# See No Evil Mobile Task Force Commander Broadcast
+see_no_evil_captain_broadcast: <size=70><color=#0051FF>Sei il comandante della Mobile Task Force-See No Evil</color></size>
+# See No Evil Mobile Task Force commander custom information
+see_no_evil_captain_custom_info: Comandante See No Evil 
+# Special role contained Cassie suffix
+special_role_contain_cassie: Eliminato con successo, ragione specifica sconosciuta
+# Chaos leader name
+chaos_leader_role_name: Leader Chaos 
+# Chaos leader refresh broadcast
+chaos_leader_spawn_broadcast: <size=80><color=#00ff00ff>Sei un leader dei Chaos Insurgency</color></size>
+# Chaos leader dies Cassie
+chaos_leader_death_cassie: Il leader dei chaos è morto.
+# SCP-2936-1 refresh broadcast
+s_c_p29361_spawn_broadcast: <size=70>Sei <color=red>SCP-2936-1, un gigante robot da guerra tedesco</color></size>
+# SCP-073 Abel refresh broadcast
+s_c_p073_abel_spawn_broadcast: Sei <color=green>SCP-073 Abel</color>
+# SCP-073 refresh broadcast
+s_c_p073_cain_spawn_broadcast: Sei <color=green>SCP-073 Cain</color>
+# SCP-703 refresh broadcast
+s_c_p703_spawn_broadcast: <size=80><color=#00ffffff>Sei SCP-703</color></size>
+# SCP-703 skill introduction
+s_c_p703_skill_introduction: <align=center><voffset=28em><size=70><color=#00ffffff>Riceverai un item a caso ogni tanto</color></size></voffset></align>
+# SCP-703 received item Hint
+s_c_p703_received_item_hint: Hai ricevuto un item
+# SCP-029 refresh broadcast
+s_c_p029_spawn_broadcast: <size=60><color=#ff0000ff>Sei SCP-029 Figlia dell'Ombra</color></size>
+# SCP-029 skill introduction
+s_c_p029_skill_introduction: <voffset=28em><size=40><color=#ff0000ff>Uccidi tutti i tuo nemici</color></size></voffset>
+# SCP-347 refresh broadcast
+s_c_p347_spawn_broadcast: Sei <color=red>SCP-347 la donna invisibile</color>
+# SCP-1093 refresh broadcast
+s_c_p1093_spawn_broadcast: Sei <color=yellow>SCP-1093 luce umana</color>
+# SCP-1093 Skill Introduction
+s_c_p1093_skill_introduction: >-Illumini continuamente i 5 metri circostanti e colpisci le persone entro 1 metro dall'area circostante subendo danni da radiazioni (1 HP perso al secondo) La tua testa sembra essere vuota, quindi nessuno può ferirti la testa
+# Guard Captain refreshes broadcast
+guard_captain_spawn_broadcast: <size=60><color=#E5DADA>Sei il capitano della seicurezza</color></size>
+# SCP-191 refreshes broadcast
+s_c_p191_spawn_broadcast: Sei diventato <color=red>SCP-191 ragazza meccanica</color>
+# SCP-191 Skill Introduction
+  s_c_p191_skill_introduction: A causa delle modifiche al tuo corpo, sei altamente resistente ai danni tranne quelli elettromagnetici ed esplosivi
+# SCP-191 battery display
+s_c_p191_battery_hint_show: <align=right><size=60><b>Batteria rimanente: <color=yellow>%Battery%A</color></size></b></align>
+# SCP-1056 Miniaturizer Pickup Hint
+s_c_p1056_pickup_hint: Hai preso <color=red>SCP-1056</color> il miniaturizzatore!
+# SCP-1056 Miniaturizer Use Hint
+s_c_p1056_used_hint: Sei diventato più piccolo!!!
+# SCP-1068 Harmless Nuclear Bomb Pickup Hint
+s_c_p1068_pickup_hint: Hai preso la <color=red>SCP-1068</color> Bomba nucleare innocua!
+# SCP-1056 Harmless Nuclear Bomb Used Broadcast
+s_c_p1068_used_broadcast: Qualcuno ha usato\ <color=red>SCP-1068</color> Bomba nucleare innocua!
