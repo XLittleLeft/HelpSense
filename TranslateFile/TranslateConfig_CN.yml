@@ -1,0 +1,123 @@
+# 当玩家进入服务器的欢迎消息
+welcome_message: 欢迎 %playername%~
+# 回合结束消息
+round_end_info: 回合结束啦！不要离开，下局再见ヾ(￣▽￣)~
+# 友伤开启时玩家将收到的消息
+f_f_message: <align=center><voffset=28em> <color=#F6511D> ~友伤已开启~ </color></voffset></align>
+# 服务器广播文本
+auto_server_message_text: 服务器广播
+# 管理员监察输出文本
+admin_log: '%Nickname%在%Time%时候 | 使用了指令:%Command% | Steam64ID:%UserId%'
+# 管理员监察指令广播
+admin_log_broadcast: '<size=30>[<color=red>管理行为监察输出记录</color>] <%Nickname%> 在刚刚使用了指令: %Command%</size>'
+# 显示距离启动还剩多少时间和服务器状态
+title_text: <size=50><color=#F0FF00><b>正在等待玩家, {seconds}</b></color></size>
+# 显示玩家数量的文本
+player_count_text: <size=40><color=#FFA600><i>{players}</i></color></size>
+# 如果大厅被锁定显示的消息
+server_pause_text: 服务器已暂停
+# 第二行的消息
+second_left_text: 还剩 {seconds}
+# 多行的消息
+seconds_left_text: 还剩 {seconds}
+# 回合开始时显示的消息
+round_start_text: 回合开始
+# 当服务器当玩家加入时显示的消息
+player_join_text: 玩家加入
+# 当服务器上有多个玩家加入时显示的消息
+players_join_text: 名玩家加入
+# 警卫叛变显示的公告
+guard_mutiny_broadcast: <size=60><color=#ff0000ff>[警告]</color>此设施警卫已被混沌分裂者策反</size>
+# 警卫为精英队显示的公告
+elite_guard_broadcast: <size=60><color=#00ffffff>[通知]</color>此设施警卫为九尾狐精英队员，保安实力大增</size>
+# 观战列表标题
+watch_list_title: <align=right><size=45%><color=(COLOR)><b>观察者 ((COUNT)):</b></color></size></align>
+# 观战列表格式
+names: <align=right><size=45%><color=(COLOR)><br>(NAME)</color></size></align>
+# DNT提醒
+d_n_t_warning: 你打开了DNT，请关闭，否则某些插件无法正常运行
+# SCP-073反伤伤害原因
+s_c_p073_damage_reason: SCP073反伤
+# SCP-029逃离设施Hint
+s_c_p029_escape_hint: 成功逃离设施变为混沌得到混沌分裂者的一个遗产
+# SCP-703逃离设施Hint
+s_c_p703_escape_hint: 成功逃离设施成为九尾狐收容专家，获得3x
+# 天网机动特遣队Cassie广播
+skynet_cassie: 机动特遣队Kappa-10和Mu-7代号天网已经进入设施,他们会帮助舞步者一号收容SCP-079,建议所有幸存人员执行标准撤离方案,直到MTF小队到达你的地点,目前还剩%SCPNum%个SCP
+# 天网机动特遣队新兵广播
+skynet_private_broadcast: <size=70><color=#0051FF>你是机动特遣队-天网 新兵</color></size>
+# 天网机动特遣队新兵自定义信息
+skynet_private_custom_info: 天网 新兵
+# 天网机动特遣队中士广播
+skynet_sergeant_broadcast: <size=70><color=#0051FF>你是机动特遣队-天网 中士</color></size>
+# 天网机动特遣队新兵自定义信息
+skynet_sergeant_custom_info: 天网 中士
+# 天网机动特遣队指挥官广播
+skynet_captain_broadcast: <size=70><color=#0051FF>你是机动特遣队-天网 指挥官</color></size>
+# 天网机动特遣队指挥官自定义信息
+skynet_captain_custom_info: 天网 指挥官
+# 非礼勿视机动特遣队Cassie广播
+see_no_evil_cassie: 机动特遣队Eta-10代号非礼勿视已经进入设施,他们会帮助收容SCP-096,建议所有幸存人员执行标准撤离方案,直到MTF小队到达你的地点,目前还剩%SCPNum%个SCP
+# 非礼勿视机动特遣队新兵广播
+see_no_evil_private_broadcast: <size=70><color=#0051FF>你是机动特遣队-非礼勿视 新兵</color></size>
+# 非礼勿视机动特遣队新兵自定义信息
+see_no_evil_private_custom_info: 非礼勿视 新兵
+# 非礼勿视机动特遣队中士广播
+see_no_evil_sergeant_broadcast: <size=70><color=#0051FF>你是机动特遣队-非礼勿视 中士</color></size>
+# 非礼勿视机动特遣队新兵自定义信息
+see_no_evil_sergeant_custom_info: 非礼勿视 中士
+# 非礼勿视机动特遣队指挥官广播
+see_no_evil_captain_broadcast: <size=70><color=#0051FF>你是机动特遣队-非礼勿视 指挥官</color></size>
+# 非礼勿视机动特遣队指挥官自定义信息
+see_no_evil_captain_custom_info: 非礼勿视 指挥官
+# 特殊角色被收容Cassie后缀
+special_role_contain_cassie: 成功被消灭，具体原因未知
+# 混沌领导者名字
+chaos_leader_role_name: 混沌领导者
+# 混沌领导者刷新广播
+chaos_leader_spawn_broadcast: <size=80><color=#00ff00ff>你是混沌分裂者 领导者</color></size>
+# 混沌领导者死亡Cassie
+chaos_leader_death_cassie: 混沌领导者死亡
+# SCP-2936-1刷新广播
+s_c_p29361_spawn_broadcast: <size=70>你是 <color=red>SCP-2936-1 巨型德国机器人</color></size>
+# SCP-073亚伯刷新广播
+s_c_p073_abel_spawn_broadcast: 你是<color=green>SCP-073 亚伯</color>
+# SCP-073刷新广播
+s_c_p073_cain_spawn_broadcast: 你是<color=green>SCP-073 该隐</color>
+# SCP-703刷新广播
+s_c_p703_spawn_broadcast: <size=80><color=#00ffffff>你是SCP-703</color></size>
+# SCP-703技能介绍
+s_c_p703_skill_introduction: <align=center><voffset=28em><size=70><color=#00ffffff>每过一段时间你会获得随机物品</color></size></voffset></align>
+# SCP-703获得物品Hint提示
+s_c_p703_received_item_hint: 获得一件物品
+# SCP-029刷新广播
+s_c_p029_spawn_broadcast: <size=60><color=#ff0000ff>你是SCP-029“暗影之女”</color></size>
+# SCP-029技能介绍
+s_c_p029_skill_introduction: <voffset=28em><size=40><color=#ff0000ff>杀戮所有你敌对的人</color></size></voffset>
+# SCP-347刷新广播
+s_c_p347_spawn_broadcast: 你是<color=red>SCP-347 隐形女</color>
+# SCP-1093刷新广播
+s_c_p1093_spawn_broadcast: 你是 <color=yellow>SCP-1093 人灯</color>
+# SCP-1093技能介绍
+s_c_p1093_skill_introduction: >-
+  持续照亮附近5米范围,并影响附近1米范围内的人受到辐射伤害(每秒扣1血)
+
+  你的头似乎是虚无的,所以任何人对你头部是没有伤害的
+# 警卫队长刷新广播
+guard_captain_spawn_broadcast: <size=60><color=#E5DADA>你是安保队长</color></size>
+# SCP-191刷新广播
+s_c_p191_spawn_broadcast: 你成为了<color=red>SCP-191 机械少女</color>
+# SCP-191技能介绍
+s_c_p191_skill_introduction: 因为你的身体的改造，你对除了电磁和爆炸伤害的抗性很高
+# SCP-191电量显示
+s_c_p191_battery_hint_show: <align=right><size=60><b>你目前剩余的电量:<color=yellow>%Battery%安</color></size></b></align>
+# SCP-191电量耗尽死亡原因
+s_c_p191_battery_depletion_death_reason: 电量耗尽
+# SCP-1056缩小仪拾取Hint
+s_c_p1056_pickup_hint: 你捡起了<color=red>SCP-1056</color> 缩小仪!
+# SCP-1056缩小仪使用Hint
+s_c_p1056_used_hint: boom!你变小了!!!
+# SCP-1068无害核弹拾取Hint
+s_c_p1068_pickup_hint: 你捡起了<color=red>SCP-1068</color> 无害核弹!
+# SCP-1056无害核弹使用广播
+s_c_p1068_used_broadcast: 有人使用了<color=red>SCP-1068</color> 无害核弹!
