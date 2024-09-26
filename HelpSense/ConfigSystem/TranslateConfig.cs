@@ -153,6 +153,8 @@ namespace HelpSense.ConfigSystem
         public string SCP191SkillIntroduction { get; set; } = "因为你的身体的改造，你对除了电磁和爆炸伤害的抗性很高";
         [Description("SCP-191电量显示")]
         public string SCP191BatteryHintShow { get; set; } = "<align=right><size=60><b>你目前剩余的电量:<color=yellow>%Battery%安</color></size></b></align>";
+        [Description("SCP-191电量耗尽死亡原因")]
+        public string SCP191BatteryDepletionDeathReason { get; set; } = "电量耗尽";
         /// <summary>
         /// 
         /// </summary>

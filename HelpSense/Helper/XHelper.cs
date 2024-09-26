@@ -233,7 +233,7 @@ namespace HelpSense.Helper
                 d -= 100;
 
                 if (d <= 0)
-                    player.Kill("电量耗尽");
+                    player.Kill(Plugin.Instance.TranslateConfig.SCP191BatteryDepletionDeathReason);
 
                 yield return Timing.WaitForSeconds(10f);
             }
