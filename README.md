@@ -69,3 +69,4 @@ Download the **latest zip file from the Release section** and extract everything
 - Spanish : SpankyR
 - Brazilian : zDarkzera
 - Russian : RisottoMan
+- Slovak : blackstrikesk
