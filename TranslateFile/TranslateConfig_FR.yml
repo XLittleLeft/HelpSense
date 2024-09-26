@@ -1,11 +1,11 @@
 # Message de bienvenue lorsque le joueur entre sur le serveur
 Welcome_message : Bienvenue %playername%~
 # Message de fin de ronde
-round_end_info : Le tour est terminé ! Ne pars pas, au prochain match ヾ(￣▽￣)~
+round_end_info : La manche est terminé ! Ne pars pas, au prochain match ヾ(￣▽￣)~
 # Le message que les joueurs recevront lorsque les dégâts amicaux seront activés
-f_f_message : <align=center><voffset=28em> <color=#F6511D> ~Les dégâts amis sont activés~ </color></voffset></align>
+f_f_message : <align=center><voffset=28em> <color=#F6511D> ~Le Friendly Fire est activé~ </color></voffset></align>
 # Texte de diffusion du serveur
-auto_server_message_text : diffusion du serveur
+auto_server_message_text : Message du serveur
 # Texte de sortie du moniteur administrateur
 admin_log : '%Pseudo% à %Time% | Commande utilisée : %Command% | Steam64ID :%UserId%'
 # L'administrateur surveille la diffusion des commandes
@@ -21,7 +21,7 @@ second_left_text : {secondes} restantes
 #Plusieurs lignes de messages
 seconds_left_text : {secondes} restantes
 # Message affiché au début du tour
-round_start_text : début du tour
+round_start_text : début de la manche
 # Le message affiché lorsque le serveur rejoint un joueur
 player_join_text : le joueur rejoint
 # Le message affiché lorsque plusieurs joueurs rejoignent le serveur
@@ -37,11 +37,11 @@ noms : <align=right><size=45%><color=(COLOR)><br>(NAME)</color></size></align>
 Rappel #DNT
 d_n_t_warning : DNT est activé, veuillez le désactiver, sinon certains plug-ins ne fonctionneront pas correctement.
 # Cause de la blessure inversée de SCP-073
-s_c_p073_damage_reason : endommagement inversé de SCP073
+s_c_p073_damage_reason : dégats inversé de SCP073
 # SCP-029Escape FacilityIndice
-s_c_p029_escape_hint : réussissez à échapper à l installation, devenez le Chaos et recevez un héritage de l Insurrection du Chaos.
+s_c_p029_escape_hint : réussissez à vous échapper de la fondation, devenez un Chaos et recevez un héritage de l Insurrection du Chaos.
 #SCP-703Facilité d'évasionIndice
-s_c_p703_escape_hint : réussissez à vous échapper de l installation et devenez un expert en confinement du renard à neuf queues, obtenez 3x
+s_c_p703_escape_hint : réussissez à vous échapper de la fondation et devenez un expert en confinement du renard à neuf queues
 # Diffusion Cassie du groupe de travail Skynet Mobile
 skynet_cassie : Les forces d intervention mobiles Kappa-10 et Mu-7, nommées Skynet, sont entrées dans l installation. Elles aideront Dancer One à contenir SCP-079. Il est conseillé à tout le personnel survivant de suivre les protocoles d évacuation standard jusqu à ce que l équipe de la FIM arrive à votre emplacement. Actuellement %SCPNum% SCP restants
 # Diffusion des recrues du groupe de travail Skynet Mobile
@@ -58,26 +58,26 @@ skynet_captain_broadcast : <size=70><color=#0051FF>Vous êtes le commandant de 
 skynet_captain_custom_info : Commandant Skynet
 #Voir la diffusion de Cassie du groupe de travail mobile No Evil
 see_no_evil_cassie : La Force opérationnelle mobile Eta-10, nommée See No Evil, est entrée dans l installation. Elle aidera à contenir SCP-096. Il est recommandé que tout le personnel survivant mette en œuvre des protocoles d évacuation standard jusqu à ce que l équipe MTF arrive à votre emplacement. % de SCP restants.
-Diffusion des recrues du groupe de travail mobile #Look No Evil
-see_no_evil_private_broadcast : <size=70><color=#0051FF>Vous êtes une force opérationnelle mobile - ne voyez aucune recrue maléfique</color></size>
+#Diffusion des recrues du groupe de travail mobile #Look No Evil
+see_no_evil_private_broadcast : <size=70><color=#0051FF>Vous êtes une force opérationnelle mobile - Recrue See No Evil</color></size>
 # Ne voyez pas d'informations personnalisées sur le recrutement d'une force de travail mobile maléfique
-see_no_evil_private_custom_info : Ne voyez aucune recrue maléfique
+see_no_evil_private_custom_info : Recrue See No Evil
 #Look No Evil diffusé par le Sgt de la Force opérationnelle mobile.
 see_no_evil_sergeant_broadcast : <size=70><color=#0051FF>Vous êtes un sergent de la Force opérationnelle mobile - See No Evil</color></size>
 # Ne voyez pas d'informations personnalisées sur le recrutement d'une force de travail mobile maléfique
-see_no_evil_sergeant_custom_info : Ne voyez aucun sergent maléfique
-Diffusion du commandant de la Force opérationnelle mobile #Look No Evil
+see_no_evil_sergeant_custom_info : Sergent See No Evil
+#Diffusion du commandant de la Force opérationnelle mobile #Look No Evil
 see_no_evil_captain_broadcast : <size=70><color=#0051FF>Vous êtes le commandant de la Force opérationnelle mobile - See No Evil</color></size>
 # Ne voir aucun message personnalisé maléfique du commandant de la Force opérationnelle mobile
-see_no_evil_captain_custom_info : Ne voyez aucun commandant maléfique
+see_no_evil_captain_custom_info : Commandant See No Evil
 #Les caractères spéciaux contiennent le suffixe Cassie
 special_role_contain_cassie : Éliminé avec succès, la raison spécifique est inconnue
-Nom du chef du #Chaos
-chaos_leader_role_name : chef du chaos
-Diffusion actualisée du chef du #Chaos
+#Nom du chef du #Chaos
+chaos_leader_role_name : Capitaine du chaos
+#Diffusion actualisée du chef du #Chaos
 chaos_leader_spawn_broadcast : <size=80><color=#00ff00ff>Vous êtes le chef de l insurrection du chaos</color></size>
 #ChaosLeaderDeathCassie
-chaos_leader_death_cassie : le chef du chaos meurt
+chaos_leader_death_cassie : le Capitaine du chaos meurt
 # Diffusion de rafraîchissement de SCP-2936-1
 s_c_p29361_spawn_broadcast : <size=70>Vous êtes <color=red>SCP-2936-1 Robot allemand géant</color></size>
 # SCP-073 Diffusion d'Abel Actualisation
@@ -86,8 +86,8 @@ s_c_p073_abel_spawn_broadcast : Vous êtes <color=green>SCP-073 Abel</color>
 s_c_p073_cain_spawn_broadcast : Vous êtes <color=green>SCP-073 Caïn</color>
 # SCP-703 Actualisation de la diffusion
 s_c_p703_spawn_broadcast : <size=80><color=#00ffffff>Vous êtes SCP-703</color></size>
-Introduction à la compétence #SCP-703
-s_c_p703_skill_introduction : <align=center><voffset=28em><size=70><color=#00ffffff>Vous obtiendrez des objets aléatoires à chaque fois</color></size></voffset></align>
+#Introduction à la compétence #SCP-703
+s_c_p703_skill_introduction : <align=center><voffset=28em><size=70><color=#00ffffff>Vous obtiendrez des objets aléatoires au fil et a mesure du temps</color></size></voffset></align>
 # SCP-703 Obtenir un objet Invite d'indice
 s_c_p703_received_item_hint : reçu un article
 # SCP-029 Actualisation de la diffusion
@@ -95,7 +95,7 @@ s_c_p029_spawn_broadcast : <size=60><color=#ff0000ff>Vous êtes SCP-029 Fille d
 #SCP-029 Introduction à la compétence
 s_c_p029_skill_introduction : <voffset=28em><size=40><color=#ff0000ff>Tuez tous ceux qui vous sont hostiles</color></size></voffset>
 # Diffusion actualisée de SCP-347
-s_c_p347_spawn_broadcast : Vous êtes la <color=red>Femme invisible de SCP-347</color>
+s_c_p347_spawn_broadcast : Vous êtes <color=red>SCP-347 la femme invisible</color>
 # SCP-1093 Actualisation de la diffusion
 s_c_p1093_spawn_broadcast : Vous êtes <color=white>Spawn SCP-1093</color>
 #SCP-1093 Introduction à la compétence
@@ -103,8 +103,8 @@ s_c_p1093_skill_introduction : >-Illumine en continu une portée de 5 mètres �
 # Le capitaine de la garde actualise la diffusion
 guard_captain_spawn_broadcast : <size=60><color=#E5DADA>Vous êtes le capitaine de la sécurité</color></size>
 # Diffusion actualisée de SCP-191
-s_c_p191_spawn_broadcast : Vous êtes devenue <color=red>Fille Mécanique SCP-191</color>
-Introduction à la compétence #SCP-191
+s_c_p191_spawn_broadcast : Vous êtes devenue <color=red> SCP-191 la fille méchanique</color>
+#Introduction à la compétence #SCP-191
 s_c_p191_skill_introduction : En raison des modifications de votre corps, vous êtes très résistant aux dommages autres que les dommages électromagnétiques et explosifs.
 # Affichage de la puissance de SCP-191
 s_c_p191_battery_hint_show : <align=right><size=60><b>Capacité restante actuelle de votre batterie : <color=white>%Battery%An</color></size></b></align>
