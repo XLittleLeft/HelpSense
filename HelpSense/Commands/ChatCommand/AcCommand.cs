@@ -37,10 +37,7 @@ namespace HelpSense.Commands.ChatCommand
                 return false;
             }
 
-            foreach (Player ply in XHelper.PlayerList.Where(pl => pl.RemoteAdminAccess))
-            {
-                ply.ShowBroadcast($"<size={Plugin.Instance.Config.ChatSystemSize}><color=red>[求助私信]{player.Nickname}: {CollectionExtensions.At(arguments, 0)}</size>", 4, Broadcast.BroadcastFlags.Normal);
-            }
+            ChatHelper.SendMessage(player, ChatMessage.MessageType.AdminPrivateChat, string.Join(" ", arguments));
 
             Log.Info(player.Nickname + " 发送了 " + arguments.At(0));
             response = "发送成功";

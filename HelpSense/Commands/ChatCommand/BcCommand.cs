@@ -37,18 +37,7 @@ namespace HelpSense.Commands.ChatCommand
                 return false;
             }
 
-            string color = player.Team switch
-            {
-                Team.SCPs => "red",
-                Team.ChaosInsurgency => "green",
-                Team.Scientists => "yellow",
-                Team.ClassD => "orange",
-                Team.Dead => "white",
-                Team.FoundationForces => "#4EFAFF",
-                _ => "white"
-            };
-
-            XHelper.Broadcast($"<size={Plugin.Instance.Config.ChatSystemSize}>[<color={color}>{player.Team}</color>][全体]{player.Nickname}: {CollectionExtensions.At(arguments, 0)}</size>", 4, Broadcast.BroadcastFlags.Normal);
+            ChatHelper.SendMessage(player, ChatMessage.MessageType.BroadcastChat, string.Join(" ", arguments));
 
             Log.Info(player.Nickname + " 发送了 " + arguments.At(0));
             response = "发送成功";

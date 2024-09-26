@@ -1,4 +1,5 @@
-﻿using MEC;
+﻿using HintServiceMeow.UI.Extension;
+using MEC;
 using NorthwoodLib.Pools;
 using PlayerRoles;
 using PlayerRoles.Spectating;
@@ -43,7 +44,7 @@ namespace HelpSense.Helper
                         .Replace("(COLOR)", player.ReferenceHub.roleManager.CurrentRole.RoleColor.ToHex()
                         .Replace("<br>", "\n"));
 
-                player.GetHintProvider().ShowHint(spectatorList, 2f);
+                player.ReceiveHint(spectatorList, 2f); //Use compatibility adapter
             }
         }
     }

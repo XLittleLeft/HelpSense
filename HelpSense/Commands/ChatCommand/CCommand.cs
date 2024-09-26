@@ -37,24 +37,7 @@ namespace HelpSense.Commands.ChatCommand
                 return false;
             }
 
-            foreach (Player ply in XHelper.PlayerList)
-            {
-                if (player.Team == ply.Team || player.IsSameTeam(ply))
-                {
-                    string color = player.Team switch
-                    {
-                        Team.SCPs => "red",
-                        Team.ChaosInsurgency => "green",
-                        Team.Scientists => "yellow",
-                        Team.ClassD => "orange",
-                        Team.Dead => "white",
-                        Team.FoundationForces => "#4EFAFF",
-                        _ => "white"
-                    };
-
-                    ply.ShowBroadcast($"<size={Plugin.Instance.Config.ChatSystemSize}>[<color={color}>{player.Team}</color>][队伍]{player.Nickname}: {CollectionExtensions.At(arguments, 0)}</size>", 4, Broadcast.BroadcastFlags.Normal);
-                }
-            }
+            ChatHelper.SendMessage(player, ChatMessage.MessageType.TeamChat, string.Join(" ", arguments));
 
             Log.Info(player.Nickname + " 发送了 " + arguments.At(0));
 
