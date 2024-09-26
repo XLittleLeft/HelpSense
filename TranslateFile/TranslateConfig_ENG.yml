@@ -36,8 +36,8 @@ watch_list_title: <align=right><size=45%><color=(COLOR)><b>Observer ((COUNT)):</
 names: <align=right><size=45%><color=(COLOR)><br>(NAME)</color></size></align>
 # DNT reminder
 d_n_t_warning: You have turned on DNT, please turn it off, otherwise some plug-ins will not work properly
-# SCP-073 counter-injury damage reason
-s_c_p073_damage_reason: SCP073 counter-injury
+# SCP-073 reverse injury reason
+s_c_p073_damage_reason: SCP073 reverse injury
 # SCP-029 escape facility Hint
 s_c_p029_escape_hint: Successfully escape the facility and become Chaos to get a legacy of the Chaos Insurgency
 # SCP-703 escape facility Hint
