@@ -87,7 +87,7 @@ namespace HelpSense.Helper
                         continue;
                     }
 
-                    sb.AppendLine("消息列表");
+                    sb.AppendLine(Plugin.Instance.TranslateConfig.ChatMessageTitle);
 
                     foreach (var message in MessageList)
                     {

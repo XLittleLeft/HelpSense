@@ -21,7 +21,10 @@ namespace HelpSense.ConfigSystem
         /// <summary>
         /// 
         /// </summary>
-        [Description("每种消息的名字")]
+        [Description("聊天中消息列表的标题")]
+        public string ChatMessageTitle { get; set; } = "消息列表:";
+
+        [Description("聊天中每种消息的名字")]
         public Dictionary<ChatMessage.MessageType, string> MessageTypeName { get; set; } = new()
         {
             { ChatMessage.MessageType.AdminPrivateChat, "管理私聊" },
