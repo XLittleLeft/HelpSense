@@ -81,16 +81,14 @@ namespace HelpSense.ConfigSystem
         };
         [Description("练枪大厅")]
         public bool PracticeHall { get; set; } = true;
-        /// <summary>
-        /// /////////////////////////////////////////////////
-        /// </summary>
+
+        // /////////////////////////////////////////////////
         [Description("无限子弹")]
         public bool InfiniteAmmo { get; set; } = true;
         [Description("无限子弹模式（0->Old：给玩家加备用子弹来装填；1->Normal：（可能有点问题）正常模式，有换弹动作，不需要子弹换弹；2->Moment：瞬间换弹，无换弹动作，不需要子弹换弹；3->Infinite：真·无限子弹，不需要换弹）")]
         public InfiniteAmmoType InfiniteAmmoType { get; set; } = InfiniteAmmoType.Old;
-        /// <summary>
+
         /// /////////////////////////////////////////////////
-        /// </summary>
         [Description("启用修改SCP血量系统")]
         public bool EnableChangeSCPHPSystem { get; set; } = true;
         [Description("SCP173,SCP939,SCP049,SCP049-2,SCP096,SCP106血量")]
@@ -135,9 +133,8 @@ namespace HelpSense.ConfigSystem
         public bool EnableSCP029 { get; set; } = true;
         [Description("混沌领导者")]
         public bool EnableChaosLeader { get; set; } = true;
-        /// <summary>
+
         /// /////////////////////////////////////////////////
-        /// </summary>
         [Description("启用回合刷新时间显示")]
         public bool EnableRespawnTimer { get; set; } = true;
         [Description("列出将要用的时间名字")]
@@ -149,39 +146,34 @@ namespace HelpSense.ConfigSystem
         public bool ReloadTimerEachRound { get; private set; } = true;
         [Description("当玩家是Overwatch时候隐藏")]
         public bool HideTimerForOverwatch { get; private set; } = false;
-        /// <summary>
+
         /// /////////////////////////////////////////////////
-        /// </summary>
         [Description("启用多变保安队")]
         public bool EnableBaoAn { get; set; } = true;
-        /// <summary>
+
         /// /////////////////////////////////////////////////
-        /// </summary>
         [Description("启用服务器定时广播")]
         public bool EnableAutoServerMessage { get; set; } = true;
         [Description("服务器定时广播多久一次")]
         public int AutoServerMessageTime { get; set; } = 5;
         [Description("服务器定时广播显示多久")]
         public ushort AutoServerMessageTimer { get; set; } = 5;
-        /// <summary>
+
         /// /////////////////////////////////////////////////
-        /// </summary>
         [Description("启用观战列表")]
         public bool EnableSpectatorList { get; set; } = false;
         [Description("观战列表忽略身份")]
         public HashSet<string> IgnoredRoles { get; set; } = new HashSet<string>();
-        /// <summary>
+
         /// /////////////////////////////////////////////////
-        /// </summary>
         [Description("启用天网特遣队")]
         public bool EnableSkynet { get; set; } = true;
         [Description("启动非礼勿视特遣队")]
         public bool EnableSeeNoEvil { get; set; } = true;
         [Description("非礼勿视刷新几率")]
         public int SeeNoEvilPer { get; set; } = 80;
-        /// <summary>
+
         /// /////////////////////////////////////////////////
-        /// </summary>
         [Description("SCP-1068")]
         public bool SCP1068 { get; set; } = true;
         [Description("SCP-1056")]
@@ -196,6 +188,8 @@ namespace HelpSense.ConfigSystem
         public bool HideTutorials { get; set; } = false;
         [Description("自救指令")]
         public bool ZiJiuCommand { get; set; } = true;
+
+        /// //////////////////////////////////////////////////////////
         [Description("SCP-191")]
         public bool SCP191 { get;set; } = true;
         [Description("子弹对SCP-191造成的单发伤害")]
