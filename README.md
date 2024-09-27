@@ -5,6 +5,9 @@
 # HelpSense
 <i>A practical plugin with a variety of features, solving all your troubles with just one plugin!</i>
 
+# HelpSense TranslateFile
+Are you looking for plugin configuration files for your country's language? -> [Language files](TranslateFile)
+
 **NwAPI**
 <br><br>
 
