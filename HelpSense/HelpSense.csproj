@@ -113,7 +113,7 @@
     </Reference>
     <Reference Include="HintServiceMeow-NWAPI, Version=5.2.4.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\HintServiceMeow-NWAPI.dll</HintPath>
+      <HintPath>..\..\..\其他依赖\HintServiceMeow-NWAPI.dll</HintPath>
     </Reference>
     <Reference Include="LiteDB, Version=5.0.16.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

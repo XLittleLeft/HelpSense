@@ -85,7 +85,7 @@ namespace HelpSense.ConfigSystem
         /// <summary>
         /// 
         /// </summary>
-        [Description("SCP-073反伤伤害原因")]
+        [Description("SCP-073反伤原因")]
         public string SCP073DamageReason { get; set; } = "SCP073反伤";
         [Description("SCP-029逃离设施Hint")]
         public string SCP029EscapeHint { get; set; } = "成功逃离设施变为混沌得到混沌分裂者的一个遗产";
