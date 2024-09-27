@@ -74,3 +74,11 @@ Download the **latest zip file from the Release section** and extract everything
 - Russian : Bread[IDDQD] , RisottoMan
 - Slovak : blackstrikesk
 - Traditional Chinese : Alter
+
+![部分预览图 (3)](https://github.com/user-attachments/assets/55446be5-7f46-4c10-8ad7-f4ceeb89416b)
+![部分预览图 (5)](https://github.com/user-attachments/assets/e54e6a30-6c5d-40ea-bbb0-6ca465143254)
+![部分预览图 (8)](https://github.com/user-attachments/assets/a4f37ba7-52dd-4b81-9843-bf11e4d9bb71)
+![部分预览图 (6)](https://github.com/user-attachments/assets/14af7ba1-9abe-40f3-97da-66062d46674f)
+
+
+
