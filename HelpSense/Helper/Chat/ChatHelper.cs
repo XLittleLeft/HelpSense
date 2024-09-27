@@ -36,12 +36,13 @@ namespace HelpSense.Helper
 
         public string SenderName { get; }
         public Team SenderTeam { get; }
-
+        public RoleTypeId SenderRole { get; }
         public ChatMessage(Player sender, MessageType type, string message)
         {
             this.TimeSent = DateTime.Now;
             this.SenderName = sender.DisplayNickname;
             this.SenderTeam = sender.Team;
+            this.SenderRole = sender.Role;
             this.Type = type;
             this.Message = message;
         }
@@ -60,17 +61,13 @@ namespace HelpSense.Helper
             if ((DateTime.Now - message.TimeSent).TotalSeconds > Plugin.Instance.Config.MessageTime)
                 return false;
 
-            switch (message.Type)
+            return message.Type switch
             {
-                case ChatMessage.MessageType.AdminPrivateChat:
-                    return player.RemoteAdminAccess;
-                case ChatMessage.MessageType.BroadcastChat:
-                    return true;
-                case ChatMessage.MessageType.TeamChat:
-                    return player.Team == message.SenderTeam;
-            }
-
-            return false;
+                ChatMessage.MessageType.AdminPrivateChat => player.RemoteAdminAccess,
+                ChatMessage.MessageType.BroadcastChat => true,
+                ChatMessage.MessageType.TeamChat => player.Team == message.SenderTeam,
+                _ => false,
+            };
         }
 
         private static IEnumerator<float> MessageCoroutineMethod()
@@ -102,7 +99,8 @@ namespace HelpSense.Helper
                                     _ => "{SenderTeamColor}",//Replace by sender's team color later
                                 })
                                 .Replace("{SenderNickname}", message.SenderName)
-                                .Replace("{SenderTeam}", message.SenderTeam.ToString())
+                                .Replace("{SenderTeam}", Plugin.Instance.TranslateConfig.ChatSystemTeamTranslation[message.SenderTeam])
+                                .Replace("{SenderRole}" , Plugin.Instance.TranslateConfig.ChatSystemRoleTranslation[message.SenderRole])
                                 .Replace("{SenderTeamColor}", message.SenderTeam switch
                                 {
                                     Team.SCPs => "red",

@@ -47,9 +47,9 @@ namespace HelpSense.Commands
             var sb = StringBuilderPool.Pool.Get();
             sb.AppendLine("自从插件安装后你已在本服游玩了");
             sb.AppendLine($"<color=red>{day}</color>天<color=red>{hour}</color>小时<color=red>{minutes}</color>分钟");
-            sb.AppendLine($"\n一共扮演了<color=red>{rolePlayed}</color>次角色");
-            sb.AppendLine($"\n你一共击杀了<color=red>{kills}</color>个人<color=red>{scpKills}</color>个SCP | 一共造成了<color=red>{playerDamage}</color>点伤害(伤害包括无效的) | 一共死亡<color=red>{playerDeath}次</color>");
-            sb.AppendLine($"\n一共开了<color=red>{shot}</color>枪");
+            sb.AppendLine($"一共扮演了<color=red>{rolePlayed}</color>次角色");
+            sb.AppendLine($"你一共击杀了<color=red>{kills}</color>个人<color=red>{scpKills}</color>个SCP | 一共造成了<color=red>{playerDamage}</color>点伤害(伤害包括无效的) | 一共死亡<color=red>{playerDeath}次</color>");
+            sb.AppendLine($"一共开了<color=red>{shot}</color>枪");
 
             response = sb.ToString();
             StringBuilderPool.Pool.Return(sb);

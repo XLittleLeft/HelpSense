@@ -41,6 +41,7 @@ using HarmonyLib;
 using static Broadcast;
 using Log = PluginAPI.Core.Log;
 using HintServiceMeow.UI.Extension;
+using HelpSense.Helper.SpecialRole;
 
 namespace HelpSense
 {
@@ -99,11 +100,11 @@ namespace HelpSense
         public ushort SCP1056Id = 0;
         public ItemBase SCP1056Base;
       
-        public static System.Version PluginVersion => new(1, 3, 5);
-        public static DateTime LastUpdateTime => new(2024, 08, 07, 8, 8, 0);
+        public static System.Version PluginVersion => new(1, 3, 6);
+        public static DateTime LastUpdateTime => new(2024, 09, 27, 14, 47, 20);
         public static System.Version RequiredGameVersion => new(13, 5, 1);
       
-        [PluginEntryPoint("HelpSense", "1.3.5", "HelpSense综合服务器插件", "X小左")]
+        [PluginEntryPoint("HelpSense", "1.3.6", "HelpSense综合服务器插件", "X小左")]
         private void LoadPlugin()
         {
             Instance = this;
@@ -534,7 +535,7 @@ namespace HelpSense
 
                         SCP073 = new SCPHelper(player, 120, "SCP-073", "green");
 
-                        if (player.Team is PlayerRoles.Team.ChaosInsurgency)
+                        if (player.Team is Team.ChaosInsurgency)
                         {
                             player.SendBroadcast(TranslateConfig.SCP073AbelSpawnBroadcast, 6);
 
@@ -579,11 +580,7 @@ namespace HelpSense
 
                         Player.ClearBroadcasts();
 
-                        Player.ShowBroadcast(TranslateConfig.SCP703SpawnBroadcast, 10, Broadcast.BroadcastFlags.Normal);
-
-                        Player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.SCP703SkillIntroduction, 10);
-
-                        Timing.RunCoroutine(Player.GiveRandomItem().CancelWith(Player.GameObject));
+                        Player.ShowBroadcast(TranslateConfig.SCP703SpawnBroadcast, 10, BroadcastFlags.Normal);
                     };
                 });
             }
@@ -600,8 +597,6 @@ namespace HelpSense
                         player.ClearBroadcasts();
 
                         player.ShowBroadcast(TranslateConfig.SCP029SpawnBroadcast, 10, Broadcast.BroadcastFlags.Normal);
-
-                        player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.SCP029SkillIntroduction, 10);
 
                         player.ClearInventory();
 
@@ -639,7 +634,6 @@ namespace HelpSense
 
                         player.EffectsManager.EnableEffect<Invisible>();
 
-                        Timing.RunCoroutine(XHelper.SCP347CoroutineMethod(player).CancelWith(player.GameObject));
                         player.GameObject.AddComponent<PlayerLightBehavior>();
                     }
                 });
@@ -811,6 +805,7 @@ namespace HelpSense
                     SCP1056Id = item.Serial;
                 });
             }
+            Timing.RunCoroutine(SpecialRoleHelper.SpecialRoleInfoHandle());
         }
 
         [PluginEvent]
@@ -1392,6 +1387,14 @@ namespace HelpSense
         [PluginEvent]
         void OnRoundRestart(RoundRestartEvent _)
         {
+            SCP029 = null;
+            SCP073 = null;
+            SCP1093 = null;
+            SCP191 = null;
+            SCP2936 = null;
+            SCP347 = null;
+            SCP703 = null;
+
             XHelper.PlayerList.Clear();
             XHelper.SpecialPlayerList.Clear();
         }
@@ -1402,7 +1405,7 @@ namespace HelpSense
             var player = ev.Player;
             var oldRole = ev.OldRole.RoleTypeId;
             var newRole = ev.NewRole;
-            if (player == null) return;
+            if (player == null || string.IsNullOrEmpty(player.UserId)) return;
             Timing.CallDelayed(3f, () =>
             {
                 if (!(oldRole is RoleTypeId.Scp079 && newRole is RoleTypeId.Spectator && Config.SCP191))
@@ -1413,22 +1416,24 @@ namespace HelpSense
                 player.SetPlayerScale(0.8f);
 
                 player.SendBroadcast(TranslateConfig.SCP191SpawnBroadcast, 6);
-                player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.SCP191SkillIntroduction, 6);
 
                 player.AddItem(ItemType.ArmorCombat);
                 player.AddItem(ItemType.GunFSP9);
                 player.AddAmmo(ItemType.Ammo9x19, 60);
                 player.AddItem(ItemType.Medkit);
 
-                Player scp = XHelper.PlayerList.Where(x => x.IsSCP).ToList().RandomItem();
-                if (scp != null)
+                Timing.CallDelayed(1f, () =>
                 {
-                    player.Position = scp.Position + Vector3.up * 1;
-                }
-                else
-                {
-                    player.Position = RoleTypeId.NtfCaptain.GetRandomSpawnLocation();
-                }
+                    Player scp = XHelper.PlayerList.Where(x => x.IsSCP).ToList().RandomItem();
+                    if (scp != null)
+                    {
+                        player.Position = scp.Position + Vector3.up * 1;
+                    }
+                    else
+                    {
+                        player.Position = XHelper.GetRandomSpawnLocation(RoleTypeId.NtfCaptain);
+                    }
+                });
 
                 Timing.RunCoroutine(XHelper.SCP191CoroutineMethod(player).CancelWith(player.GameObject));
             });

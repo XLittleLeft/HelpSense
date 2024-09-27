@@ -97,16 +97,16 @@ namespace HelpSense.ConfigSystem
         // /////////////////////////////////////////////////
         [Description("启用.bc和.c聊天系统")]
         public bool EnableChatSystem { get; set; } = true;
-        [Description("聊天系统大小，默认30")]
-        public int ChatSystemSize { get; set; } = 30;
+        [Description("聊天系统大小，默认20")]
+        public int ChatSystemSize { get; set; } = 20;
 
         [Description("启用玩家反馈管理系统")]
         public bool EnableAcSystem { get; set; } = true;
         [Description("一个人的聊天信息显示多久，单位为秒")]
         public int MessageTime { get; set; } = 10;
 
-        [Description("聊天消息的格式，可用的标签为{Message}，{MessageType}, {MessageTypeColor}, {SenderNickname}，{SenderTeam}，{SenderTeamColor}, {CountDown}")]
-        public string MessageTemplate { get; set; } = "[{CountDown}]<color={{SenderTeamColor}}>[{SenderTeam}]</color><color={MessageTypeColor}>[{MessageType}]</color>{SenderNickname}: {Message}";
+        [Description("聊天消息的格式，可用的标签为{Message}，{MessageType}, {MessageTypeColor}, {SenderNickname}，{SenderTeam}，{SenderRole} ，{SenderTeamColor}, {CountDown}")]
+        public string MessageTemplate { get; set; } = "[{CountDown}]<color={{SenderTeamColor}}>[{SenderTeam}][{SenderRole}]</color><color={MessageTypeColor}>[{MessageType}]</color>{SenderNickname}: {Message}";
 
         // /////////////////////////////////////////////////
         [Description("启用懒人系统")]
@@ -128,7 +128,7 @@ namespace HelpSense.ConfigSystem
         [Description("SCP-703")]
         public bool EnableSCP703 { get; set; } = true;
         [Description("多久给703一次物品")]
-        public int SCP703ItemTIme { get; set; } = 4;
+        public int SCP703ItemTime { get; set; } = 4;
         [Description("SCP-029")]
         public bool EnableSCP029 { get; set; } = true;
         [Description("混沌领导者")]

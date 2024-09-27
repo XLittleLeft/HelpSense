@@ -182,35 +182,6 @@ namespace HelpSense.Helper
             }
         }
 
-        public static IEnumerator<float> GiveRandomItem(this Player player)
-        {
-            while (true)
-            {
-                if (player is null || !player.IsAlive || Round.IsRoundEnded)
-                {
-                    yield break;
-                }
-
-                if (!player.IsInventoryFull)
-                {
-                    ItemType itemType = GetRandomItem();
-                    if (itemType.IsWeapon())
-                    {
-                        var firearm = player.AddItem(itemType);
-                        ((Firearm)firearm).Status = new FirearmStatus(((Firearm)(firearm)).AmmoManagerModule.MaxAmmo, ((Firearm)(firearm)).Status.Flags, ((Firearm)(firearm)).GetCurrentAttachmentsCode());
-                    }
-                    else
-                    {
-                        player.AddItem(itemType);
-                    }
-                    
-                    player.GetPlayerUi().CommonHint.ShowOtherHint(Plugin.Instance.TranslateConfig.SCP703ReceivedItemHint, 5);
-                }
-
-                yield return Timing.WaitForSeconds(Plugin.Instance.Config.SCP703ItemTIme * 60f);
-            }
-        }
-
         public static IEnumerator<float> SCP191CoroutineMethod(Player player)
         {
             int d = 5000;
@@ -220,7 +191,7 @@ namespace HelpSense.Helper
                 {
                     yield break;
                 }
-                
+
                 player.ReceiveHint(Plugin.Instance.TranslateConfig.SCP191BatteryHintShow.Replace("%Battery%" , d.ToString()), 11);//Use compatibility adapter
                 
                 if (player.Room.Name is MapGeneration.RoomName.Hcz079)
@@ -237,20 +208,6 @@ namespace HelpSense.Helper
                     player.Kill(Plugin.Instance.TranslateConfig.SCP191BatteryDepletionDeathReason);
 
                 yield return Timing.WaitForSeconds(10f);
-            }
-        }
-        public static IEnumerator<float> SCP347CoroutineMethod(Player player)
-        {
-            while (true)
-            {
-                if (player is null || !player.IsAlive || Round.IsRoundEnded)
-                {
-                    yield break;
-                }
-
-                player.EffectsManager.EnableEffect<Invisible>();
-
-                yield return Timing.WaitForSeconds(1f);
             }
         }
 
@@ -448,6 +405,11 @@ namespace HelpSense.Helper
 
             while (true)
             {
+                if (player is null || !player.IsAlive || Round.IsRoundEnded || player.Team is not Team.ChaosInsurgency)
+                {
+                    yield break;
+                }
+
                 if (position != player.Position || health.Equals(player.Health))
                 {
                     timeChecker = 0;
@@ -463,11 +425,6 @@ namespace HelpSense.Helper
                         timeChecker = 0;
                         player.Heal(5f);
                     }
-                }
-
-                if (!player.IsAlive || Round.IsRoundEnded)
-                {
-                    yield break;
                 }
 
                 yield return Timing.WaitForSeconds(1f);
