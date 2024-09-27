@@ -5,6 +5,9 @@
 # HelpSense
 <i>A practical plugin with a variety of features, solving all your troubles with just one plugin!</i>
 
+# HelpSense TranslateFile
+Are you looking for plugin configuration files for your country's language? -> [Language files](TranslateFile)
+
 **NwAPI**
 <br><br>
 
@@ -50,8 +53,8 @@ Download the **latest zip file from the Release section** and extract everything
 ### X小左
   **QQ:** 3298837494
 
-## Thanks list:
-# For Development
+# Thanks list:
+## For Development
 - moddedmcplayer
 - sssssssthedev
 - SrLicht
@@ -60,7 +63,7 @@ Download the **latest zip file from the Release section** and extract everything
 - Michal78900
 - MeowServer
 
-# For Translation
+## For Translation
 - English: SpankyR
 - German : moddedmcplayer
 - French: SmulCapa
@@ -68,6 +71,6 @@ Download the **latest zip file from the Release section** and extract everything
 - Turkish : Xela
 - Spanish : SpankyR
 - Brazilian : zDarkzera
-- Russian : RisottoMan
+- Russian : Bread[IDDQD] , RisottoMan
 - Slovak : blackstrikesk
 - Traditional Chinese : Alter
