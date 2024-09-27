@@ -652,7 +652,7 @@ namespace HelpSense
                         player.GameObject.AddComponent<PlayerGlowBehavior>();
 
                         player.SendBroadcast(TranslateConfig.SCP1093SpawnBroadcast, 6, BroadcastFlags.Normal);
-                        player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.SCP1093SkillIntroduction, 6);
+                        player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.SCP1093SkillIntroduction.ToArray(), 6);
                     }
                 });
             }
@@ -1422,11 +1422,11 @@ namespace HelpSense
                 player.AddAmmo(ItemType.Ammo9x19, 60);
                 player.AddItem(ItemType.Medkit);
 
-                Timing.CallDelayed(1f, () =>
+                Timing.CallDelayed(0.5f, () =>
                 {
-                    Player scp = XHelper.PlayerList.Where(x => x.IsSCP).ToList().RandomItem();
-                    if (scp != null)
+                    if (XHelper.PlayerList.Count(x => x.Team is Team.SCPs) > 0)
                     {
+                        Player scp = XHelper.PlayerList.Where(x => x.IsSCP).ToList().RandomItem();
                         player.Position = scp.Position + Vector3.up * 1;
                     }
                     else

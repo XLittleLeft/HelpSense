@@ -139,7 +139,11 @@ namespace HelpSense.ConfigSystem
         [Description("天网机动特遣队Cassie广播")]
         public string SkynetCassie { get; set; } = "机动特遣队Kappa-10和Mu-7代号天网已经进入设施,他们会帮助舞步者一号收容SCP-079,建议所有幸存人员执行标准撤离方案,直到MTF小队到达你的地点,目前还剩%SCPNum%个SCP";
         [Description("天网机动特遣队技能描述")]
-        public string SkynetSkillIntroduction { get; set; } = "你是 [天网机动特遣队队员] 珍惜手中的鬼灯\n你启动的发电机会<color=red>很快激活</color>";
+        public List<string> SkynetSkillIntroduction { get; set; } = new List<string>()
+        {
+            "你是 [天网机动特遣队队员] 珍惜手中的鬼灯",
+            "你启动的发电机会<color=red>很快激活</color>"
+        };
         [Description("天网机动特遣队新兵广播")]
         public string SkynetPrivateBroadcast { get; set; } = "<size=70><color=#0051FF>你是机动特遣队-天网 新兵</color></size>";
         [Description("天网机动特遣队新兵自定义信息")]
@@ -155,7 +159,11 @@ namespace HelpSense.ConfigSystem
         [Description("非礼勿视机动特遣队Cassie广播")]
         public string SeeNoEvilCassie { get; set; } = "机动特遣队Eta-10代号非礼勿视已经进入设施,他们会帮助收容SCP-096,建议所有幸存人员执行标准撤离方案,直到MTF小队到达你的地点,目前还剩%SCPNum%个SCP";
         [Description("非礼勿视机动特遣队技能描述")]
-        public string SeeNoEvilSkillIntroduction { get; set; } = "你是 [非礼勿视机动特遣队队员] 大胆盯着SCP096吧\n他<color=red>很难</color>杀死你,在他还没狂暴的时候你可以随意盯着他";
+        public List<string> SeeNoEvilSkillIntroduction { get; set; } = new List<string>()
+        {
+            "你是 [非礼勿视机动特遣队队员] 大胆盯着SCP096吧",
+            "他<color=red>很难</color>杀死你,在他还没狂暴的时候你可以随意盯着他"
+        };
         [Description("非礼勿视机动特遣队新兵广播")]
         public string SeeNoEvilPrivateBroadcast { get; set; } = "<size=70><color=#0051FF>你是机动特遣队-非礼勿视 新兵</color></size>";
         [Description("非礼勿视机动特遣队新兵自定义信息")]
@@ -197,7 +205,11 @@ namespace HelpSense.ConfigSystem
         [Description("SCP-703刷新广播")]
         public string SCP703SpawnBroadcast { get; set; } = "<size=80><color=#00ffffff>你是SCP-703</color></size>";
         [Description("SCP-703技能介绍")]
-        public string SCP703SkillIntroduction { get; set; } = "你是 [SCP-703] 你每过一段时间你会获得随机物品\n距离下次获得物品<color=red>%Time%</color>";
+        public List<string> SCP703SkillIntroduction { get; set; } = new List<string>()
+        {
+            "你是 [SCP-703] 你每过一段时间你会获得随机物品",
+            "距离下次获得物品<color=red>%Time%</color>"
+        };
         [Description("SCP-703获得物品Hint提示")]
         public string SCP703ReceivedItemHint { get; set; } = "获得一件物品";
         [Description("SCP-029刷新广播")]
@@ -211,13 +223,22 @@ namespace HelpSense.ConfigSystem
         [Description("SCP-1093刷新广播")]
         public string SCP1093SpawnBroadcast { get; set; } = "你是 <color=yellow>SCP-1093 人灯</color>";
         [Description("SCP-1093技能介绍")]
-        public string SCP1093SkillIntroduction { get; set; } = "你是 [SCP-1093] 持续照亮附近5米范围,并辐射附近1米范围内的人\n你的头是虚无的,任何人对你头部没有伤害";
+        public List<string> SCP1093SkillIntroduction { get; set; } = new List<string>()
+        {
+            "你是 [SCP-1093] 持续照亮附近5米范围,并辐射附近1米范围内的人",
+            "你的头是虚无的,任何人对你头部没有伤害"
+        };
         [Description("警卫队长刷新广播")]
         public string GuardCaptainSpawnBroadcast { get; set; } = "<size=60><color=#E5DADA>你是安保队长</color></size>";
         [Description("SCP-191刷新广播")]
         public string SCP191SpawnBroadcast { get; set; } = "你成为了<color=red>SCP-191 机械少女</color>";
         [Description("SCP-191技能介绍")]
-        public string SCP191SkillIntroduction { get; set; } = "你是 [SCP-191] 因为你的身体的改造\n你对除了电磁和爆炸伤害的<color=red>抗性很高</color>\n但别忘了去079收容室充电";
+        public List<string> SCP191SkillIntroduction { get; set; } = new List<string>()
+        {
+            "你是 [SCP-191] 因为你的身体的改造",
+            "你对除了电磁和爆炸伤害的<color=red>抗性很高</color>",
+            "但别忘了去079收容室充电"
+        };
         [Description("SCP-191电量显示")]
         public string SCP191BatteryHintShow { get; set; } = "<align=right><size=40><b>你目前剩余的电量:<color=yellow>%Battery%安</color></size></b></align>";
         [Description("SCP-191电量耗尽死亡原因")]
