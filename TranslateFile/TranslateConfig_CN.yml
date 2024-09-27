@@ -13,6 +13,40 @@ message_type_name:
   AdminPrivateChat: 管理私聊
   BroadcastChat: 公共消息
   TeamChat: 队友消息
+# 聊天系统自定义玩家角色名称
+chat_system_role_translation:
+  ClassD: D级人员
+  FacilityGuard: 保安
+  ChaosConscript: 混沌征召兵
+  ChaosMarauder: 混沌掠夺者
+  ChaosRepressor: 混沌压制者
+  ChaosRifleman: 混沌步枪兵
+  NtfCaptain: 九尾狐指挥官
+  NtfPrivate: 九尾狐列兵
+  NtfSergeant: 九尾狐中士
+  NtfSpecialist: 九尾狐收容专家
+  Scientist: 科学家
+  Tutorial: 教程角色
+  Scp096: SCP-0肘6
+  Scp049: SCP-049
+  Scp173: SCP-173
+  Scp939: SCP-肘3肘
+  Scp079: SCP-07肘
+  Scp0492: SCP-049-2
+  Scp106: SCP-106
+  Scp3114: SCP-3114
+  Spectator: 观察者
+  Overwatch: 监管
+  Filmmaker: 导演
+# 聊天系统自定义玩家团队名称
+chat_system_team_translation:
+  Dead: 死亡阵营
+  ClassD: DD阵营
+  OtherAlive: 神秘阵营
+  Scientists: 博士阵营
+  SCPs: SCP阵营
+  ChaosInsurgency: 混沌阵营
+  FoundationForces: 九尾狐阵营
 # 管理员监察输出文本
 admin_log: '%Nickname%在%Time%时候 | 使用了指令:%Command% | Steam64ID:%UserId%'
 # 管理员监察指令广播
@@ -51,6 +85,10 @@ s_c_p029_escape_hint: 成功逃离设施变为混沌得到混沌分裂者的一�
 s_c_p703_escape_hint: 成功逃离设施成为九尾狐收容专家，获得3x
 # 天网机动特遣队Cassie广播
 skynet_cassie: 机动特遣队Kappa-10和Mu-7代号天网已经进入设施,他们会帮助舞步者一号收容SCP-079,建议所有幸存人员执行标准撤离方案,直到MTF小队到达你的地点,目前还剩%SCPNum%个SCP
+# 天网机动特遣队技能描述
+skynet_skill_introduction:
+- 你是 [天网机动特遣队队员] 珍惜手中的鬼灯
+- 你启动的发电机会<color=red>很快激活</color>
 # 天网机动特遣队新兵广播
 skynet_private_broadcast: <size=70><color=#0051FF>你是机动特遣队-天网 新兵</color></size>
 # 天网机动特遣队新兵自定义信息
@@ -65,6 +103,10 @@ skynet_captain_broadcast: <size=70><color=#0051FF>你是机动特遣队-天网 �
 skynet_captain_custom_info: 天网 指挥官
 # 非礼勿视机动特遣队Cassie广播
 see_no_evil_cassie: 机动特遣队Eta-10代号非礼勿视已经进入设施,他们会帮助收容SCP-096,建议所有幸存人员执行标准撤离方案,直到MTF小队到达你的地点,目前还剩%SCPNum%个SCP
+# 非礼勿视机动特遣队技能描述
+see_no_evil_skill_introduction:
+- 你是 [非礼勿视机动特遣队队员] 大胆盯着SCP096吧
+- 他<color=red>很难</color>杀死你,在他还没狂暴的时候你可以随意盯着他
 # 非礼勿视机动特遣队新兵广播
 see_no_evil_private_broadcast: <size=70><color=#0051FF>你是机动特遣队-非礼勿视 新兵</color></size>
 # 非礼勿视机动特遣队新兵自定义信息
@@ -87,37 +129,49 @@ chaos_leader_spawn_broadcast: <size=80><color=#00ff00ff>你是混沌分裂者 �
 chaos_leader_death_cassie: 混沌领导者死亡
 # SCP-2936-1刷新广播
 s_c_p29361_spawn_broadcast: <size=70>你是 <color=red>SCP-2936-1 巨型德国机器人</color></size>
+# SCP-2936-1技能介绍
+s_c_p29361_skill_introduction: 你是 [SCP-2936-1] 你拥有庞大的身躯和厚实的血量
 # SCP-073亚伯刷新广播
 s_c_p073_abel_spawn_broadcast: 你是<color=green>SCP-073 亚伯</color>
-# SCP-073刷新广播
+# SCP-073亚伯技能介绍
+s_c_p073_abel_skill_introduction: 你是[SCP-073] 你将被动的<color=red>反弹</color>部分伤害给敌人
+# SCP-073该隐刷新广播
 s_c_p073_cain_spawn_broadcast: 你是<color=green>SCP-073 该隐</color>
+# SCP-073该隐技能介绍
+s_c_p073_cain_skill_introduction: 你是[SCP-073] 你有<color=red>无限</color>的自愈能力,停下来休息一下吧
 # SCP-703刷新广播
 s_c_p703_spawn_broadcast: <size=80><color=#00ffffff>你是SCP-703</color></size>
 # SCP-703技能介绍
-s_c_p703_skill_introduction: <align=center><voffset=28em><size=70><color=#00ffffff>每过一段时间你会获得随机物品</color></size></voffset></align>
+s_c_p703_skill_introduction:
+- 你是 [SCP-703] 你每过一段时间你会获得随机物品
+- 距离下次获得物品<color=red>%Time%</color>
 # SCP-703获得物品Hint提示
 s_c_p703_received_item_hint: 获得一件物品
 # SCP-029刷新广播
 s_c_p029_spawn_broadcast: <size=60><color=#ff0000ff>你是SCP-029“暗影之女”</color></size>
 # SCP-029技能介绍
-s_c_p029_skill_introduction: <voffset=28em><size=40><color=#ff0000ff>杀戮所有你敌对的人</color></size></voffset>
+s_c_p029_skill_introduction: 你是[SCP-029] 你拥有<color=red>无限</color>的速度加成
 # SCP-347刷新广播
 s_c_p347_spawn_broadcast: 你是<color=red>SCP-347 隐形女</color>
+# SCP-347技能介绍
+s_c_p347_skill_introduction: 你是[SCP-347] 你<color=red>永远</color>是隐身的,但不要乱动
 # SCP-1093刷新广播
 s_c_p1093_spawn_broadcast: 你是 <color=yellow>SCP-1093 人灯</color>
 # SCP-1093技能介绍
-s_c_p1093_skill_introduction: >-
-  持续照亮附近5米范围,并影响附近1米范围内的人受到辐射伤害(每秒扣1血)
-
-  你的头似乎是虚无的,所以任何人对你头部是没有伤害的
+s_c_p1093_skill_introduction:
+- 你是 [SCP-1093] 持续照亮附近5米范围,并辐射附近1米范围内的人
+- 你的头是虚无的,任何人对你头部没有伤害
 # 警卫队长刷新广播
 guard_captain_spawn_broadcast: <size=60><color=#E5DADA>你是安保队长</color></size>
 # SCP-191刷新广播
 s_c_p191_spawn_broadcast: 你成为了<color=red>SCP-191 机械少女</color>
 # SCP-191技能介绍
-s_c_p191_skill_introduction: 因为你的身体的改造，你对除了电磁和爆炸伤害的抗性很高
+s_c_p191_skill_introduction:
+- 你是 [SCP-191] 因为你的身体的改造
+- 你对除了电磁和爆炸伤害的<color=red>抗性很高</color>
+- 但别忘了去079收容室充电
 # SCP-191电量显示
-s_c_p191_battery_hint_show: <align=right><size=60><b>你目前剩余的电量:<color=yellow>%Battery%安</color></size></b></align>
+s_c_p191_battery_hint_show: <align=right><size=40><b>你目前剩余的电量:<color=yellow>%Battery%安</color></size></b></align>
 # SCP-191电量耗尽死亡原因
 s_c_p191_battery_depletion_death_reason: 电量耗尽
 # SCP-1056缩小仪拾取Hint
@@ -128,3 +182,23 @@ s_c_p1056_used_hint: boom!你变小了!!!
 s_c_p1068_pickup_hint: 你捡起了<color=red>SCP-1068</color> 无害核弹!
 # SCP-1056无害核弹使用广播
 s_c_p1068_used_broadcast: 有人使用了<color=red>SCP-1068</color> 无害核弹!
+# SCP-029特殊介绍
+s_c_p029_special_introduction: <color=red>SCP-029 暗影之女</color>
+# SCP-703特殊介绍
+s_c_p703_special_introduction: <color=blue>SCP-703 壁橱之中</color>
+# SCP-347特殊介绍
+s_c_p347_special_introduction: <color=red>SCP-347 隐形女</color>
+# SCP-1093特殊介绍
+s_c_p1093_special_introduction: <color=yellow>SCP-1093 人灯</color>
+# SCP-073亚伯特殊介绍
+s_c_p073_abel_special_introduction: <color=green>SCP-073 亚伯</color>
+# SCP-073该隐特殊介绍
+s_c_p073_cain_special_introduction: <color=green>SCP-073 该隐</color>
+# SCP-191特殊介绍
+s_c_p191_special_introduction: <color=red>SCP-191 机械少女</color>
+# SCP-2936特殊介绍
+s_c_p2936_special_introduction: <color=red>SCP-2936-1 巨型德国机器人</color>
+# 天网机动特遣队特殊介绍
+skynet_special_introduction: <color=blue>天网 机动特遣队</color>
+# 非礼勿视机动特遣队特殊介绍
+see_no_evil_special_introduction: <color=blue>非礼勿视 机动特遣队</color>
