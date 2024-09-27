@@ -70,3 +70,4 @@ Download the **latest zip file from the Release section** and extract everything
 - Brazilian : zDarkzera
 - Russian : RisottoMan
 - Slovak : blackstrikesk
+- Traditional Chinese : Alter
