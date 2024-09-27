@@ -1,7 +1,7 @@
 ﻿using PlayerRoles;
 using System.Collections.Generic;
 
-namespace HelpSense.Helper
+namespace HelpSense.Helper.SCP
 {
     public class SCPHPChangeSystem
     {

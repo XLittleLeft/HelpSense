@@ -1,4 +1,4 @@
-﻿namespace HelpSense.Helper
+﻿namespace HelpSense.Helper.Lobby
 {
     public enum LobbyLocationType
     {

@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HelpSense.Helper
+namespace HelpSense.Helper.Misc
 {
     public class RespawnHelper
     {

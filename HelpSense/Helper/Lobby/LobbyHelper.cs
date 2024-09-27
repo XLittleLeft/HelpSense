@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace HelpSense.Helper
+namespace HelpSense.Helper.Lobby
 {
     public class LobbyHelper
     {

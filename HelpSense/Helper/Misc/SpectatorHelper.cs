@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace HelpSense.Helper
+namespace HelpSense.Helper.Misc
 {
     public static class SpectatorHelper
     {

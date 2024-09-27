@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace HelpSense.Helper
+namespace HelpSense.Helper.Misc
 {
     public static class HideTutorialsHelper
     {

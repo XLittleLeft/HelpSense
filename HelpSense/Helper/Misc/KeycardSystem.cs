@@ -6,7 +6,7 @@ using PluginAPI.Core;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace HelpSense.Helper
+namespace HelpSense.Helper.Misc
 {
     public static class LazySystem
     {

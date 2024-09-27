@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using HintServiceMeow.Core.Utilities;
 using System.Linq;
 
-namespace HelpSense.Helper
+namespace HelpSense.Helper.Chat
 {
     public class ChatMessage
     {

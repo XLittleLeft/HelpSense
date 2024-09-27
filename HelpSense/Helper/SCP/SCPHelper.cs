@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace HelpSense.Helper
+namespace HelpSense.Helper.SCP
 {
     public class SCPHelper
     {
