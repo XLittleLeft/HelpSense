@@ -6,7 +6,9 @@ round_end_info: 回合结束啦！不要离开，下局再见ヾ(￣▽￣)~
 f_f_message: <align=center><voffset=28em> <color=#F6511D> ~友伤已开启~ </color></voffset></align>
 # 服务器广播文本
 auto_server_message_text: 服务器广播
-# 每种消息的名字
+# 聊天中消息列表的标题
+chat_message_title: '消息列表:'
+# 聊天中每种消息的名字
 message_type_name:
   AdminPrivateChat: 管理私聊
   BroadcastChat: 公共消息
@@ -41,7 +43,7 @@ watch_list_title: <align=right><size=45%><color=(COLOR)><b>观察者 ((COUNT)):<
 names: <align=right><size=45%><color=(COLOR)><br>(NAME)</color></size></align>
 # DNT提醒
 d_n_t_warning: 你打开了DNT，请关闭，否则某些插件无法正常运行
-# SCP-073反伤伤害原因
+# SCP-073反伤原因
 s_c_p073_damage_reason: SCP073反伤
 # SCP-029逃离设施Hint
 s_c_p029_escape_hint: 成功逃离设施变为混沌得到混沌分裂者的一个遗产
