@@ -6,6 +6,7 @@ using Org.BouncyCastle.Asn1.Mozilla;
 using PluginAPI.Helpers;
 using System.IO;
 using System;
+using HelpSense.Helper.Lobby;
 
 namespace HelpSense.ConfigSystem
 {

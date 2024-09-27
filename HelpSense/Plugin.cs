@@ -42,6 +42,10 @@ using static Broadcast;
 using Log = PluginAPI.Core.Log;
 using HintServiceMeow.UI.Extension;
 using HelpSense.Helper.SpecialRole;
+using HelpSense.Helper.Lobby;
+using HelpSense.Helper.SCP;
+using HelpSense.Helper.Chat;
+using HelpSense.Helper.Misc;
 
 namespace HelpSense
 {

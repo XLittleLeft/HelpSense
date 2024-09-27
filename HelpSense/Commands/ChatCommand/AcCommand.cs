@@ -1,5 +1,6 @@
 ﻿using CommandSystem;
 using HelpSense.Helper;
+using HelpSense.Helper.Chat;
 using PluginAPI.Core;
 using System;
 using System.Linq;

@@ -1,4 +1,5 @@
 ﻿using HelpSense.Helper;
+using HelpSense.Helper.Chat;
 using PlayerRoles;
 using System;
 using System.Collections.Generic;

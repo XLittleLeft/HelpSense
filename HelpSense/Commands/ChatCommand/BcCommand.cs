@@ -1,5 +1,6 @@
 ﻿using CommandSystem;
 using HelpSense.Helper;
+using HelpSense.Helper.Chat;
 using PlayerRoles;
 using PluginAPI.Core;
 using System;

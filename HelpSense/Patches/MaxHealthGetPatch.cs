@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using HelpSense.Helper;
+using HelpSense.Helper.SCP;
 using PlayerStatsSystem;
 using PluginAPI.Core;
 

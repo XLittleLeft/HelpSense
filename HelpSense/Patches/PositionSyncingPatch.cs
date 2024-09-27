@@ -2,6 +2,7 @@
 using System.Reflection.Emit;
 using HarmonyLib;
 using HelpSense.Helper;
+using HelpSense.Helper.Misc;
 using NorthwoodLib.Pools;
 using PlayerRoles;
 using PlayerRoles.FirstPersonControl.NetworkMessages;
