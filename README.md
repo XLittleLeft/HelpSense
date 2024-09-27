@@ -71,6 +71,6 @@ Download the **latest zip file from the Release section** and extract everything
 - Turkish : Xela
 - Spanish : SpankyR
 - Brazilian : zDarkzera
-- Russian : RisottoMan
+- Russian : Bread[IDDQD] , RisottoMan
 - Slovak : blackstrikesk
 - Traditional Chinese : Alter
