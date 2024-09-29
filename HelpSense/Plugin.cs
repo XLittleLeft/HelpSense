@@ -413,6 +413,7 @@ namespace HelpSense
                         return;
                     }//我搞了半天搞出来的最像的语音
                 }
+
                 if (Config.EnableSeeNoEvil)
                 {
                     Timing.CallDelayed(1.2f, () =>
@@ -467,8 +468,8 @@ namespace HelpSense
                     {
                         if (Player.Role is RoleTypeId.NtfCaptain)
                         {
-                            var firaerm = Player.AddItem(ItemType.ParticleDisruptor) as ParticleDisruptor;
-                            firaerm.Status = new FirearmStatus(5, FirearmStatusFlags.MagazineInserted, firaerm.GetCurrentAttachmentsCode());
+                            var firearm = Player.AddItem(ItemType.ParticleDisruptor) as ParticleDisruptor;
+                            firearm.Status = new FirearmStatus(5, FirearmStatusFlags.MagazineInserted, firearm.GetCurrentAttachmentsCode());
                         }
                     }
                 });
@@ -484,7 +485,11 @@ namespace HelpSense
 
                         SpawnLeader = true;
 
-                        ChaosLeader = new SCPHelper(player, 150, TranslateConfig.ChaosLeaderRoleName, "green");
+                        ChaosLeader = new SCPHelper(player);
+
+                        player.RoleName = TranslateConfig.ChaosLeaderRoleName;
+                        player.RoleColor = "green";
+                        player.Health = 150;
 
                         player.ClearBroadcasts();
 
@@ -519,7 +524,11 @@ namespace HelpSense
 
                         specialPlayers.Remove(player);
 
-                        SCP2936 = new SCPHelper(player, 300, "SCP-2936-1", "red");
+                        SCP2936 = new SCPHelper(player);
+
+                        player.RoleName = "SCP-2936-1";
+                        player.RoleColor = "red";
+                        player.Health = 300;
 
                         player.SendBroadcast(TranslateConfig.SCP29361SpawnBroadcast, 6);
 
@@ -537,7 +546,11 @@ namespace HelpSense
                     {
                         specialPlayers.Remove(player);
 
-                        SCP073 = new SCPHelper(player, 120, "SCP-073", "green");
+                        SCP073 = new SCPHelper(player);
+
+                        player.RoleName = "SCP-073";
+                        player.RoleColor = "green";
+                        player.Health = 120;
 
                         if (player.Team is Team.ChaosInsurgency)
                         {
@@ -567,24 +580,22 @@ namespace HelpSense
         [PluginEvent]
         public void OnRoundStarted(RoundStartEvent ev)
         {
-            if (Config.SavePlayersInfo)
-            {
-                Timing.RunCoroutine(InfoExtension.CollectInfo());
-                Log.Debug("开始记录玩家信息");
-            }
-
+            //Special roles
             if (Config.EnableSCP703)
             {
                 Timing.CallDelayed(0.5f, () =>
                 {
-                    var Player = XHelper.GetRandomSpecialPlayer(RoleTypeId.Scientist);
-                    if (Player != null)
+                    var player = XHelper.GetRandomSpecialPlayer(RoleTypeId.Scientist);
+                    if (player != null)
                     {
-                        SCP703 = new SCPHelper(Player, 120, "SCP-703", "cyan");
+                        SCP703 = new SCPHelper(player);
+                        player.RoleName = "SCP-703";
+                        player.RoleColor = "cyan";
+                        player.Health = 120;
 
-                        Player.ClearBroadcasts();
+                        player.ClearBroadcasts();
 
-                        Player.ShowBroadcast(TranslateConfig.SCP703SpawnBroadcast, 10, BroadcastFlags.Normal);
+                        player.ShowBroadcast(TranslateConfig.SCP703SpawnBroadcast, 10, BroadcastFlags.Normal);
                     };
                 });
             }
@@ -596,7 +607,11 @@ namespace HelpSense
                     var player = XHelper.GetRandomSpecialPlayer(RoleTypeId.ClassD);
                     if (player != null)
                     {
-                        SCP029 = new SCPHelper(player, 120, "SCP-029", "red");
+                        SCP029 = new SCPHelper(player);
+
+                        player.RoleName = "SCP-029";
+                        player.RoleColor = "red";
+                        player.Health = 120;
 
                         player.ClearBroadcasts();
 
@@ -630,7 +645,13 @@ namespace HelpSense
 
                     if (player != null)
                     {
-                        SCP347 = new SCPHelper(player, RoleTypeId.Tutorial, "SCP-347", "red", XHelper.GetRandomSpawnLocation(RoleTypeId.FacilityGuard));
+                        player.SetRole(RoleTypeId.Tutorial);
+
+                        SCP347 = new SCPHelper(player);
+
+                        player.RoleName = "SCP-347";
+                        player.RoleColor = "red";
+                        player.Position = XHelper.GetRandomSpawnLocation(RoleTypeId.FacilityGuard);
 
                         player.AddItem(ItemType.KeycardGuard);
 
@@ -651,7 +672,10 @@ namespace HelpSense
 
                     if (player != null)
                     {
-                        SCP1093 = new SCPHelper(player , "SCP-1093" , "yellow");
+                        SCP1093 = new SCPHelper(player);
+
+                        player.RoleName = "SCP-1093";
+                        player.RoleColor = "yellow";
 
                         player.GameObject.AddComponent<PlayerGlowBehavior>();
 
@@ -740,6 +764,14 @@ namespace HelpSense
                     }
                 });
             }
+
+            //Functions
+            if (Config.SavePlayersInfo)
+            {
+                Timing.RunCoroutine(InfoExtension.CollectInfo());
+                Log.Debug("开始记录玩家信息");
+            }
+
             if (Config.EnableRoundWaitingLobby)
             {
                 try
@@ -766,26 +798,19 @@ namespace HelpSense
                     Log.Error("[HelpSense] [Event: OnRoundStarted] " + e);
                 }
             }
+
             if (Config.EnableFriendlyFire)
             {
                 Server.FriendlyFire = false;
                 Traverse.Create<AttackerDamageHandler>().Method("RefreshConfigs").GetValue();
             }
+
             if (Config.EnableRespawnTimer)
             {
                 Timing.RunCoroutine(RespawnHelper.TimerCoroutine());
             }
-            Timing.CallDelayed(30f, () =>
-            {
-                Timing.RunCoroutine(XHelper.AutoXBroadcast());
-            });
-            Timing.CallDelayed(10f, () =>
-            {
-                if (Config.EnableAutoServerMessage)
-                {
-                    Timing.RunCoroutine(XHelper.AutoServerBroadcast());
-                }
-            });
+
+            //Spawn special items
             if (Config.SCP1068)
             {
                 Timing.CallDelayed(2f, () =>
@@ -800,15 +825,23 @@ namespace HelpSense
                     }
                 });
             }
+
             if (Config.SCP1056)
             {
                 Timing.CallDelayed(1f, () =>
                 {
-                    RoomIdentifier room173 = RoomIdentifier.AllRoomIdentifiers.Where(x => x.Name == RoomName.Lcz173).First();
+                    RoomIdentifier room173 = RoomIdentifier.AllRoomIdentifiers.First(x => x.Name == RoomName.Lcz173);
                     var item = XHelper.SpawnItem(ItemType.Medkit, room173.transform.TransformPoint(new Vector3(-2.62f, 13.29f, -4.93f)));
                     SCP1056Id = item.Serial;
                 });
             }
+
+            //Broadcast coroutine
+            Timing.RunCoroutine(XHelper.AutoXBroadcast());
+            if (Config.EnableAutoServerMessage)
+                Timing.RunCoroutine(XHelper.AutoServerBroadcast());
+
+            //Special role coroutine
             Timing.RunCoroutine(SpecialRoleHelper.SpecialRoleInfoHandle());
         }
 
@@ -1415,7 +1448,13 @@ namespace HelpSense
                 if (!(oldRole is RoleTypeId.Scp079 && newRole is RoleTypeId.Spectator && Config.SCP191))
                     return;
 
-                SCP191 = new SCPHelper(player, RoleTypeId.Tutorial, 120, "SCP-191", "red");
+                player.SetRole(RoleTypeId.Tutorial);
+                player.Health = 120;
+
+                SCP191 = new SCPHelper(player);
+
+                player.RoleName = "SCP-191";
+                player.RoleColor = "red";
 
                 player.SetPlayerScale(0.8f);
 
