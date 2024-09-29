@@ -842,7 +842,15 @@ namespace HelpSense
                 Timing.RunCoroutine(XHelper.AutoServerBroadcast());
 
             //Special role coroutine
-            Timing.RunCoroutine(SpecialRoleHelper.SpecialRoleInfoHandle());
+            Timing.RunCoroutine(SpecialRoleHelper.SCP029CoroutineMethod());
+            Timing.RunCoroutine(SpecialRoleHelper.SCP073CoroutineMethod());
+            Timing.RunCoroutine(SpecialRoleHelper.SCP1093CoroutineMethod());
+            Timing.RunCoroutine(SpecialRoleHelper.SCP191CoroutineMethod());
+            Timing.RunCoroutine(SpecialRoleHelper.SCP2936CoroutineMethod());
+            Timing.RunCoroutine(SpecialRoleHelper.SCP347CoroutineMethod());
+            Timing.RunCoroutine(SpecialRoleHelper.SCP703CoroutineMethod());
+            Timing.RunCoroutine(SpecialRoleHelper.SeeNoEvilCoroutineMethod());
+            Timing.RunCoroutine(SpecialRoleHelper.SkynetCoroutineMethod());
         }
 
         [PluginEvent]

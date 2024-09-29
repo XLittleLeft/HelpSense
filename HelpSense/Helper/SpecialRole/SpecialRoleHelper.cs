@@ -1,38 +1,21 @@
 ﻿using CustomPlayerEffects;
-using HintServiceMeow.Core.Enum;
-using HintServiceMeow.Core.Extension;
-using HintServiceMeow.Core.Models.Hints;
 using HintServiceMeow.UI.Extension;
 using InventorySystem.Items.Firearms;
 using InventorySystem.Items.Firearms.Attachments;
-using InventorySystem.Items.Test;
 using MEC;
 using PlayerRoles;
 using PluginAPI.Core;
-using System;
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HelpSense.Helper.SpecialRole
 {
     public static class SpecialRoleHelper
     {
-        public static IEnumerator<float> SpecialRoleInfoHandle()
+        public static IEnumerator<float> SCP703CoroutineMethod()
         {
             int scp703ItemTime = 0;
-            string scp029SpecialIntroduction = Plugin.Instance.TranslateConfig.SCP029SpecialIntroduction;
             string scp703SpecialIntroduction = Plugin.Instance.TranslateConfig.SCP703SpecialIntroduction;
-            string scp347SpecialIntroduction = Plugin.Instance.TranslateConfig.SCP347SpecialIntroduction;
-            string scp1093SpecialIntroduction = Plugin.Instance.TranslateConfig.SCP1093SpecialIntroduction;
-            string scp191SpecialIntroduction = Plugin.Instance.TranslateConfig.SCP191SpecialIntroduction;
-            string scp2936SpecialIntroduction = Plugin.Instance.TranslateConfig.SCP2936SpecialIntroduction;
-            string scp073AbelSpecialIntroduction = Plugin.Instance.TranslateConfig.SCP073AbelSpecialIntroduction;
-            string scp073CainSpecialIntroduction = Plugin.Instance.TranslateConfig.SCP073CainSpecialIntroduction;
-            string skynetSpecialIntroduction = Plugin.Instance.TranslateConfig.SkynetSpecialIntroduction;
-            string seeNoEvilSpecialIntroduction = Plugin.Instance.TranslateConfig.SeeNoEvilSpecialIntroduction;
-
             List<string> scp703StringList = Plugin.Instance.TranslateConfig.SCP703SkillIntroduction;
 
             while (true)
@@ -42,11 +25,6 @@ namespace HelpSense.Helper.SpecialRole
                 if (Round.IsRoundEnded || !Round.IsRoundStarted)
                 {
                     yield break;
-                }
-
-                if (Plugin.Instance.SCP029 != null && Plugin.Instance.SCP029.Player != null)
-                {
-                    Plugin.Instance.SCP029.Player.GetPlayerUi().CommonHint.ShowRoleHint(scp029SpecialIntroduction, Plugin.Instance.TranslateConfig.SCP029SkillIntroduction , 1.25f);
                 }
 
                 if (Plugin.Instance.SCP703 != null && Plugin.Instance.SCP703.Player != null)
@@ -86,6 +64,41 @@ namespace HelpSense.Helper.SpecialRole
 
                     Plugin.Instance.SCP703.Player.GetPlayerUi().CommonHint.ShowRoleHint(scp703SpecialIntroduction, scp703StringList.ToArray(), 1.25f);
                 }
+            }
+        }
+
+        public static IEnumerator<float> SCP029CoroutineMethod()
+        {
+            string scp029SpecialIntroduction = Plugin.Instance.TranslateConfig.SCP029SpecialIntroduction;
+
+            while (true)
+            {
+                yield return Timing.WaitForSeconds(1f);
+
+                if (Round.IsRoundEnded || !Round.IsRoundStarted)
+                {
+                    yield break;
+                }
+
+                if (Plugin.Instance.SCP029 != null && Plugin.Instance.SCP029.Player != null)
+                {
+                    Plugin.Instance.SCP029.Player.GetPlayerUi().CommonHint.ShowRoleHint(scp029SpecialIntroduction, Plugin.Instance.TranslateConfig.SCP029SkillIntroduction, 1.25f);
+                }
+            }
+        }
+
+        public static IEnumerator<float> SCP347CoroutineMethod()
+        {
+            string scp347SpecialIntroduction = Plugin.Instance.TranslateConfig.SCP347SpecialIntroduction;
+
+            while (true)
+            {
+                yield return Timing.WaitForSeconds(1f);
+
+                if (Round.IsRoundEnded || !Round.IsRoundStarted)
+                {
+                    yield break;
+                }
 
                 if (Plugin.Instance.SCP347 != null && Plugin.Instance.SCP347.Player != null)
                 {
@@ -93,15 +106,61 @@ namespace HelpSense.Helper.SpecialRole
 
                     Plugin.Instance.SCP347.Player.GetPlayerUi().CommonHint.ShowRoleHint(scp347SpecialIntroduction, Plugin.Instance.TranslateConfig.SCP347SkillIntroduction, 1.25f);
                 }
+            }
+        }
+
+        public static IEnumerator<float> SCP1093CoroutineMethod()
+        {
+            string scp1093SpecialIntroduction = Plugin.Instance.TranslateConfig.SCP1093SpecialIntroduction;
+
+            while (true)
+            {
+                yield return Timing.WaitForSeconds(1f);
+
+                if (Round.IsRoundEnded || !Round.IsRoundStarted)
+                {
+                    yield break;
+                }
 
                 if (Plugin.Instance.SCP1093 != null && Plugin.Instance.SCP1093.Player != null)
                 {
                     Plugin.Instance.SCP1093.Player.GetPlayerUi().CommonHint.ShowRoleHint(scp1093SpecialIntroduction, Plugin.Instance.TranslateConfig.SCP1093SkillIntroduction.ToArray(), 1.25f);
                 }
+            }
+        }
+
+        public static IEnumerator<float> SCP2936CoroutineMethod()
+        {
+            string scp2936SpecialIntroduction = Plugin.Instance.TranslateConfig.SCP2936SpecialIntroduction;
+
+            while (true)
+            {
+                yield return Timing.WaitForSeconds(1f);
+
+                if (Round.IsRoundEnded || !Round.IsRoundStarted)
+                {
+                    yield break;
+                }
 
                 if (Plugin.Instance.SCP2936 != null && Plugin.Instance.SCP2936.Player != null)
                 {
                     Plugin.Instance.SCP2936.Player.GetPlayerUi().CommonHint.ShowRoleHint(scp2936SpecialIntroduction, Plugin.Instance.TranslateConfig.SCP29361SkillIntroduction, 1.25f);
+                }
+            }
+        }
+
+        public static IEnumerator<float> SCP073CoroutineMethod()
+        {
+            string scp073AbelSpecialIntroduction = Plugin.Instance.TranslateConfig.SCP073AbelSpecialIntroduction;
+            string scp073CainSpecialIntroduction = Plugin.Instance.TranslateConfig.SCP073CainSpecialIntroduction;
+
+            while (true)
+            {
+                yield return Timing.WaitForSeconds(1f);
+
+                if (Round.IsRoundEnded || !Round.IsRoundStarted)
+                {
+                    yield break;
                 }
 
                 if (Plugin.Instance.SCP073 != null && Plugin.Instance.SCP073.Player != null)
@@ -116,25 +175,65 @@ namespace HelpSense.Helper.SpecialRole
                             break;
                     }
                 }
+            }
+        }
+
+        public static IEnumerator<float> SCP191CoroutineMethod()
+        {
+            string scp191SpecialIntroduction = Plugin.Instance.TranslateConfig.SCP191SpecialIntroduction;
+
+            while (true)
+            {
+                yield return Timing.WaitForSeconds(1f);
+
+                if (Round.IsRoundEnded || !Round.IsRoundStarted)
+                {
+                    yield break;
+                }
 
                 if (Plugin.Instance.SCP191 != null && Plugin.Instance.SCP191.Player != null)
                 {
                     Plugin.Instance.SCP191.Player.GetPlayerUi().CommonHint.ShowRoleHint(scp191SpecialIntroduction, Plugin.Instance.TranslateConfig.SCP191SkillIntroduction.ToArray(), 1.25f);
                 }
+            }
+        }
 
-                if (!Plugin.Instance.SkynetPlayers.IsEmpty())
+        public static IEnumerator<float> SkynetCoroutineMethod()
+        {
+            string skynetSpecialIntroduction = Plugin.Instance.TranslateConfig.SkynetSpecialIntroduction;
+
+            while (true)
+            {
+                yield return Timing.WaitForSeconds(1f);
+
+                if (Round.IsRoundEnded || !Round.IsRoundStarted)
                 {
-                    foreach (var Player in Plugin.Instance.SkynetPlayers)
-                    {
-                        Player.GetPlayerUi().CommonHint.ShowRoleHint(skynetSpecialIntroduction, Plugin.Instance.TranslateConfig.SkynetSkillIntroduction.ToArray(), 1.25f);
-                    }
+                    yield break;
                 }
-                if (!Plugin.Instance.SeePlayers.IsEmpty())
+
+                foreach (var player in Plugin.Instance.SkynetPlayers)
                 {
-                    foreach (var Player in Plugin.Instance.SeePlayers)
-                    {
-                        Player.GetPlayerUi().CommonHint.ShowRoleHint(seeNoEvilSpecialIntroduction, Plugin.Instance.TranslateConfig.SeeNoEvilSkillIntroduction.ToArray(), 1.25f);
-                    }
+                    player.GetPlayerUi().CommonHint.ShowRoleHint(skynetSpecialIntroduction, Plugin.Instance.TranslateConfig.SkynetSkillIntroduction.ToArray(), 1.25f);
+                }
+            }
+        }
+
+        public static IEnumerator<float> SeeNoEvilCoroutineMethod()
+        {
+            string seeNoEvilSpecialIntroduction = Plugin.Instance.TranslateConfig.SeeNoEvilSpecialIntroduction;
+
+            while (true)
+            {
+                yield return Timing.WaitForSeconds(1f);
+
+                if (Round.IsRoundEnded || !Round.IsRoundStarted)
+                {
+                    yield break;
+                }
+
+                foreach (var player in Plugin.Instance.SeePlayers)
+                {
+                    player.GetPlayerUi().CommonHint.ShowRoleHint(seeNoEvilSpecialIntroduction, Plugin.Instance.TranslateConfig.SeeNoEvilSkillIntroduction.ToArray(), 1.25f);
                 }
             }
         }
