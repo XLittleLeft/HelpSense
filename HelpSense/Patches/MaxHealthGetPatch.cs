@@ -13,7 +13,7 @@ namespace HelpSense.Patches
         {
             Player player = Player.Get(__instance.Hub);
 
-            if (player.IsSCP && SCPHPChangeSystem.healthDict.TryGetValue(player.Role, out var health))
+            if (player.IsSCP && SCPHealthSystem.HealthDict.TryGetValue(player.Role, out var health))
             {
                 __result = health;
                 return false;

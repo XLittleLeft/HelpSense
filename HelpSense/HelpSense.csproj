@@ -71,7 +71,7 @@
     <Compile Include="Helper\Lobby\LobbyHelper.cs" />
     <Compile Include="Helper\Lobby\LobbyLocationType.cs" />
     <Compile Include="Helper\Misc\RespawnHelper.cs" />
-    <Compile Include="Helper\SCP\SCPHPChangeSystem.cs" />
+    <Compile Include="Helper\SCP\SCPHealthSystem.cs" />
     <Compile Include="MonoBehaviors\PlayerGlowBehavior.cs" />
     <Compile Include="MonoBehaviors\PlayerLightBehavior.cs" />
     <Compile Include="Patches\MaxHealthGetPatch.cs" />
