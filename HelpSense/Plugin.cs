@@ -357,7 +357,7 @@ namespace HelpSense
                 {
                     if (newRole == RoleTypeId.NtfSpecialist)
                     {
-                        var firearm = player.ReferenceHub.inventory.ServerAddItem(ItemType.ParticleDisruptor) as ParticleDisruptor;
+                        var firearm = (ParticleDisruptor)player.ReferenceHub.inventory.ServerAddItem(ItemType.ParticleDisruptor);
                         firearm.Status = new FirearmStatus(5, FirearmStatusFlags.MagazineInserted, firearm.GetCurrentAttachmentsCode());
                         player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.SCP703EscapeHint);
                     }
@@ -995,7 +995,7 @@ namespace HelpSense
             {
                 XHelper.Broadcast(TranslateConfig.SCP1068UsedBroadcast, 5, BroadcastFlags.Normal);
                 Server.Instance.GetComponent<AlphaWarheadController>(globalSearch: true).RpcShake(true);
-            }//沙比NW写空壳核弹抖动我直接自己写一个
+            }
         }
 
         [PluginEvent]
@@ -1079,8 +1079,8 @@ namespace HelpSense
             {
                 Timing.CallDelayed(0.5f, () =>
                 {
-                    if (SCPHPChangeSystem.healthDict.TryGetValue(role, out var health))
-                        player.Health = SCPHPChangeSystem.healthDict[role];
+                    if (SCPHealthSystem.HealthDict.TryGetValue(role, out var health))
+                        player.Health = health;
                 });
             }
 
@@ -1150,7 +1150,8 @@ namespace HelpSense
         {
             var player = ev.Player;
 
-            if (player == null) return;
+            if (player == null)
+                return;
 
             Timing.CallDelayed(1f, () =>
             {
