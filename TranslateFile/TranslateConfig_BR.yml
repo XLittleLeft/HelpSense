@@ -90,7 +90,7 @@ skynet_skill_introduction:
 - Você é [membro da Força-Tarefa Móvel Skynet] Aprecie a lanterna fantasma em sua mão
 - O gerador que você ligou irá <color=red>ativar em breve</color>
 # 天网机动特遣队新兵广播
-skynet_private_broadcast: <size=70><color=#0051FF>Você é um recruta da Força-Tarefa Móvel Skynet</color></size>
+skynet_private_broadcast: <size=70><color=#0051FF>Você é um recruta da Força-Tarefa Móvel Skynet.</color></size>
 # 天网机动特遣队新兵自定义信息
 skynet_private_custom_info: recrutas da Skynet
 # 天网机动特遣队中士广播
@@ -98,7 +98,7 @@ skynet_sergeant_broadcast: <size=70><color=#0051FF>Você é um Sargento da Forç
 # 天网机动特遣队新兵自定义信息
 skynet_sergeant_custom_info: Sargento da Skynet
 # 天网机动特遣队指挥官广播
-skynet_captain_broadcast: <size=70><color=#0051FF>Você é o capitão da Força-Tarefa Móvel Skynet</color></size>
+skynet_captain_broadcast: <size=70><color=#0051FF>Você é o capitão da Força-Tarefa Móvel Skynet.</color></size>
 # 天网机动特遣队指挥官自定义信息
 skynet_captain_custom_info: Capitão da Skynet
 # 非礼勿视机动特遣队Cassie广播
