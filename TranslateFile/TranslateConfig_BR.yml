@@ -159,7 +159,7 @@ s_c_p347_skill_introduction:  Você é a [SCP-347], você é invisível <color=r
 s_c_p1093_spawn_broadcast: Você é o <color=yellow>SCP-1093, Lâmpada Humana</color>
 # SCP-1093技能介绍
 s_c_p1093_skill_introduction:
-- Você é o [SCP-1093], que ilumina continuamente um alcance próximo de 5 metros e irradia pessoas dentro de um alcance próximo de 1 metro.
+- Você é o [SCP-1093], que ilumina continuamente uma área próxima de 5 metros e irradia pessoas dentro de um alcance próximo de 1 metro.
 - Sua cabeça é nada, ninguém pode ferir sua cabeça
 # 警卫队长刷新广播
 guard_captain_spawn_broadcast: <size=60><color=#E5DADA>Você é o capitão de segurança</color></size>
