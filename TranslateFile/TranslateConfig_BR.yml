@@ -102,103 +102,103 @@ skynet_captain_broadcast: <size=70><color=#0051FF>Você é o capitão da Força-
 # 天网机动特遣队指挥官自定义信息
 skynet_captain_custom_info: Capitão da Skynet
 # 非礼勿视机动特遣队Cassie广播
-see_no_evil_cassie: Mobile Task Force Eta-10, codenamed See No Evil, has entered the facility. They will help contain SCP-096. It is recommended that all surviving personnel implement standard evacuation protocols until the MTF team arrives at your location. There are currently %SCPNum% SCPs left.
+see_no_evil_cassie: Força-Tarefa Móvel Eta-10, com o codinome Não Vê Mal, entrou na instalação. Ela ajudará a conter o SCP-096. É recomendado que todo pessoal sobrevivente implemente os protocolos padrões de evacuação até que a equipe de FTM chegue em sua localização. Atualmente, há %SCPNum% SCPs restando.
 # 非礼勿视机动特遣队技能描述
 see_no_evil_skill_introduction:
-- You are [Member of the Mobile Task Force No Evil], dare to stare at SCP096
-- He is <color=red>difficult</color> to kill you. You can just stare at him as long as he is not violent.
+- Você é [Membro da Força-Tarefa Móvel Não Vê Mal], se atreva a observar o SCP096
+- É <color=red>difícil</color> para ele matar você. Você pode observá-lo desde que ele não esteja violento.
 # 非礼勿视机动特遣队新兵广播
-see_no_evil_private_broadcast: <size=70><color=#0051FF>You are Mobile Task Force-See No Evil Recruit</color></size>
+see_no_evil_private_broadcast: <size=70><color=#0051FF>Você é Recruta da Força-Tarefa Móvel Não Vê Mal.</color></size>
 # 非礼勿视机动特遣队新兵自定义信息
-see_no_evil_private_custom_info: See no evil recruits
+see_no_evil_private_custom_info: recrutas da Não Vê Mal
 # 非礼勿视机动特遣队中士广播
-see_no_evil_sergeant_broadcast: <size=70><color=#0051FF>Youre Mobile Task Force-See No Evil, Sgt.</color></size>
+see_no_evil_sergeant_broadcast: <size=70><color=#0051FF>Você é Sargento da Força-Tarefa Móvel Não Vê Mal.</color></size>
 # 非礼勿视机动特遣队新兵自定义信息
-see_no_evil_sergeant_custom_info: See no evil, Sergeant
+see_no_evil_sergeant_custom_info: Sargento da Não Vê Mal
 # 非礼勿视机动特遣队指挥官广播
-see_no_evil_captain_broadcast: <size=70><color=#0051FF>You are Mobile Task Force-See No Evil Commander</color></size>
+see_no_evil_captain_broadcast: <size=70><color=#0051FF>Você é Capitão da Força-Tarefa Móvel Não Vê Mal.</color></size>
 # 非礼勿视机动特遣队指挥官自定义信息
-see_no_evil_captain_custom_info: See no evil, Commander
+see_no_evil_captain_custom_info: Capitão da Não Vê Mal
 # 特殊角色被收容Cassie后缀
-special_role_contain_cassie: Successfully eliminated, the specific reason is unknown
+special_role_contain_cassie: Eliminado com sucesso, a razão específica é desconhecida
 # 混沌领导者名字
-chaos_leader_role_name: Chaos Leader
+chaos_leader_role_name: Líder do Caos
 # 混沌领导者刷新广播
-chaos_leader_spawn_broadcast: <size=80><color=#00ff00ff>You are the leader of the Chaos Insurgency</color></size>
+chaos_leader_spawn_broadcast: <size=80><color=#00ff00ff>Você é o líder da Insurgência do Caos</color></size>
 # 混沌领导者死亡Cassie
-chaos_leader_death_cassie: Chaos leader dies
+chaos_leader_death_cassie: Líder do Caos morreu
 # SCP-2936-1刷新广播
-s_c_p29361_spawn_broadcast: <size=70>Who are you <color=red>SCP-2936-1 giant german robot</color></size>
+s_c_p29361_spawn_broadcast: <size=70>Quem você é <color=red>Robô alemão gigante, SCP-2936-1</color></size>
 # SCP-2936-1技能介绍
-s_c_p29361_skill_introduction: Who are you [SCP-2936-1] You have a huge body and thick blood
+s_c_p29361_skill_introduction: Quem você é [SCP-2936-1] Você tem um corpo enorme e sangue espesso
 # SCP-073亚伯刷新广播
-s_c_p073_abel_spawn_broadcast: Who are you<color=green>SCP-073 Abel</color>
+s_c_p073_abel_spawn_broadcast: Quem você é <color=green>Abel, SCP-073</color>
 # SCP-073亚伯技能介绍
-s_c_p073_abel_skill_introduction: Who are you[SCP-073] you will be passive<color=red>rebound</color>Partial damage to the enemy
+s_c_p073_abel_skill_introduction: Quem você é [SCP-073] você estará <color=red>rebatendo</color> passivamente uma parte do dano ao inimigo
 # SCP-073该隐刷新广播
-s_c_p073_cain_spawn_broadcast: Who are you<color=green>SCP-073 Cain</color>
+s_c_p073_cain_spawn_broadcast: Quem você é <color=green>Cain, SCP-073</color>
 # SCP-073该隐技能介绍
-s_c_p073_cain_skill_introduction: Who are you [SCP-073] You have<color=red>unlimited</color>Self-healing ability, stop and take a rest
+s_c_p073_cain_skill_introduction: Quem você é [SCP-073] Você tem uma habilidade de auto-cura <color=red>ilimitada</color>, pare e descanse
 # SCP-703刷新广播
-s_c_p703_spawn_broadcast: <size=80><color=#00ffffff>你是SCP-703</color></size>
+s_c_p703_spawn_broadcast: <size=80><color=#00ffffff>Você é SCP-703</color></size>
 # SCP-703技能介绍
 s_c_p703_skill_introduction:
-- You are [SCP-703] and you will get random items every once in a while.
-- <color=red>%Time% </color> until the next time you get the item
+- Você é [SCP-703] e receberá itens aleatórios de vez em quando.
+- <color=red>%Time% </color> até a próxima vez que você receberá o item
 # SCP-703获得物品Hint提示
-s_c_p703_received_item_hint: get an item
+s_c_p703_received_item_hint: recebeu um item
 # SCP-029刷新广播
-s_c_p029_spawn_broadcast: <size=60><color=#ff0000ff>You are SCP-029 Daughter of Shadow</color></size>
+s_c_p029_spawn_broadcast: <size=60><color=#ff0000ff>Você é a SCP-029, Filha das Sombras</color></size>
 # SCP-029技能介绍
-s_c_p029_skill_introduction: you are[SCP-029] you have<color=red>unlimited</color>speed bonus
+s_c_p029_skill_introduction: Você é a [SCP-029], você tem um bônus de velocidade <color=red>ilimitado</color>
 # SCP-347刷新广播
-s_c_p347_spawn_broadcast: you are<color=red>SCP-347 invisible woman</color>
+s_c_p347_spawn_broadcast: Você é a <color=red> SCP-347, Mulher Invisível</color>
 # SCP-347技能介绍
-s_c_p347_skill_introduction:  you are [SCP-347] you<color=red>forever</color> Are invisible, but you dont move around
+s_c_p347_skill_introduction:  Você é a [SCP-347], você é invisível <color=red>sempre</color>, mas não se movimenta
 # SCP-1093刷新广播
-s_c_p1093_spawn_broadcast: you are<color=yellow>SCP-1093 human lamp</color>
+s_c_p1093_spawn_broadcast: Você é o <color=yellow>SCP-1093, Lâmpada Humana</color>
 # SCP-1093技能介绍
 s_c_p1093_skill_introduction:
-- You are [SCP-1093], which continuously illuminates a nearby 5-meter range and radiates people within a 1-meter nearby range.
-- Your head is nothing, no one can do any harm to your head
+- Você é o [SCP-1093], que ilumina continuamente um alcance próximo de 5 metros e irradia pessoas dentro de um alcance próximo de 1 metro.
+- Sua cabeça é nada, ninguém pode ferir sua cabeça
 # 警卫队长刷新广播
-guard_captain_spawn_broadcast: <size=60><color=#E5DADA>You are the security captain</color></size>
+guard_captain_spawn_broadcast: <size=60><color=#E5DADA>Você é o capitão de segurança</color></size>
 # SCP-191刷新广播
-s_c_p191_spawn_broadcast: you become <color=red>SCP-191 Mechanical girl</color>
+s_c_p191_spawn_broadcast: Você se tornou a <color=red>SCP-191, Criança Ciborgue</color>
 # SCP-191技能介绍
 s_c_p191_skill_introduction:
-- You are [SCP-191] because of your body modifications
-- You are <color=red>very resistant</color> to everything except electromagnetic and explosive damage.
-- But don’t forget to go to the 079 containment room to recharge
+- Você é a [SCP-191] devido às suas modificações corporais
+- Você é <color=red>muito resistente</color> a tudo exceto dano explosivo e eletromagnético.
+- Mas não se esqueça de ir para a sala de contenção do 079 para recarregar
 # SCP-191电量显示
-s_c_p191_battery_hint_show: <align=right><size=40><b>Your current remaining battery capacity:<color=yellow>%Battery%install</color></size></b></align>
+s_c_p191_battery_hint_show: <align=right><size=40><b>Sua capacidade de bateria restante atual:<color=yellow>%Battery%install</color></size></b></align>
 # SCP-191电量耗尽死亡原因
-s_c_p191_battery_depletion_death_reason: Battery exhausted
+s_c_p191_battery_depletion_death_reason: Bateria esgotada
 # SCP-1056缩小仪拾取Hint
-s_c_p1056_pickup_hint: you picked it up<color=red>SCP-1056</color> reducer!
+s_c_p1056_pickup_hint: Você pegou o redutor <color=red>SCP-1056</color>!
 # SCP-1056缩小仪使用Hint
-s_c_p1056_used_hint: boom!you become smaller!!!
+s_c_p1056_used_hint: Boom! Você ficou menor!!!
 # SCP-1068无害核弹拾取Hint
-s_c_p1068_pickup_hint: you picked up<color=red>SCP-1068</color> harmless nuclear bomb!
+s_c_p1068_pickup_hint: Você pegou a <color=red>SCP-1068</color>, Bomba Atômica Inofensiva!
 # SCP-1056无害核弹使用广播
-s_c_p1068_used_broadcast: Someone used it<color=red>SCP-1068</color> harmless nuclear bomb!
+s_c_p1068_used_broadcast: Alguém usou a <color=red>SCP-1068</color>, Bomba Atômica Inofensiva!
 # SCP-029特殊介绍
-s_c_p029_special_introduction: <color=red>SCP-029 Daughter of Shadow</color>
+s_c_p029_special_introduction: <color=red>SCP-029, Filha das Sombras</color>
 # SCP-703特殊介绍
-s_c_p703_special_introduction: <color=blue>SCP-703 in the closet</color>
+s_c_p703_special_introduction: <color=blue>SCP-703, Dentro do Armário</color>
 # SCP-347特殊介绍
-s_c_p347_special_introduction: <color=red>SCP-347 invisible woman</color>
+s_c_p347_special_introduction: <color=red>SCP-347, A Mulher Invisível</color>
 # SCP-1093特殊介绍
-s_c_p1093_special_introduction: <color=yellow>SCP-1093 human lamp</color>
+s_c_p1093_special_introduction: <color=yellow>SCP-1093, Lâmpada Humana</color>
 # SCP-073亚伯特殊介绍
-s_c_p073_abel_special_introduction: <color=green>SCP-073 Abel</color>
+s_c_p073_abel_special_introduction: <color=green>SCP-073, Abel</color>
 # SCP-073该隐特殊介绍
-s_c_p073_cain_special_introduction: <color=green>SCP-073 Cain</color>
+s_c_p073_cain_special_introduction: <color=green>SCP-073, Cain</color>
 # SCP-191特殊介绍
-s_c_p191_special_introduction: <color=red>SCP-191 Mechanical girl</color>
+s_c_p191_special_introduction: <color=red>SCP-191, Criança Ciborgue</color>
 # SCP-2936特殊介绍
-s_c_p2936_special_introduction: <color=red>SCP-2936-1 giant german robot</color>
+s_c_p2936_special_introduction: <color=red>SCP-2936-1, Robô Alemão Gigante</color>
 # 天网机动特遣队特殊介绍
-skynet_special_introduction: <color=blue>Skynet Mobile Task Force</color>
+skynet_special_introduction: <color=blue>Força-Tarefa Móvel Skynet</color>
 # 非礼勿视机动特遣队特殊介绍
-see_no_evil_special_introduction: <color=blue>Look No Evil Mobile Task Force</color>
+see_no_evil_special_introduction: <color=blue>Força-Tarefa Móvel Não Vê Mal</color>
