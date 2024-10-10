@@ -37,11 +37,11 @@ chat_system_role_translation:
   Scp3114: SCP-3114
   Spectator: espectador
   Overwatch: supervisor
-  Filmmaker: diretor
+  Filmmaker: cineasta
 # 聊天系统自定义玩家团队名称
 chat_system_team_translation:
   Dead: campo da morte
-  ClassD: campo dos Classe-D
+  ClassD: campo dos Classe-Ds
   OtherAlive: campo misterioso
   Scientists: campo dos Cientistas
   SCPs: campo dos SCPs
@@ -169,7 +169,7 @@ s_c_p191_spawn_broadcast: Você se tornou a <color=red>SCP-191, Criança Ciborgu
 s_c_p191_skill_introduction:
 - Você é a [SCP-191] devido às suas modificações corporais
 - Você é <color=red>muito resistente</color> a tudo exceto dano explosivo e eletromagnético.
-- Mas não se esqueça de ir para a sala de contenção do 079 para recarregar
+- Mas não se esqueça de ir à sala de contenção do 079 para recarregar
 # SCP-191电量显示
 s_c_p191_battery_hint_show: <align=right><size=40><b>Sua capacidade de bateria restante atual:<color=yellow>%Battery%install</color></size></b></align>
 # SCP-191电量耗尽死亡原因
