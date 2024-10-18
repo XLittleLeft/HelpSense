@@ -52,7 +52,7 @@ namespace HelpSense.Helper.Chat
     {
         private static CoroutineHandle _coroutine;
 
-        private static readonly LinkedList<ChatMessage> MessageList= new();
+        private static readonly LinkedList<ChatMessage> MessageList = new();
 
         private static readonly Dictionary<Player, HintServiceMeow.Core.Models.Hints.Hint> MessageSlot = new();
 

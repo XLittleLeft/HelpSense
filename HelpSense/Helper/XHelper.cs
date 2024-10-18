@@ -1,5 +1,4 @@
 ﻿using InventorySystem.Items.Firearms;
-using InventorySystem.Items.Firearms.Attachments;
 using InventorySystem.Items.Firearms.BasicMessages;
 
 using PlayerRoles;
@@ -17,14 +16,10 @@ using System.Text;
 using MEC;
 using Respawning;
 using UnityEngine;
-using CustomPlayerEffects;
 using Interactables.Interobjects.DoorUtils;
 using Mirror;
 
 using HelpSense.API.Features.Pool;
-using HelpSense.ConfigSystem;
-
-using HintServiceMeow.UI.Extension;
 
 namespace HelpSense.Helper
 {
@@ -140,8 +135,8 @@ namespace HelpSense.Helper
             }
         }
         public static void SetPlayerScale(this Player target, float scale) => SetPlayerScale(target, Vector3.one * scale);
-        public static bool PlayerScaleIs(this Player target, Vector3 scale) => target.GameObject.transform.localScale == scale;
         public static bool PlayerScaleIs(this Player target, float scale) => PlayerScaleIs(target, Vector3.one * scale);
+        public static bool PlayerScaleIs(this Player target, Vector3 scale) => target.GameObject.transform.localScale == scale;
 
         public static void MessageTranslated(string message, string translation, bool isHeld = false, bool isNoisy = true, bool isSubtitles = true)
         {
@@ -158,9 +153,11 @@ namespace HelpSense.Helper
         //防倒卖
         public static IEnumerator<float> AutoXBroadcast()
         {
+            yield return Timing.WaitForSeconds(30f);
+
             while (true)
             {
-                yield return Timing.WaitForSeconds(6 * 60f);
+                yield return Timing.WaitForSeconds(360f);
                 if (Round.IsRoundEnded || !Round.IsRoundStarted)
                 {
                     yield break;
@@ -168,8 +165,11 @@ namespace HelpSense.Helper
                 Broadcast("<size=35><align=center><color=#F6511D>此服务器在运行X小左的插件，享受你的游戏时间~</color></align></size>", 6, global::Broadcast.BroadcastFlags.Normal);
             }
         }
+
         public static IEnumerator<float> AutoServerBroadcast()
         {
+            yield return Timing.WaitForSeconds(10f);
+
             while (true)
             {
                 if (Round.IsRoundEnded || !Round.IsRoundStarted)
@@ -247,7 +247,7 @@ namespace HelpSense.Helper
             return true;
         }
 
-        public static bool IsWeapon(this ItemType type, bool checkMicro = true)
+        public static bool IsWeapon(this ItemType type, bool checkHID = true)
         {
             switch (type)
             {
@@ -266,7 +266,7 @@ namespace HelpSense.Helper
                 case ItemType.Jailbird:
                     return true;
                 case ItemType.MicroHID:
-                    if (checkMicro)
+                    if (checkHID)
                     {
                         return true;
                     }
@@ -304,25 +304,26 @@ namespace HelpSense.Helper
 
         public static bool IsKeycard(this ItemType type)
         {
-            var keycardTypes = new HashSet<ItemType>
+            switch (type)
             {
-                ItemType.KeycardScientist,
-                ItemType.KeycardResearchCoordinator,
-                ItemType.KeycardZoneManager,
-                ItemType.KeycardGuard,
-                ItemType.KeycardMTFPrivate,
-                ItemType.KeycardContainmentEngineer,
-                ItemType.KeycardMTFOperative,
-                ItemType.KeycardMTFCaptain,
-                ItemType.KeycardFacilityManager,
-                ItemType.KeycardChaosInsurgency,
-                ItemType.KeycardO5
-            };
+                case ItemType.KeycardScientist:
+                case ItemType.KeycardResearchCoordinator:
+                case ItemType.KeycardZoneManager:
+                case ItemType.KeycardGuard:
+                case ItemType.KeycardMTFPrivate:
+                case ItemType.KeycardContainmentEngineer:
+                case ItemType.KeycardMTFOperative:
+                case ItemType.KeycardMTFCaptain:
+                case ItemType.KeycardFacilityManager:
+                case ItemType.KeycardChaosInsurgency:
+                case ItemType.KeycardO5:
+                    return true;
+            }
 
-            return keycardTypes.Contains(type);
+            return false;
         }
 
-        public static Team GetTeam2(this RoleTypeId typeId)
+        public static Team GetTeam(this RoleTypeId typeId)
         {
             switch (typeId)
             {
@@ -368,10 +369,10 @@ namespace HelpSense.Helper
 
         public static Vector3 GetRandomSpawnLocation(this RoleTypeId roleType)
         {
-            if (!PlayerRoleLoader.TryGetRoleTemplate(roleType, out PlayerRoleBase @base))
+            if (!PlayerRoleLoader.TryGetRoleTemplate(roleType, out PlayerRoleBase roleBase))
                 return Vector3.zero;
 
-            if (@base is not IFpcRole fpc)
+            if (roleBase is not IFpcRole fpc)
                 return Vector3.zero;
 
             ISpawnpointHandler spawn = fpc.SpawnpointHandler;
@@ -431,7 +432,7 @@ namespace HelpSense.Helper
             }
         }
 
-        public static bool IsSameTeam(this Player player1, Player player2)
+        public static bool IsSameLeadingTeam(this Player player1, Player player2)
         {
             if (player1.Team is Team.FoundationForces && player2.Team is Team.Scientists)
             {
@@ -443,7 +444,7 @@ namespace HelpSense.Helper
                 return true;
             }
 
-            return false;
+            return player1.Team == player2.Team;
         }
     }
 }
