@@ -46,7 +46,6 @@ using HelpSense.Helper.Lobby;
 using HelpSense.Helper.SCP;
 using HelpSense.Helper.Chat;
 using HelpSense.Helper.Misc;
-using InventorySystem.Items.Firearms.Modules;
 
 namespace HelpSense
 {
@@ -105,11 +104,11 @@ namespace HelpSense
         public ushort SCP1056Id = 0;
         public ItemBase SCP1056Base;
       
-        public static System.Version PluginVersion => new(1, 3, 7);
-        public static DateTime LastUpdateTime => new(2024, 12, 1, 11, 00, 00);
-        public static System.Version RequiredGameVersion => new(14, 0, 0);
+        public static System.Version PluginVersion => new(1, 3, 6);
+        public static DateTime LastUpdateTime => new(2024, 09, 27, 14, 47, 20);
+        public static System.Version RequiredGameVersion => new(13, 5, 1);
       
-        [PluginEntryPoint("HelpSense", "1.3.7", "HelpSense综合服务器插件", "X小左")]
+        [PluginEntryPoint("HelpSense", "1.3.6", "HelpSense综合服务器插件", "X小左")]
         private void LoadPlugin()
         {
             Instance = this;
@@ -122,11 +121,11 @@ namespace HelpSense
             EventManager.RegisterEvents(this);
 
             _harmony.PatchAll();
-            //TODO:Respawn
-            /*if (Config.EnableRespawnTimer)
+
+            if (Config.EnableRespawnTimer)
             {
                 RespawnTimerDirectoryPath = PluginHandler.Get(this).PluginDirectoryPath;
-            }*/
+            }
         }
 
         public static Plugin Instance { get; private set; }
@@ -168,8 +167,7 @@ namespace HelpSense
                 AttackerDamageHandler.RefreshConfigs();
                 Server.FriendlyFire = false;
             }
-            //TODO:Respawn
-            /*if (Config.EnableRespawnTimer)
+            if (Config.EnableRespawnTimer)
             {
                 if (Config.Timers.IsEmpty())
                 {
@@ -179,7 +177,7 @@ namespace HelpSense
 
                 string chosenTimerName = Config.Timers[UnityEngine.Random.Range(0, Config.Timers.Count)];
                 TimerView.GetNew(chosenTimerName);
-            }*/
+            }
         }
 
         [PluginEvent]
@@ -359,11 +357,8 @@ namespace HelpSense
                 {
                     if (newRole == RoleTypeId.NtfSpecialist)
                     {
-                        var firearm = player.ReferenceHub.inventory.ServerAddItem(ItemType.ParticleDisruptor , ItemAddReason.AdminCommand) as ParticleDisruptor;
-                        //TODO:子弹
-                        /*firearm.Status = new FirearmStatus(5, FirearmStatusFlags.MagazineInserted, firearm.GetCurrentAttachmentsCode());
-                        firearm.TryGetModule<IAmmoContainerModule>(out var module);
-                        module.*/
+                        var firearm = player.ReferenceHub.inventory.ServerAddItem(ItemType.ParticleDisruptor) as ParticleDisruptor;
+                        firearm.Status = new FirearmStatus(5, FirearmStatusFlags.MagazineInserted, firearm.GetCurrentAttachmentsCode());
                         player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.SCP703EscapeHint);
                     }
                 });
@@ -472,10 +467,8 @@ namespace HelpSense
                     {
                         if (Player.Role is RoleTypeId.NtfCaptain)
                         {
-                            Player.AddItem(ItemType.MicroHID);
-                            //var firaerm = Player.AddItem(ItemType.ParticleDisruptor) as ParticleDisruptor;
-                            //TODO:子弹
-                            //firaerm.Status = new FirearmStatus(5, FirearmStatusFlags.MagazineInserted, firaerm.GetCurrentAttachmentsCode());
+                            var firaerm = Player.AddItem(ItemType.ParticleDisruptor) as ParticleDisruptor;
+                            firaerm.Status = new FirearmStatus(5, FirearmStatusFlags.MagazineInserted, firaerm.GetCurrentAttachmentsCode());
                         }
                     }
                 });
@@ -498,8 +491,7 @@ namespace HelpSense
                         player.ShowBroadcast(TranslateConfig.ChaosLeaderSpawnBroadcast, 10, Broadcast.BroadcastFlags.Normal);
 
                         var firearm = player.AddItem(ItemType.ParticleDisruptor) as ParticleDisruptor;
-                        //TODO:子弹
-                        //firearm.Status = new FirearmStatus(5, FirearmStatusFlags.MagazineInserted, firearm.GetCurrentAttachmentsCode());
+                        firearm.Status = new FirearmStatus(5, FirearmStatusFlags.MagazineInserted, firearm.GetCurrentAttachmentsCode());
 
                         player.AddItem(ItemType.SCP1853);
                         player.AddItem(ItemType.SCP268);
@@ -581,14 +573,6 @@ namespace HelpSense
                 Log.Debug("开始记录玩家信息");
             }
 
-            if (Config.InfiniteAmmo)
-            {
-                Timing.CallDelayed(1f, () =>
-                {
-                    Timing.RunCoroutine(XHelper.InAmmo());
-                });
-            }
-            
             if (Config.EnableSCP703)
             {
                 Timing.CallDelayed(0.5f, () =>
@@ -621,9 +605,8 @@ namespace HelpSense
                         player.ClearInventory();
 
                         player.AddItem(ItemType.KeycardContainmentEngineer);
-                        var firearm = player.ReferenceHub.inventory.ServerAddItem(ItemType.GunCOM18 , ItemAddReason.AdminCommand);
-                        //TODO:子弹
-                        //((Firearm)(firearm)).Status = new FirearmStatus(((Firearm)(firearm)).AmmoManagerModule.MaxAmmo, ((Firearm)(firearm)).Status.Flags, ((Firearm)(firearm)).GetCurrentAttachmentsCode());
+                        var firearm = player.ReferenceHub.inventory.ServerAddItem(ItemType.GunCOM18);
+                        ((Firearm)(firearm)).Status = new FirearmStatus(((Firearm)(firearm)).AmmoManagerModule.MaxAmmo, ((Firearm)(firearm)).Status.Flags, ((Firearm)(firearm)).GetCurrentAttachmentsCode());
 
                         player.AddAmmo(ItemType.Ammo9x19, 30);
 
@@ -698,8 +681,7 @@ namespace HelpSense
                                     player1.AddItem(ItemType.Medkit);
 
                                     var firearm = player1.AddItem(ItemType.GunAK);
-                                    //TODO:子弹
-                                    //((Firearm)(firearm)).Status = new FirearmStatus(((Firearm)(firearm)).AmmoManagerModule.MaxAmmo, ((Firearm)(firearm)).Status.Flags, ((Firearm)(firearm)).GetCurrentAttachmentsCode());
+                                    ((Firearm)(firearm)).Status = new FirearmStatus(((Firearm)(firearm)).AmmoManagerModule.MaxAmmo, ((Firearm)(firearm)).Status.Flags, ((Firearm)(firearm)).GetCurrentAttachmentsCode());
 
                                     player1.AddAmmo(ItemType.Ammo762x39, (ushort)player1.GetAmmoLimit(ItemType.Ammo762x39));
 
@@ -719,8 +701,7 @@ namespace HelpSense
                                         players.AddItem(ItemType.KeycardMTFPrivate);
 
                                         var firearm = players.AddItem(ItemType.GunCrossvec);
-                                        //TODO:子弹
-                                        //((Firearm)(firearm)).Status = new FirearmStatus(((Firearm)(firearm)).AmmoManagerModule.MaxAmmo, ((Firearm)(firearm)).Status.Flags, ((Firearm)(firearm)).GetCurrentAttachmentsCode());
+                                        ((Firearm)(firearm)).Status = new FirearmStatus(((Firearm)(firearm)).AmmoManagerModule.MaxAmmo, ((Firearm)(firearm)).Status.Flags, ((Firearm)(firearm)).GetCurrentAttachmentsCode());
 
                                         players.AddAmmo(ItemType.Ammo9x19, (ushort)players.GetAmmoLimit(ItemType.Ammo9x19));
 
@@ -748,8 +729,7 @@ namespace HelpSense
                                     guardPlayer.AddItem(ItemType.GrenadeHE);
 
                                     var firearm = guardPlayer.AddItem(ItemType.GunLogicer);
-                                    //TODO:子弹
-                                    //((Firearm)(firearm)).Status = new FirearmStatus(((Firearm)(firearm)).AmmoManagerModule.MaxAmmo, ((Firearm)(firearm)).Status.Flags, ((Firearm)(firearm)).GetCurrentAttachmentsCode());
+                                    ((Firearm)(firearm)).Status = new FirearmStatus(((Firearm)(firearm)).AmmoManagerModule.MaxAmmo, ((Firearm)(firearm)).Status.Flags, ((Firearm)(firearm)).GetCurrentAttachmentsCode());
 
                                     guardPlayer.SetAmmo(ItemType.Ammo762x39, (ushort)guardPlayer.GetAmmoLimit(ItemType.Ammo762x39));
 
@@ -791,11 +771,10 @@ namespace HelpSense
                 Server.FriendlyFire = false;
                 Traverse.Create<AttackerDamageHandler>().Method("RefreshConfigs").GetValue();
             }
-            //TODO:Respawn
-            /*if (Config.EnableRespawnTimer)
+            if (Config.EnableRespawnTimer)
             {
                 Timing.RunCoroutine(RespawnHelper.TimerCoroutine());
-            }*/
+            }
             Timing.CallDelayed(30f, () =>
             {
                 Timing.RunCoroutine(XHelper.AutoXBroadcast());
@@ -1050,7 +1029,7 @@ namespace HelpSense
                 {
                     if (player.Role is RoleTypeId.ClassD)
                     {
-                        player.ReferenceHub.inventory.ServerAddItem(Config.ClassDCard , ItemAddReason.AdminCommand , 1);
+                        player.ReferenceHub.inventory.ServerAddItem(Config.ClassDCard , 1);
                     }
                 });
             }
@@ -1072,8 +1051,8 @@ namespace HelpSense
                 });
             }
         }
-        //TODO:子弹Event
-        /*[PluginEvent]
+
+        [PluginEvent]
         bool OnPlayerReloadWeapon(PlayerReloadWeaponEvent ev)
         {
             var player = ev.Player;
@@ -1105,23 +1084,8 @@ namespace HelpSense
                 }
             }
             return true;
-        }*/
-        //傻逼NW空壳事件
-        /*[PluginEvent]
-        void OnPlayerShot(PlayerShotWeaponEvent ev)
-        {
-            var Player = ev.Player;
-            var Firearm = ev.Firearm;
+        }
 
-            if (Player == null || !Config.InfiniteAmmo) return;
-
-            Player.SetAmmo(ItemType.Ammo9x19, 180);
-            Player.SetAmmo(ItemType.Ammo12gauge, 18);
-            Player.SetAmmo(ItemType.Ammo44cal, 18);
-            Player.SetAmmo(ItemType.Ammo762x39, 180);
-            Player.SetAmmo(ItemType.Ammo556x45, 180);
-        }*/
-        
         [PluginEvent]
         void OnPlayerShotWeapon(PlayerShotWeaponEvent ev)
         {
@@ -1136,8 +1100,7 @@ namespace HelpSense
             if (firearm.ItemTypeId is ItemType.ParticleDisruptor) return;
             if (Config.InfiniteAmmoType is InfiniteAmmoType.Infinite && Config.InfiniteAmmo)
             {
-                //TODO:子弹
-                //firearm.Status = new FirearmStatus(firearm.AmmoManagerModule.MaxAmmo, firearm.Status.Flags, firearm.GetCurrentAttachmentsCode());
+                firearm.Status = new FirearmStatus(firearm.AmmoManagerModule.MaxAmmo, firearm.Status.Flags, firearm.GetCurrentAttachmentsCode());
             }
         }
 
@@ -1310,12 +1273,7 @@ namespace HelpSense
             if (!ev.Generator.HasKeycardPermission(ev.Player) && !ev.Generator.IsUnlocked())
             {
                 ev.Generator.Unlock();
-                //ev.Generator.ServerGrantTicketsConditionally(new Footprint(ev.Player.ReferenceHub), 0.5f);
-                //TODO:unsure
-                /*if (ev.Player.Role.GetFaction() == Faction.FoundationStaff)
-                {
-                    RespawnTokensManager.OnPointsModified(Faction.FoundationStaff, 0.5f);
-                }*/
+                ev.Generator.ServerGrantTicketsConditionally(new Footprint(ev.Player.ReferenceHub), 0.5f);
                 ev.Generator._cooldownStopwatch.Restart();
 
                 return false;

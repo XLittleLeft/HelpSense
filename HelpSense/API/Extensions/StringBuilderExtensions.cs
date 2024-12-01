@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using static Respawning.RespawnManager;
 using static HelpSense.API.Features.TimerView;
 using HelpSense.Helper;
 
@@ -19,8 +20,7 @@ namespace HelpSense.API.Extensions
 {
     public static class StringBuilderExtensions
     {
-        //TODO:刷新
-        /*public static StringBuilder SetAllProperties(this StringBuilder builder, int? spectatorCount = null)
+        public static StringBuilder SetAllProperties(this StringBuilder builder, int? spectatorCount = null)
         {
             return builder.SetRoundTime().SetMinutesAndSeconds().SetSpawnableTeam().SetSpectatorCountAndTickets(spectatorCount).SetGeneratorCount().SetTpsAndTickrate().SetHint().SetWarhead();
         }
@@ -119,6 +119,6 @@ namespace HelpSense.API.Extensions
         {
             builder.Replace("{warhead_status}", Warhead.IsDetonated ? "已经炸力" : Warhead.IsDetonationInProgress ? "正在启动,快run" : "核弹在睡觉");
             return builder;
-        }*/
+        }
     }
 }

@@ -224,8 +224,8 @@ namespace HelpSense.Helper
             damageableDoor.ServerDamage(ushort.MaxValue, type);
             return true;
         }
-        //TODO:ReloadWeapon
-        /*public static void ReloadWeapon(this Player player)
+
+        public static void ReloadWeapon(this Player player)
         {
             if (player.CurrentItem == null)
                 return;
@@ -235,7 +235,7 @@ namespace HelpSense.Helper
 
             firearm.AmmoManagerModule.ServerTryReload();
             player.Connection.Send(new RequestMessage(firearm.ItemSerial, RequestType.Reload));
-        }*/
+        }
 
         public static bool IsAmmo(this ItemType item)
         {
@@ -428,23 +428,6 @@ namespace HelpSense.Helper
                 }
 
                 yield return Timing.WaitForSeconds(1f);
-            }
-        }
-
-        public static IEnumerator<float> InAmmo()
-        {
-            while (true)
-            {
-                if (Round.IsRoundEnded) yield break;
-                foreach (Player Player in PlayerList.Where(x => x.IsHuman))
-                {
-                    Player.SetAmmo(ItemType.Ammo9x19, 180);
-                    Player.SetAmmo(ItemType.Ammo12gauge, 18);
-                    Player.SetAmmo(ItemType.Ammo44cal, 18);
-                    Player.SetAmmo(ItemType.Ammo762x39, 180);
-                    Player.SetAmmo(ItemType.Ammo556x45, 180);
-                }
-                yield return Timing.WaitForSeconds(3f);
             }
         }
 

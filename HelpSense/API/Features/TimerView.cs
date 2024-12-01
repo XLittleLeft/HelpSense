@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Respawning.RespawnManager;
 
 namespace HelpSense.API.Features
 {
@@ -64,7 +65,7 @@ namespace HelpSense.API.Features
             Log.Debug($"{name} 成功加载!", Plugin.Instance.Config.Debug);
         }
 
-       /* public string GetText(int? spectatorCount = null)
+        public string GetText(int? spectatorCount = null)
         {
             StringBuilder.Clear();
             StringBuilder.Append(
@@ -83,7 +84,7 @@ namespace HelpSense.API.Features
             }
 
             return StringBuilder.ToString();
-        }*/
+        }
 
         private void IncrementHintIndex()
         {

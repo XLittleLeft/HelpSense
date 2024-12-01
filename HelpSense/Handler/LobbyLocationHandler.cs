@@ -36,14 +36,12 @@ namespace HelpSense.Handler
 
         public static void MountainLocation()
         {
-            LobbyPosition = new Vector3(103.492f, 998.946f, 24.672f);
+            LobbyPosition = new Vector3(92.167f, 998.008f, 16.273f);
         }
 
         public static void ChaosLocation()
         {
-            //TODO:地图
-            //LobbyPosition = new Vector3(-49.074f, 989.055f, -42.844f);
-            LobbyPosition = new Vector3(-7.500f, 995.402f, -7.910f);
+            LobbyPosition = new Vector3(-49.074f, 989.055f, -42.844f);
         }
     }
 }

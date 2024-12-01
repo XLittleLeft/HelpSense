@@ -59,8 +59,7 @@ namespace HelpSense.Helper.SpecialRole
                             if (itemType.IsWeapon())
                             {
                                 var firearm = Plugin.Instance.SCP703.Player.AddItem(itemType);
-                                //TODO:子弹
-                                //((Firearm)firearm).Status = new FirearmStatus(((Firearm)(firearm)).AmmoManagerModule.MaxAmmo, ((Firearm)(firearm)).Status.Flags, ((Firearm)(firearm)).GetCurrentAttachmentsCode());
+                                ((Firearm)firearm).Status = new FirearmStatus(((Firearm)(firearm)).AmmoManagerModule.MaxAmmo, ((Firearm)(firearm)).Status.Flags, ((Firearm)(firearm)).GetCurrentAttachmentsCode());
                             }
                             else
                             {
