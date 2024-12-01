@@ -1,204 +1,118 @@
-# 当玩家进入服务器的欢迎消息
-welcome_message: welcome %playername%~
-# 回合结束消息
-round_end_info: The round is over！dont leave yet，See you next roundヾ(￣▽￣)~
-# 友伤开启时玩家将收到的消息
-f_f_message: <align=center><voffset=28em> <color=#F6511D> ~Friendly damage is enabled~ </color></voffset></align>
-# 服务器广播文本
-auto_server_message_text: server broadcast
-# 聊天中消息列表的标题
-chat_message_title: 'Message list:'
-# 聊天中每种消息的名字
-message_type_name:
-  AdminPrivateChat: Manage private chats
-  BroadcastChat: public news
-  TeamChat: Teammate news.
-# 聊天系统自定义玩家角色名称
-chat_system_role_translation:
-  ClassD: D-class personnel
-  FacilityGuard: security guard
-  ChaosConscript: Chaos Conscript
-  ChaosMarauder: Chaos Raider
-  ChaosRepressor: Chaos Suppressor
-  ChaosRifleman: Chaos Rifleman
-  NtfCaptain: Nine Tailed Fox Commander
-  NtfPrivate: Nine Tailed Fox Private
-  NtfSergeant: Nine-Tailed Fox Sergeant
-  NtfSpecialist: Nine-tailed fox containment expert
-  Scientist: Scientist
-  Tutorial: Tutorial
-  Scp096: Scp-096
-  Scp049: SCP-049
-  Scp173: SCP-173
-  Scp939: SCP-939
-  Scp079: SCP-079
-  Scp0492: SCP-049-2
-  Scp106: SCP-106
-  Scp3114: SCP-3114
-  Spectator: observer
-  Overwatch: supervision
-  Filmmaker: director
-# 聊天系统自定义玩家团队名称
-chat_system_team_translation:
-  Dead: death camp
-  ClassD: DD camp
-  OtherAlive: mysterious camp
-  Scientists: PhD camp
-  SCPs: SCP camp
-  ChaosInsurgency: Chaos camp
-  FoundationForces: Nine-tailed fox camp
-# 管理员监察输出文本
-admin_log: '%Nickname%exist%Time%when | Used the command:%Command% | Steam64ID:%UserId%'
-# 管理员监察指令广播
-admin_log_broadcast: '<size=30>[<color=red>Management behavior monitoring output record</color>] <%Nickname%> Just used the command: %Command%</size>'
-# 显示距离启动还剩多少时间和服务器状态
-title_text: <size=50><color=#F0FF00><b>Waiting for player, {seconds}</b></color></size>
-# 显示玩家数量的文本
+# Welcome message when a player enters the server
+welcome_message: Welcome %playername%~
+# End of round message
+round_end_info: The round is over! Dont leave, see you next timeヾ(￣▽￣)~
+# Messages players will receive when friendly damage is turned on
+f_f_message: <align=center><voffset=28em> <color=#F6511D> ~Friendly damage is turned on~ </color></voffset></align>
+# Server broadcast text
+auto_server_message_text: Server broadcast
+# Administrator monitoring output text
+admin_log: '%Nickname% at %Time% | Used command: %Command% | Steam64ID: %UserId%'
+# Administrator monitoring command broadcast
+admin_log_broadcast: '<size=30>[<color=red>Admin behavior monitoring output record</color>] <%Nickname%> Just used command: %Command%</size>'
+# Display the time left before startup and the server status
+title_text: <size=50><color=#F0FF00><b>Waiting for players, {seconds}</b></color></size>
+# Text to display the number of players
 player_count_text: <size=40><color=#FFA600><i>{players}</i></color></size>
-# 如果大厅被锁定显示的消息
-server_pause_text: Server is paused
-# 第二行的消息
-second_left_text: left {seconds}
-# 多行的消息
-seconds_left_text: left {seconds}
-# 回合开始时显示的消息
+# Message to display if the lobby is locked
+server_pause_text: Server paused
+# Message on the second line
+second_left_text: {seconds} left
+# Message on multiple lines
+seconds_left_text: {seconds} left
+# Message to display when a round starts
 round_start_text: Round starts
-# 当服务器当玩家加入时显示的消息
-player_join_text: Players join
-# 当服务器上有多个玩家加入时显示的消息
-players_join_text: players joined
-# 警卫叛变显示的公告
-guard_mutiny_broadcast: <size=60><color=#ff0000ff>[warn]</color>The guards at this facility have been turned against by the Chaos Insurgency.</size>
-# 警卫为精英队显示的公告
-elite_guard_broadcast: <size=60><color=#00ffffff>[notify]</color>The guards of this facility are nine-tailed fox elite members，Security strength greatly increased</size>
-# 观战列表标题
-watch_list_title: <align=right><size=45%><color=(COLOR)><b>observer ((COUNT)):</b></color></size></align>
-# 观战列表格式
+# Message to display when a player joins the server
+player_join_text: Player joins
+# Message to display when multiple players join the server
+players_join_text: Players join
+# Announcement to display when a guard mutinies
+guard_mutiny_broadcast: <size=60><color=#ff0000ff>[Warning]</color>This facility guard has been turned against by the Chaos Insurgency</size>
+# Announcement to display when a guard is an elite team
+elite_guard_broadcast: <size=60><color=#00ffffff>[Notice]</color>The guards of this facility are the elite members of the Nine-Tailed Fox, and the security strength has been greatly improved</size>
+# Watch list title
+watch_list_title: <align=right><size=45%><color=(COLOR)><b>Observer ((COUNT)):</b></color></size></align>
+# Watch list format
 names: <align=right><size=45%><color=(COLOR)><br>(NAME)</color></size></align>
-# DNT提醒
-d_n_t_warning: You turned on DNT，please close，Otherwise some plug-ins will not work properly
-# SCP-073反伤原因
-s_c_p073_damage_reason: SCP073 counter-injury
-# SCP-029逃离设施Hint
-s_c_p029_escape_hint: Successfully escape the facility and become Chaos to receive a legacy from the Chaos Insurgency.
-# SCP-703逃离设施Hint
-s_c_p703_escape_hint: Successfully escaped from the facility and became a nine-tailed fox containment expert，Get 3x
-# 天网机动特遣队Cassie广播
-skynet_cassie: Mobile Task Forces Kappa-10 and Mu-7, codenamed Skynet, have entered the facility. They will help Dancer One contain SCP-079. All surviving personnel are advised to follow standard evacuation protocols until the MTF team arrives at your location. Currently, there are still %SCPNum% SCPs
-# 天网机动特遣队技能描述
-skynet_skill_introduction:
-- You are [Skynet Mobile Task Force member] Cherish the ghost lantern in your hand
-- The generator you start will <color=red>activate soon</color>
-# 天网机动特遣队新兵广播
-skynet_private_broadcast: <size=70><color=#0051FF>You are a Mobile Task Force-Skynet recruit</color></size>
-# 天网机动特遣队新兵自定义信息
-skynet_private_custom_info: Skynet recruits
-# 天网机动特遣队中士广播
-skynet_sergeant_broadcast: <size=70><color=#0051FF>You are the Mobile Task Force-Skynet, Sgt.</color></size>
-# 天网机动特遣队新兵自定义信息
+# DNT reminder
+d_n_t_warning: You have turned on DNT, please turn it off, otherwise some plug-ins will not work properly
+# SCP-073 reverse injury reason
+s_c_p073_damage_reason: SCP073 reverse injury
+# SCP-029 escape facility Hint
+s_c_p029_escape_hint: Successfully escape the facility and become Chaos to get a legacy of the Chaos Insurgency
+# SCP-703 escape facility Hint
+s_c_p703_escape_hint: Successfully escape the facility to become a Nine-Tailed Fox Containment Expert, and get 3x
+# Skynet Mobile Task Force Cassie Broadcast
+skynet_cassie: Mobile Task Force Kappa-10 and Mu-7 codenamed Skynet have entered the facility. They will help Dancer One contain SCP-079. It is recommended that all surviving personnel implement standard evacuation plans until the MTF team arrives at your location. There are currently %SCPNum% SCPs left
+# Skynet Mobile Task Force New Recruit Broadcast
+skynet_private_broadcast: <size=70><color=#0051FF>You are a Mobile Task Force-Skynet New Recruit</color></size>
+# Skynet Mobile Task Force New Recruit Custom Information
+skynet_private_custom_info: Skynet New Recruit
+# Skynet Mobile Task Force Sergeant Broadcast
+skynet_sergeant_broadcast: <size=70><color=#0051FF>You are a Sergeant of Mobile Task Force-Skynet</color></size>
+# Skynet Mobile Task Force Recruit Custom Info
 skynet_sergeant_custom_info: Skynet Sergeant
-# 天网机动特遣队指挥官广播
-skynet_captain_broadcast: <size=70><color=#0051FF>You are the commander of Mobile Task Force-Skynet</color></size>
-# 天网机动特遣队指挥官自定义信息
+# Skynet Mobile Task Force Commander Broadcast
+skynet_captain_broadcast: <size=70><color=#0051FF>You are a Commander of Mobile Task Force-Skynet</color></size>
+# Skynet Mobile Task Force Commander Custom Info
 skynet_captain_custom_info: Skynet Commander
-# 非礼勿视机动特遣队Cassie广播
-see_no_evil_cassie: Mobile Task Force Eta-10, codenamed See No Evil, has entered the facility. They will help contain SCP-096. It is recommended that all surviving personnel implement standard evacuation protocols until the MTF team arrives at your location. There are currently %SCPNum% SCPs left.
-# 非礼勿视机动特遣队技能描述
-see_no_evil_skill_introduction:
-- You are [Member of the Mobile Task Force No Evil], dare to stare at SCP096
-- He is <color=red>difficult</color> to kill you. You can just stare at him as long as he is not violent.
-# 非礼勿视机动特遣队新兵广播
-see_no_evil_private_broadcast: <size=70><color=#0051FF>You are Mobile Task Force-See No Evil Recruit</color></size>
-# 非礼勿视机动特遣队新兵自定义信息
-see_no_evil_private_custom_info: See no evil recruits
-# 非礼勿视机动特遣队中士广播
-see_no_evil_sergeant_broadcast: <size=70><color=#0051FF>Youre Mobile Task Force-See No Evil, Sgt.</color></size>
-# 非礼勿视机动特遣队新兵自定义信息
-see_no_evil_sergeant_custom_info: See no evil, Sergeant
-# 非礼勿视机动特遣队指挥官广播
-see_no_evil_captain_broadcast: <size=70><color=#0051FF>You are Mobile Task Force-See No Evil Commander</color></size>
-# 非礼勿视机动特遣队指挥官自定义信息
-see_no_evil_captain_custom_info: See no evil, Commander
-# 特殊角色被收容Cassie后缀
+# See No Evil Mobile Task Force Cassie Broadcast
+see_no_evil_cassie: Mobile Task Force Eta-10 codenamed See No Evil has entered the facility. They will help contain SCP-096. It is recommended that all surviving personnel follow the standard evacuation plan until the MTF team reaches your location. There are currently %SCPNum% SCPs left
+# See No Evil Mobile Task Force New Recruit Broadcast
+see_no_evil_private_broadcast: <size=70><color=#0051FF>You are a Mobile Task Force-See No Evil New Recruit</color></size>
+# See No Evil Mobile Task Force New Recruit Custom Information
+see_no_evil_private_custom_info: See No Evil New Recruit
+# See No Evil Mobile Task Force Sergeant Broadcast
+see_no_evil_sergeant_broadcast: <size=70><color=#0051FF>You are a Mobile Task Force-See No Evil Sergeant</color></size>
+# See No Evil Mobile Task Force New Recruit Custom Information
+see_no_evil_sergeant_custom_info: See No Evil Sergeant
+# See No Evil Mobile Task Force Commander Broadcast
+see_no_evil_captain_broadcast: <size=70><color=#0051FF>You are the commander of Mobile Task Force-See No Evil</color></size>
+# See No Evil Mobile Task Force commander custom information
+see_no_evil_captain_custom_info: See No Evil Commander
+# Special role contained Cassie suffix
 special_role_contain_cassie: Successfully eliminated, the specific reason is unknown
-# 混沌领导者名字
+# Chaos leader name
 chaos_leader_role_name: Chaos Leader
-# 混沌领导者刷新广播
-chaos_leader_spawn_broadcast: <size=80><color=#00ff00ff>You are the leader of the Chaos Insurgency</color></size>
-# 混沌领导者死亡Cassie
+# Chaos leader refresh broadcast
+chaos_leader_spawn_broadcast: <size=80><color=#00ff00ff>You are Chaos Insurgency leader</color></size>
+# Chaos leader dies Cassie
 chaos_leader_death_cassie: Chaos leader dies
-# SCP-2936-1刷新广播
-s_c_p29361_spawn_broadcast: <size=70>Who are you <color=red>SCP-2936-1 giant german robot</color></size>
-# SCP-2936-1技能介绍
-s_c_p29361_skill_introduction: Who are you [SCP-2936-1] You have a huge body and thick blood
-# SCP-073亚伯刷新广播
-s_c_p073_abel_spawn_broadcast: Who are you<color=green>SCP-073 Abel</color>
-# SCP-073亚伯技能介绍
-s_c_p073_abel_skill_introduction: Who are you[SCP-073] you will be passive<color=red>rebound</color>Partial damage to the enemy
-# SCP-073该隐刷新广播
-s_c_p073_cain_spawn_broadcast: Who are you<color=green>SCP-073 Cain</color>
-# SCP-073该隐技能介绍
-s_c_p073_cain_skill_introduction: Who are you [SCP-073] You have<color=red>unlimited</color>Self-healing ability, stop and take a rest
-# SCP-703刷新广播
-s_c_p703_spawn_broadcast: <size=80><color=#00ffffff>你是SCP-703</color></size>
-# SCP-703技能介绍
-s_c_p703_skill_introduction:
-- You are [SCP-703] and you will get random items every once in a while.
-- <color=red>%Time% </color> until the next time you get the item
-# SCP-703获得物品Hint提示
-s_c_p703_received_item_hint: get an item
-# SCP-029刷新广播
+# SCP-2936-1 refresh broadcast
+s_c_p29361_spawn_broadcast: <size=70>You are <color=red>SCP-2936-1 Giant German Robot</color></size>
+# SCP-073 Abel refresh broadcast
+s_c_p073_abel_spawn_broadcast: You are <color=green>SCP-073 Abel</color>
+# SCP-073 refresh broadcast
+s_c_p073_cain_spawn_broadcast: You are <color=green>SCP-073 Cain</color>
+# SCP-703 refresh broadcast
+s_c_p703_spawn_broadcast: <size=80><color=#00ffffff>You are SCP-703</color></size>
+# SCP-703 skill introduction
+s_c_p703_skill_introduction: <align=center><voffset=28em><size=70><color=#00ffffff>You will get a random item every once in a while</color></size></voffset></align>
+# SCP-703 received item Hint
+s_c_p703_received_item_hint: received an item
+# SCP-029 refresh broadcast
 s_c_p029_spawn_broadcast: <size=60><color=#ff0000ff>You are SCP-029 Daughter of Shadow</color></size>
-# SCP-029技能介绍
-s_c_p029_skill_introduction: you are[SCP-029] you have<color=red>unlimited</color>speed bonus
-# SCP-347刷新广播
-s_c_p347_spawn_broadcast: you are<color=red>SCP-347 invisible woman</color>
-# SCP-347技能介绍
-s_c_p347_skill_introduction:  you are [SCP-347] you<color=red>forever</color> Are invisible, but you dont move around
-# SCP-1093刷新广播
-s_c_p1093_spawn_broadcast: you are<color=yellow>SCP-1093 human lamp</color>
-# SCP-1093技能介绍
-s_c_p1093_skill_introduction:
-- You are [SCP-1093], which continuously illuminates a nearby 5-meter range and radiates people within a 1-meter nearby range.
-- Your head is nothing, no one can do any harm to your head
-# 警卫队长刷新广播
+# SCP-029 skill introduction
+s_c_p029_skill_introduction: <voffset=28em><size=40><color=#ff0000ff>Kill all your enemies</color></size></voffset>
+# SCP-347 refresh broadcast
+s_c_p347_spawn_broadcast: You are <color=red>SCP-347 Invisible Woman</color>
+# SCP-1093 refresh broadcast
+s_c_p1093_spawn_broadcast: You are <color=yellow>SCP-1093 Human Light</color>
+# SCP-1093 Skill Introduction
+s_c_p1093_skill_introduction: >-Continuously illuminates the surrounding 5 meters, and affects people within 1 meter of the surrounding area to receive radiation damage (1 health loss per second) Your head seems to be empty, so no one can hurt your head
+# Guard Captain refreshes broadcast
 guard_captain_spawn_broadcast: <size=60><color=#E5DADA>You are the security captain</color></size>
-# SCP-191刷新广播
-s_c_p191_spawn_broadcast: you become <color=red>SCP-191 Mechanical girl</color>
-# SCP-191技能介绍
-s_c_p191_skill_introduction:
-- You are [SCP-191] because of your body modifications
-- You are <color=red>very resistant</color> to everything except electromagnetic and explosive damage.
-- But don’t forget to go to the 079 containment room to recharge
-# SCP-191电量显示
-s_c_p191_battery_hint_show: <align=right><size=40><b>Your current remaining battery capacity:<color=yellow>%Battery%install</color></size></b></align>
-# SCP-191电量耗尽死亡原因
-s_c_p191_battery_depletion_death_reason: Battery exhausted
-# SCP-1056缩小仪拾取Hint
-s_c_p1056_pickup_hint: you picked it up<color=red>SCP-1056</color> reducer!
-# SCP-1056缩小仪使用Hint
-s_c_p1056_used_hint: boom!you become smaller!!!
-# SCP-1068无害核弹拾取Hint
-s_c_p1068_pickup_hint: you picked up<color=red>SCP-1068</color> harmless nuclear bomb!
-# SCP-1056无害核弹使用广播
-s_c_p1068_used_broadcast: Someone used it<color=red>SCP-1068</color> harmless nuclear bomb!
-# SCP-029特殊介绍
-s_c_p029_special_introduction: <color=red>SCP-029 Daughter of Shadow</color>
-# SCP-703特殊介绍
-s_c_p703_special_introduction: <color=blue>SCP-703 in the closet</color>
-# SCP-347特殊介绍
-s_c_p347_special_introduction: <color=red>SCP-347 invisible woman</color>
-# SCP-1093特殊介绍
-s_c_p1093_special_introduction: <color=yellow>SCP-1093 human lamp</color>
-# SCP-073亚伯特殊介绍
-s_c_p073_abel_special_introduction: <color=green>SCP-073 Abel</color>
-# SCP-073该隐特殊介绍
-s_c_p073_cain_special_introduction: <color=green>SCP-073 Cain</color>
-# SCP-191特殊介绍
-s_c_p191_special_introduction: <color=red>SCP-191 Mechanical girl</color>
-# SCP-2936特殊介绍
-s_c_p2936_special_introduction: <color=red>SCP-2936-1 giant german robot</color>
-# 天网机动特遣队特殊介绍
-skynet_special_introduction: <color=blue>Skynet Mobile Task Force</color>
-# 非礼勿视机动特遣队特殊介绍
-see_no_evil_special_introduction: <color=blue>Look No Evil Mobile Task Force</color>
+# SCP-191 refreshes broadcast
+s_c_p191_spawn_broadcast: You have become <color=red>SCP-191 Mechanical Girl</color>
+# SCP-191 Skill Introduction
+s_c_p191_skill_introduction: Because of your body modification, you are highly resistant to damage except electromagnetic and explosive
+# SCP-191 battery display
+s_c_p191_battery_hint_show: <align=right><size=60><b>Your current remaining battery: <color=yellow>%Battery%A</color></size></b></align>
+# SCP-1056 Miniaturizer Pickup Hint
+s_c_p1056_pickup_hint: You picked up the <color=red>SCP-1056</color> Miniaturizer!
+# SCP-1056 Miniaturizer Use Hint
+s_c_p1056_used_hint: boom! Youve become smaller!!!
+# SCP-1068 Harmless Nuclear Bomb Pickup Hint
+s_c_p1068_pickup_hint: You picked up the <color=red>SCP-1068</color> Harmless Nuclear Bomb!
+# SCP-1056 Harmless Nuclear Bomb Used Broadcast
+s_c_p1068_used_broadcast: Someone used the <color=red>SCP-1068</color> harmless nuclear bomb!
