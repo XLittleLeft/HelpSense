@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("HelpSense")]
-[assembly: AssemblyCopyright("Copyright © X小左(XLittleLeft) 2022-2024")]
+[assembly: AssemblyCopyright("Copyright © X小左 2022-2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 //可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值
 //通过使用 "*"，如下所示:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.3.6")]
-[assembly: AssemblyFileVersion("1.3.6")]
+[assembly: AssemblyVersion("1.3.7")]
+[assembly: AssemblyFileVersion("1.3.7")]

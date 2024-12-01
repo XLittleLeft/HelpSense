@@ -25,7 +25,7 @@ namespace HelpSense.MonoBehaviors
             _glowLight.transform.localScale = Vector3.zero;
             NetworkServer.Spawn(_glowLight.gameObject);
             _glowLight.NetworkLightColor = Color.red;
-            _glowLight.NetworkLightShadows = true;
+            //_glowLight.NetworkLightShadows = true;
             _glowLight.NetworkLightRange = 5f;
             _glowLight.NetworkLightIntensity = 1f;
         }

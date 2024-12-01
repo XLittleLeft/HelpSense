@@ -11,30 +11,45 @@ namespace HelpSense.Patches
     {
         public static bool Prefix(ref float __result, HealthStat __instance)
         {
-            Player player = Player.Get(__instance.Hub);
-
-            if (player.IsSCP && SCPHPChangeSystem.healthDict.TryGetValue(player.Role, out var health))
+            if (SCPHPChangeSystem.healthDict.TryGetValue(Player.Get(__instance.Hub).Role, out var health))
             {
                 __result = health;
                 return false;
             }
-
-            if (!player.IsSpecialPlayer())
+            if (!Player.Get(__instance.Hub).IsSpecialPlayer())
             {
                 return true;
             }
-
-            __result = player.RoleName switch
+            if (Player.Get(__instance.Hub).RoleName == "SCP-029")
             {
-                "SCP-029" => 120,
-                "SCP-703" => 120,
-                "SCP-191" => 120,
-                "SCP-073" => 120,
-                "SCP-2936-1" => 300,
-                "混沌领导者" => 150,
-                _ => 100
-            };
-
+                __result = 120;
+                return false;
+            }
+            if (Player.Get(__instance.Hub).RoleName == "SCP-703")
+            {
+                __result = 120;
+                return false;
+            }
+            if (Player.Get(__instance.Hub).RoleName == "SCP-191")
+            {
+                __result = 120;
+                return false;
+            }
+            if (Player.Get(__instance.Hub).RoleName == "SCP-073")
+            {
+                __result = 120;
+                return false;
+            }
+            if (Player.Get(__instance.Hub).RoleName == "SCP-2936-1")
+            {
+                __result = 300;
+                return false;
+            }
+            if (Player.Get(__instance.Hub).RoleName == Plugin.Instance.TranslateConfig.ChaosLeaderRoleName)
+            {
+                __result = 150;
+                return false;
+            }
             return false;
         }
     }
