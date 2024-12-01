@@ -15,7 +15,8 @@ namespace HelpSense.Helper.Misc
 {
     public class RespawnHelper
     {
-        public static IEnumerator<float> TimerCoroutine()
+        //TODO:Respawn
+        /*public static IEnumerator<float> TimerCoroutine()
         {
             do
             {
@@ -39,6 +40,6 @@ namespace HelpSense.Helper.Misc
         public static void ShowHint(Player player, string message, float duration = 3f)
         {
             player.ReceiveHint(message, duration);//Use compatibility adapter
-        }
+        }*/
     }
 }
