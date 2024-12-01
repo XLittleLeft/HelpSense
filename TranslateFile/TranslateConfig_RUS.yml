@@ -1,120 +1,204 @@
-# Приветственное сообщение, когда игрок заходит на сервер
-Welcome_message: Добро пожаловать, %playername%~
-# Сообщение о конце раунда
-round_end_info: Раунд окончен! Не уходи, увидимся в следующей игре ヾ(￣▽￣)~
-# Сообщение, которое игроки получат, когда включен урон по союзникам
-f_f_message: <align=center><voffset=28em> <color=#F6511D> ~Урон по союзникам включен~ </color></voffset></align>
-# Текст трансляции сервера
-auto_server_message_text: трансляция сервера
-# Текст вывода монитора администратора
-admin_log: '%Nickname% в %Time% | Используемая команда: %Command% | Steam64ID:%UserId%'
-# Администратор отслеживает трансляцию команд
-admin_log_broadcast: '<size=30>[<color=red>Выходная запись мониторинга поведения управления</color>] <%Nickname%> только что использовал команду: %Command%</size>'
-# Показать, сколько времени осталось до запуска и состояния сервера
-title_text: <size=50><color=#F0FF00><b>Ожидание запуска, {секунды</b></color></size>
-# Текст, отображающий количество игроков
-player_count_text: <size=40><color=#FFA600><i>{игроки</i></color></size>
-# Сообщение отображается, если лобби заблокировано
-server_pause_text: Сервер приостановлен.
-#Сообщение во второй строке
-Second_left_text: осталось {секунды}
-#Несколько строк сообщений
-секунды_left_text: осталось {секунды}
-# Сообщение, отображаемое при начале раунда
-round_start_text: начало раунда
-# Сообщение, отображаемое, когда сервер присоединяется к игроку
-player_join_text: Игрок присоединяется
-# Сообщение, отображаемое, когда к серверу присоединяются несколько игроков
-player_join_text: игроки присоединяются
-# Объявление отображается, когда охранники бунтуют
-Guard_mutiny_broadcast: <size=60><color=#ff0000ff>[Внимание]</color>Повстанцы Хаоса переманили охрану на свою сторону</size>
-# Объявления, отображаемые охранниками элитных команд
-Elite_guard_broadcast: <size=60><color=#00ffffff>[Примечание]</color>Охранники этой зоны являются элитными членами Девятихвостой Лисы, качество безопасности значительно повысилось</size>
-# Название списка наблюдения
-watch_list_title: <align=right><size=45%><color=(COLOR)><b>Наблюдатель ((COUNT)):</b></color></size></align>
-# Формат списка наблюдения
-имена: <align=right><size=45%><color=(COLOR)><br>(NAME)</color></size></align>
-Напоминание #DNT
-d_n_t_warning: У вас включен DNT, отключите его, иначе некоторые плагины не будут работать должным образом.
-# Причина обратного повреждения SCP-073
-s_c_p073_damage_reason: Поврежден SCP073
-# SCP-029Спасательный пунктПодсказка
-s_c_p029_escape_hint: Покиньте данную зону, станьте Членом повстанцеского движения и получите наследие от Повстанцев Хаоса.
-#SCP-703Средство для эвакуацииПодсказка
-s_c_p703_escape_hint: Покиньте данную зону и станьте экспертом по сдерживанию в составе МОГ Эпсилон-11 [девятихвостая лиса], получите 3x
-# Мобильная оперативная группа Skynet Кэсси Трансляция
-skynet_cassie: Мобильные оперативные группы Каппа-10 и Мю-7 под кодовым названием Скайнет вошли в объект. Они помогут сдержать SCP-079. Всем выжившим сотрудникам рекомендуется следовать стандартным протоколам эвакуации до прибытия команды МОГ. На данный момент осталось %SCPNum% SCP
-# Трансляция набора мобильной оперативной группы Skynet
-skynet_private_broadcast: <size=70><color=#0051FF>Вы - новобранец Мобильной оперативной группы Скайнета</color></size>
-# Мобильная оперативная группа Skynet вербует специальную информацию
-skynet_private_custom_info: Рекрут Скайнета
-# Трансляция мобильной оперативной группы Skynet, сержант.
-skynet_sergeant_broadcast: <size=70><color=#0051FF>Вы - сержант мобильной оперативной группы Скайнета</color></size>
-# Мобильная оперативная группа Skynet вербует специальную информацию
-skynet_sergeant_custom_info: Сержант Скайнета
-# Трансляция командира мобильной оперативной группы Skynet
-skynet_captain_broadcast: <size=70><color=#0051FF>Вы - командир Мобильной оперативной группы Скайнет</color></size>
-# Командир мобильной оперативной группы Skynet Пользовательская информация
-skynet_captain_custom_info: Командир Скайнета
-#See No Evil Мобильная оперативная группа Кэсси Трансляция
-See_no_evil_cassie: Мобильная оперативная группа Эта-10 под кодовым названием «Не вижу зла» вошла в объект. Они помогут сдержать SCP-096. Рекомендуется, чтобы весь выживший персонал выполнил стандартные протоколы эвакуации, пока к вам не прибудет команда МОГ. % SCP осталось.
-Трансляция набора мобильной оперативной группы #Look No Evil
-see_no_evil_private_broadcast: <size=70><color=#0051FF>Вы — мобильная оперативная группа — Эта-10 [Не вижу зла]</color></size>
-# Не вижу зла Мобильная оперативная группа набирает пользовательскую информацию
-see_no_evil_private_custom_info: Не вижу зла
-Трансляция #Look No Evil от мобильной оперативной группы Sgt.
-see_no_evil_sergeant_broadcast: <size=70><color=#0051FF>Вы — сержант мобильной оперативной группы — Эта-10 [Не вижу зла]</color></size>
-# Не вижу зла Мобильная оперативная группа набирает пользовательскую информацию
-see_no_evil_sergeant_custom_info: Не вижу зла
-#Look No Evil Трансляция командира мобильной оперативной группы
-See_no_evil_captain_broadcast: <size=70><color=#0051FF>Вы — командир мобильной оперативной группы — Эта-10 [Не вижу зла]</color></size>
-# Не вижу зла пользовательское сообщение Mobile Task Force Commander
-See_no_evil_captain_custom_info: Не вижу зла, командир
-#Специальные символы содержат суффикс Кэсси
-Special_role_contain_cassie: Успешно устранен, причина [УДАЛЕНО].
-#Имя лидера Хаоса
+# 当玩家进入服务器的欢迎消息
+welcome_message: Добро пожаловать %playername%~
+# 回合结束消息
+round_end_info: Раунд завершен! Не уходите, увидимся в следующем матчеヾ(￣▽￣)~
+# 友伤开启时玩家将收到的消息
+f_f_message: <align=center><voffset=28em> <color=#F6511D> ~Дружеский урон включен~ </color></voffset></align>
+# 服务器广播文本
+auto_server_message_text: Серверное объявление
+# 聊天中消息列表的标题
+chat_message_title: 'Список сообщений:'
+# 聊天中每种消息的名字
+message_type_name:
+  AdminPrivateChat: Личный чат админа
+  BroadcastChat: Общественное сообщение
+  TeamChat: Сообщение от товарища
+# 聊天系统自定义玩家角色名称
+chat_system_role_translation:
+  ClassD: Класс D
+  FacilityGuard: Охранник
+  ChaosConscript: Хаосный призывник
+  ChaosMarauder: Хаосный грабитель
+  ChaosRepressor: Хаосный подавитель
+  ChaosRifleman: Хаосный стрелок
+  NtfCaptain: Командир
+  NtfPrivate: Рядовой
+  NtfSergeant: Сержант
+  NtfSpecialist: Специалист по удержанию
+  Scientist: Учёный
+  Tutorial: Учебный персонаж
+  Scp096: SCP-096
+  Scp049: SCP-049
+  Scp173: SCP-173
+  Scp939: SCP-939
+  Scp079: SCP-079
+  Scp0492: SCP-049-2
+  Scp106: SCP-106
+  Scp3114: SCP-3114
+  Spectator: Наблюдатель
+  Overwatch: Надзор
+  Filmmaker: Режиссёр
+# 聊天系统自定义玩家团队名称
+chat_system_team_translation:
+  Dead: Мёртвая фракция
+  ClassD: Фракция DD
+  OtherAlive: Таинственная фракция
+  Scientists: Фракция учёных
+  SCPs: Фракция SCP
+  ChaosInsurgency: Хаосная фракция
+  FoundationForces: Фракция
+# 管理员监察输出文本
+admin_log: '%Nickname% в %Time% использовал команду:%Command% | Steam64ID:%UserId%'
+# 管理员监察指令广播
+admin_log_broadcast: '<size=30>[<color=red>Запись административного действия</color>] <%Nickname%> только что использовал команду: %Command%</size>'
+# 显示距离启动还剩多少时间和服务器状态
+title_text: <size=50><color=#F0FF00><b>Ожидание игроков, {seconds}</b></color></size>
+# 显示玩家数量的文本
+player_count_text: <size=40><color=#FFA600><i>{players}</i></color></size>
+# 如果大厅被锁定显示的消息
+server_pause_text: Сервер приостановлен
+# 第二行的消息
+second_left_text: Осталось {seconds}
+# 多行的消息
+seconds_left_text: Осталось {seconds}
+# 回合开始时显示的消息
+round_start_text: Раунд начался
+# 当服务器当玩家加入时显示的消息
+player_join_text: Игрок присоединился
+# 当服务器上有多个玩家加入时显示的消息
+players_join_text: Игроки присоединились
+# 警卫叛变显示的公告
+guard_mutiny_broadcast: <size=60><color=#ff0000ff>[Внимание]</color> Охрана объекта была подкуплена хаосными повстанцами</size>
+# 警卫为精英队显示的公告
+elite_guard_broadcast: <size=60><color=#00ffffff>[Уведомление]</color> Охранник объекта является членом элитного отряда 九尾狐, силы охраны значительно увеличены</size>
+# 观战列表标题
+watch_list_title: <align=right><size=45%><color=(COLOR)><b>Наблюдатели ((COUNT)):</b></color></size></align>
+# 观战列表格式
+names: <align=right><size=45%><color=(COLOR)><br>(NAME)</color></size></align>
+# DNT提醒
+d_n_t_warning: Вы включили DNT, пожалуйста, отключите его, иначе некоторые плагины могут не работать должным образом
+# SCP-073反伤原因
+s_c_p073_damage_reason: Ответный удар от SCP-073
+# SCP-029逃离设施Hint
+s_c_p029_escape_hint: Успешный побег из объекта превращает вас в хаос и даёт наследие хаосных повстанцев
+# SCP-703逃离设施Hint
+s_c_p703_escape_hint: Успешный побег из объекта превращает вас в специалиста по удержанию девяти хвостов, получаете 3x
+# 天网机动特遣队Cassie广播
+skynet_cassie: Мобильная оперативная группа Kappa-10 и Mu-7, кодовое название Техноград, вошли в объект, они помогут захватить SCP-079 с помощью Первого танцора, рекомендуется всем выжившим выполнить стандартный план эвакуации до прибытия МТО, осталось %SCPNum% SCP
+# 天网机动特遣队技能描述
+skynet_skill_introduction:
+- Вы [Член мобильной группы Техноград] Берегите свой светильник
+- Ваш генератор <color=red>скоро активируется</color>
+# 天网机动特遣队新兵广播
+skynet_private_broadcast: <size=70><color=#0051FF>Вы новобранец мобильной группы Техноград</color></size>
+# 天网机动特遣队新兵自定义信息
+skynet_private_custom_info: Техноград Новобранец
+# 天网机动特遣队中士广播
+skynet_sergeant_broadcast: <size=70><color=#0051FF>Вы сержант мобильной группы Техноград</color></size>
+# 天网机动特遣队中士自定义信息
+skynet_sergeant_custom_info: Техноград Сержант
+# 天网机动特遣队指挥官广播
+skynet_captain_broadcast: <size=70><color=#0051FF>Вы командир мобильной группы Техноград</color></size>
+# 天网机动特遣队指挥官自定义信息
+skynet_captain_custom_info: Техноград Командир
+# 非礼勿视机动特遣队Cassie广播
+see_no_evil_cassie: Мобильная оперативная группа Eta-10, кодовое название Не смотри, вошла в объект, они помогут захватить SCP-096, рекомендуется всем выжившим выполнить стандартный план эвакуации до прибытия МТО, осталось %SCPNum% SCP
+# 非礼勿视机动特遣队技能描述
+see_no_evil_skill_introduction:
+- Вы [Член мобильной группы Не смотри] Не бойтесь смотреть на SCP-096
+- Он <color=red>сложно</color> убить, пока он не разозлится, вы можете смело на него смотреть
+# 非礼勿视机动特遣队新兵广播
+see_no_evil_private_broadcast: <size=70><color=#0051FF>Вы новобранец мобильной специальной группы - Не смотри на непристойности</color></size>
+# 非礼勿视机动特遣队新兵自定义信息
+see_no_evil_private_custom_info: Не смотри на непристойности Новобранец
+# 非礼勿视机动特遣队中士广播
+see_no_evil_sergeant_broadcast: <size=70><color=#0051FF>Вы сержант мобильной специальной группы - Не смотри на непристойности</color></size>
+# 非礼勿视机动特遣队新兵自定义信息
+see_no_evil_sergeant_custom_info: Не смотри на непристойности Сержант
+# 非礼勿视机动特遣队指挥官广播
+see_no_evil_captain_broadcast: <size=70><color=#0051FF>Вы командир мобильной специальной группы - Не смотри на непристойности</color></size>
+# 非礼勿视机动特遣队指挥官自定义信息
+see_no_evil_captain_custom_info: Не смотри на непристойности Командир
+# 特殊角色被收容Cassie后缀
+special_role_contain_cassie: Уничтожен, конкретная причина неизвестна
+# 混沌领导者名字
 chaos_leader_role_name: Лидер Хаоса
-Обновление трансляции #Лидера Хаоса
-chaos_leader_spawn_broadcast: <size=80><color=#00ff00ff>Вы лидер Повстанцев Хаоса</color></size>
-#ХаосЛидерСмертьКэсси
-chaos_leader_death_cassie: Лидер Хаоса умирает
-# Обновление трансляции SCP-2936-1
-s_c_p29361_spawn_broadcast: <size=70>Вы <color=red>SCP-2936-1 гигантский немецкий робот</color></size>
-# SCP-073 Обновление трансляции Абеля
-s_c_p073_abel_spawn_broadcast: Вы <color=green>SCP-073 Авель</color>
-# SCP-073 Обновление трансляции
+# 混沌领导者刷新广播
+chaos_leader_spawn_broadcast: <size=80><color=#00ff00ff>Вы лидер Состояния Хаоса</color></size>
+# 混沌领导者死亡Cassie
+chaos_leader_death_cassie: Лидер Хаоса мертв
+# SCP-2936-1刷新广播
+s_c_p29361_spawn_broadcast: <size=70>Вы <color=red>SCP-2936-1 Гигантский немецкий робот</color></size>
+# SCP-2936-1技能介绍
+s_c_p29361_skill_introduction: Вы [SCP-2936-1] Вы обладаете огромным телом и большой жизненной силой
+# SCP-073亚伯刷新广播
+s_c_p073_abel_spawn_broadcast: Вы <color=green>SCP-073 Абек</color>
+# SCP-073亚伯技能介绍
+s_c_p073_abel_skill_introduction: Вы [SCP-073] Вы будете пассивно <color=red>отражать</color> часть урона на врагов
+# SCP-073该隐刷新广播
 s_c_p073_cain_spawn_broadcast: Вы <color=green>SCP-073 Каин</color>
-# SCP-703 Обновление трансляции
+# SCP-073该隐技能介绍
+s_c_p073_cain_skill_introduction: Вы [SCP-073] У вас есть <color=red>бесс有限ная</color> способность к самовосстановлению, отдохните немного
+# SCP-703刷新广播
 s_c_p703_spawn_broadcast: <size=80><color=#00ffffff>Вы SCP-703</color></size>
-#SCP-703 Знакомство с навыками
-s_c_p703_skill_introduction: <align=center><voffset=28em><size=70><color=#00ffffff>Вы будете получать случайные предметы каждый раз</color></size></voffset></align>
-# SCP-703 Получить предмет. Подсказка.
-s_c_p703_received_item_hint: Получен предмет
-# SCP-029 Обновление трансляции
-s_c_p029_spawn_broadcast: <size=60><color=#ff0000ff>Вы SCP-029 «Дочь Тени»</color></size>
-#SCP-029 Введение в навыки
-s_c_p029_skill_introduction: <voffset=28em><size=40><color=#ff0000ff>Убейте всех, к кому вы враждебны</color></size></voffset>
-# SCP-347 Обновление трансляции
-s_c_p347_spawn_broadcast: Вы <color=red>Женщина-невидимка SCP-347</color>
-# SCP-1093 Обновление трансляции
-s_c_p1093_spawn_broadcast: Вы <color=yellow>Отродье SCP-1093</color>
-#SCP-1093 Введение в навыки
-s_c_p1093_skill_introduction: >-
- Вы постоянно освещаете территорию в радиусе 5 метров и воздействуете на людей в радиусе 1 метра, получая радиационный урон (вычитается 1 HP в секунду).
- Твоя голова кажется ничем, поэтому никто не сможет нанести тебе повреждения.
-# Капитан стражи обновляет трансляцию
-Guard_captain_spawn_broadcast: <size=60><color=#E5DADA>Вы капитан службы безопасности</color></size>
-# SCP-191 Обновление трансляции
-s_c_p191_spawn_broadcast: Вы стали <color=red>SCP-191 Механической девушкой</color>
-#SCP-191 Знакомство с навыками
-s_c_p191_skill_introduction: Благодаря модификациям вашего тела вы обладаете высокой устойчивостью к другим повреждениям, кроме электромагнитных и взрывных.
-# Дисплей силы SCP-191.
-s_c_p191_battery_hint_show: <align=right><size=60><b>Текущая оставшаяся емкость аккумулятора: <color=yellow>%Battery%An</color></size></b></align>
-# Устройство уменьшения SCP-1056 улавливает подсказку.
-s_c_p1056_pickup_hint: Вы взяли редуктор <color=red>SCP-1056</color>!
-# Устройство уменьшения SCP-1056 с использованием подсказки.
-s_c_p1056_used_hint: бум, ты становишься меньше!!!
-#SCP-1068 Подсказка по сбору безобидной ядерной бомбы
-s_c_p1068_pickup_hint: Вы взяли в руки безвредную ядерную бомбу <color=red>SCP-1068</color>!
-# SCP-1056 Трансляция использования безвредной ядерной бомбы
-s_c_p1068_used_broadcast: Кто-то использовал <color=red>SCP-1068</color> безвредную ядерную бомбу!
+# SCP-703技能介绍
+s_c_p703_skill_introduction:
+- Вы [SCP-703] Каждые некоторые промежутки времени вы будете получать случайные предметы
+- До следующего получения предмета <color=red>%Time%</color>
+# SCP-703获得物品Hint提示
+s_c_p703_received_item_hint: Получен один предмет
+# SCP-029刷新广播
+s_c_p029_spawn_broadcast: <size=60><color=#ff0000ff>Вы SCP-029 "Дочь теней"</color></size>
+# SCP-029技能介绍
+s_c_p029_skill_introduction: Вы [SCP-029] Вы обладаете <color=red>бесс有限ной</color> скоростью
+# SCP-347刷新广播
+s_c_p347_spawn_broadcast: Вы <color=red>SCP-347 Невидимая женщина</color>
+# SCP-347技能介绍
+s_c_p347_skill_introduction: Вы [SCP-347] Вы <color=red>всегда</color> невидимы, но не двигайтесь
+# SCP-1093刷新广播
+s_c_p1093_spawn_broadcast: Вы <color=yellow>SCP-1093 Человек-лампа</color>
+# SCP-1093技能介绍
+s_c_p1093_skill_introduction:
+- Вы [SCP-1093] Постоянно освещаете область в радиусе 5 метров и излучаете свет в пределах 1 метра от вас
+- Ваша голова является пустотой, любой урон по вашей голове не наносит урона
+# 警卫队长刷新广播
+guard_captain_spawn_broadcast: <size=60><color=#E5DADA>Вы капитан охраны</color></size>
+# SCP-191刷新广播
+s_c_p191_spawn_broadcast: Вы стали <color=red>SCP-191 Механической девочкой</color>
+# SCP-191技能介绍
+s_c_p191_skill_introduction:
+- Вы [SCP-191] Из-за модификаций вашего тела
+- У вас высокая <color=red>сопротивляемость</color> к урону, кроме электромагнитного и взрывного
+- Но не забудьте зарядить себя в контейнере 079
+# SCP-191电量显示
+s_c_p191_battery_hint_show: <align=right><size=40><b>Ваш текущий уровень заряда: <color=yellow>%Battery% ампер</color></size></b></align>
+# SCP-191电量耗尽死亡原因
+s_c_p191_battery_depletion_death_reason: Разрядка батареи
+# SCP-1056缩小仪拾取Hint
+s_c_p1056_pickup_hint: Вы подобрали <color=red>SCP-1056</color> Устройство уменьшения!
+# SCP-1056缩小仪使用Hint
+s_c_p1056_used_hint: бум! Вы уменьшились!!!
+# SCP-1068无害核弹拾取Hint
+s_c_p1068_pickup_hint: Вы подобрали <color=red>SCP-1068</color> Безвредную ядерную бомбу!
+# SCP-1056无害核弹使用广播
+s_c_p1068_used_broadcast: Кто-то использовал <color=red>SCP-1068</color> Безвредную ядерную бомбу!
+# SCP-029特殊介绍
+s_c_p029_special_introduction: <color=red>SCP-029 Дочь теней</color>
+# SCP-703特殊介绍
+s_c_p703_special_introduction: <color=blue>SCP-703 Среди шкафов</color>
+# SCP-347特殊介绍
+s_c_p347_special_introduction: <color=red>SCP-347 Невидимая женщина</color>
+# SCP-1093特殊介绍
+s_c_p1093_special_introduction: <color=yellow>SCP-1093 Человек-лампа</color>
+# SCP-073亚伯特殊介绍
+s_c_p073_abel_special_introduction: <color=green>SCP-073 Абек</color>
+# SCP-073该隐特殊介绍
+s_c_p073_cain_special_introduction: <color=green>SCP-073 Каин</color>
+# SCP-191特殊介绍
+s_c_p191_special_introduction: <color=red>SCP-191 Механическая девочка</color>
+# SCP-2936特殊介绍
+s_c_p2936_special_introduction: <color=red>SCP-2936-1 Гигантский немецкий робот</color>
+# 天网机动特遣队特殊介绍
+skynet_special_introduction: <color=blue>Скайнет Мобильная специальная группа</color>
+# 非礼勿视机动特遣队特殊介绍
+see_no_evil_special_introduction: <color=blue>Не смотри на непристойности Мобильная специальная группа</color>

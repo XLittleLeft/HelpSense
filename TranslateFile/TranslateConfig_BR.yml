@@ -1,0 +1,204 @@
+# 当玩家进入服务器的欢迎消息
+welcome_message: bem-vindo, %playername%~
+# 回合结束消息
+round_end_info: A partida acabou! Não saiam ainda. Até a próxima partidaヾ(￣▽￣)~
+# 友伤开启时玩家将收到的消息
+f_f_message: <align=center><voffset=28em> <color=#F6511D> ~Dano aos aliados está ativado~ </color></voffset></align>
+# 服务器广播文本
+auto_server_message_text: aviso do servidor
+# 聊天中消息列表的标题
+chat_message_title: 'Lista de mensagem:'
+# 聊天中每种消息的名字
+message_type_name:
+  AdminPrivateChat: Gerenciar bate-papos privados
+  BroadcastChat: notícias públicas
+  TeamChat: notícias de aliados.
+# 聊天系统自定义玩家角色名称
+chat_system_role_translation:
+  ClassD: Prisioneiro Classe-D
+  FacilityGuard: Guarda de Segurança
+  ChaosConscript: Recruta do Caos
+  ChaosMarauder: Saqueador do Caos
+  ChaosRepressor: Repressor do Caos
+  ChaosRifleman: Fuzileiro do Caos
+  NtfCaptain: Capitão da Nine-Tailed Fox
+  NtfPrivate: Cabo da Nine-Tailed Fox
+  NtfSergeant: Sargento da Nine-Tailed Fox
+  NtfSpecialist: Especialista de Contenção da Nine-Tailed Fox
+  Scientist: Cientista
+  Tutorial: Tutorial
+  Scp096: Scp-096
+  Scp049: SCP-049
+  Scp173: SCP-173
+  Scp939: SCP-939
+  Scp079: SCP-079
+  Scp0492: SCP-049-2
+  Scp106: SCP-106
+  Scp3114: SCP-3114
+  Spectator: espectador
+  Overwatch: supervisor
+  Filmmaker: cineasta
+# 聊天系统自定义玩家团队名称
+chat_system_team_translation:
+  Dead: campo da morte
+  ClassD: campo dos Classe-Ds
+  OtherAlive: campo misterioso
+  Scientists: campo dos Cientistas
+  SCPs: campo dos SCPs
+  ChaosInsurgency: campo do Caos
+  FoundationForces: campo da Nine-Tailed Fox
+# 管理员监察输出文本
+admin_log: '%Nickname% existe %Time% quando | Usou o comando:%Command% | Steam64ID:%UserId%'
+# 管理员监察指令广播
+admin_log_broadcast: '<size=30>[<color=red>Registro de saída de monitoramento do comportamento de gerenciamento</color>] <%Nickname%> Acabou de usar o comando: %Command%</size>'
+# 显示距离启动还剩多少时间和服务器状态
+title_text: <size=50><color=#F0FF00><b>Esperando por jogador, {seconds}</b></color></size>
+# 显示玩家数量的文本
+player_count_text: <size=40><color=#FFA600><i>{players}</i></color></size>
+# 如果大厅被锁定显示的消息
+server_pause_text: Servidor está pausado
+# 第二行的消息
+second_left_text: {seconds} restantes
+# 多行的消息
+seconds_left_text: {seconds} restantes
+# 回合开始时显示的消息
+round_start_text: Partida começa
+# 当服务器当玩家加入时显示的消息
+player_join_text: Jogadores entram
+# 当服务器上有多个玩家加入时显示的消息
+players_join_text: jogadores entraram
+# 警卫叛变显示的公告
+guard_mutiny_broadcast: <size=60><color=#ff0000ff>[warn]</color>Os guardas nessa instalação se voltaram contra a Insurgência do Caos.</size>
+# 警卫为精英队显示的公告
+elite_guard_broadcast: <size=60><color=#00ffffff>[notify]</color>Os guardas dessa instalação são membros elite da Nine-Tailed Fox. A força da segurança aumentou consideravelmente.</size>
+# 观战列表标题
+watch_list_title: <align=right><size=45%><color=(COLOR)><b>espectador ((COUNT)):</b></color></size></align>
+# 观战列表格式
+names: <align=right><size=45%><color=(COLOR)><br>(NAME)</color></size></align>
+# DNT提醒
+d_n_t_warning: Você ativou o DNT, por favor desative-o. Caso contrário, alguns plug-ins não irão funcionar adequadamente
+# SCP-073反伤原因
+s_c_p073_damage_reason: Contra-ataque do SCP073
+# SCP-029逃离设施Hint
+s_c_p029_escape_hint: Escape da instalação com sucesso e vire Caos para receber um legado da Insurgência do Caos.
+# SCP-703逃离设施Hint
+s_c_p703_escape_hint: Escapou com sucesso da instalação e se tornou um especialista de contenção da Nine-Tailed Fox, obtém 3 vezes
+# 天网机动特遣队Cassie广播
+skynet_cassie: Forças-Tarefa Móveis Kappa-10 e Mu-7, com o codinome Skynet, entraram na instalação. Elas ajudarão a Dancer One a conter o SCP-079. Todo pessoal que sobreviver é aconselhado a seguir os protocolos padrões de evacuação até que a equipe de FTM chegue em sua localização. Atualmente, ainda há %SCPNum% SCPs
+# 天网机动特遣队技能描述
+skynet_skill_introduction:
+- Você é [membro da Força-Tarefa Móvel Skynet] Aprecie a lanterna fantasma em sua mão
+- O gerador que você ligou irá <color=red>ativar em breve</color>
+# 天网机动特遣队新兵广播
+skynet_private_broadcast: <size=70><color=#0051FF>Você é um recruta da Força-Tarefa Móvel Skynet.</color></size>
+# 天网机动特遣队新兵自定义信息
+skynet_private_custom_info: recrutas da Skynet
+# 天网机动特遣队中士广播
+skynet_sergeant_broadcast: <size=70><color=#0051FF>Você é um Sargento da Força-Tarefa Móvel Skynet.</color></size>
+# 天网机动特遣队新兵自定义信息
+skynet_sergeant_custom_info: Sargento da Skynet
+# 天网机动特遣队指挥官广播
+skynet_captain_broadcast: <size=70><color=#0051FF>Você é o capitão da Força-Tarefa Móvel Skynet.</color></size>
+# 天网机动特遣队指挥官自定义信息
+skynet_captain_custom_info: Capitão da Skynet
+# 非礼勿视机动特遣队Cassie广播
+see_no_evil_cassie: Força-Tarefa Móvel Eta-10, com o codinome Não Vê Mal, entrou na instalação. Ela ajudará a conter o SCP-096. É recomendado que todo pessoal sobrevivente implemente os protocolos padrões de evacuação até que a equipe de FTM chegue em sua localização. Atualmente, há %SCPNum% SCPs restando.
+# 非礼勿视机动特遣队技能描述
+see_no_evil_skill_introduction:
+- Você é [Membro da Força-Tarefa Móvel Não Vê Mal], se atreva a observar o SCP096
+- É <color=red>difícil</color> para ele matar você. Você pode observá-lo desde que ele não esteja violento.
+# 非礼勿视机动特遣队新兵广播
+see_no_evil_private_broadcast: <size=70><color=#0051FF>Você é Recruta da Força-Tarefa Móvel Não Vê Mal.</color></size>
+# 非礼勿视机动特遣队新兵自定义信息
+see_no_evil_private_custom_info: recrutas da Não Vê Mal
+# 非礼勿视机动特遣队中士广播
+see_no_evil_sergeant_broadcast: <size=70><color=#0051FF>Você é Sargento da Força-Tarefa Móvel Não Vê Mal.</color></size>
+# 非礼勿视机动特遣队新兵自定义信息
+see_no_evil_sergeant_custom_info: Sargento da Não Vê Mal
+# 非礼勿视机动特遣队指挥官广播
+see_no_evil_captain_broadcast: <size=70><color=#0051FF>Você é Capitão da Força-Tarefa Móvel Não Vê Mal.</color></size>
+# 非礼勿视机动特遣队指挥官自定义信息
+see_no_evil_captain_custom_info: Capitão da Não Vê Mal
+# 特殊角色被收容Cassie后缀
+special_role_contain_cassie: Eliminado com sucesso, a razão específica é desconhecida
+# 混沌领导者名字
+chaos_leader_role_name: Líder do Caos
+# 混沌领导者刷新广播
+chaos_leader_spawn_broadcast: <size=80><color=#00ff00ff>Você é o líder da Insurgência do Caos</color></size>
+# 混沌领导者死亡Cassie
+chaos_leader_death_cassie: Líder do Caos morreu
+# SCP-2936-1刷新广播
+s_c_p29361_spawn_broadcast: <size=70>Quem você é <color=red>Robô alemão gigante, SCP-2936-1</color></size>
+# SCP-2936-1技能介绍
+s_c_p29361_skill_introduction: Quem você é [SCP-2936-1] Você tem um corpo enorme e sangue espesso
+# SCP-073亚伯刷新广播
+s_c_p073_abel_spawn_broadcast: Quem você é <color=green>Abel, SCP-073</color>
+# SCP-073亚伯技能介绍
+s_c_p073_abel_skill_introduction: Quem você é [SCP-073] você estará <color=red>rebatendo</color> passivamente uma parte do dano ao inimigo
+# SCP-073该隐刷新广播
+s_c_p073_cain_spawn_broadcast: Quem você é <color=green>Cain, SCP-073</color>
+# SCP-073该隐技能介绍
+s_c_p073_cain_skill_introduction: Quem você é [SCP-073] Você tem uma habilidade de auto-cura <color=red>ilimitada</color>, pare e descanse
+# SCP-703刷新广播
+s_c_p703_spawn_broadcast: <size=80><color=#00ffffff>Você é SCP-703</color></size>
+# SCP-703技能介绍
+s_c_p703_skill_introduction:
+- Você é [SCP-703] e receberá itens aleatórios de vez em quando.
+- <color=red>%Time% </color> até a próxima vez que você receberá o item
+# SCP-703获得物品Hint提示
+s_c_p703_received_item_hint: recebeu um item
+# SCP-029刷新广播
+s_c_p029_spawn_broadcast: <size=60><color=#ff0000ff>Você é a SCP-029, Filha das Sombras</color></size>
+# SCP-029技能介绍
+s_c_p029_skill_introduction: Você é a [SCP-029], você tem um bônus de velocidade <color=red>ilimitado</color>
+# SCP-347刷新广播
+s_c_p347_spawn_broadcast: Você é a <color=red> SCP-347, Mulher Invisível</color>
+# SCP-347技能介绍
+s_c_p347_skill_introduction:  Você é a [SCP-347], você é invisível <color=red>sempre</color>, mas não se movimenta
+# SCP-1093刷新广播
+s_c_p1093_spawn_broadcast: Você é o <color=yellow>SCP-1093, Lâmpada Humana</color>
+# SCP-1093技能介绍
+s_c_p1093_skill_introduction:
+- Você é o [SCP-1093], que ilumina continuamente uma área próxima de 5 metros e irradia pessoas dentro de um alcance próximo de 1 metro.
+- Sua cabeça é nada, ninguém pode ferir sua cabeça
+# 警卫队长刷新广播
+guard_captain_spawn_broadcast: <size=60><color=#E5DADA>Você é o capitão de segurança</color></size>
+# SCP-191刷新广播
+s_c_p191_spawn_broadcast: Você se tornou a <color=red>SCP-191, Criança Ciborgue</color>
+# SCP-191技能介绍
+s_c_p191_skill_introduction:
+- Você é a [SCP-191] devido às suas modificações corporais
+- Você é <color=red>muito resistente</color> a tudo exceto dano explosivo e eletromagnético.
+- Mas não se esqueça de ir à sala de contenção do 079 para recarregar
+# SCP-191电量显示
+s_c_p191_battery_hint_show: <align=right><size=40><b>Sua capacidade de bateria restante atual:<color=yellow>%Battery%install</color></size></b></align>
+# SCP-191电量耗尽死亡原因
+s_c_p191_battery_depletion_death_reason: Bateria esgotada
+# SCP-1056缩小仪拾取Hint
+s_c_p1056_pickup_hint: Você pegou o redutor <color=red>SCP-1056</color>!
+# SCP-1056缩小仪使用Hint
+s_c_p1056_used_hint: Boom! Você ficou menor!!!
+# SCP-1068无害核弹拾取Hint
+s_c_p1068_pickup_hint: Você pegou a <color=red>SCP-1068</color>, Bomba Atômica Inofensiva!
+# SCP-1056无害核弹使用广播
+s_c_p1068_used_broadcast: Alguém usou a <color=red>SCP-1068</color>, Bomba Atômica Inofensiva!
+# SCP-029特殊介绍
+s_c_p029_special_introduction: <color=red>SCP-029, Filha das Sombras</color>
+# SCP-703特殊介绍
+s_c_p703_special_introduction: <color=blue>SCP-703, Dentro do Armário</color>
+# SCP-347特殊介绍
+s_c_p347_special_introduction: <color=red>SCP-347, A Mulher Invisível</color>
+# SCP-1093特殊介绍
+s_c_p1093_special_introduction: <color=yellow>SCP-1093, Lâmpada Humana</color>
+# SCP-073亚伯特殊介绍
+s_c_p073_abel_special_introduction: <color=green>SCP-073, Abel</color>
+# SCP-073该隐特殊介绍
+s_c_p073_cain_special_introduction: <color=green>SCP-073, Cain</color>
+# SCP-191特殊介绍
+s_c_p191_special_introduction: <color=red>SCP-191, Criança Ciborgue</color>
+# SCP-2936特殊介绍
+s_c_p2936_special_introduction: <color=red>SCP-2936-1, Robô Alemão Gigante</color>
+# 天网机动特遣队特殊介绍
+skynet_special_introduction: <color=blue>Força-Tarefa Móvel Skynet</color>
+# 非礼勿视机动特遣队特殊介绍
+see_no_evil_special_introduction: <color=blue>Força-Tarefa Móvel Não Vê Mal</color>
