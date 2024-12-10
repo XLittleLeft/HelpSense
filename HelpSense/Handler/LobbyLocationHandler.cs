@@ -41,9 +41,8 @@ namespace HelpSense.Handler
 
         public static void ChaosLocation()
         {
-            //TODO:地图
-            //LobbyPosition = new Vector3(-49.074f, 989.055f, -42.844f);
-            LobbyPosition = new Vector3(-7.500f, 995.402f, -7.910f);
+            LobbyPosition = new Vector3(-49.074f, 989.055f, -42.844f);
+            //LobbyPosition = new Vector3(-7.500f, 995.402f, -7.910f);
         }
     }
 }

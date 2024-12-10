@@ -62,6 +62,7 @@
     <Compile Include="ConfigSystem\TranslateConfig.cs" />
     <Compile Include="Handler\LobbyLocationHandler.cs" />
     <Compile Include="Helper\Chat\ChatHelper.cs" />
+    <Compile Include="Helper\Event\EventHelper.cs" />
     <Compile Include="Helper\Misc\HideTutorialsHelper.cs" />
     <Compile Include="Helper\SCP\SCPHelper.cs" />
     <Compile Include="Helper\Misc\SpectatorHelper.cs" />

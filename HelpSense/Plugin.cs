@@ -47,6 +47,7 @@ using HelpSense.Helper.SCP;
 using HelpSense.Helper.Chat;
 using HelpSense.Helper.Misc;
 using InventorySystem.Items.Firearms.Modules;
+using HelpSense.Helper.Event;
 
 namespace HelpSense
 {
@@ -369,8 +370,8 @@ namespace HelpSense
                 });
             }
         }
-
-        [PluginEvent]
+        //TODO:TeamRespawnEvent
+        /*[PluginEvent]
         void OnSpecialTeamRespawn(TeamRespawnEvent ev)
         {
             var team = ev.Team;
@@ -454,9 +455,9 @@ namespace HelpSense
                     });
                 }
             });
-        }
-
-        [PluginEvent]
+        }*/
+        //TODO:TeamRespawnEvent
+        /*[PluginEvent]
         void OnTeamRespawn(TeamRespawnEvent ev)
         {
             var team = ev.Team;
@@ -570,15 +571,18 @@ namespace HelpSense
                     }
                 });
             }
-        }
+        }*/
 
         [PluginEvent]
         public void OnRoundStarted(RoundStartEvent ev)
         {
+            WaveManager.OnWaveSpawned += EventHelper.OnTeamRespawn;
+            Log.Debug("订阅OnWaveSpawned事件" , Config.Debug);
+
             if (Config.SavePlayersInfo)
             {
                 Timing.RunCoroutine(InfoExtension.CollectInfo());
-                Log.Debug("开始记录玩家信息");
+                Log.Debug("开始记录玩家信息" , Config.Debug);
             }
 
             if (Config.InfiniteAmmo)
@@ -638,7 +642,7 @@ namespace HelpSense
                     };
                 });
             }
-
+            
             if (Config.SCP347)
             {
                 Timing.CallDelayed(1.2f, () =>
@@ -987,6 +991,9 @@ namespace HelpSense
             SCP1056Base = null;
             SkynetPlayers.Clear();
             SeePlayers.Clear();
+
+            WaveManager.OnWaveSpawned -= EventHelper.OnTeamRespawn;
+            Log.Debug("取消订阅OnWaveSpawned事件" , Config.Debug);
 
             if (Config.EnableRoundEndInfo)
             {
