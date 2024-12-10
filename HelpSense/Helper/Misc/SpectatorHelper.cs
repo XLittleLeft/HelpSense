@@ -1,5 +1,4 @@
-﻿using HintServiceMeow.UI.Extension;
-using MEC;
+﻿using MEC;
 using NorthwoodLib.Pools;
 using PlayerRoles;
 using PlayerRoles.Spectating;

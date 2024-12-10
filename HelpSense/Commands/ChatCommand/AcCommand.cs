@@ -1,9 +1,7 @@
 ﻿using CommandSystem;
-using HelpSense.Helper;
 using HelpSense.Helper.Chat;
 using PluginAPI.Core;
 using System;
-using System.Linq;
 
 namespace HelpSense.Commands.ChatCommand
 {
@@ -12,7 +10,7 @@ namespace HelpSense.Commands.ChatCommand
     {
         public string Command => "AC";
 
-        public string[] Aliases => new[]{ "私聊管理" };
+        public string[] Aliases => ["私聊管理"];
 
         public string Description => "私聊管理";
 
@@ -32,13 +30,7 @@ namespace HelpSense.Commands.ChatCommand
                 return false;
             }
 
-            if (arguments.At( 0).Contains("<"))
-            {
-                response = "包含敏感字符";
-                return false;
-            }
-
-            ChatHelper.SendMessage(player, ChatMessage.MessageType.AdminPrivateChat, string.Join(" ", arguments));
+            ChatHelper.SendMessage(player, ChatMessage.MessageType.AdminPrivateChat, $"<noparse>{string.Join(" ", arguments)}</noparse>");
 
             Log.Info(player.Nickname + " 发送了 " + arguments.At(0));
             response = "发送成功";

@@ -2,14 +2,11 @@
 
 namespace HelpSense.API
 {
-    using System;
-    using System.Linq;
     using HelpSense.API.Serialization;
-    using HelpSense.ConfigSystem;
     using HelpSense.Helper;
     using MEC;
-    using PlayerRoles;
     using PluginAPI.Core;
+    using System;
 
     public static class InfoExtension
     {

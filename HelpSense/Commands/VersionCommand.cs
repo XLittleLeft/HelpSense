@@ -9,14 +9,14 @@ namespace HelpSense.Commands
     {
         public string Command => "Version";
 
-        public string[] Aliases => new[]{"VersionInfo", "VI"};
+        public string[] Aliases => ["VersionInfo", "VI"];
 
         public string Description => "查询HelpSense插件版本和信息";
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             var config = Plugin.Instance.Config;
-            
+
             var sb = StringBuilderPool.Pool.Get();
 
             //Version and update time
@@ -47,10 +47,10 @@ namespace HelpSense.Commands
 
             response = sb.ToString();
             StringBuilderPool.Pool.Return(sb);
-            
+
             return true;
         }
 
-        public string BoolTranslate(bool value) => value? "✔":"✖";
+        public string BoolTranslate(bool value) => value ? "✔" : "✖";
     }
 }

@@ -1,14 +1,10 @@
 ﻿using MEC;
 using Mirror;
-using PlayerRoles.FirstPersonControl;
 using PlayerRoles;
+using PlayerRoles.FirstPersonControl;
 using PluginAPI.Core;
 using RelativePositioning;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace HelpSense.Helper.Misc

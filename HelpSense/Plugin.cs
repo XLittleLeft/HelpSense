@@ -1,53 +1,42 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
-using System.Collections.Generic;
-using System.Linq;
-
-using PluginAPI.Core;
-using PluginAPI.Events;
-using PluginAPI.Core.Attributes;
-
-using PlayerRoles.Voice;
-using PlayerRoles.PlayableScps.Scp079;
-using PlayerRoles.PlayableScps.Scp096;
-
+﻿using CustomPlayerEffects;
+using GameCore;
+using HarmonyLib;
 using HelpSense.API;
-using HelpSense.MonoBehaviors;
-using HelpSense.Helper;
-using HelpSense.API.Features;
-using HelpSense.Handler;
 using HelpSense.ConfigSystem;
-
+using HelpSense.Handler;
+using HelpSense.Helper;
+using HelpSense.Helper.Chat;
+using HelpSense.Helper.Event;
+using HelpSense.Helper.Lobby;
+using HelpSense.Helper.Misc;
+using HelpSense.Helper.SCP;
+using HelpSense.Helper.SpecialRole;
+using HelpSense.MonoBehaviors;
+using HintServiceMeow.UI.Extension;
 using InventorySystem;
 using InventorySystem.Items;
 using InventorySystem.Items.Firearms;
 using InventorySystem.Items.Keycards;
-using InventorySystem.Items.Firearms.Attachments;
-
-using GameCore;
-using PlayerStatsSystem;
-using MapGeneration.Distributors;
-using Respawning;
-using MapGeneration;
-using Footprinting;
 using LiteDB;
-using CustomPlayerEffects;
+using MapGeneration;
+using MapGeneration.Distributors;
 using MEC;
 using PlayerRoles;
+using PlayerRoles.PlayableScps.Scp096;
+using PlayerRoles.Voice;
+using PlayerStatsSystem;
+using PluginAPI.Core;
+using PluginAPI.Core.Attributes;
+using PluginAPI.Events;
+using Respawning;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using UnityEngine;
-using HarmonyLib;
-
 using static Broadcast;
 using Log = PluginAPI.Core.Log;
-using HintServiceMeow.UI.Extension;
-using HelpSense.Helper.SpecialRole;
-using HelpSense.Helper.Lobby;
-using HelpSense.Helper.SCP;
-using HelpSense.Helper.Chat;
-using HelpSense.Helper.Misc;
-using InventorySystem.Items.Firearms.Modules;
-using HelpSense.Helper.Event;
 
 namespace HelpSense
 {
@@ -105,11 +94,11 @@ namespace HelpSense
 
         public ushort SCP1056Id = 0;
         public ItemBase SCP1056Base;
-      
+
         public static System.Version PluginVersion => new(1, 3, 7);
         public static DateTime LastUpdateTime => new(2024, 12, 10, 14, 17, 57);
         public static System.Version RequiredGameVersion => new(14, 0, 0);
-      
+
         [PluginEntryPoint("HelpSense", "1.3.7", "HelpSense综合服务器插件", "X小左")]
         private void LoadPlugin()
         {
@@ -153,9 +142,9 @@ namespace HelpSense
                         if (LobbyTimer.IsRunning)
                             Timing.KillCoroutines(LobbyTimer);
 
-                        if (CurLobbyLocationType == LobbyLocationType.Intercom && Config.DisplayInIcom) 
+                        if (CurLobbyLocationType == LobbyLocationType.Intercom && Config.DisplayInIcom)
                             LobbyTimer = Timing.RunCoroutine(LobbyHelper.LobbyIcomTimer());
-                        else 
+                        else
                             LobbyTimer = Timing.RunCoroutine(LobbyHelper.LobbyTimer());
                     });
                 }
@@ -320,7 +309,7 @@ namespace HelpSense
         void OnPlayerLeft(PlayerLeftEvent ev)
         {
             var player = ev.Player;
-            
+
             if (player == null || string.IsNullOrEmpty(player.UserId)) return;
 
             if (Config.SavePlayersInfo)
@@ -360,7 +349,7 @@ namespace HelpSense
                 {
                     if (newRole == RoleTypeId.NtfSpecialist)
                     {
-                        var firearm = player.ReferenceHub.inventory.ServerAddItem(ItemType.ParticleDisruptor , ItemAddReason.AdminCommand) as ParticleDisruptor;
+                        var firearm = player.ReferenceHub.inventory.ServerAddItem(ItemType.ParticleDisruptor, ItemAddReason.AdminCommand) as ParticleDisruptor;
                         //TODO:子弹
                         /*firearm.Status = new FirearmStatus(5, FirearmStatusFlags.MagazineInserted, firearm.GetCurrentAttachmentsCode());
                         firearm.TryGetModule<IAmmoContainerModule>(out var module);
@@ -393,7 +382,7 @@ namespace HelpSense
                     {
                         SkynetSpawned = true;
                         Cassie.Clear();
-                        XHelper.MessageTranslated($"MTFUnit Kappa , 10 , and , Mu , 7 , designated scan neck , HasEntered , they will help contain scp 0 7 9 , AllRemaining , AwaitingRecontainment {XHelper.PlayerList.Where(x => x.IsSCP).Count()} SCPSubjects", TranslateConfig.SkynetCassie.Replace("%SCPNum%" , XHelper.PlayerList.Where(x => x.IsSCP).Count().ToString()));
+                        XHelper.MessageTranslated($"MTFUnit Kappa , 10 , and , Mu , 7 , designated scan neck , HasEntered , they will help contain scp 0 7 9 , AllRemaining , AwaitingRecontainment {XHelper.PlayerList.Where(x => x.IsSCP).Count()} SCPSubjects", TranslateConfig.SkynetCassie.Replace("%SCPNum%", XHelper.PlayerList.Where(x => x.IsSCP).Count().ToString()));
 
                         foreach (Player player in players)
                         {
@@ -521,7 +510,7 @@ namespace HelpSense
                 Timing.CallDelayed(1f, () =>
                 {
                     Player player = XHelper.GetRandomPlayer(RoleTypeId.ChaosRepressor, specialPlayers);
-                    
+
                     if (player != null)
                     {
                         SpawnSCP2936 = true;
@@ -577,12 +566,12 @@ namespace HelpSense
         public void OnRoundStarted(RoundStartEvent ev)
         {
             WaveManager.OnWaveSpawned += EventHelper.OnTeamRespawn;
-            Log.Debug("订阅OnWaveSpawned事件" , Config.Debug);
+            Log.Debug("订阅OnWaveSpawned事件", Config.Debug);
 
             if (Config.SavePlayersInfo)
             {
                 Timing.RunCoroutine(InfoExtension.CollectInfo());
-                Log.Debug("开始记录玩家信息" , Config.Debug);
+                Log.Debug("开始记录玩家信息", Config.Debug);
             }
 
             if (Config.InfiniteAmmo)
@@ -592,7 +581,7 @@ namespace HelpSense
                     Timing.RunCoroutine(XHelper.InAmmo());
                 });
             }
-            
+
             if (Config.EnableSCP703)
             {
                 Timing.CallDelayed(0.5f, () =>
@@ -625,7 +614,7 @@ namespace HelpSense
                         player.ClearInventory();
 
                         player.AddItem(ItemType.KeycardContainmentEngineer);
-                        var firearm = player.ReferenceHub.inventory.ServerAddItem(ItemType.GunCOM18 , ItemAddReason.AdminCommand);
+                        var firearm = player.ReferenceHub.inventory.ServerAddItem(ItemType.GunCOM18, ItemAddReason.AdminCommand);
                         //TODO:子弹
                         //((Firearm)(firearm)).Status = new FirearmStatus(((Firearm)(firearm)).AmmoManagerModule.MaxAmmo, ((Firearm)(firearm)).Status.Flags, ((Firearm)(firearm)).GetCurrentAttachmentsCode());
 
@@ -642,7 +631,7 @@ namespace HelpSense
                     };
                 });
             }
-            
+
             if (Config.SCP347)
             {
                 Timing.CallDelayed(1.2f, () =>
@@ -672,7 +661,7 @@ namespace HelpSense
 
                     if (player != null)
                     {
-                        SCP1093 = new SCPHelper(player , "SCP-1093" , "yellow");
+                        SCP1093 = new SCPHelper(player, "SCP-1093", "yellow");
 
                         player.GameObject.AddComponent<PlayerGlowBehavior>();
 
@@ -993,7 +982,7 @@ namespace HelpSense
             SeePlayers.Clear();
 
             WaveManager.OnWaveSpawned -= EventHelper.OnTeamRespawn;
-            Log.Debug("取消订阅OnWaveSpawned事件" , Config.Debug);
+            Log.Debug("取消订阅OnWaveSpawned事件", Config.Debug);
 
             if (Config.EnableRoundEndInfo)
             {
@@ -1057,7 +1046,7 @@ namespace HelpSense
                 {
                     if (player.Role is RoleTypeId.ClassD)
                     {
-                        player.ReferenceHub.inventory.ServerAddItem(Config.ClassDCard , ItemAddReason.AdminCommand , 1);
+                        player.ReferenceHub.inventory.ServerAddItem(Config.ClassDCard, ItemAddReason.AdminCommand, 1);
                     }
                 });
             }
@@ -1128,7 +1117,7 @@ namespace HelpSense
             Player.SetAmmo(ItemType.Ammo762x39, 180);
             Player.SetAmmo(ItemType.Ammo556x45, 180);
         }*/
-        
+
         [PluginEvent]
         void OnPlayerShotWeapon(PlayerShotWeaponEvent ev)
         {
@@ -1390,9 +1379,9 @@ namespace HelpSense
             Player player = Player.Get(sender);
             if (player != null && !string.IsNullOrEmpty(command))
             {
-                string note = TranslateConfig.AdminLog.Replace("%Nickname%" , player.Nickname).Replace("%Time%" , DateTime.Now.ToString()).Replace("%Command%" , command).Replace("%UserId%" , player.UserId);
+                string note = TranslateConfig.AdminLog.Replace("%Nickname%", player.Nickname).Replace("%Time%", DateTime.Now.ToString()).Replace("%Command%", command).Replace("%UserId%", player.UserId);
                 if (Config.AdminLogShow)
-                    XHelper.Broadcast(TranslateConfig.AdminLogBroadcast.Replace("%Nickname%" , player.Nickname).Replace("%Command%" , command), 5, BroadcastFlags.Normal);
+                    XHelper.Broadcast(TranslateConfig.AdminLogBroadcast.Replace("%Nickname%", player.Nickname).Replace("%Command%", command), 5, BroadcastFlags.Normal);
                 Log.Info(note);
                 try
                 {

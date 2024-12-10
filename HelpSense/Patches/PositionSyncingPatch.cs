@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Reflection.Emit;
-using HarmonyLib;
-using HelpSense.Helper;
+﻿using HarmonyLib;
 using HelpSense.Helper.Misc;
 using NorthwoodLib.Pools;
 using PlayerRoles;
 using PlayerRoles.FirstPersonControl.NetworkMessages;
 using PlayerRoles.Spectating;
+using System.Collections.Generic;
+using System.Reflection.Emit;
 using UnityEngine;
 
 namespace HelpSense.Patches
@@ -20,12 +19,12 @@ namespace HelpSense.Patches
 
             int index = newInstructions.FindIndex(x => x.opcode == OpCodes.Newobj);
 
-            newInstructions.InsertRange(index, new CodeInstruction[]
-            {
+            newInstructions.InsertRange(index,
+            [
             new (OpCodes.Ldarg_1),
             new (OpCodes.Ldarg_0),
             new (OpCodes.Call, AccessTools.Method(typeof(PositionSyncingPatch), nameof(CheckTutorialPosition))),
-            });
+            ]);
 
             foreach (CodeInstruction instruction in newInstructions)
                 yield return instruction;

@@ -1,5 +1,5 @@
-﻿using System;
-using LiteDB;
+﻿using LiteDB;
+using System;
 
 namespace HelpSense.API.Serialization
 {
@@ -11,7 +11,7 @@ namespace HelpSense.API.Serialization
         public DateTime LastLeftTime { get; set; }
         public int PlayedTimes { get; set; }
         public int PlayerKills { get; set; }
-        public int PlayerDeath {  get; set; }
+        public int PlayerDeath { get; set; }
         public int PlayerSCPKills { get; set; }
         public float PlayerDamage { get; set; }
         public int RolePlayed { get; set; }

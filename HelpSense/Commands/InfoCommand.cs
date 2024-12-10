@@ -11,7 +11,7 @@ namespace HelpSense.Commands
     {
         public string Command => "Info";
 
-        public string[] Aliases => new[] { "info" };
+        public string[] Aliases => ["info"];
 
         public string Description => "查询在本服务器游玩的时间和击杀人数";
 
@@ -19,7 +19,7 @@ namespace HelpSense.Commands
         {
             Player player;
 
-            if(sender is null || (player = Player.Get(sender)) is null)
+            if (sender is null || (player = Player.Get(sender)) is null)
             {
                 response = "执行指令时发生错误，请稍后重试";
                 return false;

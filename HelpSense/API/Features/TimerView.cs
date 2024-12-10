@@ -1,14 +1,10 @@
-﻿using HelpSense.API.Extensions;
-using HelpSense.ConfigSystem;
+﻿using HelpSense.ConfigSystem;
 using PluginAPI.Core;
-using Respawning;
 using Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace HelpSense.API.Features
 {
@@ -64,27 +60,28 @@ namespace HelpSense.API.Features
             Log.Debug($"{name} 成功加载!", Plugin.Instance.Config.Debug);
         }
 
-       /* public string GetText(int? spectatorCount = null)
-        {
-            StringBuilder.Clear();
-            StringBuilder.Append(
-                RespawnManager.Singleton._curSequence is not RespawnManager.RespawnSequencePhase.PlayingEntryAnimations or RespawnManager.RespawnSequencePhase.SpawningSelectedTeam
-                    ? BeforeRespawnString
-                    : DuringRespawnString);
+        /* public string GetText(int? spectatorCount = null)
+         {
+             StringBuilder.Clear();
+             StringBuilder.Append(
+                 RespawnManager.Singleton._curSequence is not RespawnManager.RespawnSequencePhase.PlayingEntryAnimations or RespawnManager.RespawnSequencePhase.SpawningSelectedTeam
+                     ? BeforeRespawnString
+                     : DuringRespawnString);
 
-            StringBuilder.SetAllProperties(spectatorCount);
-            StringBuilder.Replace('{', '[').Replace('}', ']');
+             StringBuilder.SetAllProperties(spectatorCount);
+             StringBuilder.Replace('{', '[').Replace('}', ']');
 
-            HintInterval++;
-            if (HintInterval == Properties.HintInterval)
-            {
-                HintInterval = 0;
-                IncrementHintIndex();
-            }
+             HintInterval++;
+             if (HintInterval == Properties.HintInterval)
+             {
+                 HintInterval = 0;
+                 IncrementHintIndex();
+             }
 
-            return StringBuilder.ToString();
-        }*/
+             return StringBuilder.ToString();
+         }*/
 
+        [Obsolete("SCP:SL 14.0 Obsolete", false)]
         private void IncrementHintIndex()
         {
             HintIndex++;

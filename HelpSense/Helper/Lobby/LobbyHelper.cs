@@ -1,12 +1,10 @@
 ﻿using HelpSense.Handler;
-using HintServiceMeow.UI.Extension;
 using MEC;
 using PlayerRoles.Voice;
 using PluginAPI.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 namespace HelpSense.Helper.Lobby
 {

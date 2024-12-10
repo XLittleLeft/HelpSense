@@ -1,17 +1,4 @@
-﻿using HelpSense.API.Features;
-using Hints;
-using HintServiceMeow.UI.Extension;
-using MEC;
-using NorthwoodLib.Pools;
-using PlayerRoles;
-using PluginAPI.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HelpSense.Helper.Misc
+﻿namespace HelpSense.Helper.Misc
 {
     public class RespawnHelper
     {

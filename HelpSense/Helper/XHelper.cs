@@ -1,30 +1,18 @@
-﻿using InventorySystem.Items.Firearms;
-using InventorySystem.Items.Firearms.Attachments;
-using InventorySystem.Items.Firearms.BasicMessages;
-
+﻿using HelpSense.API.Features.Pool;
+using Interactables.Interobjects.DoorUtils;
+using MEC;
+using Mirror;
 using PlayerRoles;
-using PlayerRoles.FirstPersonControl.Spawnpoints;
 using PlayerRoles.FirstPersonControl;
-
+using PlayerRoles.FirstPersonControl.Spawnpoints;
 using PluginAPI.Core;
 using PluginAPI.Core.Items;
-
+using Respawning;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-using MEC;
-using Respawning;
 using UnityEngine;
-using CustomPlayerEffects;
-using Interactables.Interobjects.DoorUtils;
-using Mirror;
-
-using HelpSense.API.Features.Pool;
-using HelpSense.ConfigSystem;
-
-using HintServiceMeow.UI.Extension;
 
 namespace HelpSense.Helper
 {
@@ -53,9 +41,9 @@ namespace HelpSense.Helper
 
             return null;
         }
-        public static Player GetRandomPlayer(RoleTypeId roleTypeId , List<Player> playerList)
+        public static Player GetRandomPlayer(RoleTypeId roleTypeId, List<Player> playerList)
         {
-            List<Player> players = new List<Player>();
+            List<Player> players = [];
             foreach (Player player in playerList)
             {
                 if (player.Role == roleTypeId)
@@ -81,7 +69,7 @@ namespace HelpSense.Helper
         }
         public static Player GetRandomSpecialPlayer(RoleTypeId roleTypeId)
         {
-            List<Player> players = new List<Player>();
+            List<Player> players = [];
             foreach (Player player in SpecialPlayerList)
             {
                 if (player.Role == roleTypeId)
@@ -192,8 +180,8 @@ namespace HelpSense.Helper
                     yield break;
                 }
 
-                player.ReceiveHint(Plugin.Instance.TranslateConfig.SCP191BatteryHintShow.Replace("%Battery%" , d.ToString()), 11);//Use compatibility adapter
-                
+                player.ReceiveHint(Plugin.Instance.TranslateConfig.SCP191BatteryHintShow.Replace("%Battery%", d.ToString()), 11);//Use compatibility adapter
+
                 if (player.Room.Name is MapGeneration.RoomName.Hcz079)
                 {
                     if (d <= 4000)
@@ -324,36 +312,16 @@ namespace HelpSense.Helper
 
         public static Team GetTeam2(this RoleTypeId typeId)
         {
-            switch (typeId)
+            return typeId switch
             {
-                case RoleTypeId.ChaosConscript:
-                case RoleTypeId.ChaosRifleman:
-                case RoleTypeId.ChaosRepressor:
-                case RoleTypeId.ChaosMarauder:
-                    return Team.ChaosInsurgency;
-                case RoleTypeId.Scientist:
-                    return Team.Scientists;
-                case RoleTypeId.ClassD:
-                    return Team.ClassD;
-                case RoleTypeId.Scp173:
-                case RoleTypeId.Scp106:
-                case RoleTypeId.Scp049:
-                case RoleTypeId.Scp079:
-                case RoleTypeId.Scp096:
-                case RoleTypeId.Scp0492:
-                case RoleTypeId.Scp939:
-                    return Team.SCPs;
-                case RoleTypeId.NtfSpecialist:
-                case RoleTypeId.NtfSergeant:
-                case RoleTypeId.NtfCaptain:
-                case RoleTypeId.NtfPrivate:
-                case RoleTypeId.FacilityGuard:
-                    return Team.FoundationForces;
-                case RoleTypeId.Tutorial:
-                    return Team.OtherAlive;
-                default:
-                    return Team.Dead;
-            }
+                RoleTypeId.ChaosConscript or RoleTypeId.ChaosRifleman or RoleTypeId.ChaosRepressor or RoleTypeId.ChaosMarauder => Team.ChaosInsurgency,
+                RoleTypeId.Scientist => Team.Scientists,
+                RoleTypeId.ClassD => Team.ClassD,
+                RoleTypeId.Scp173 or RoleTypeId.Scp106 or RoleTypeId.Scp049 or RoleTypeId.Scp079 or RoleTypeId.Scp096 or RoleTypeId.Scp0492 or RoleTypeId.Scp939 or RoleTypeId.Scp3114 => Team.SCPs,
+                RoleTypeId.NtfSpecialist or RoleTypeId.NtfSergeant or RoleTypeId.NtfCaptain or RoleTypeId.NtfPrivate or RoleTypeId.FacilityGuard => Team.FoundationForces,
+                RoleTypeId.Tutorial => Team.OtherAlive,
+                _ => Team.Dead,
+            };
         }
 
         public static void Broadcast(string text, ushort time, Broadcast.BroadcastFlags broadcastFlags)
@@ -388,7 +356,7 @@ namespace HelpSense.Helper
         {
             foreach (var pl in PlayerList.Where(x => x.PlayerId != player.PlayerId && x.IsReady))
             {
-                pl.Connection.Send(new RoleSyncInfo(player.ReferenceHub , type , pl.ReferenceHub));
+                pl.Connection.Send(new RoleSyncInfo(player.ReferenceHub, type, pl.ReferenceHub));
             }
         }
 

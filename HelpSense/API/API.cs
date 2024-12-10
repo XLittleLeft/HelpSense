@@ -5,7 +5,7 @@ namespace HelpSense.API
 {
     public static class API
     {
-        public static List<string> TimerHidden { get; } = new List<string>();
+        public static List<string> TimerHidden { get; } = [];
 
         public static bool TryGetLog(string id, out PlayerLog log)
         {

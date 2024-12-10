@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HelpSense.API.Features.Pool
+﻿namespace HelpSense.API.Features.Pool
 {
     public interface IPool<T>
     {
