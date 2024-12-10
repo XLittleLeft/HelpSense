@@ -1,7 +1,6 @@
 ﻿using Interactables.Interobjects.DoorUtils;
 using InventorySystem.Items.Keycards;
 using MapGeneration.Distributors;
-using PlayerRoles;
 using PluginAPI.Core;
 using System.Collections.Generic;
 using System.Linq;
@@ -123,32 +122,32 @@ namespace HelpSense.Helper.Misc
     }
 }
 
-    public static class DoorsUtils
+public static class DoorsUtils
+{
+    private static readonly List<string> BlacklistedDoors = [];
+
+    public static List<string> GetBlacklistedDoors()
     {
-        private static readonly List<string> BlacklistedDoors = new List<string>();
-
-        public static List<string> GetBlacklistedDoors()
-        {
-            return BlacklistedDoors;
-        }
-
-        public static void AddBlacklistedDoor(string doorName)
-        {
-            BlacklistedDoors.Add(doorName);
-        }
+        return BlacklistedDoors;
     }
 
-    public static class LockerUtils
+    public static void AddBlacklistedDoor(string doorName)
     {
-        private static readonly List<string> BlacklistedLockers = new List<string>();
-
-        public static List<string> GetBlacklistedLockers()
-        {
-            return BlacklistedLockers;
-        }
-
-        public static void AddBlacklistedLocker(string lockerName)
-        {
-            BlacklistedLockers.Add(lockerName);
-        }
+        BlacklistedDoors.Add(doorName);
     }
+}
+
+public static class LockerUtils
+{
+    private static readonly List<string> BlacklistedLockers = [];
+
+    public static List<string> GetBlacklistedLockers()
+    {
+        return BlacklistedLockers;
+    }
+
+    public static void AddBlacklistedLocker(string lockerName)
+    {
+        BlacklistedLockers.Add(lockerName);
+    }
+}

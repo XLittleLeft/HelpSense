@@ -8,7 +8,7 @@ namespace HelpSense.Commands
     {
         public string Command => "timer";
 
-        public string[] Aliases => Array.Empty<string>();
+        public string[] Aliases => [];
 
         public string Description => "显示或者关闭刷新时间";
 

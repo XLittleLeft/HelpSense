@@ -1,17 +1,15 @@
-﻿using MEC;
-using HelpSense.API.Features.Pool;
+﻿using HelpSense.API.Features.Pool;
+using HintServiceMeow.Core.Utilities;
+using MEC;
 using PlayerRoles;
 using PluginAPI.Core;
-
 using System;
 using System.Collections.Generic;
-
-using HintServiceMeow.Core.Utilities;
 using System.Linq;
 
 namespace HelpSense.Helper.Chat
 {
-    public class ChatMessage
+    public class ChatMessage(Player sender, ChatMessage.MessageType type, string message)
     {
         public enum MessageType
         {
@@ -29,32 +27,23 @@ namespace HelpSense.Helper.Chat
             TeamChat,
         }
 
-        public DateTime TimeSent { get; }
+        public DateTime TimeSent { get; } = DateTime.Now;
 
-        public MessageType Type { get; }
-        public string Message { get; }
+        public MessageType Type { get; } = type;
+        public string Message { get; } = message;
 
-        public string SenderName { get; }
-        public Team SenderTeam { get; }
-        public RoleTypeId SenderRole { get; }
-        public ChatMessage(Player sender, MessageType type, string message)
-        {
-            this.TimeSent = DateTime.Now;
-            this.SenderName = sender.DisplayNickname;
-            this.SenderTeam = sender.Team;
-            this.SenderRole = sender.Role;
-            this.Type = type;
-            this.Message = message;
-        }
+        public string SenderName { get; } = sender.DisplayNickname;
+        public Team SenderTeam { get; } = sender.Team;
+        public RoleTypeId SenderRole { get; } = sender.Role;
     }
 
     public static class ChatHelper
     {
         private static CoroutineHandle _coroutine;
 
-        private static readonly LinkedList<ChatMessage> MessageList= new();
+        private static readonly LinkedList<ChatMessage> MessageList = new();
 
-        private static readonly Dictionary<Player, HintServiceMeow.Core.Models.Hints.Hint> MessageSlot = new();
+        private static readonly Dictionary<Player, HintServiceMeow.Core.Models.Hints.Hint> MessageSlot = [];
 
         private static bool HaveAccess(Player player, ChatMessage message)
         {
@@ -78,7 +67,7 @@ namespace HelpSense.Helper.Chat
 
                 foreach (var messageSlot in MessageSlot)
                 {
-                    if(!MessageList.Any(x => HaveAccess(messageSlot.Key, x)))
+                    if (!MessageList.Any(x => HaveAccess(messageSlot.Key, x)))
                     {
                         messageSlot.Value.Text = string.Empty;
                         continue;
@@ -100,7 +89,7 @@ namespace HelpSense.Helper.Chat
                                 })
                                 .Replace("{SenderNickname}", message.SenderName)
                                 .Replace("{SenderTeam}", Plugin.Instance.TranslateConfig.ChatSystemTeamTranslation[message.SenderTeam])
-                                .Replace("{SenderRole}" , Plugin.Instance.TranslateConfig.ChatSystemRoleTranslation[message.SenderRole])
+                                .Replace("{SenderRole}", Plugin.Instance.TranslateConfig.ChatSystemRoleTranslation[message.SenderRole])
                                 .Replace("{SenderTeamColor}", message.SenderTeam switch
                                 {
                                     Team.SCPs => "red",

@@ -12,7 +12,7 @@ namespace HelpSense.Commands
     {
         public string Command => "ZiJiu";
 
-        public string[] Aliases => new[] { "Rescue", "ZJ" };
+        public string[] Aliases => ["Rescue", "ZJ"];
 
         public string Description => "卡虚空自救";
 
@@ -20,7 +20,7 @@ namespace HelpSense.Commands
         {
             Player player;
 
-            if(sender is null || (player = Player.Get(sender)) is null)
+            if (sender is null || (player = Player.Get(sender)) is null)
             {
                 response = "执行指令时发生错误，请稍后再试";
                 return false;
@@ -28,7 +28,7 @@ namespace HelpSense.Commands
 
             WaypointBase.GetRelativePosition(player.Position, out byte id, out _);
 
-            if (!player.IsAlive || 
+            if (!player.IsAlive ||
                 player.Zone is not MapGeneration.FacilityZone.None ||
                 !WaypointBase.TryGetWaypoint(id, out WaypointBase waypoint) ||
                 waypoint is ElevatorWaypoint)
@@ -50,7 +50,7 @@ namespace HelpSense.Commands
                     player.IsGodModeEnabled = false;
                 });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 player.IsGodModeEnabled = false;
                 Log.Error(ex.ToString());

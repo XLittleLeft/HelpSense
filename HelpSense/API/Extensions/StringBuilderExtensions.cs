@@ -1,21 +1,4 @@
-﻿using GameCore;
-using HelpSense.API.Features;
-using MapGeneration.Distributors;
-using PlayerRoles;
-using PlayerRoles.PlayableScps.Scp079;
-using PluginAPI.Core;
-using Respawning;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using static HelpSense.API.Features.TimerView;
-using HelpSense.Helper;
-
-namespace HelpSense.API.Extensions
+﻿namespace HelpSense.API.Extensions
 {
     public static class StringBuilderExtensions
     {

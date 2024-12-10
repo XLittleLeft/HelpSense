@@ -1,5 +1,4 @@
 ﻿using CustomPlayerEffects;
-using HelpSense.ConfigSystem;
 using HelpSense.Helper.SCP;
 using InventorySystem.Items.Firearms;
 using MapGeneration;
@@ -11,8 +10,6 @@ using Respawning.Waves;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HelpSense.Helper.Event
 {
@@ -20,7 +17,7 @@ namespace HelpSense.Helper.Event
     {
         public static Random Random = new Random();
 
-        public static void OnTeamRespawn(SpawnableWaveBase spawnableWaveBase , List<ReferenceHub> referenceHubs)
+        public static void OnTeamRespawn(SpawnableWaveBase spawnableWaveBase, List<ReferenceHub> referenceHubs)
         {
             List<Player> players = new List<Player>();
             referenceHubs.ForEach(x => players.Add(Player.Get(x)));

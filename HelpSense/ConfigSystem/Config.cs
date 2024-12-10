@@ -1,11 +1,10 @@
-﻿using System.ComponentModel;
+﻿using HelpSense.Helper.Lobby;
 using PlayerRoles;
-using System.Collections.Generic;
-using HelpSense.Helper;
 using PluginAPI.Helpers;
-using System.IO;
 using System;
-using HelpSense.Helper.Lobby;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 
 namespace HelpSense.ConfigSystem
 {
@@ -92,7 +91,7 @@ namespace HelpSense.ConfigSystem
         [Description("启用修改SCP血量系统")]
         public bool EnableChangeSCPHPSystem { get; set; } = true;
         [Description("SCP173,SCP939,SCP049,SCP049-2,SCP096,SCP106血量")]
-        public List<float> SCPsHP { get; set; } = new List<float> { 4200,2700,2200,400,2500,2200};
+        public List<float> SCPsHP { get; set; } = new List<float> { 4200, 2700, 2200, 400, 2500, 2200 };
 
         // /////////////////////////////////////////////////
         [Description("启用.bc和.c聊天系统")]
@@ -191,7 +190,7 @@ namespace HelpSense.ConfigSystem
 
         /// //////////////////////////////////////////////////////////
         [Description("SCP-191")]
-        public bool SCP191 { get;set; } = true;
+        public bool SCP191 { get; set; } = true;
         [Description("子弹对SCP-191造成的单发伤害")]
         public float SCP191Ammo { get; set; } = 10;
         [Description("SCP-073")]

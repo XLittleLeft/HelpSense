@@ -5,7 +5,7 @@ namespace HelpSense.Helper.SCP
 {
     public class SCPHPChangeSystem
     {
-        public static Dictionary<RoleTypeId, float> healthDict = new Dictionary<RoleTypeId, float>()
+        public static Dictionary<RoleTypeId, float> healthDict = new()
         {
             [RoleTypeId.Scp173] = Plugin.Instance.Config.SCPsHP[0],
             [RoleTypeId.Scp939] = Plugin.Instance.Config.SCPsHP[1],
