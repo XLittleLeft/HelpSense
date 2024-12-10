@@ -65,6 +65,7 @@ Download the **latest zip file from the Release section** and extract everything
 - Michal78900
 - MeowServer
 - YongAn404
+- Axwabo
 
 ## For Translation
 - English: SpankyR
@@ -77,6 +78,13 @@ Download the **latest zip file from the Release section** and extract everything
 - Russian : Bread[IDDQD] , RisottoMan
 - Slovak : blackstrikesk
 - Traditional Chinese : Alter
+
+## Reference code
+- [Lobby](https://github.com/MrAfitol/Lobby)
+- [RespawnTimer](https://github.com/Michal78900/RespawnTimer)
+- [SpectatorList](https://github.com/TTypiarz/SpectatorList)
+- [RemoteKeycard](https://github.com/SrLicht/RemoteKeycard)
+- [HiddenTutorials](https://github.com/Jesus-QC/HiddenTutorials)
 
 ![部分预览图 (3)](https://github.com/user-attachments/assets/55446be5-7f46-4c10-8ad7-f4ceeb89416b)
 ![部分预览图 (5)](https://github.com/user-attachments/assets/e54e6a30-6c5d-40ea-bbb0-6ca465143254)
