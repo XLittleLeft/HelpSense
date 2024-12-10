@@ -1,0 +1,44 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [
+            "**/*.csproj"
+          ],
+          "exclude": [
+            "**/bin/**",
+            "**/obj/**"
+          ],
+          "src": "../"
+        }
+      ],
+      "dest": "api",
+      "namespaceLayout": "nested",
+      "enumSortOrder": "declaringOrder"
+    }
+  ],
+  "build": {
+    "globalMetadata": {
+      "_appTitle": "HelpSense",
+      "_enableSearch": true,
+      "_lang": "zh-CN",
+      "_gitContribute": {
+        "repo": "https://github.com/XLittleLeft/HelpSense",
+        "branch": "master"
+      }
+    },
+    "template": [ "default", "modern" ],
+    "content": [
+      {
+        "files": [
+          "api/**.yml",
+          "api/index.md",
+          "toc.yml",
+          "*.md"
+        ]
+      }
+    ],
+    "dest": "_site"
+  }
+}
