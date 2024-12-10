@@ -5,6 +5,8 @@
 # HelpSense
 <i>A practical plugin with a variety of features, solving all your troubles with just one plugin!</i>
 
+[Official website](https://helpsense.scpslgame.cn/) [API documentation website](https://xlittleleft.github.io/HelpSense/api/HelpSense.html)
+
 # HelpSense TranslateFile
 Are you looking for plugin configuration files for your country's language? -> [Language files](TranslateFile)
 
