@@ -1,0 +1,6 @@
+- name: Articles
+  href: articles/index.html
+- name: API Documentation
+  href: api/HelpSense.html
+- name: GitHub
+  href: https://github.com/XLittleLeft/HelpSense
