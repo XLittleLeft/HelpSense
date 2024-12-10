@@ -32,6 +32,7 @@
     "content": [
       {
         "files": [
+          "articles/*.md",
           "api/**.yml",
           "api/index.md",
           "toc.yml",
