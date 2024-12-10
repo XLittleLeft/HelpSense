@@ -62,6 +62,7 @@ Download the **latest zip file from the Release section** and extract everything
 - MrAfitol
 - Michal78900
 - MeowServer
+- YongAn404
 
 ## For Translation
 - English: SpankyR
