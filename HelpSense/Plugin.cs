@@ -44,8 +44,6 @@ namespace HelpSense
     {
         private Harmony _harmony = new("cn.xlittleleft.plugin");
 
-        public LiteDatabase Database;
-
         [PluginConfig]
         public Config Config;
 
@@ -1497,8 +1495,6 @@ namespace HelpSense
 
             Instance = null;
             _harmony = null;
-            Database.Dispose();
-            Database = null;
         }
     }
 }

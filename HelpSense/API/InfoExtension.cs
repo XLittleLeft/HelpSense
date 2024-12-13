@@ -3,7 +3,9 @@
 namespace HelpSense.API
 {
     using HelpSense.API.Serialization;
+    using HelpSense.ConfigSystem;
     using HelpSense.Helper;
+    using LiteDB;
     using MEC;
     using PluginAPI.Core;
     using System;
@@ -29,7 +31,8 @@ namespace HelpSense.API
                     RolePlayed = 0,
                     PlayerShot = 0,
                 };
-                Plugin.Instance.Database.GetCollection<PlayerLog>("Players").Insert(toInsert);
+                using LiteDatabase database = new(Plugin.Instance.Config.SavePath);
+                database.GetCollection<PlayerLog>("Players").Insert(toInsert);
             }
 
             if (log is null)
@@ -57,7 +60,8 @@ namespace HelpSense.API
                     RolePlayed = 0,
                     PlayerShot = 0,
                 };
-                Plugin.Instance.Database.GetCollection<PlayerLog>("Players").Insert(toInsert);
+                using LiteDatabase database = new(Plugin.Instance.Config.SavePath);
+                database.GetCollection<PlayerLog>("Players").Insert(toInsert);
             }
 
             if (log is null)
@@ -67,7 +71,8 @@ namespace HelpSense.API
 
         public static void UpdateLog(this PlayerLog log)
         {
-            Plugin.Instance.Database.GetCollection<PlayerLog>("Players").Update(log);
+            using LiteDatabase database = new(Plugin.Instance.Config.SavePath);
+            database.GetCollection<PlayerLog>("Players").Update(log);
         }
 
         public static IEnumerator<float> CollectInfo()
