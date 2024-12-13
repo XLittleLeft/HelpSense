@@ -102,13 +102,6 @@ namespace HelpSense
         {
             Instance = this;
 
-            if (Config.SavePlayersInfo)
-            {
-                Database = new LiteDatabase(Config.SavePath);
-            }
-
-            if (Database == null) Log.Error("LiteDB NULL");
-
             EventManager.RegisterEvents(this);
 
             _harmony.PatchAll();
