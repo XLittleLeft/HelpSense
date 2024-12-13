@@ -17,7 +17,12 @@ namespace HelpSense.API
                 return true;
             }
             log = database.GetCollection<PlayerLog>("Players")?.FindById(id); 
-            return log != null;
+            if (log != null)
+            {
+                PlayerDataDic.Add(id, log);
+                return true;
+            }
+            return false;
         }
     }
 }
