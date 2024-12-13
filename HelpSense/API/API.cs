@@ -1,4 +1,5 @@
 ﻿using HelpSense.API.Serialization;
+using LiteDB;
 using System.Collections.Generic;
 
 namespace HelpSense.API
@@ -9,7 +10,8 @@ namespace HelpSense.API
 
         public static bool TryGetLog(string id, out PlayerLog log)
         {
-            log = Plugin.Instance.Database.GetCollection<PlayerLog>("Players")?.FindById(id);
+            using LiteDatabase database = new(Plugin.Instance.Config.SavePath);
+            log = database.GetCollection<PlayerLog>("Players")?.FindById(id);
             return log != null;
         }
     }
