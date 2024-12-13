@@ -109,6 +109,8 @@ namespace HelpSense
                 Database = new LiteDatabase(Config.SavePath);
             }
 
+            if (Database == null) Log.Error("LiteDB NULL");
+
             EventManager.RegisterEvents(this);
 
             _harmony.PatchAll();
@@ -609,7 +611,7 @@ namespace HelpSense
 
                         player.ClearBroadcasts();
 
-                        player.ShowBroadcast(TranslateConfig.SCP029SpawnBroadcast, 10, Broadcast.BroadcastFlags.Normal);
+                        player.ShowBroadcast(TranslateConfig.SCP029SpawnBroadcast, 10, BroadcastFlags.Normal);
 
                         player.ClearInventory();
 

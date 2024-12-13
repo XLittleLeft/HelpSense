@@ -83,6 +83,7 @@ namespace HelpSense.Helper.SpecialRole
                 if (Plugin.Instance.SCP347 != null && Plugin.Instance.SCP347.Player != null)
                 {
                     Plugin.Instance.SCP347.Player.EffectsManager.EnableEffect<Invisible>();
+                    Plugin.Instance.SCP347.Player.EffectsManager.ChangeState<Invisible>(1 , 2);
 
                     Plugin.Instance.SCP347.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP347SpecialIntroduction, config.SCP347SkillIntroduction, 1.25f);
                 }
