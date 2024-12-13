@@ -44,8 +44,6 @@ namespace HelpSense
     {
         private Harmony _harmony = new("cn.xlittleleft.plugin");
 
-        public LiteDatabase Database;
-
         [PluginConfig]
         public Config Config;
 
@@ -103,11 +101,6 @@ namespace HelpSense
         private void LoadPlugin()
         {
             Instance = this;
-
-            if (Config.SavePlayersInfo)
-            {
-                Database = new LiteDatabase(Config.SavePath);
-            }
 
             EventManager.RegisterEvents(this);
 
@@ -1495,8 +1488,6 @@ namespace HelpSense
 
             Instance = null;
             _harmony = null;
-            Database.Dispose();
-            Database = null;
         }
     }
 }
