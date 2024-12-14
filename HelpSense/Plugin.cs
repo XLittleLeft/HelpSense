@@ -314,6 +314,7 @@ namespace HelpSense
 
             XHelper.PlayerList.Remove(player);
             XHelper.SpecialPlayerList.Remove(player);
+            API.API.PlayerDataDic.Remove(player.UserId);
         }
 
         [PluginEvent]
