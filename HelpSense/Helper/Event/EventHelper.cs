@@ -135,7 +135,7 @@ namespace HelpSense.Helper.Event
 
                         player.ShowBroadcast(Plugin.Instance.TranslateConfig.ChaosLeaderSpawnBroadcast, 10, Broadcast.BroadcastFlags.Normal);
 
-                        var firearm = player.AddItem(ItemType.ParticleDisruptor) as ParticleDisruptor;
+                        //var firearm = player.AddItem(ItemType.ParticleDisruptor) as ParticleDisruptor;
                         //TODO:子弹
                         //firearm.Status = new FirearmStatus(5, FirearmStatusFlags.MagazineInserted, firearm.GetCurrentAttachmentsCode());
 

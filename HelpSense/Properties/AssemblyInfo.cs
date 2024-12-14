@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("HelpSense")]
 [assembly: AssemblyDescription("A Plugin For SCP:SL")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("X小左")]
 [assembly: AssemblyProduct("HelpSense")]
 [assembly: AssemblyCopyright("Copyright © X小左 2022-2024")]
 [assembly: AssemblyTrademark("")]

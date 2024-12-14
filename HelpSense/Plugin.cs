@@ -94,7 +94,7 @@ namespace HelpSense
         public ItemBase SCP1056Base;
 
         public static System.Version PluginVersion => new(1, 3, 7);
-        public static DateTime LastUpdateTime => new(2024, 12, 10, 14, 17, 57);
+        public static DateTime LastUpdateTime => new(2024, 12, 14, 12, 19, 45);
         public static System.Version RequiredGameVersion => new(14, 0, 0);
 
         [PluginEntryPoint("HelpSense", "1.3.7", "HelpSense综合服务器插件", "X小左")]
