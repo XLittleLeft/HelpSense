@@ -2,6 +2,7 @@
 using GameCore;
 using HarmonyLib;
 using HelpSense.API;
+using HelpSense.API.Serialization;
 using HelpSense.ConfigSystem;
 using HelpSense.Handler;
 using HelpSense.Helper;
@@ -13,9 +14,9 @@ using HelpSense.Helper.SCP;
 using HelpSense.Helper.SpecialRole;
 using HelpSense.MonoBehaviors;
 using HintServiceMeow.UI.Extension;
+using Interactables.Interobjects.DoorUtils;
 using InventorySystem;
 using InventorySystem.Items;
-using InventorySystem.Items.Firearms;
 using InventorySystem.Items.Keycards;
 using LiteDB;
 using MapGeneration;
@@ -80,10 +81,10 @@ namespace HelpSense
 
         public SCPHelper SCP1093;
 
-        public HashSet<Player> SkynetPlayers = new();
+        public HashSet<Player> SkynetPlayers = [];
         public bool SkynetSpawned = false;
 
-        public HashSet<Player> SeePlayers = new();
+        public HashSet<Player> SeePlayers = [];
         public bool SeeSpawned = false;
         public bool Scp096Enraging = false;
 
@@ -93,11 +94,11 @@ namespace HelpSense
         public ushort SCP1056Id = 0;
         public ItemBase SCP1056Base;
 
-        public static System.Version PluginVersion => new(1, 3, 7);
-        public static DateTime LastUpdateTime => new(2024, 12, 14, 12, 19, 45);
-        public static System.Version RequiredGameVersion => new(14, 0, 0);
+        public static System.Version PluginVersion => new(1, 3, 8);
+        public static DateTime LastUpdateTime => new(2025, 1, 22, 16, 21, 48);
+        public static System.Version RequiredGameVersion => new(14, 0, 2);
 
-        [PluginEntryPoint("HelpSense", "1.3.7", "HelpSense综合服务器插件", "X小左")]
+        [PluginEntryPoint("HelpSense", "1.3.8", "HelpSense综合服务器插件", "X小左")]
         private void LoadPlugin()
         {
             Instance = this;
@@ -105,11 +106,6 @@ namespace HelpSense
             EventManager.RegisterEvents(this);
 
             _harmony.PatchAll();
-            //TODO:Respawn
-            /*if (Config.EnableRespawnTimer)
-            {
-                RespawnTimerDirectoryPath = PluginHandler.Get(this).PluginDirectoryPath;
-            }*/
         }
 
         public static Plugin Instance { get; private set; }
@@ -151,24 +147,12 @@ namespace HelpSense
                 AttackerDamageHandler.RefreshConfigs();
                 Server.FriendlyFire = false;
             }
-            //TODO:Respawn
-            /*if (Config.EnableRespawnTimer)
-            {
-                if (Config.Timers.IsEmpty())
-                {
-                    Log.Error("列表为空");
-                    return;
-                }
-
-                string chosenTimerName = Config.Timers[UnityEngine.Random.Range(0, Config.Timers.Count)];
-                TimerView.GetNew(chosenTimerName);
-            }*/
         }
 
         [PluginEvent]
         public void OnPlayerJoin(PlayerJoinedEvent ev)
         {
-            var player = ev.Player;
+            Player player = ev.Player;
 
             if (player == null || string.IsNullOrEmpty(player.UserId)) return;
             XHelper.PlayerList.Add(player);
@@ -178,7 +162,7 @@ namespace HelpSense
 
             if (Config.SavePlayersInfo)
             {
-                var log = player.GetLog();
+                PlayerLog log = player.GetLog();
                 log.NickName = player.Nickname;
                 log.LastJoinedTime = DateTime.Now;
                 log.UpdateLog();
@@ -205,19 +189,19 @@ namespace HelpSense
                             {
                                 foreach (var item in Config.LobbyInventory)
                                 {
-                                    player.AddItem(item);
+                                    player.AddItem(item , ItemAddReason.AdminCommand);
                                 }
                             }
                             if (CurLobbyLocationType is LobbyLocationType.Chaos)
                             {
                                 player.AddItem(ItemType.ArmorHeavy);
-                                player.AddItem(ItemType.GunAK);
-                                player.AddItem(ItemType.GunCrossvec);
-                                player.AddItem(ItemType.GunE11SR);
-                                player.AddItem(ItemType.GunFRMG0);
-                                player.AddItem(ItemType.GunLogicer);
-                                player.AddItem(ItemType.GunRevolver);
-                                player.AddItem(ItemType.GunShotgun);
+                                player.AddItem(ItemType.GunAK, ItemAddReason.AdminCommand);
+                                player.AddItem(ItemType.GunCrossvec, ItemAddReason.AdminCommand);
+                                player.AddItem(ItemType.GunE11SR, ItemAddReason.AdminCommand);
+                                player.AddItem(ItemType.GunFRMG0, ItemAddReason.AdminCommand);
+                                player.AddItem(ItemType.GunLogicer, ItemAddReason.AdminCommand);
+                                player.AddItem(ItemType.GunRevolver, ItemAddReason.AdminCommand);
+                                player.AddItem(ItemType.GunShotgun, ItemAddReason.AdminCommand);
                                 player.SetAmmo(ItemType.Ammo9x19, (ushort)player.GetAmmoLimit(ItemType.Ammo9x19));
                                 player.SetAmmo(ItemType.Ammo12gauge, (ushort)player.GetAmmoLimit(ItemType.Ammo12gauge));
                                 player.SetAmmo(ItemType.Ammo762x39, (ushort)player.GetAmmoLimit(ItemType.Ammo762x39));
@@ -253,9 +237,10 @@ namespace HelpSense
         [PluginEvent]
         bool OnDamage(PlayerDamageEvent ev)
         {
-            var target = ev.Target;
-            var attacker = ev.Player;
-            var damageHandler = ev.DamageHandler;
+            Player target = ev.Target;
+            Player attacker = ev.Player;
+            DamageHandlerBase damageHandler = ev.DamageHandler;
+
             if (target != null && attacker != null)
             {
                 if (target.RoleName == "SCP-1093" && damageHandler is AttackerDamageHandler attackerDamageHandler)
@@ -301,13 +286,13 @@ namespace HelpSense
         [PluginEvent]
         void OnPlayerLeft(PlayerLeftEvent ev)
         {
-            var player = ev.Player;
+            Player player = ev.Player;
 
             if (player == null || string.IsNullOrEmpty(player.UserId)) return;
 
             if (Config.SavePlayersInfo)
             {
-                var log = player.GetLog();
+                PlayerLog log = player.GetLog();
                 log.LastLeftTime = DateTime.Now;
                 log.UpdateLog();
             }
@@ -320,7 +305,7 @@ namespace HelpSense
         [PluginEvent]
         void OnPlayerEscape(PlayerEscapeEvent ev)
         {
-            var player = ev.Player;
+            Player player = ev.Player;
             var newRole = ev.NewRole;
 
             if (player.RoleName == "SCP-029")
@@ -343,218 +328,12 @@ namespace HelpSense
                 {
                     if (newRole == RoleTypeId.NtfSpecialist)
                     {
-                        var firearm = player.ReferenceHub.inventory.ServerAddItem(ItemType.ParticleDisruptor, ItemAddReason.AdminCommand) as ParticleDisruptor;
-                        //TODO:子弹
-                        /*firearm.Status = new FirearmStatus(5, FirearmStatusFlags.MagazineInserted, firearm.GetCurrentAttachmentsCode());
-                        firearm.TryGetModule<IAmmoContainerModule>(out var module);
-                        module.*/
+                        player.AddItem(ItemType.ParticleDisruptor, ItemAddReason.AdminCommand);
                         player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.SCP703EscapeHint);
                     }
                 });
             }
         }
-        //TODO:TeamRespawnEvent
-        /*[PluginEvent]
-        void OnSpecialTeamRespawn(TeamRespawnEvent ev)
-        {
-            var team = ev.Team;
-            var players = ev.Players;
-
-            Timing.CallDelayed(0.5f, () =>
-            {
-                if (Config.EnableSkynet && !SkynetSpawned && team == SpawnableTeamType.NineTailedFox)
-                {
-                    Player player079 = XHelper.PlayerList.FirstOrDefault(x => x.Role is RoleTypeId.Scp079);
-                    int player079Leave = 0;
-                    if (player079 != null)
-                    {
-                        Scp079Role scp079 = player079.ReferenceHub.roleManager.CurrentRole as Scp079Role;
-                        scp079.SubroutineModule.TryGetSubroutine(out Scp079TierManager tier);
-                        player079Leave = tier.AccessTierLevel;
-                    }
-                    if (player079Leave >= 3)
-                    {
-                        SkynetSpawned = true;
-                        Cassie.Clear();
-                        XHelper.MessageTranslated($"MTFUnit Kappa , 10 , and , Mu , 7 , designated scan neck , HasEntered , they will help contain scp 0 7 9 , AllRemaining , AwaitingRecontainment {XHelper.PlayerList.Where(x => x.IsSCP).Count()} SCPSubjects", TranslateConfig.SkynetCassie.Replace("%SCPNum%", XHelper.PlayerList.Where(x => x.IsSCP).Count().ToString()));
-
-                        foreach (Player player in players)
-                        {
-                            SkynetPlayers.Add(player);
-                            if (player.Role is not RoleTypeId.NtfCaptain)
-                                player.AddItem(ItemType.SCP2176);
-                            switch (player.Role)
-                            {
-                                case RoleTypeId.NtfPrivate:
-                                    player.ShowBroadcast($"{TranslateConfig.SkynetPrivateBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
-                                    player.CustomInfo = TranslateConfig.SkynetPrivateCustomInfo;
-                                    break;
-                                case RoleTypeId.NtfSergeant:
-                                    player.ShowBroadcast($"{TranslateConfig.SkynetSergeantBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
-                                    player.CustomInfo = TranslateConfig.SkynetSergeantCustomInfo;
-                                    break;
-                                case RoleTypeId.NtfCaptain:
-                                    player.ShowBroadcast($"{TranslateConfig.SkynetCaptainBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
-                                    player.CustomInfo = TranslateConfig.SkynetCaptainCustomInfo;
-                                    break;
-                            }
-                        }
-                        return;
-                    }//我搞了半天搞出来的最像的语音
-                }
-                if (Config.EnableSeeNoEvil)
-                {
-                    Timing.CallDelayed(1.2f, () =>
-                    {
-                        if (!SeeSpawned && Random.Next(101) <= Config.SeeNoEvilPer)
-                        {
-                            if (XHelper.PlayerList.Any(x => x.Role is RoleTypeId.Scp096))
-                            {
-                                Cassie.Clear();
-                                XHelper.MessageTranslated($"MTFUnit Eta , 10 , designated see no evil , HasEntered , they will help contain scp 0 9 6 , AllRemaining , AwaitingRecontainment {XHelper.PlayerList.Where(x => x.IsSCP).Count()} SCPSubjects", TranslateConfig.SeeNoEvilCassie.Replace("%SCPNum%", XHelper.PlayerList.Where(x => x.IsSCP).Count().ToString()));
-                                SeeSpawned = true;
-                                foreach (Player player in players)
-                                {
-                                    SeePlayers.Add(player);
-                                    switch (player.Role)
-                                    {
-                                        case RoleTypeId.NtfPrivate:
-                                            player.ShowBroadcast($"{TranslateConfig.SeeNoEvilPrivateBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
-                                            player.CustomInfo = TranslateConfig.SeeNoEvilPrivateCustomInfo;
-                                            break;
-                                        case RoleTypeId.NtfSergeant:
-                                            player.ShowBroadcast($"{TranslateConfig.SeeNoEvilSergeantBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
-                                            player.CustomInfo = TranslateConfig.SeeNoEvilSergeantCustomInfo;
-                                            break;
-                                        case RoleTypeId.NtfCaptain:
-                                            player.ShowBroadcast($"{TranslateConfig.SeeNoEvilCaptainBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
-                                            player.CustomInfo = TranslateConfig.SeeNoEvilCaptainCustomInfo;
-                                            break;
-                                    }
-                                    player.Position = RoomIdentifier.AllRoomIdentifiers.FirstOrDefault(x => x.Name is RoomName.Outside).transform.TransformPoint(62.93f, -8.35f, -51.26f);
-                                }
-                            }
-                        }
-                    });
-                }
-            });
-        }*/
-        //TODO:TeamRespawnEvent
-        /*[PluginEvent]
-        void OnTeamRespawn(TeamRespawnEvent ev)
-        {
-            var team = ev.Team;
-            var players = ev.Players;
-
-            var specialPlayers = ev.Players;
-
-            if (Config.SpawnHID)
-            {
-                Timing.CallDelayed(2f, () =>
-                {
-                    foreach (Player Player in players)
-                    {
-                        if (Player.Role is RoleTypeId.NtfCaptain)
-                        {
-                            Player.AddItem(ItemType.MicroHID);
-                            //var firaerm = Player.AddItem(ItemType.ParticleDisruptor) as ParticleDisruptor;
-                            //TODO:子弹
-                            //firaerm.Status = new FirearmStatus(5, FirearmStatusFlags.MagazineInserted, firaerm.GetCurrentAttachmentsCode());
-                        }
-                    }
-                });
-            }
-            if (Config.EnableChaosLeader && !SpawnLeader)
-            {
-                Timing.CallDelayed(1f, () =>
-                {
-                    var player = XHelper.GetRandomPlayer(RoleTypeId.ChaosRifleman, specialPlayers);
-                    if (player != null)
-                    {
-                        specialPlayers.Remove(player);
-
-                        SpawnLeader = true;
-
-                        ChaosLeader = new SCPHelper(player, 150, TranslateConfig.ChaosLeaderRoleName, "green");
-
-                        player.ClearBroadcasts();
-
-                        player.ShowBroadcast(TranslateConfig.ChaosLeaderSpawnBroadcast, 10, Broadcast.BroadcastFlags.Normal);
-
-                        var firearm = player.AddItem(ItemType.ParticleDisruptor) as ParticleDisruptor;
-                        //TODO:子弹
-                        //firearm.Status = new FirearmStatus(5, FirearmStatusFlags.MagazineInserted, firearm.GetCurrentAttachmentsCode());
-
-                        player.AddItem(ItemType.SCP1853);
-                        player.AddItem(ItemType.SCP268);
-
-                        foreach (Player pl in XHelper.PlayerList)
-                        {
-                            if (pl.Team is PlayerRoles.Team.ChaosInsurgency)
-                            {
-                                pl.EffectsManager.EnableEffect<MovementBoost>();
-                                pl.EffectsManager.ChangeState<MovementBoost>(5);
-                            }
-                        }
-                    };
-                });
-            }
-            if (Config.SCP2936 && !SpawnSCP2936)
-            {
-                Timing.CallDelayed(1f, () =>
-                {
-                    Player player = XHelper.GetRandomPlayer(RoleTypeId.ChaosRepressor, specialPlayers);
-
-                    if (player != null)
-                    {
-                        SpawnSCP2936 = true;
-
-                        specialPlayers.Remove(player);
-
-                        SCP2936 = new SCPHelper(player, 300, "SCP-2936-1", "red");
-
-                        player.SendBroadcast(TranslateConfig.SCP29361SpawnBroadcast, 6);
-
-                        player.SetPlayerScale(2f);
-                    }
-                });
-            }
-            if (Config.SCP073 && XHelper.PlayerList.Any(x => x.RoleName == "SCP-073"))
-            {
-                Timing.CallDelayed(1.2f, () =>
-                {
-                    Player player = XHelper.GetRandomPlayer(specialPlayers);
-
-                    if (player != null)
-                    {
-                        specialPlayers.Remove(player);
-
-                        SCP073 = new SCPHelper(player, 120, "SCP-073", "green");
-
-                        if (player.Team is Team.ChaosInsurgency)
-                        {
-                            player.SendBroadcast(TranslateConfig.SCP073AbelSpawnBroadcast, 6);
-
-                            player.ClearInventory();
-                            for (int i = 0; i < 8; i++)
-                            {
-                                player.AddItem(ItemType.Jailbird);
-                            }
-
-                            Timing.RunCoroutine(XHelper.PositionCheckerCoroutine(player).CancelWith(player.GameObject));
-                        }
-                        else
-                        {
-                            player.SendBroadcast(TranslateConfig.SCP073CainSpawnBroadcast, 6);
-                        }
-                        player.EffectsManager.EnableEffect<DamageReduction>();
-                        player.EffectsManager.ChangeState<DamageReduction>(Config.SCP073DD);
-                        player.EffectsManager.EnableEffect<MovementBoost>();
-                        player.EffectsManager.ChangeState<MovementBoost>(10);
-                    }
-                });
-            }
-        }*/
 
         [PluginEvent]
         public void OnRoundStarted(RoundStartEvent ev)
@@ -580,7 +359,7 @@ namespace HelpSense
             {
                 Timing.CallDelayed(0.5f, () =>
                 {
-                    var Player = XHelper.GetRandomSpecialPlayer(RoleTypeId.Scientist);
+                    Player Player = XHelper.GetRandomSpecialPlayer(RoleTypeId.Scientist);
                     if (Player != null)
                     {
                         SCP703 = new SCPHelper(Player, 120, "SCP-703", "cyan");
@@ -596,7 +375,7 @@ namespace HelpSense
             {
                 Timing.CallDelayed(1f, () =>
                 {
-                    var player = XHelper.GetRandomSpecialPlayer(RoleTypeId.ClassD);
+                    Player player = XHelper.GetRandomSpecialPlayer(RoleTypeId.ClassD);
                     if (player != null)
                     {
                         SCP029 = new SCPHelper(player, 120, "SCP-029", "red");
@@ -608,9 +387,7 @@ namespace HelpSense
                         player.ClearInventory();
 
                         player.AddItem(ItemType.KeycardContainmentEngineer);
-                        var firearm = player.ReferenceHub.inventory.ServerAddItem(ItemType.GunCOM18, ItemAddReason.AdminCommand);
-                        //TODO:子弹
-                        //((Firearm)(firearm)).Status = new FirearmStatus(((Firearm)(firearm)).AmmoManagerModule.MaxAmmo, ((Firearm)(firearm)).Status.Flags, ((Firearm)(firearm)).GetCurrentAttachmentsCode());
+                        player.AddItem(ItemType.GunCOM18, ItemAddReason.AdminCommand);
 
                         player.AddAmmo(ItemType.Ammo9x19, 30);
 
@@ -630,7 +407,7 @@ namespace HelpSense
             {
                 Timing.CallDelayed(1.2f, () =>
                 {
-                    var player = XHelper.GetRandomSpecialPlayer(RoleTypeId.ClassD);
+                    Player player = XHelper.GetRandomSpecialPlayer(RoleTypeId.ClassD);
 
                     if (player != null)
                     {
@@ -651,7 +428,7 @@ namespace HelpSense
             {
                 Timing.CallDelayed(1.4f, () =>
                 {
-                    var player = XHelper.GetRandomSpecialPlayer(RoleTypeId.ClassD);
+                    Player player = XHelper.GetRandomSpecialPlayer(RoleTypeId.ClassD);
 
                     if (player != null)
                     {
@@ -684,9 +461,7 @@ namespace HelpSense
                                     player1.AddItem(ItemType.KeycardMTFOperative);
                                     player1.AddItem(ItemType.Medkit);
 
-                                    var firearm = player1.AddItem(ItemType.GunAK);
-                                    //TODO:子弹
-                                    //((Firearm)(firearm)).Status = new FirearmStatus(((Firearm)(firearm)).AmmoManagerModule.MaxAmmo, ((Firearm)(firearm)).Status.Flags, ((Firearm)(firearm)).GetCurrentAttachmentsCode());
+                                    player1.AddItem(ItemType.GunAK, ItemAddReason.AdminCommand);
 
                                     player1.AddAmmo(ItemType.Ammo762x39, (ushort)player1.GetAmmoLimit(ItemType.Ammo762x39));
 
@@ -705,9 +480,7 @@ namespace HelpSense
 
                                         players.AddItem(ItemType.KeycardMTFPrivate);
 
-                                        var firearm = players.AddItem(ItemType.GunCrossvec);
-                                        //TODO:子弹
-                                        //((Firearm)(firearm)).Status = new FirearmStatus(((Firearm)(firearm)).AmmoManagerModule.MaxAmmo, ((Firearm)(firearm)).Status.Flags, ((Firearm)(firearm)).GetCurrentAttachmentsCode());
+                                        players.AddItem(ItemType.GunCrossvec , ItemAddReason.AdminCommand);
 
                                         players.AddAmmo(ItemType.Ammo9x19, (ushort)players.GetAmmoLimit(ItemType.Ammo9x19));
 
@@ -734,9 +507,7 @@ namespace HelpSense
                                     guardPlayer.AddItem(ItemType.Adrenaline);
                                     guardPlayer.AddItem(ItemType.GrenadeHE);
 
-                                    var firearm = guardPlayer.AddItem(ItemType.GunLogicer);
-                                    //TODO:子弹
-                                    //((Firearm)(firearm)).Status = new FirearmStatus(((Firearm)(firearm)).AmmoManagerModule.MaxAmmo, ((Firearm)(firearm)).Status.Flags, ((Firearm)(firearm)).GetCurrentAttachmentsCode());
+                                    guardPlayer.AddItem(ItemType.GunLogicer, ItemAddReason.AdminCommand);
 
                                     guardPlayer.SetAmmo(ItemType.Ammo762x39, (ushort)guardPlayer.GetAmmoLimit(ItemType.Ammo762x39));
 
@@ -755,7 +526,7 @@ namespace HelpSense
 
                     if (!string.IsNullOrEmpty(IntercomDisplay._singleton.Network_overrideText)) IntercomDisplay._singleton.Network_overrideText = "";
 
-                    foreach (var player in XHelper.PlayerList)
+                    foreach (Player player in XHelper.PlayerList)
                     {
                         player.ClearInventory();
 
@@ -778,11 +549,6 @@ namespace HelpSense
                 Server.FriendlyFire = false;
                 Traverse.Create<AttackerDamageHandler>().Method("RefreshConfigs").GetValue();
             }
-            //TODO:Respawn
-            /*if (Config.EnableRespawnTimer)
-            {
-                Timing.RunCoroutine(RespawnHelper.TimerCoroutine());
-            }*/
             Timing.CallDelayed(30f, () =>
             {
                 Timing.RunCoroutine(XHelper.AutoXBroadcast());
@@ -823,8 +589,8 @@ namespace HelpSense
         [PluginEvent]
         bool OnScp173(Scp173NewObserverEvent ev)
         {
-            var target = ev.Target;
-            var player = ev.Player;
+            Player target = ev.Target;
+            Player player = ev.Player;
             if (target != null && player != null)
             {
                 if (target.RoleName == "SCP-191")
@@ -838,8 +604,8 @@ namespace HelpSense
         [PluginEvent]
         bool OnScp096(Scp096AddingTargetEvent ev)
         {
-            var target = ev.Target;
-            var player = ev.Player;
+            Player target = ev.Target;
+            Player player = ev.Player;
             if (target != null && player != null)
             {
                 var role = player.ReferenceHub.roleManager.CurrentRole as Scp096Role;
@@ -874,7 +640,7 @@ namespace HelpSense
         bool OnPlayerSearchedPickup(PlayerSearchedPickupEvent ev)
         {
             var item = ev.Item;
-            var player = ev.Player;
+            Player player = ev.Player;
 
             Timing.CallDelayed(0.5f, () =>
             {
@@ -899,7 +665,7 @@ namespace HelpSense
         [PluginEvent]
         bool OnPlayerPick(PlayerSearchPickupEvent ev)
         {
-            var Player = ev.Player;
+            Player Player = ev.Player;
             var Item = ev.Item;
 
             if (Player != null)
@@ -919,7 +685,7 @@ namespace HelpSense
         [PluginEvent]
         void OnScp914(Scp914InventoryItemUpgradedEvent ev)
         {
-            var player = ev.Player;
+            Player player = ev.Player;
 
             if (player == null)
                 return;
@@ -943,7 +709,7 @@ namespace HelpSense
         [PluginEvent]
         void OnPlayerUsedItem(PlayerUsedItemEvent ev)
         {
-            var player = ev.Player;
+            Player player = ev.Player;
             var item = ev.Item;
 
             if (SCP1056Base != null && item == SCP1056Base)
@@ -1026,13 +792,8 @@ namespace HelpSense
         [PluginEvent]
         void OnPlayerSpawn(PlayerSpawnEvent ev)
         {
-            var player = ev.Player;
-            var role = ev.Role;
-
-            if (player.ReferenceHub.isLocalPlayer && Server.Instance == null)
-            {
-                _ = new Server(player.ReferenceHub);
-            }
+            Player player = ev.Player;
+            RoleTypeId role = ev.Role;
 
             if (Config.EnableRoundSupplies)
             {
@@ -1040,7 +801,7 @@ namespace HelpSense
                 {
                     if (player.Role is RoleTypeId.ClassD)
                     {
-                        player.ReferenceHub.inventory.ServerAddItem(Config.ClassDCard, ItemAddReason.AdminCommand, 1);
+                        player.AddItem(Config.ClassDCard, ItemAddReason.AdminCommand);
                     }
                 });
             }
@@ -1066,7 +827,7 @@ namespace HelpSense
         /*[PluginEvent]
         bool OnPlayerReloadWeapon(PlayerReloadWeaponEvent ev)
         {
-            var player = ev.Player;
+            Player player = ev.Player;
             var firearm = ev.Firearm;
 
             if (Config.InfiniteAmmo)
@@ -1096,26 +857,11 @@ namespace HelpSense
             }
             return true;
         }*/
-        //傻逼NW空壳事件
-        /*[PluginEvent]
-        void OnPlayerShot(PlayerShotWeaponEvent ev)
-        {
-            var Player = ev.Player;
-            var Firearm = ev.Firearm;
-
-            if (Player == null || !Config.InfiniteAmmo) return;
-
-            Player.SetAmmo(ItemType.Ammo9x19, 180);
-            Player.SetAmmo(ItemType.Ammo12gauge, 18);
-            Player.SetAmmo(ItemType.Ammo44cal, 18);
-            Player.SetAmmo(ItemType.Ammo762x39, 180);
-            Player.SetAmmo(ItemType.Ammo556x45, 180);
-        }*/
 
         [PluginEvent]
         void OnPlayerShotWeapon(PlayerShotWeaponEvent ev)
         {
-            var player = ev.Player;
+            Player player = ev.Player;
             var firearm = ev.Firearm;
             if (player != null && Config.SavePlayersInfo)
             {
@@ -1123,18 +869,12 @@ namespace HelpSense
                 pLog.PlayerShot++;
                 pLog.UpdateLog();
             }
-            if (firearm.ItemTypeId is ItemType.ParticleDisruptor) return;
-            if (Config.InfiniteAmmoType is InfiniteAmmoType.Infinite && Config.InfiniteAmmo)
-            {
-                //TODO:子弹
-                //firearm.Status = new FirearmStatus(firearm.AmmoManagerModule.MaxAmmo, firearm.Status.Flags, firearm.GetCurrentAttachmentsCode());
-            }
         }
 
         [PluginEvent]
         void OnPlayerDying(PlayerDyingEvent ev)
         {
-            var player = ev.Player;
+            Player player = ev.Player;
 
             if (player == null) return;
 
@@ -1227,8 +967,8 @@ namespace HelpSense
         [PluginEvent]
         void OnPlayerDyingInfo(PlayerDyingEvent ev)
         {
-            var player = ev.Player;
-            var attacker = ev.Attacker;
+            Player player = ev.Player;
+            Player attacker = ev.Attacker;
 
             if (player != null && attacker != null && Config.SavePlayersInfo && !attacker.DoNotTrack)
             {
@@ -1254,20 +994,23 @@ namespace HelpSense
         [PluginEvent]
         public bool OnPlayerInteractDoor(PlayerInteractDoorEvent ev)
         {
-            if (ev.Door.ActiveLocks > 0 && !ev.Player.IsBypassEnabled)
+            Player Player = ev.Player;
+            DoorVariant Door = ev.Door;
+
+            if (Door.ActiveLocks > 0 && !Player.IsBypassEnabled)
                 return true;
 
-            if (!Config.AffectDoors || ev.Player.IsSCP || ev.Player.IsWithoutItems() || ev.Player.CurrentItem is KeycardItem)
+            if (!Config.AffectDoors || Player.IsSCP || Player.IsWithoutItems() || Player.CurrentItem is KeycardItem)
                 return true;
 
-            if (!ev.Door.AllowInteracting(ev.Player.ReferenceHub, 0))
+            if (!Door.AllowInteracting(Player.ReferenceHub, 0))
                 return false;
 
-            if (ev.Door.HasKeycardPermission(ev.Player))
+            if (Door.HasKeycardPermission(Player))
             {
                 ev.CanOpen = true;
 
-                ev.Door.Toggle(ev.Player.ReferenceHub);
+                Door.Toggle(Player.ReferenceHub);
                 return false;
             }
 
@@ -1353,7 +1096,7 @@ namespace HelpSense
         [PluginEvent]
         void OnSkynetPlayerInteractGenerator(PlayerInteractGeneratorEvent ev)
         {
-            var player = ev.Player;
+            Player player = ev.Player;
             var generator = ev.Generator;
 
             if (SkynetPlayers.Contains(player))
@@ -1438,7 +1181,7 @@ namespace HelpSense
         [PluginEvent]
         void OnChangeRole(PlayerChangeRoleEvent ev)
         {
-            var player = ev.Player;
+            Player player = ev.Player;
             var oldRole = ev.OldRole.RoleTypeId;
             var newRole = ev.NewRole;
             if (player == null || string.IsNullOrEmpty(player.UserId)) return;
@@ -1454,7 +1197,7 @@ namespace HelpSense
                 player.SendBroadcast(TranslateConfig.SCP191SpawnBroadcast, 6);
 
                 player.AddItem(ItemType.ArmorCombat);
-                player.AddItem(ItemType.GunFSP9);
+                player.AddItem(ItemType.GunFSP9 , ItemAddReason.AdminCommand);
                 player.AddAmmo(ItemType.Ammo9x19, 60);
                 player.AddItem(ItemType.Medkit);
 

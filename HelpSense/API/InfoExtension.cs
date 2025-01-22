@@ -3,7 +3,6 @@
 namespace HelpSense.API
 {
     using HelpSense.API.Serialization;
-    using HelpSense.ConfigSystem;
     using HelpSense.Helper;
     using LiteDB;
     using MEC;
@@ -15,7 +14,7 @@ namespace HelpSense.API
         public static PlayerLog GetLog(this Player ply)
         {
             PlayerLog toInsert = null;
-            if (!API.TryGetLog(ply.UserId, out var log))
+            if (!API.TryGetLog(ply.UserId, out PlayerLog log))
             {
                 toInsert = new PlayerLog()
                 {
@@ -44,7 +43,7 @@ namespace HelpSense.API
             PlayerLog toInsert = null;
             if (string.IsNullOrWhiteSpace(ply.authManager.UserId))
                 throw new ArgumentNullException(nameof(ply));
-            if (!API.TryGetLog(ply.authManager.UserId, out var log))
+            if (!API.TryGetLog(ply.authManager.UserId, out PlayerLog log))
             {
                 toInsert = new PlayerLog()
                 {

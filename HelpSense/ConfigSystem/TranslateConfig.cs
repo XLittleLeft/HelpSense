@@ -105,9 +105,9 @@ namespace HelpSense.ConfigSystem
         /// 
         /// </summary>
         [Description("警卫叛变显示的公告")]
-        public string GuardMutinyBroadcast { get; set; } = "<size=60><color=#ff0000ff>[警告]</color>此设施警卫已被混沌分裂者策反</size>";
+        public string GuardMutinyBroadcast { get; set; } = "<size=40><color=#ff0000ff>[警告]</color>此设施警卫已被混沌分裂者策反</size>";
         [Description("警卫为精英队显示的公告")]
-        public string EliteGuardBroadcast { get; set; } = "<size=60><color=#00ffffff>[通知]</color>此设施警卫为九尾狐精英队员，保安实力大增</size>";
+        public string EliteGuardBroadcast { get; set; } = "<size=40><color=#00ffffff>[通知]</color>此设施警卫为九尾狐精英队员，保安实力大增</size>";
         /// <summary>
         /// 
         /// </summary>

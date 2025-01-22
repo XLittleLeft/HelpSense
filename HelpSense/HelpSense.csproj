@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="API\API.cs" />
     <Compile Include="API\InfoExtension.cs" />
-    <Compile Include="API\Extensions\StringBuilderExtensions.cs" />
     <Compile Include="API\Features\Pool\IPool.cs" />
     <Compile Include="API\Features\Pool\StringBuilderPool.cs" />
     <Compile Include="API\Features\TimerView.cs" />
@@ -69,7 +68,6 @@
     <Compile Include="Helper\Misc\KeycardSystem.cs" />
     <Compile Include="Helper\Lobby\LobbyHelper.cs" />
     <Compile Include="Helper\Lobby\LobbyLocationType.cs" />
-    <Compile Include="Helper\Misc\RespawnHelper.cs" />
     <Compile Include="Helper\SCP\SCPHPChangeSystem.cs" />
     <Compile Include="MonoBehaviors\PlayerGlowBehavior.cs" />
     <Compile Include="MonoBehaviors\PlayerLightBehavior.cs" />

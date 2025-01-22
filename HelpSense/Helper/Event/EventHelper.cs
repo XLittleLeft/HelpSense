@@ -1,6 +1,5 @@
 ﻿using CustomPlayerEffects;
 using HelpSense.Helper.SCP;
-using InventorySystem.Items.Firearms;
 using MapGeneration;
 using MEC;
 using PlayerRoles;
@@ -23,84 +22,87 @@ namespace HelpSense.Helper.Event
             referenceHubs.ForEach(x => players.Add(Player.Get(x)));
             List<Player> specialPlayers = players;
 
-            Timing.CallDelayed(0.5f, () =>
+            if (spawnableWaveBase is NtfSpawnWave spawnWave)
             {
-                if (Plugin.Instance.Config.EnableSkynet && !Plugin.Instance.SkynetSpawned && spawnableWaveBase is NtfSpawnWave spawnWave)
+                Timing.CallDelayed(0.5f, () =>
                 {
-                    Player player079 = XHelper.PlayerList.FirstOrDefault(x => x.Role is RoleTypeId.Scp079);
-                    int player079Leave = 0;
-                    if (player079 != null)
+                    if (Plugin.Instance.Config.EnableSkynet && !Plugin.Instance.SkynetSpawned)
                     {
-                        Scp079Role scp079 = player079.ReferenceHub.roleManager.CurrentRole as Scp079Role;
-                        scp079.SubroutineModule.TryGetSubroutine(out Scp079TierManager tier);
-                        player079Leave = tier.AccessTierLevel;
-                    }
-                    if (player079Leave >= 3)
-                    {
-                        Plugin.Instance.SkynetSpawned = true;
-                        Cassie.Clear();
-                        XHelper.MessageTranslated($"MTFUnit Kappa , 10 , and , Mu , 7 , designated scan neck , HasEntered , they will help contain scp 0 7 9 , AllRemaining , AwaitingRecontainment {XHelper.PlayerList.Where(x => x.IsSCP).Count()} SCPSubjects", Plugin.Instance.TranslateConfig.SkynetCassie.Replace("%SCPNum%", XHelper.PlayerList.Where(x => x.IsSCP).Count().ToString()));
-
-                        foreach (Player player in players)
+                        Player player079 = XHelper.PlayerList.FirstOrDefault(x => x.Role is RoleTypeId.Scp079);
+                        int player079Leave = 0;
+                        if (player079 != null)
                         {
-                            Plugin.Instance.SkynetPlayers.Add(player);
-                            if (player.Role is not RoleTypeId.NtfCaptain)
-                                player.AddItem(ItemType.SCP2176);
-                            switch (player.Role)
-                            {
-                                case RoleTypeId.NtfPrivate:
-                                    player.ShowBroadcast($"{Plugin.Instance.TranslateConfig.SkynetPrivateBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
-                                    player.CustomInfo = Plugin.Instance.TranslateConfig.SkynetPrivateCustomInfo;
-                                    break;
-                                case RoleTypeId.NtfSergeant:
-                                    player.ShowBroadcast($"{Plugin.Instance.TranslateConfig.SkynetSergeantBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
-                                    player.CustomInfo = Plugin.Instance.TranslateConfig.SkynetSergeantCustomInfo;
-                                    break;
-                                case RoleTypeId.NtfCaptain:
-                                    player.ShowBroadcast($"{Plugin.Instance.TranslateConfig.SkynetCaptainBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
-                                    player.CustomInfo = Plugin.Instance.TranslateConfig.SkynetCaptainCustomInfo;
-                                    break;
-                            }
+                            Scp079Role scp079 = player079.ReferenceHub.roleManager.CurrentRole as Scp079Role;
+                            scp079.SubroutineModule.TryGetSubroutine(out Scp079TierManager tier);
+                            player079Leave = tier.AccessTierLevel;
                         }
-                        return;
-                    }//我搞了半天搞出来的最像的语音
-                }
-                if (Plugin.Instance.Config.EnableSeeNoEvil)
-                {
-                    Timing.CallDelayed(1.2f, () =>
-                    {
-                        if (!Plugin.Instance.SeeSpawned && Random.Next(101) <= Plugin.Instance.Config.SeeNoEvilPer)
+                        if (player079Leave >= 3)
                         {
-                            if (XHelper.PlayerList.Any(x => x.Role is RoleTypeId.Scp096))
+                            Plugin.Instance.SkynetSpawned = true;
+                            Cassie.Clear();
+                            XHelper.MessageTranslated($"MTFUnit Kappa , 10 , and , Mu , 7 , designated scan neck , HasEntered , they will help contain scp 0 7 9 , AllRemaining , AwaitingRecontainment {XHelper.PlayerList.Where(x => x.IsSCP).Count()} SCPSubjects", Plugin.Instance.TranslateConfig.SkynetCassie.Replace("%SCPNum%", XHelper.PlayerList.Where(x => x.IsSCP).Count().ToString()));
+
+                            foreach (Player player in players)
                             {
-                                Cassie.Clear();
-                                XHelper.MessageTranslated($"MTFUnit Eta , 10 , designated see no evil , HasEntered , they will help contain scp 0 9 6 , AllRemaining , AwaitingRecontainment {XHelper.PlayerList.Where(x => x.IsSCP).Count()} SCPSubjects", Plugin.Instance.TranslateConfig.SeeNoEvilCassie.Replace("%SCPNum%", XHelper.PlayerList.Where(x => x.IsSCP).Count().ToString()));
-                                Plugin.Instance.SeeSpawned = true;
-                                foreach (Player player in players)
+                                Plugin.Instance.SkynetPlayers.Add(player);
+                                if (player.Role is not RoleTypeId.NtfCaptain)
+                                    player.AddItem(ItemType.SCP2176);
+                                switch (player.Role)
                                 {
-                                    Plugin.Instance.SeePlayers.Add(player);
-                                    switch (player.Role)
-                                    {
-                                        case RoleTypeId.NtfPrivate:
-                                            player.ShowBroadcast($"{Plugin.Instance.TranslateConfig.SeeNoEvilPrivateBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
-                                            player.CustomInfo = Plugin.Instance.TranslateConfig.SeeNoEvilPrivateCustomInfo;
-                                            break;
-                                        case RoleTypeId.NtfSergeant:
-                                            player.ShowBroadcast($"{Plugin.Instance.TranslateConfig.SeeNoEvilSergeantBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
-                                            player.CustomInfo = Plugin.Instance.TranslateConfig.SeeNoEvilSergeantCustomInfo;
-                                            break;
-                                        case RoleTypeId.NtfCaptain:
-                                            player.ShowBroadcast($"{Plugin.Instance.TranslateConfig.SeeNoEvilCaptainBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
-                                            player.CustomInfo = Plugin.Instance.TranslateConfig.SeeNoEvilCaptainCustomInfo;
-                                            break;
-                                    }
-                                    player.Position = RoomIdentifier.AllRoomIdentifiers.FirstOrDefault(x => x.Name is RoomName.Outside).transform.TransformPoint(62.93f, -8.35f, -51.26f);
+                                    case RoleTypeId.NtfPrivate:
+                                        player.ShowBroadcast($"{Plugin.Instance.TranslateConfig.SkynetPrivateBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
+                                        player.CustomInfo = Plugin.Instance.TranslateConfig.SkynetPrivateCustomInfo;
+                                        break;
+                                    case RoleTypeId.NtfSergeant:
+                                        player.ShowBroadcast($"{Plugin.Instance.TranslateConfig.SkynetSergeantBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
+                                        player.CustomInfo = Plugin.Instance.TranslateConfig.SkynetSergeantCustomInfo;
+                                        break;
+                                    case RoleTypeId.NtfCaptain:
+                                        player.ShowBroadcast($"{Plugin.Instance.TranslateConfig.SkynetCaptainBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
+                                        player.CustomInfo = Plugin.Instance.TranslateConfig.SkynetCaptainCustomInfo;
+                                        break;
                                 }
                             }
-                        }
-                    });
-                }
-            });
+                            return;
+                        }//我搞了半天搞出来的最像的语音
+                    }
+                    if (Plugin.Instance.Config.EnableSeeNoEvil)
+                    {
+                        Timing.CallDelayed(1.2f, () =>
+                        {
+                            if (!Plugin.Instance.SeeSpawned && Random.Next(101) <= Plugin.Instance.Config.SeeNoEvilPer)
+                            {
+                                if (XHelper.PlayerList.Any(x => x.Role is RoleTypeId.Scp096))
+                                {
+                                    Cassie.Clear();
+                                    XHelper.MessageTranslated($"MTFUnit Eta , 10 , designated see no evil , HasEntered , they will help contain scp 0 9 6 , AllRemaining , AwaitingRecontainment {XHelper.PlayerList.Where(x => x.IsSCP).Count()} SCPSubjects", Plugin.Instance.TranslateConfig.SeeNoEvilCassie.Replace("%SCPNum%", XHelper.PlayerList.Where(x => x.IsSCP).Count().ToString()));
+                                    Plugin.Instance.SeeSpawned = true;
+                                    foreach (Player player in players)
+                                    {
+                                        Plugin.Instance.SeePlayers.Add(player);
+                                        switch (player.Role)
+                                        {
+                                            case RoleTypeId.NtfPrivate:
+                                                player.ShowBroadcast($"{Plugin.Instance.TranslateConfig.SeeNoEvilPrivateBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
+                                                player.CustomInfo = Plugin.Instance.TranslateConfig.SeeNoEvilPrivateCustomInfo;
+                                                break;
+                                            case RoleTypeId.NtfSergeant:
+                                                player.ShowBroadcast($"{Plugin.Instance.TranslateConfig.SeeNoEvilSergeantBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
+                                                player.CustomInfo = Plugin.Instance.TranslateConfig.SeeNoEvilSergeantCustomInfo;
+                                                break;
+                                            case RoleTypeId.NtfCaptain:
+                                                player.ShowBroadcast($"{Plugin.Instance.TranslateConfig.SeeNoEvilCaptainBroadcast}", 5, Broadcast.BroadcastFlags.Normal);
+                                                player.CustomInfo = Plugin.Instance.TranslateConfig.SeeNoEvilCaptainCustomInfo;
+                                                break;
+                                        }
+                                        player.Position = RoomIdentifier.AllRoomIdentifiers.FirstOrDefault(x => x.Name is RoomName.Outside).transform.TransformPoint(62.93f, -8.35f, -51.26f);
+                                    }
+                                }
+                            }
+                        });
+                    }
+                });
+            }
 
             if (Plugin.Instance.Config.SpawnHID)
             {
@@ -111,9 +113,6 @@ namespace HelpSense.Helper.Event
                         if (Player.Role is RoleTypeId.NtfCaptain)
                         {
                             Player.AddItem(ItemType.MicroHID);
-                            //var firaerm = Player.AddItem(ItemType.ParticleDisruptor) as ParticleDisruptor;
-                            //TODO:子弹
-                            //firaerm.Status = new FirearmStatus(5, FirearmStatusFlags.MagazineInserted, firaerm.GetCurrentAttachmentsCode());
                         }
                     }
                 });
@@ -122,7 +121,7 @@ namespace HelpSense.Helper.Event
             {
                 Timing.CallDelayed(1f, () =>
                 {
-                    var player = XHelper.GetRandomPlayer(RoleTypeId.ChaosRifleman, specialPlayers);
+                    Player player = XHelper.GetRandomPlayer(RoleTypeId.ChaosRifleman, specialPlayers);
                     if (player != null)
                     {
                         specialPlayers.Remove(player);
@@ -135,16 +134,14 @@ namespace HelpSense.Helper.Event
 
                         player.ShowBroadcast(Plugin.Instance.TranslateConfig.ChaosLeaderSpawnBroadcast, 10, Broadcast.BroadcastFlags.Normal);
 
-                        //var firearm = player.AddItem(ItemType.ParticleDisruptor) as ParticleDisruptor;
-                        //TODO:子弹
-                        //firearm.Status = new FirearmStatus(5, FirearmStatusFlags.MagazineInserted, firearm.GetCurrentAttachmentsCode());
+                        player.AddItem(ItemType.ParticleDisruptor);
 
                         player.AddItem(ItemType.SCP1853);
                         player.AddItem(ItemType.SCP268);
 
                         foreach (Player pl in XHelper.PlayerList)
                         {
-                            if (pl.Team is PlayerRoles.Team.ChaosInsurgency)
+                            if (pl.Team is Team.ChaosInsurgency)
                             {
                                 pl.EffectsManager.EnableEffect<MovementBoost>();
                                 pl.EffectsManager.ChangeState<MovementBoost>(5);

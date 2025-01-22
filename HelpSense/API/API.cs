@@ -11,12 +11,12 @@ namespace HelpSense.API
 
         public static bool TryGetLog(string id, out PlayerLog log)
         {
-            if (PlayerDataDic.TryGetValue(id,out log))
+            if (PlayerDataDic.TryGetValue(id, out log))
             {
                 return true;
             }
             using LiteDatabase database = new(Plugin.Instance.Config.SavePath);
-            log = database.GetCollection<PlayerLog>("Players")?.FindById(id); 
+            log = database.GetCollection<PlayerLog>("Players")?.FindById(id);
             if (log != null)
             {
                 PlayerDataDic.Add(id, log);

@@ -1,6 +1,7 @@
 ﻿using CustomPlayerEffects;
 using HelpSense.ConfigSystem;
 using HintServiceMeow.UI.Extension;
+using InventorySystem.Items;
 using MEC;
 using PlayerRoles;
 using PluginAPI.Core;
@@ -50,9 +51,7 @@ namespace HelpSense.Helper.SpecialRole
                             ItemType itemType = XHelper.GetRandomItem();
                             if (itemType.IsWeapon())
                             {
-                                var firearm = Plugin.Instance.SCP703.Player.AddItem(itemType);
-                                //TODO:子弹
-                                //((Firearm)firearm).Status = new FirearmStatus(((Firearm)(firearm)).AmmoManagerModule.MaxAmmo, ((Firearm)(firearm)).Status.Flags, ((Firearm)(firearm)).GetCurrentAttachmentsCode());
+                                var firearm = Plugin.Instance.SCP703.Player.AddItem(itemType, ItemAddReason.AdminCommand);
                             }
                             else
                             {
@@ -83,7 +82,7 @@ namespace HelpSense.Helper.SpecialRole
                 if (Plugin.Instance.SCP347 != null && Plugin.Instance.SCP347.Player != null)
                 {
                     Plugin.Instance.SCP347.Player.EffectsManager.EnableEffect<Invisible>();
-                    Plugin.Instance.SCP347.Player.EffectsManager.ChangeState<Invisible>(1 , 2);
+                    Plugin.Instance.SCP347.Player.EffectsManager.ChangeState<Invisible>(1, 2);
 
                     Plugin.Instance.SCP347.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP347SpecialIntroduction, config.SCP347SkillIntroduction, 1.25f);
                 }
@@ -118,14 +117,14 @@ namespace HelpSense.Helper.SpecialRole
 
                 if (!Plugin.Instance.SkynetPlayers.IsEmpty())
                 {
-                    foreach (var Player in Plugin.Instance.SkynetPlayers)
+                    foreach (Player Player in Plugin.Instance.SkynetPlayers)
                     {
                         Player.GetPlayerUi().CommonHint.ShowRoleHint(SkynetSpecialIntroduction, [.. config.SkynetSkillIntroduction], 1.25f);
                     }
                 }
                 if (!Plugin.Instance.SeePlayers.IsEmpty())
                 {
-                    foreach (var Player in Plugin.Instance.SeePlayers)
+                    foreach (Player Player in Plugin.Instance.SeePlayers)
                     {
                         Player.GetPlayerUi().CommonHint.ShowRoleHint(SeeNoEvilSpecialIntroduction, [.. config.SeeNoEvilSkillIntroduction], 1.25f);
                     }

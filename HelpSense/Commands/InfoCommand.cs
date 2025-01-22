@@ -1,6 +1,8 @@
 ﻿using CommandSystem;
 using HelpSense.API;
 using HelpSense.API.Features.Pool;
+using HelpSense.API.Serialization;
+using PlayerRoles;
 using PluginAPI.Core;
 using System;
 
@@ -31,17 +33,17 @@ namespace HelpSense.Commands
                 return false;
             }
 
-            var log = player.GetLog();
-            var playedTimes = log.PlayedTimes;
+            PlayerLog log = player.GetLog();
+            int playedTimes = log.PlayedTimes;
             int hour = playedTimes / 3600;
             int day = hour / 24;
             int minutes = (playedTimes - hour * 3600) / 60;
 
-            var kills = log.PlayerKills;
-            var scpKills = log.PlayerSCPKills;
-            var playerDamage = log.PlayerDamage;
-            var rolePlayed = log.RolePlayed;
-            var playerDeath = log.PlayerDeath;
+            int kills = log.PlayerKills;
+            int scpKills = log.PlayerSCPKills;
+            float playerDamage = log.PlayerDamage;
+            int rolePlayed = log.RolePlayed;
+            int playerDeath = log.PlayerDeath;
             var shot = log.PlayerShot;
 
             var sb = StringBuilderPool.Pool.Get();

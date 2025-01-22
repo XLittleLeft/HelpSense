@@ -2,7 +2,6 @@
 using InventorySystem.Items.Keycards;
 using MapGeneration.Distributors;
 using PluginAPI.Core;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace HelpSense.Helper.Misc
@@ -13,23 +12,6 @@ namespace HelpSense.Helper.Misc
         {
             chamber.SetDoor(!chamber.IsOpen, locker._grantedBeep);
             locker.RefreshOpenedSyncvar();
-        }
-
-        public static void SetupBlacklistedDoors()
-        {
-            DoorsUtils.AddBlacklistedDoor("HCZ");
-            DoorsUtils.AddBlacklistedDoor("LCZ");
-            DoorsUtils.AddBlacklistedDoor("EZ");
-            DoorsUtils.AddBlacklistedDoor("Prison BreakableDoor");
-            DoorsUtils.AddBlacklistedDoor("Unsecured Pryable GateDoor");
-            DoorsUtils.AddBlacklistedDoor("Pryable 173 GateDoor");
-        }
-
-        public static void SetupBlacklistedLockers()
-        {
-            LockerUtils.AddBlacklistedLocker("MiscLocker");
-            LockerUtils.AddBlacklistedLocker("Adrenaline");
-            LockerUtils.AddBlacklistedLocker("Medkit");
         }
 
         public static bool HasKeycardPermission(this DoorVariant door, Player player)
@@ -119,35 +101,5 @@ namespace HelpSense.Helper.Misc
         {
             gen.ServerSetFlag(Scp079Generator.GeneratorFlags.Unlocked, true);
         }
-    }
-}
-
-public static class DoorsUtils
-{
-    private static readonly List<string> BlacklistedDoors = [];
-
-    public static List<string> GetBlacklistedDoors()
-    {
-        return BlacklistedDoors;
-    }
-
-    public static void AddBlacklistedDoor(string doorName)
-    {
-        BlacklistedDoors.Add(doorName);
-    }
-}
-
-public static class LockerUtils
-{
-    private static readonly List<string> BlacklistedLockers = [];
-
-    public static List<string> GetBlacklistedLockers()
-    {
-        return BlacklistedLockers;
-    }
-
-    public static void AddBlacklistedLocker(string lockerName)
-    {
-        BlacklistedLockers.Add(lockerName);
     }
 }

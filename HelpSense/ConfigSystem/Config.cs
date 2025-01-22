@@ -91,7 +91,7 @@ namespace HelpSense.ConfigSystem
         [Description("启用修改SCP血量系统")]
         public bool EnableChangeSCPHPSystem { get; set; } = true;
         [Description("SCP173,SCP939,SCP049,SCP049-2,SCP096,SCP106血量")]
-        public List<float> SCPsHP { get; set; } = new List<float> { 4200, 2700, 2200, 400, 2500, 2200 };
+        public List<float> SCPsHP { get; set; } = new List<float> { 4200, 2700, 2300, 400, 2500, 2300 };
 
         // /////////////////////////////////////////////////
         [Description("启用.bc和.c聊天系统")]
@@ -132,19 +132,6 @@ namespace HelpSense.ConfigSystem
         public bool EnableSCP029 { get; set; } = true;
         [Description("混沌领导者")]
         public bool EnableChaosLeader { get; set; } = true;
-
-        /// /////////////////////////////////////////////////
-        [Description("启用回合刷新时间显示")]
-        public bool EnableRespawnTimer { get; set; } = true;
-        [Description("列出将要用的时间名字")]
-        public List<string> Timers { get; private set; } = new List<string>
-        {
-            "TimerList"
-        };
-        [Description("在回合结束时候重新刷新时间")]
-        public bool ReloadTimerEachRound { get; private set; } = true;
-        [Description("当玩家是Overwatch时候隐藏")]
-        public bool HideTimerForOverwatch { get; private set; } = false;
 
         /// /////////////////////////////////////////////////
         [Description("启用多变保安队")]
