@@ -84,8 +84,8 @@ namespace HelpSense.ConfigSystem
         // /////////////////////////////////////////////////
         [Description("无限子弹")]
         public bool InfiniteAmmo { get; set; } = true;
-        [Description("无限子弹模式（0->Old：给玩家加备用子弹来装填；1->Normal：（可能有点问题）正常模式，有换弹动作，不需要子弹换弹；2->Moment：瞬间换弹，无换弹动作，不需要子弹换弹；3->Infinite：真·无限子弹，不需要换弹）")]
-        public InfiniteAmmoType InfiniteAmmoType { get; set; } = InfiniteAmmoType.Old;
+        [Description("无限子弹模式（Old：给玩家加备用子弹来装填；Moment：瞬间换弹，无换弹动作，不需要子弹换弹；Infinite：真·无限子弹，不需要换弹）")]
+        public InfiniteAmmoType InfiniteAmmoType { get; set; } = InfiniteAmmoType.Normal;
 
         /// /////////////////////////////////////////////////
         [Description("启用修改SCP血量系统")]
@@ -196,6 +196,8 @@ namespace HelpSense.ConfigSystem
         public bool SCP2936 { get; set; } = true;
         [Description("SCP-1093")]
         public bool SCP1093 { get; set; } = true;
+        [Description("SCP-023")]
+        public bool SCP023 { get; set; } = true;
     }
     public enum MessageType
     {
@@ -204,7 +206,6 @@ namespace HelpSense.ConfigSystem
     };
     public enum InfiniteAmmoType
     {
-        Old,
         Normal,
         Moment,
         Infinite

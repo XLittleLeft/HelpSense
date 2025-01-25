@@ -219,22 +219,32 @@ namespace HelpSense.ConfigSystem
         [Description("SCP-1093刷新广播")]
         public string SCP1093SpawnBroadcast { get; set; } = "你是 <color=yellow>SCP-1093 人灯</color>";
         [Description("SCP-1093技能介绍")]
-        public List<string> SCP1093SkillIntroduction { get; set; } = new List<string>()
-        {
+        public List<string> SCP1093SkillIntroduction { get; set; } =
+        [
             "你是 [SCP-1093] 持续照亮附近5米范围,并辐射附近1米范围内的人",
             "你的头是虚无的,任何人对你头部没有伤害"
-        };
+        ];
+        [Description("SCP-023刷新广播")]
+        public string SCP023SpawnBroadcast { get; set; } = "你是 <color=red>SCP-023 黑煞星</color>";
+        [Description("SCP-023技能介绍")]
+        public List<string> SCP023SkillIntroduction { get; set; } =
+        [
+            "你是 [SCP-023] 按对应的按键可以发动穿门技能",
+            "使用SCP-1344的攻击你的人会遭到反噬"
+        ];
+        [Description("SCP-023被带SCP1344的人伤害时攻击者被反噬的死亡原因")]
+        public string SCP023ReversedCauseOfDeath { get; set; } = "你不应该带着SCP-1344出现在SCP-023面前的";
         [Description("警卫队长刷新广播")]
         public string GuardCaptainSpawnBroadcast { get; set; } = "<size=60><color=#E5DADA>你是安保队长</color></size>";
         [Description("SCP-191刷新广播")]
         public string SCP191SpawnBroadcast { get; set; } = "你成为了<color=red>SCP-191 机械少女</color>";
         [Description("SCP-191技能介绍")]
-        public List<string> SCP191SkillIntroduction { get; set; } = new List<string>()
-        {
+        public List<string> SCP191SkillIntroduction { get; set; } =
+        [
             "你是 [SCP-191] 因为你的身体的改造",
             "你对除了电磁和爆炸伤害的<color=red>抗性很高</color>",
             "但别忘了去079收容室充电"
-        };
+        ];
         [Description("SCP-191电量显示")]
         public string SCP191BatteryHintShow { get; set; } = "<align=right><size=40><b>你目前剩余的电量:<color=yellow>%Battery%安</color></size></b></align>";
         [Description("SCP-191电量耗尽死亡原因")]
@@ -269,6 +279,8 @@ namespace HelpSense.ConfigSystem
         public string SCP191SpecialIntroduction { get; set; } = "<color=red>SCP-191 机械少女</color>";
         [Description("SCP-2936特殊介绍")]
         public string SCP2936SpecialIntroduction { get; set; } = "<color=red>SCP-2936-1 巨型德国机器人</color>";
+        [Description("SCP-023特殊介绍")]
+        public string SCP023SpecialIntroduction { get; set; } = "<color=red>SCP-023 黑煞星</color>";
         [Description("天网机动特遣队特殊介绍")]
         public string SkynetSpecialIntroduction { get; set; } = "<color=blue>天网 机动特遣队</color>";
         [Description("非礼勿视机动特遣队特殊介绍")]

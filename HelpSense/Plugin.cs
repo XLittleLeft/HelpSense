@@ -13,6 +13,7 @@ using HelpSense.Helper.Misc;
 using HelpSense.Helper.SCP;
 using HelpSense.Helper.SpecialRole;
 using HelpSense.MonoBehaviors;
+using HelpSense.SSSS;
 using HintServiceMeow.UI.Extension;
 using Interactables.Interobjects.DoorUtils;
 using InventorySystem;
@@ -36,6 +37,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using UserSettings.ServerSpecific;
 using static Broadcast;
 using Log = PluginAPI.Core.Log;
 
@@ -51,6 +53,9 @@ namespace HelpSense
         [PluginConfig("TranslateConfig.yml")]
         public TranslateConfig TranslateConfig;
 
+        [PluginConfig("SSSSTranslateConfig.yml")]
+        public SSSSTranslateConfig SSSSTranslateConfig;
+
         public System.Random Random = new(DateTime.Now.GetHashCode());
 
         public static string RespawnTimerDirectoryPath { get; private set; }
@@ -61,8 +66,6 @@ namespace HelpSense
 
         public string Text;
 
-        public static bool IsLobby = false;
-
         public SCPHelper SCP703;
 
         public SCPHelper SCP029;
@@ -72,6 +75,8 @@ namespace HelpSense
         public SCPHelper SCP073;
 
         public SCPHelper SCP347;
+
+        public SCPHelper SCP023;
 
         public SCPHelper ChaosLeader;
         public bool SpawnLeader = false;
@@ -94,11 +99,11 @@ namespace HelpSense
         public ushort SCP1056Id = 0;
         public ItemBase SCP1056Base;
 
-        public static System.Version PluginVersion => new(1, 3, 8);
-        public static DateTime LastUpdateTime => new(2025, 1, 22, 16, 21, 48);
+        public static System.Version PluginVersion => new(1, 3, 9);
+        public static DateTime LastUpdateTime => new(2025, 1, 25, 17, 00, 00);
         public static System.Version RequiredGameVersion => new(14, 0, 2);
 
-        [PluginEntryPoint("HelpSense", "1.3.8", "HelpSense综合服务器插件", "X小左")]
+        [PluginEntryPoint("HelpSense", "1.3.9", "HelpSense综合服务器插件", "X小左")]
         private void LoadPlugin()
         {
             Instance = this;
@@ -123,8 +128,6 @@ namespace HelpSense
                 {
                     Timing.CallDelayed(0.1f, () =>
                     {
-                        IsLobby = true;
-
                         LobbyHelper.SpawnManager();
                         GameObject.Find("StartRound").transform.localScale = Vector3.zero;
 
@@ -177,7 +180,7 @@ namespace HelpSense
             {
                 try
                 {
-                    if (IsLobby && (RoundStart.singleton.NetworkTimer > 1 || RoundStart.singleton.NetworkTimer == -2))
+                    if (!Round.IsRoundStarted && (RoundStart.singleton.NetworkTimer > 1 || RoundStart.singleton.NetworkTimer == -2))
                     {
                         Timing.CallDelayed(0.5f, () =>
                         {
@@ -237,44 +240,56 @@ namespace HelpSense
         [PluginEvent]
         bool OnDamage(PlayerDamageEvent ev)
         {
-            Player target = ev.Target;
-            Player attacker = ev.Player;
-            DamageHandlerBase damageHandler = ev.DamageHandler;
+            Player Target = ev.Target;
+            Player Attacker = ev.Player;
+            DamageHandlerBase DamageHandler = ev.DamageHandler;
 
-            if (target != null && attacker != null)
+            if (Target != null && Attacker != null)
             {
-                if (target.RoleName == "SCP-1093" && damageHandler is AttackerDamageHandler attackerDamageHandler)
+                if (Target.RoleName == "SCP-1093" && DamageHandler is AttackerDamageHandler attackerDamageHandler)
                 {
                     if (attackerDamageHandler.Hitbox is HitboxType.Headshot)
                     {
                         attackerDamageHandler.Damage = 0;
                     }
                 }
-                if (target.RoleName == "SCP-191" && (attacker.IsHuman && attacker.CurrentItem.ItemTypeId.IsWeapon()) && damageHandler is StandardDamageHandler standard)
+
+                if (Target.RoleName == "SCP-191" && (Attacker.IsHuman && Attacker.CurrentItem.ItemTypeId.IsWeapon()) && DamageHandler is StandardDamageHandler standard)
                 {
                     standard.Damage = Config.SCP191Ammo;
                 }
-                if (target.RoleName == "SCP-073" && attacker.Team != target.Team && attacker.IsHuman && target.Team is not Team.ChaosInsurgency)
+
+                if (Target.RoleName == "SCP-073" && Attacker.Team != Target.Team && Attacker.IsHuman && Target.Team is not Team.ChaosInsurgency)
                 {
-                    attacker.Damage(Config.SCP073RRD, TranslateConfig.SCP073DamageReason);
+                    Attacker.Damage(Config.SCP073RRD, TranslateConfig.SCP073DamageReason);
                 }
-                else if (attacker.Team != target.Team && attacker.IsSCP && target.RoleName == "SCP-073" && target.Team is not Team.ChaosInsurgency)
+                else if (Attacker.Team != Target.Team && Attacker.IsSCP && Target.RoleName == "SCP-073" && Target.Team is not Team.ChaosInsurgency)
                 {
-                    attacker.Damage(Config.SCP073SCPRD, TranslateConfig.SCP073DamageReason);
+                    Attacker.Damage(Config.SCP073SCPRD, TranslateConfig.SCP073DamageReason);
                 }
-                if ((attacker.RoleName == "SCP-191" && target.Team is Team.SCPs) || (target.RoleName == "SCP-191" && attacker.Team is Team.SCPs))
+
+                if ((Attacker.RoleName == "SCP-191" && Target.Team is Team.SCPs) || (Target.RoleName == "SCP-191" && Attacker.Team is Team.SCPs))
                 {
                     return false;
                 }
-                if (damageHandler is StandardDamageHandler standardDamage && attacker.Team != target.Team)
+
+                if (Target.RoleName == "SCP-023" && Attacker.EffectsManager.TryGetEffect(out Scp1344 scp1344) && !Target.IsSameTeam(Attacker))
+                {
+                    if (scp1344.Intensity > 0)
+                    {
+                        Attacker.Kill(TranslateConfig.SCP023ReversedCauseOfDeath);
+                    }
+                }
+
+                if (DamageHandler is StandardDamageHandler standardDamage && Attacker.Team != Target.Team)
                 {
                     if (Config.SavePlayersInfo)
                     {
-                        var pLog = attacker.GetLog();
+                        var pLog = Attacker.GetLog();
                         pLog.PlayerDamage += standardDamage.Damage;
                         pLog.UpdateLog();
                     }
-                    if (attacker.Role is RoleTypeId.Scp096 && SeePlayers.Contains(target))
+                    if (Attacker.Role is RoleTypeId.Scp096 && SeePlayers.Contains(Target))
                     {
                         standardDamage.Damage = 40;
                     }
@@ -347,14 +362,6 @@ namespace HelpSense
                 Log.Debug("开始记录玩家信息", Config.Debug);
             }
 
-            if (Config.InfiniteAmmo)
-            {
-                Timing.CallDelayed(1f, () =>
-                {
-                    Timing.RunCoroutine(XHelper.InAmmo());
-                });
-            }
-
             if (Config.EnableSCP703)
             {
                 Timing.CallDelayed(0.5f, () =>
@@ -384,12 +391,10 @@ namespace HelpSense
 
                         player.ShowBroadcast(TranslateConfig.SCP029SpawnBroadcast, 10, BroadcastFlags.Normal);
 
-                        player.ClearInventory();
+                        player.ClearInventory(false);
 
                         player.AddItem(ItemType.KeycardContainmentEngineer);
                         player.AddItem(ItemType.GunCOM18, ItemAddReason.AdminCommand);
-
-                        player.AddAmmo(ItemType.Ammo9x19, 30);
 
                         player.EffectsManager.EnableEffect<MovementBoost>();
                         player.EffectsManager.ChangeState<MovementBoost>(20);
@@ -437,7 +442,26 @@ namespace HelpSense
                         player.GameObject.AddComponent<PlayerGlowBehavior>();
 
                         player.SendBroadcast(TranslateConfig.SCP1093SpawnBroadcast, 6, BroadcastFlags.Normal);
-                        player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.SCP1093SkillIntroduction.ToArray(), 6);
+                        player.GetPlayerUi().CommonHint.ShowOtherHint([.. TranslateConfig.SCP1093SkillIntroduction], 6);
+                    }
+                });
+            }
+
+            if (Config.SCP023)
+            {
+                Timing.CallDelayed(1.6f, () =>
+                {
+                    Player player = XHelper.GetRandomSpecialPlayer(RoleTypeId.ClassD);
+
+                    if (player != null)
+                    {
+                        SCP023 = new SCPHelper(player, 200 , "SCP-023", "red");
+
+                        player.SendBroadcast(TranslateConfig.SCP023SpawnBroadcast, 6, BroadcastFlags.Normal);
+
+                        player.GetPlayerUi().CommonHint.ShowOtherHint([.. TranslateConfig.SCP023SkillIntroduction], 6);
+
+                        GhostlyAbility.Load(player);
                     }
                 });
             }
@@ -456,7 +480,7 @@ namespace HelpSense
                                 {
                                     player1.SetRole(RoleTypeId.ChaosConscript, RoleChangeReason.RemoteAdmin);
 
-                                    player1.ClearInventory();
+                                    player1.ClearInventory(false);
                                     player1.AddItem(ItemType.ArmorCombat);
                                     player1.AddItem(ItemType.KeycardMTFOperative);
                                     player1.AddItem(ItemType.Medkit);
@@ -476,7 +500,7 @@ namespace HelpSense
                                 {
                                     if (players.Role is RoleTypeId.FacilityGuard)
                                     {
-                                        players.ClearInventory();
+                                        players.ClearInventory(false);
 
                                         players.AddItem(ItemType.KeycardMTFPrivate);
 
@@ -498,7 +522,7 @@ namespace HelpSense
                                 Player guardPlayer = XHelper.GetRandomPlayer(RoleTypeId.FacilityGuard);
                                 if (guardPlayer != null)
                                 {
-                                    guardPlayer.ClearInventory();
+                                    guardPlayer.ClearInventory(false);
 
                                     guardPlayer.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.GuardCaptainSpawnBroadcast, 5);
 
@@ -522,8 +546,6 @@ namespace HelpSense
             {
                 try
                 {
-                    IsLobby = false;
-
                     if (!string.IsNullOrEmpty(IntercomDisplay._singleton.Network_overrideText)) IntercomDisplay._singleton.Network_overrideText = "";
 
                     foreach (Player player in XHelper.PlayerList)
@@ -792,26 +814,41 @@ namespace HelpSense
         [PluginEvent]
         void OnPlayerSpawn(PlayerSpawnEvent ev)
         {
-            Player player = ev.Player;
-            RoleTypeId role = ev.Role;
+            Player Player = ev.Player;
+            RoleTypeId Role = ev.Role;
 
             if (Config.EnableRoundSupplies)
             {
-                Timing.CallDelayed(0.5f, () =>
+                if (Role is RoleTypeId.ClassD)
                 {
-                    if (player.Role is RoleTypeId.ClassD)
+                    Timing.CallDelayed(0.5f, () =>
                     {
-                        player.AddItem(Config.ClassDCard, ItemAddReason.AdminCommand);
-                    }
-                });
+                        Player.AddItem(Config.ClassDCard, ItemAddReason.AdminCommand);
+                    });
+                }
             }
 
-            if (Config.EnableChangeSCPHPSystem && player.IsSCP)
+            if (Config.InfiniteAmmo)
+            {
+                if (Player.IsHuman)
+                {
+                    Timing.CallDelayed(0.5f, () =>
+                    {
+                        Player.SetAmmo(ItemType.Ammo9x19, 1);
+                        Player.SetAmmo(ItemType.Ammo12gauge, 1);
+                        Player.SetAmmo(ItemType.Ammo44cal, 1);
+                        Player.SetAmmo(ItemType.Ammo762x39, 1);
+                        Player.SetAmmo(ItemType.Ammo556x45, 1);
+                    });
+                }
+            }
+
+            if (Config.EnableChangeSCPHPSystem && Player.IsSCP)
             {
                 Timing.CallDelayed(0.5f, () =>
                 {
-                    if (SCPHPChangeSystem.healthDict.TryGetValue(role, out var health))
-                        player.Health = SCPHPChangeSystem.healthDict[role];
+                    if (SCPHPChangeSystem.healthDict.TryGetValue(Role, out var health))
+                        Player.Health = SCPHPChangeSystem.healthDict[Role];
                 });
             }
 
@@ -819,7 +856,7 @@ namespace HelpSense
             {
                 Timing.CallDelayed(1.2f, () =>
                 {
-                    Timing.RunCoroutine(SpectatorHelper.SpectatorList(player).CancelWith(player.GameObject));
+                    Timing.RunCoroutine(SpectatorHelper.SpectatorList(Player).CancelWith(Player.GameObject));
                 });
             }
         }
@@ -904,6 +941,13 @@ namespace HelpSense
                         {
                             SCP073.OnPlayerDead(player, "SCP 0 7 3 SUCCESSFULLY TERMINATED . TERMINATION CAUSE UNSPECIFIED", $"SCP-073{TranslateConfig.SpecialRoleContainCassie}");
                             SCP073 = null;
+                            break;
+                        }
+                    case "SCP-023":
+                        {
+                            GhostlyAbility.Unload(player);
+                            SCP023.OnPlayerDead(player, "SCP 0 2 3 SUCCESSFULLY TERMINATED . TERMINATION CAUSE UNSPECIFIED", $"SCP-023{TranslateConfig.SpecialRoleContainCassie}");
+                            SCP023 = null;
                             break;
                         }
                     case "SCP-347":
@@ -1060,13 +1104,13 @@ namespace HelpSense
         [PluginEvent]
         public bool OnSearchPickup(PlayerSearchPickupEvent ev)
         {
-            return !IsLobby;
+            return Round.IsRoundStarted;
         }
 
         [PluginEvent]
         public bool OnPlayerDroppedItem(PlayerDropItemEvent ev)
         {
-            if (IsLobby)
+            if (!Round.IsRoundStarted)
                 return false;
 
             if (ev.Player.RoleName == "SCP-073" && ev.Player.Team is Team.ChaosInsurgency)
@@ -1078,7 +1122,7 @@ namespace HelpSense
         [PluginEvent]
         public bool OnThrowItem(PlayerThrowItemEvent ev)
         {
-            if (IsLobby)
+            if (!Round.IsRoundStarted)
                 return false;
 
             return true;

@@ -45,6 +45,11 @@ namespace HelpSense.Patches
                 __result = 300;
                 return false;
             }
+            if (Player.Get(__instance.Hub).RoleName == "SCP-023")
+            {
+                __result = 200;
+                return false;
+            }
             if (Player.Get(__instance.Hub).RoleName == Plugin.Instance.TranslateConfig.ChaosLeaderRoleName)
             {
                 __result = 150;

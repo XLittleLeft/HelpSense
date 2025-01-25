@@ -1,5 +1,6 @@
 ﻿using CustomPlayerEffects;
 using HelpSense.Helper.SCP;
+using InventorySystem.Items;
 using MapGeneration;
 using MEC;
 using PlayerRoles;
@@ -112,7 +113,7 @@ namespace HelpSense.Helper.Event
                     {
                         if (Player.Role is RoleTypeId.NtfCaptain)
                         {
-                            Player.AddItem(ItemType.MicroHID);
+                            Player.AddItem(ItemType.MicroHID, ItemAddReason.AdminCommand);
                         }
                     }
                 });
@@ -134,7 +135,7 @@ namespace HelpSense.Helper.Event
 
                         player.ShowBroadcast(Plugin.Instance.TranslateConfig.ChaosLeaderSpawnBroadcast, 10, Broadcast.BroadcastFlags.Normal);
 
-                        player.AddItem(ItemType.ParticleDisruptor);
+                        player.AddItem(ItemType.ParticleDisruptor , ItemAddReason.AdminCommand);
 
                         player.AddItem(ItemType.SCP1853);
                         player.AddItem(ItemType.SCP268);
@@ -186,10 +187,10 @@ namespace HelpSense.Helper.Event
                         {
                             player.SendBroadcast(Plugin.Instance.TranslateConfig.SCP073AbelSpawnBroadcast, 6);
 
-                            player.ClearInventory();
+                            player.ClearInventory(false);
                             for (int i = 0; i < 8; i++)
                             {
-                                player.AddItem(ItemType.Jailbird);
+                                player.AddItem(ItemType.Jailbird , ItemAddReason.AdminCommand);
                             }
 
                             Timing.RunCoroutine(XHelper.PositionCheckerCoroutine(player).CancelWith(player.GameObject));

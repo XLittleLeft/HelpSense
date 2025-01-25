@@ -52,10 +52,10 @@
     <Compile Include="Commands\ChatCommand\BcCommand.cs" />
     <Compile Include="Commands\ChatCommand\CCommand.cs" />
     <Compile Include="Commands\InfoCommand.cs" />
-    <Compile Include="Commands\Timer.cs" />
     <Compile Include="Commands\VersionCommand.cs" />
     <Compile Include="Commands\RescueCommand.cs" />
     <Compile Include="ConfigSystem\Config.cs" />
+    <Compile Include="ConfigSystem\SSSSTranslateConfig.cs" />
     <Compile Include="ConfigSystem\TranslateConfig.cs" />
     <Compile Include="Handler\LobbyLocationHandler.cs" />
     <Compile Include="Helper\Chat\ChatHelper.cs" />
@@ -71,8 +71,10 @@
     <Compile Include="Helper\SCP\SCPHPChangeSystem.cs" />
     <Compile Include="MonoBehaviors\PlayerGlowBehavior.cs" />
     <Compile Include="MonoBehaviors\PlayerLightBehavior.cs" />
+    <Compile Include="SSSS\GhostlyAbility.cs" />
     <Compile Include="Patches\MaxHealthGetPatch.cs" />
     <Compile Include="Patches\PositionSyncingPatch.cs" />
+    <Compile Include="Patches\ReloaderModulePatch.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="ConfigSystem\Properties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

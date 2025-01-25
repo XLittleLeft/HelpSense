@@ -21,6 +21,7 @@ namespace HelpSense.Helper.SpecialRole
             string SCP1093SpecialIntroduction = config.SCP1093SpecialIntroduction;
             string SCP191SpecialIntroduction = config.SCP191SpecialIntroduction;
             string SCP2936SpecialIntroduction = config.SCP2936SpecialIntroduction;
+            string SCP023SpecialIntroduction = config.SCP023SpecialIntroduction;
             string SCP073AbelSpecialIntroduction = config.SCP073AbelSpecialIntroduction;
             string SCP073CainSpecialIntroduction = config.SCP073CainSpecialIntroduction;
             string SkynetSpecialIntroduction = config.SkynetSpecialIntroduction;
@@ -113,6 +114,11 @@ namespace HelpSense.Helper.SpecialRole
                 if (Plugin.Instance.SCP191 != null && Plugin.Instance.SCP191.Player != null)
                 {
                     Plugin.Instance.SCP191.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP191SpecialIntroduction, [.. config.SCP191SkillIntroduction], 1.25f);
+                }
+
+                if (Plugin.Instance.SCP023 != null && Plugin.Instance.SCP023.Player != null)
+                {
+                    Plugin.Instance.SCP023.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP023SpecialIntroduction, [.. config.SCP023SkillIntroduction], 1.25f);
                 }
 
                 if (!Plugin.Instance.SkynetPlayers.IsEmpty())

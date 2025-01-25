@@ -399,23 +399,6 @@ namespace HelpSense.Helper
             }
         }
 
-        public static IEnumerator<float> InAmmo()
-        {
-            while (true)
-            {
-                if (Round.IsRoundEnded) yield break;
-                foreach (Player Player in PlayerList.Where(x => x.IsHuman))
-                {
-                    Player.SetAmmo(ItemType.Ammo9x19, 180);
-                    Player.SetAmmo(ItemType.Ammo12gauge, 18);
-                    Player.SetAmmo(ItemType.Ammo44cal, 18);
-                    Player.SetAmmo(ItemType.Ammo762x39, 180);
-                    Player.SetAmmo(ItemType.Ammo556x45, 180);
-                }
-                yield return Timing.WaitForSeconds(3f);
-            }
-        }
-
         public static bool IsSameTeam(this Player player1, Player player2)
         {
             if (player1.Team is Team.FoundationForces && player2.Team is Team.Scientists)

@@ -28,6 +28,7 @@ namespace HelpSense.Commands
             sb.AppendLine("功能开启列表(不是全部.只显示比较重要的):");
             sb.AppendFormat("非礼勿视机动特遣队:{0}", BoolTranslate(config.EnableSeeNoEvil)).AppendLine();
             sb.AppendFormat("天网机动特遣队:{0}", BoolTranslate(config.EnableSkynet)).AppendLine();
+            sb.AppendFormat("SCP-023 黑煞星:{0}", BoolTranslate(config.SCP023)).AppendLine();
             sb.AppendFormat("SCP-029 暗影之女:{0}", BoolTranslate(config.EnableSCP029)).AppendLine();
             sb.AppendFormat("SCP-073 亚伯/亚当:{0}", BoolTranslate(config.SCP073)).AppendLine();
             sb.AppendFormat("SCP-191 机械少女:{0}", BoolTranslate(config.SCP191)).AppendLine();
@@ -42,8 +43,8 @@ namespace HelpSense.Commands
             sb.AppendFormat("无限子弹模式:{0}", Plugin.Instance.Config.InfiniteAmmoType).AppendLine();
 
             //Copyright
-            sb.AppendLine("-Made By X小左-");
-            sb.AppendLine("Copyright © X小左 2022-2024");
+            sb.AppendLine("-Made By X小左(XLittleLeft)-");
+            sb.AppendLine("Copyright © X小左 2022-2025");
 
             response = sb.ToString();
             StringBuilderPool.Pool.Return(sb);

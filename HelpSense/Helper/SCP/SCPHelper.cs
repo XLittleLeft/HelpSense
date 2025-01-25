@@ -1,4 +1,5 @@
-﻿using PlayerRoles;
+﻿using InventorySystem.Items;
+using PlayerRoles;
 using PluginAPI.Core;
 using System.Collections.Generic;
 using UnityEngine;
@@ -202,7 +203,7 @@ namespace HelpSense.Helper.SCP
         {
             foreach (ItemType Item in Items)
             {
-                Player.AddItem(Item);
+                Player.AddItem(Item , ItemAddReason.AdminCommand);
             }
         }
     }
