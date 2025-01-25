@@ -48,6 +48,7 @@ By installing this plugin, you can gain many new features not available in the b
 - SCP-073 (Need my help? I agree. My damage reduction is no joke, and there's even a damage rebound)
 - SCP-347 (I'm right beside you~)
 - SCP-1093 (One person holding a lamp? Feels bad. He doesn’t seem to have a head.)
+- SCP-023 (I can freely pass through the door)
 
 ## Installing the plugin
 Download the **latest zip file from the Release section** and extract everything into `\PluginAPI\plugins\glabol`.
@@ -91,6 +92,3 @@ Download the **latest zip file from the Release section** and extract everything
 ![部分预览图 (5)](https://github.com/user-attachments/assets/e54e6a30-6c5d-40ea-bbb0-6ca465143254)
 ![部分预览图 (8)](https://github.com/user-attachments/assets/a4f37ba7-52dd-4b81-9843-bf11e4d9bb71)
 ![部分预览图 (6)](https://github.com/user-attachments/assets/14af7ba1-9abe-40f3-97da-66062d46674f)
-
-
-
