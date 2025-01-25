@@ -1,5 +1,6 @@
 ﻿using CommandSystem;
 using HelpSense.Helper.Chat;
+using HelpSense.ConfigSystem;
 using PluginAPI.Core;
 using System;
 
@@ -16,24 +17,25 @@ namespace HelpSense.Commands.ChatCommand
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
+            CommandTranslateConfig CommandTranslateConfig = Plugin.Instance.CommandTranslateConfig;
             Player player;
 
             if (sender is null || (player = Player.Get(sender)) is null)
             {
-                response = "发送消息时出现错误，请稍后重试";
+                response = CommandTranslateConfig.ChatCommandError;
                 return false;
             }
 
             if (arguments.Count == 0 || player.IsMuted || !Plugin.Instance.Config.EnableAcSystem)
             {
-                response = "发送失败，你被禁言或者信息为空或者聊天系统未启用";
+                response = CommandTranslateConfig.ChatCommandFailed;
                 return false;
             }
 
             ChatHelper.SendMessage(player, ChatMessage.MessageType.AdminPrivateChat, $"<noparse>{string.Join(" ", arguments)}</noparse>");
 
             Log.Info(player.Nickname + " 发送了 " + arguments.At(0));
-            response = "发送成功";
+            response = CommandTranslateConfig.ChatCommandOk;
             return true;
         }
     }

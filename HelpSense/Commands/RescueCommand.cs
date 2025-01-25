@@ -1,4 +1,5 @@
 ﻿using CommandSystem;
+using HelpSense.ConfigSystem;
 using HelpSense.Helper;
 using MEC;
 using PluginAPI.Core;
@@ -19,10 +20,11 @@ namespace HelpSense.Commands
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             Player player;
+            CommandTranslateConfig CommandTranslateConfig = Plugin.Instance.CommandTranslateConfig;
 
             if (sender is null || (player = Player.Get(sender)) is null)
             {
-                response = "执行指令时发生错误，请稍后再试";
+                response = CommandTranslateConfig.RescueCommandError;
                 return false;
             }
 
@@ -33,7 +35,7 @@ namespace HelpSense.Commands
                 !WaypointBase.TryGetWaypoint(id, out WaypointBase waypoint) ||
                 waypoint is ElevatorWaypoint)
             {
-                response = "失败，可能指令未启用或者身份不允许等";
+                response = CommandTranslateConfig.RescueCommandFailed;
                 return false;
             }
 
@@ -55,11 +57,11 @@ namespace HelpSense.Commands
                 player.IsGodModeEnabled = false;
                 Log.Error(ex.ToString());
 
-                response = "执行指令时发生错误，请稍后再试";
+                response = CommandTranslateConfig.RescueCommandError;
                 return true;
             }
 
-            response = "成功";
+            response = CommandTranslateConfig.RescueCommandOk;
             return true;
         }
     }
