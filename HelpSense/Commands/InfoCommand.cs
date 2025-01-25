@@ -21,17 +21,17 @@ namespace HelpSense.Commands
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             Player player;
-            TranslateConfig TranslateConfig = Plugin.Instance.TranslateConfig;
+            CommandTranslateConfig CommandTranslateConfig = Plugin.Instance.CommandTranslateConfig;
 
             if (sender is null || (player = Player.Get(sender)) is null)
             {
-                response = TranslateConfig.InfoCommandFailed;
+                response = CommandTranslateConfig.InfoCommandFailed;
                 return false;
             }
 
             if (player.DoNotTrack || !Plugin.Instance.Config.SavePlayersInfo)
             {
-                response = TranslateConfig.InfoCommandFailed;
+                response = CommandTranslateConfig.InfoCommandFailed;
                 return false;
             }
 
@@ -50,11 +50,11 @@ namespace HelpSense.Commands
 
             var sb = StringBuilderPool.Pool.Get();
 
-            sb.AppendLine(TranslateConfig.InfoCommandTitle);
-            sb.AppendLine(TranslateConfig.InfoCommandPlayedTime.Replace("%day%" , day.ToString()).Replace("%hour%", hour.ToString()).Replace("%minutes%", minutes.ToString()));
-            sb.AppendLine(TranslateConfig.InfoCommandRolePlayed.Replace("%rolePlayed%" , rolePlayed.ToString()));
-            sb.AppendLine(TranslateConfig.InfoCommandKillsDamages.Replace("%kills%" , kills.ToString()).Replace("%scpKills%", scpKills.ToString()).Replace("%playerDamage%", playerDamage.ToString()).Replace("%playerDeath%", playerDeath.ToString()));
-            sb.AppendLine(TranslateConfig.InfoCommandShot.Replace("%shot%" , shot.ToString()));
+            sb.AppendLine(CommandTranslateConfig.InfoCommandTitle);
+            sb.AppendLine(CommandTranslateConfig.InfoCommandPlayedTime.Replace("%day%" , day.ToString()).Replace("%hour%", hour.ToString()).Replace("%minutes%", minutes.ToString()));
+            sb.AppendLine(CommandTranslateConfig.InfoCommandRolePlayed.Replace("%rolePlayed%" , rolePlayed.ToString()));
+            sb.AppendLine(CommandTranslateConfig.InfoCommandKillsDamages.Replace("%kills%" , kills.ToString()).Replace("%scpKills%", scpKills.ToString()).Replace("%playerDamage%", playerDamage.ToString()).Replace("%playerDeath%", playerDeath.ToString()));
+            sb.AppendLine(CommandTranslateConfig.InfoCommandShot.Replace("%shot%" , shot.ToString()));
 
             response = sb.ToString();
             StringBuilderPool.Pool.Return(sb);

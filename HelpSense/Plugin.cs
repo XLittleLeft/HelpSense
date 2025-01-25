@@ -56,6 +56,9 @@ namespace HelpSense
         [PluginConfig("SSSSTranslateConfig.yml")]
         public SSSSTranslateConfig SSSSTranslateConfig;
 
+        [PluginConfig("CommandTranslateConfig.yml")]
+        public CommandTranslateConfig CommandTranslateConfig;
+
         public System.Random Random = new(DateTime.Now.GetHashCode());
 
         public static string RespawnTimerDirectoryPath { get; private set; }

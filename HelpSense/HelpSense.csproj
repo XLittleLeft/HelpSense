@@ -54,6 +54,7 @@
     <Compile Include="Commands\InfoCommand.cs" />
     <Compile Include="Commands\VersionCommand.cs" />
     <Compile Include="Commands\RescueCommand.cs" />
+    <Compile Include="ConfigSystem\CommandTranslateConfig.cs" />
     <Compile Include="ConfigSystem\Config.cs" />
     <Compile Include="ConfigSystem\SSSSTranslateConfig.cs" />
     <Compile Include="ConfigSystem\TranslateConfig.cs" />
