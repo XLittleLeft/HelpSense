@@ -1217,9 +1217,12 @@ namespace HelpSense
             SCP2936 = null;
             SCP347 = null;
             SCP703 = null;
+            SCP023 = null;
 
             XHelper.PlayerList.Clear();
             XHelper.SpecialPlayerList.Clear();
+
+            SpecialRoleHelper.Reset();
         }
 
         [PluginEvent]
@@ -1257,8 +1260,6 @@ namespace HelpSense
                         player.Position = XHelper.GetRandomSpawnLocation(RoleTypeId.NtfCaptain);
                     }
                 });
-
-                Timing.RunCoroutine(XHelper.SCP191CoroutineMethod(player).CancelWith(player.GameObject));
             });
 
             if (Config.SavePlayersInfo && !player.DoNotTrack && newRole is not RoleTypeId.Spectator)

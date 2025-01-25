@@ -135,11 +135,11 @@ namespace HelpSense.ConfigSystem
         [Description("天网机动特遣队Cassie广播")]
         public string SkynetCassie { get; set; } = "机动特遣队Kappa-10和Mu-7代号天网已经进入设施,他们会帮助舞步者一号收容SCP-079,建议所有幸存人员执行标准撤离方案,直到MTF小队到达你的地点,目前还剩%SCPNum%个SCP";
         [Description("天网机动特遣队技能描述")]
-        public List<string> SkynetSkillIntroduction { get; set; } = new List<string>()
-        {
+        public List<string> SkynetSkillIntroduction { get; set; } =
+        [
             "你是 [天网机动特遣队队员] 珍惜手中的鬼灯",
             "你启动的发电机会<color=red>很快激活</color>"
-        };
+        ];
         [Description("天网机动特遣队新兵广播")]
         public string SkynetPrivateBroadcast { get; set; } = "<size=70><color=#0051FF>你是机动特遣队-天网 新兵</color></size>";
         [Description("天网机动特遣队新兵自定义信息")]
@@ -155,11 +155,11 @@ namespace HelpSense.ConfigSystem
         [Description("非礼勿视机动特遣队Cassie广播")]
         public string SeeNoEvilCassie { get; set; } = "机动特遣队Eta-10代号非礼勿视已经进入设施,他们会帮助收容SCP-096,建议所有幸存人员执行标准撤离方案,直到MTF小队到达你的地点,目前还剩%SCPNum%个SCP";
         [Description("非礼勿视机动特遣队技能描述")]
-        public List<string> SeeNoEvilSkillIntroduction { get; set; } = new List<string>()
-        {
+        public List<string> SeeNoEvilSkillIntroduction { get; set; } =
+        [
             "你是 [非礼勿视机动特遣队队员] 大胆盯着SCP096吧",
             "他<color=red>很难</color>杀死你,在他还没狂暴的时候你可以随意盯着他"
-        };
+        ];
         [Description("非礼勿视机动特遣队新兵广播")]
         public string SeeNoEvilPrivateBroadcast { get; set; } = "<size=70><color=#0051FF>你是机动特遣队-非礼勿视 新兵</color></size>";
         [Description("非礼勿视机动特遣队新兵自定义信息")]
@@ -246,7 +246,7 @@ namespace HelpSense.ConfigSystem
             "但别忘了去079收容室充电"
         ];
         [Description("SCP-191电量显示")]
-        public string SCP191BatteryHintShow { get; set; } = "<align=right><size=40><b>你目前剩余的电量:<color=yellow>%Battery%安</color></size></b></align>";
+        public string SCP191BatteryHintShow { get; set; } = "<align=right><size=30><b>你目前剩余的电量:<color=yellow>%Battery%安</color></size></b></align>";
         [Description("SCP-191电量耗尽死亡原因")]
         public string SCP191BatteryDepletionDeathReason { get; set; } = "电量耗尽";
         /// <summary>

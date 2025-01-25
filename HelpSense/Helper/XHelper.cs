@@ -19,8 +19,8 @@ namespace HelpSense.Helper
     public static class XHelper
     {
         public static System.Random Random = new(DateTime.Now.GetHashCode());
-        public static HashSet<Player> PlayerList = new();
-        public static HashSet<Player> SpecialPlayerList = new();
+        public static List<Player> PlayerList = [];
+        public static List<Player> SpecialPlayerList = [];
 
         public static Player GetRandomPlayer(RoleTypeId roleTypeId)
         {
@@ -167,35 +167,6 @@ namespace HelpSense.Helper
 
                 Broadcast(Plugin.Instance.TranslateConfig.AutoServerMessageText, Plugin.Instance.Config.AutoServerMessageTimer, global::Broadcast.BroadcastFlags.Normal);
                 yield return Timing.WaitForSeconds(Plugin.Instance.Config.AutoServerMessageTime * 60f);
-            }
-        }
-
-        public static IEnumerator<float> SCP191CoroutineMethod(Player player)
-        {
-            int d = 5000;
-            while (true)
-            {
-                if (player is null || !player.IsAlive || Round.IsRoundEnded)
-                {
-                    yield break;
-                }
-
-                player.ReceiveHint(Plugin.Instance.TranslateConfig.SCP191BatteryHintShow.Replace("%Battery%", d.ToString()), 11);//Use compatibility adapter
-
-                if (player.Room.Name is MapGeneration.RoomName.Hcz079)
-                {
-                    if (d <= 4000)
-                        d += 1000;
-                    else if (d <= 5000)
-                        d = 5100;
-                }
-
-                d -= 100;
-
-                if (d <= 0)
-                    player.Kill(Plugin.Instance.TranslateConfig.SCP191BatteryDepletionDeathReason);
-
-                yield return Timing.WaitForSeconds(10f);
             }
         }
 

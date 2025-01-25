@@ -11,10 +11,12 @@ namespace HelpSense.Helper.SpecialRole
 {
     public static class SpecialRoleHelper
     {
+        public static int SCP703ItemTime = 0;
+        public static int battry = 5000;
+
         public static IEnumerator<float> SpecialRoleInfoHandle()
         {
             TranslateConfig config = Plugin.Instance.TranslateConfig;
-            int SCP703ItemTime = 0;
             string SCP029SpecialIntroduction = config.SCP029SpecialIntroduction;
             string SCP703SpecialIntroduction = config.SCP703SpecialIntroduction;
             string SCP347SpecialIntroduction = config.SCP347SpecialIntroduction;
@@ -114,6 +116,21 @@ namespace HelpSense.Helper.SpecialRole
                 if (Plugin.Instance.SCP191 != null && Plugin.Instance.SCP191.Player != null)
                 {
                     Plugin.Instance.SCP191.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP191SpecialIntroduction, [.. config.SCP191SkillIntroduction], 1.25f);
+
+                    Plugin.Instance.SCP191.Player.ReceiveHint(Plugin.Instance.TranslateConfig.SCP191BatteryHintShow.Replace("%Battery%", battry.ToString()), 1.25f);//Use compatibility adapter
+
+                    if (Plugin.Instance.SCP191.Player.Room.Name is MapGeneration.RoomName.Hcz079)
+                    {
+                        if (battry <= 4000)
+                            battry += 1000;
+                        else if (battry <= 5000)
+                            battry = 5100;
+                    }
+
+                    battry -= 10;
+
+                    if (battry <= 0)
+                        Plugin.Instance.SCP191.Player.Kill(Plugin.Instance.TranslateConfig.SCP191BatteryDepletionDeathReason);
                 }
 
                 if (Plugin.Instance.SCP023 != null && Plugin.Instance.SCP023.Player != null)
@@ -136,6 +153,12 @@ namespace HelpSense.Helper.SpecialRole
                     }
                 }
             }
+        }
+
+        public static void Reset()
+        {
+            SCP703ItemTime = 0;
+            battry = 5000;
         }
     }
 }
