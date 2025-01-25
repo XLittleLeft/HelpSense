@@ -65,33 +65,33 @@ namespace HelpSense.ConfigSystem
         [Description("人们将在大厅中变成的角色")]
         public RoleTypeId LobbyPlayerRole { get; set; } = RoleTypeId.Tutorial;
         [Description("大厅物品")]
-        public HashSet<ItemType> LobbyInventory { get; set; } = new HashSet<ItemType>()
-        {
+        public List<ItemType> LobbyInventory { get; set; } =
+        [
             ItemType.Flashlight,
-        };
+        ];
 
         [Description("生成在哪（一个就是固定位置，俩就是随机刷在哪里）")]
-        public List<LobbyLocationType> LobbyLocation { get; set; } = new List<LobbyLocationType>()
-        {
+        public List<LobbyLocationType> LobbyLocation { get; set; } =
+        [
             LobbyLocationType.Tower,
             LobbyLocationType.Intercom,
             LobbyLocationType.Mountain,
             LobbyLocationType.Chaos
-        };
+        ];
         [Description("练枪大厅")]
         public bool PracticeHall { get; set; } = true;
 
         // /////////////////////////////////////////////////
         [Description("无限子弹")]
         public bool InfiniteAmmo { get; set; } = true;
-        [Description("无限子弹模式（Old：给玩家加备用子弹来装填；Moment：瞬间换弹，无换弹动作，不需要子弹换弹；Infinite：真·无限子弹，不需要换弹）")]
+        [Description("无限子弹模式（Normal：给玩家加备用子弹来装填；Moment：瞬间换弹，无换弹动作，不需要子弹换弹；Infinite：真·无限子弹，不需要换弹）")]
         public InfiniteAmmoType InfiniteAmmoType { get; set; } = InfiniteAmmoType.Normal;
 
         /// /////////////////////////////////////////////////
         [Description("启用修改SCP血量系统")]
         public bool EnableChangeSCPHPSystem { get; set; } = true;
         [Description("SCP173,SCP939,SCP049,SCP049-2,SCP096,SCP106血量")]
-        public List<float> SCPsHP { get; set; } = new List<float> { 4200, 2700, 2300, 400, 2500, 2300 };
+        public List<float> SCPsHP { get; set; } = [4200, 2700, 2300, 400, 2500, 2300];
 
         // /////////////////////////////////////////////////
         [Description("启用.bc和.c聊天系统")]
@@ -149,7 +149,7 @@ namespace HelpSense.ConfigSystem
         [Description("启用观战列表")]
         public bool EnableSpectatorList { get; set; } = false;
         [Description("观战列表忽略身份")]
-        public HashSet<string> IgnoredRoles { get; set; } = new HashSet<string>();
+        public List<string> IgnoredRoles { get; set; } = [];
 
         /// /////////////////////////////////////////////////
         [Description("启用天网特遣队")]
