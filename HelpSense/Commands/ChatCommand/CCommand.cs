@@ -11,9 +11,9 @@ namespace HelpSense.Commands.ChatCommand
     {
         public string Command => "C";
 
-        public string[] Aliases => ["CC", "队伍广播"];
+        public string[] Aliases => ["CC"];
 
-        public string Description => "队伍聊天";
+        public string Description => "队伍聊天-TeamChat";
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {

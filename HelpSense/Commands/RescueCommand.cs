@@ -15,7 +15,7 @@ namespace HelpSense.Commands
 
         public string[] Aliases => ["Rescue", "ZJ"];
 
-        public string Description => "卡虚空自救";
+        public string Description => "卡虚空自救-AntiVoid";
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {

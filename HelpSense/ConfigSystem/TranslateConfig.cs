@@ -201,11 +201,11 @@ namespace HelpSense.ConfigSystem
         [Description("SCP-703刷新广播")]
         public string SCP703SpawnBroadcast { get; set; } = "<size=80><color=#00ffffff>你是SCP-703</color></size>";
         [Description("SCP-703技能介绍")]
-        public List<string> SCP703SkillIntroduction { get; set; } = new List<string>()
-        {
+        public List<string> SCP703SkillIntroduction { get; set; } =
+        [
             "你是 [SCP-703] 你每过一段时间你会获得随机物品",
             "距离下次获得物品<color=red>%Time%</color>"
-        };
+        ];
         [Description("SCP-703获得物品Hint提示")]
         public string SCP703ReceivedItemHint { get; set; } = "获得一件物品";
         [Description("SCP-029刷新广播")]

@@ -102,11 +102,11 @@ namespace HelpSense
         public ushort SCP1056Id = 0;
         public ItemBase SCP1056Base;
 
-        public static System.Version PluginVersion => new(1, 3, 9);
-        public static DateTime LastUpdateTime => new(2025, 1, 25, 17, 00, 00);
+        public static System.Version PluginVersion => new(1, 4, 0);
+        public static DateTime LastUpdateTime => new(2025, 1, 25, 23, 04, 00);
         public static System.Version RequiredGameVersion => new(14, 0, 2);
 
-        [PluginEntryPoint("HelpSense", "1.3.9", "HelpSense综合服务器插件", "X小左")]
+        [PluginEntryPoint("HelpSense", "1.4.0", "HelpSense综合服务器插件", "X小左")]
         private void LoadPlugin()
         {
             Instance = this;
@@ -125,6 +125,7 @@ namespace HelpSense
             SeeSpawned = false;
             SpawnLeader = false;
             SpawnSCP2936 = false;
+
             if (Config.EnableRoundWaitingLobby)
             {
                 try
@@ -357,12 +358,10 @@ namespace HelpSense
         public void OnRoundStarted(RoundStartEvent ev)
         {
             WaveManager.OnWaveSpawned += EventHelper.OnTeamRespawn;
-            Log.Debug("订阅OnWaveSpawned事件", Config.Debug);
 
             if (Config.SavePlayersInfo)
             {
                 Timing.RunCoroutine(InfoExtension.CollectInfo());
-                Log.Debug("开始记录玩家信息", Config.Debug);
             }
 
             if (Config.EnableSCP703)
@@ -863,40 +862,6 @@ namespace HelpSense
                 });
             }
         }
-        //TODO:子弹Event
-        /*[PluginEvent]
-        bool OnPlayerReloadWeapon(PlayerReloadWeaponEvent ev)
-        {
-            Player player = ev.Player;
-            var firearm = ev.Firearm;
-
-            if (Config.InfiniteAmmo)
-            {
-                if (firearm.ItemTypeId is ItemType.ParticleDisruptor) return true;
-                switch (Config.InfiniteAmmoType)
-                {
-                    case InfiniteAmmoType.Old:
-                        player.SetAmmo(firearm.AmmoType, (ushort)player.GetAmmoLimit(firearm.AmmoType));
-                        Timing.CallDelayed(4f, () =>
-                            {
-                                player.SetAmmo(firearm.AmmoType, (ushort)player.GetAmmoLimit(firearm.AmmoType));
-                            });
-                        break;
-                    case InfiniteAmmoType.Normal:
-                        if (firearm.Status.Ammo != firearm.AmmoManagerModule.MaxAmmo)
-                        {
-                            player.ReloadWeapon();
-                            firearm.Status = new FirearmStatus(firearm.AmmoManagerModule.MaxAmmo, firearm.Status.Flags, firearm.GetCurrentAttachmentsCode());
-                            return false;
-                        }
-                        break;
-                    case InfiniteAmmoType.Moment:
-                        firearm.Status = new FirearmStatus(firearm.AmmoManagerModule.MaxAmmo, firearm.Status.Flags, firearm.GetCurrentAttachmentsCode());
-                        return false;
-                }
-            }
-            return true;
-        }*/
 
         [PluginEvent]
         void OnPlayerShotWeapon(PlayerShotWeaponEvent ev)
@@ -1171,16 +1136,16 @@ namespace HelpSense
                 {
                     if (!File.Exists(Config.AdminLogPath))
                     {
-                        FileStream fs1 = new FileStream(Config.AdminLogPath, FileMode.Create, FileAccess.Write);
-                        StreamWriter sw = new StreamWriter(fs1);
+                        FileStream fs1 = new(Config.AdminLogPath, FileMode.Create, FileAccess.Write);
+                        StreamWriter sw = new(fs1);
                         sw.WriteLine(note);
                         sw.Close();
                         fs1.Close();
                     }
                     else
                     {
-                        FileStream fs = new FileStream(Config.AdminLogPath, FileMode.Append, FileAccess.Write);
-                        StreamWriter sr = new StreamWriter(fs);
+                        FileStream fs = new(Config.AdminLogPath, FileMode.Append, FileAccess.Write);
+                        StreamWriter sr = new(fs);
                         sr.WriteLine(note);
                         sr.Close();
                         fs.Close();

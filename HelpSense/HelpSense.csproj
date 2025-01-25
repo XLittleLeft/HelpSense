@@ -46,7 +46,6 @@
     <Compile Include="API\InfoExtension.cs" />
     <Compile Include="API\Features\Pool\IPool.cs" />
     <Compile Include="API\Features\Pool\StringBuilderPool.cs" />
-    <Compile Include="API\Features\TimerView.cs" />
     <Compile Include="API\Serialization\PlayerLog.cs" />
     <Compile Include="Commands\ChatCommand\AcCommand.cs" />
     <Compile Include="Commands\ChatCommand\BcCommand.cs" />
@@ -77,7 +76,6 @@
     <Compile Include="Patches\PositionSyncingPatch.cs" />
     <Compile Include="Patches\ReloaderModulePatch.cs" />
     <Compile Include="Plugin.cs" />
-    <Compile Include="ConfigSystem\Properties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
