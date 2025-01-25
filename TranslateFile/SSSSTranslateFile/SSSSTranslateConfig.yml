@@ -1,0 +1,12 @@
+# 穿门技能
+door_piercing_ability: 穿门技能
+# 穿门技能按键
+door_piercing_ability_key: 穿门技能按键
+# 穿门技能按键说明
+door_piercing_ability_key_description: 按一下或长按就可以穿门了
+# 穿门技能发动模式
+piercing_skill_activation_mode: 穿门技能发动模式
+# 长按
+hold: 长按
+# 开关
+toggle: 开关

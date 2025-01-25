@@ -68,9 +68,9 @@ player_join_text: 玩家加入
 # 当服务器上有多个玩家加入时显示的消息
 players_join_text: 名玩家加入
 # 警卫叛变显示的公告
-guard_mutiny_broadcast: <size=60><color=#ff0000ff>[警告]</color>此设施警卫已被混沌分裂者策反</size>
+guard_mutiny_broadcast: <size=40><color=#ff0000ff>[警告]</color>此设施警卫已被混沌分裂者策反</size>
 # 警卫为精英队显示的公告
-elite_guard_broadcast: <size=60><color=#00ffffff>[通知]</color>此设施警卫为九尾狐精英队员，保安实力大增</size>
+elite_guard_broadcast: <size=40><color=#00ffffff>[通知]</color>此设施警卫为九尾狐精英队员，保安实力大增</size>
 # 观战列表标题
 watch_list_title: <align=right><size=45%><color=(COLOR)><b>观察者 ((COUNT)):</b></color></size></align>
 # 观战列表格式
@@ -161,6 +161,14 @@ s_c_p1093_spawn_broadcast: 你是 <color=yellow>SCP-1093 人灯</color>
 s_c_p1093_skill_introduction:
 - 你是 [SCP-1093] 持续照亮附近5米范围,并辐射附近1米范围内的人
 - 你的头是虚无的,任何人对你头部没有伤害
+# SCP-023刷新广播
+s_c_p023_spawn_broadcast: 你是 <color=red>SCP-023 黑煞星</color>
+# SCP-023技能介绍
+s_c_p023_skill_introduction:
+- 你是 [SCP-023] 按对应的按键可以发动穿门技能
+- 使用SCP-1344的攻击你的人会遭到反噬
+# SCP-023被带SCP1344的人伤害时攻击者被反噬的死亡原因
+s_c_p023_reversed_cause_of_death: 你不应该带着SCP-1344出现在SCP-023面前的
 # 警卫队长刷新广播
 guard_captain_spawn_broadcast: <size=60><color=#E5DADA>你是安保队长</color></size>
 # SCP-191刷新广播
@@ -198,6 +206,8 @@ s_c_p073_cain_special_introduction: <color=green>SCP-073 该隐</color>
 s_c_p191_special_introduction: <color=red>SCP-191 机械少女</color>
 # SCP-2936特殊介绍
 s_c_p2936_special_introduction: <color=red>SCP-2936-1 巨型德国机器人</color>
+# SCP-023特殊介绍
+s_c_p023_special_introduction: <color=red>SCP-023 黑煞星</color>
 # 天网机动特遣队特殊介绍
 skynet_special_introduction: <color=blue>天网 机动特遣队</color>
 # 非礼勿视机动特遣队特殊介绍
