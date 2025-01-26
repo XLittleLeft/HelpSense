@@ -1,0 +1,190 @@
+# Wiadomość powitalna, gdy gracz wchodzi na serwer
+welcome_message: "Witaj %playername%~"
+# Komunikat końca rundy
+round_end_info: "Runda zakończona! Nie odchodź, do zobaczenia w następnej rundzieヾ(￣▽￣)~"
+# Komunikat przy włączeniu przyjacielskiego ognia
+f_f_message: "<align=center> <color=#F6511D> ~Przyjacielski ogień włączony~ </color></align>"
+# Tekst automatycznej wiadomości serwerowej
+auto_server_message_text: "Witaj na serwerze, miłej zabawy!"
+# Tytuł listy wiadomości na czacie
+chat_message_title: "Lista wiadomości:"
+# Nazwy różnych typów wiadomości
+message_type_name:
+  AdminPrivateChat: "Prywatny czat administratora"
+  BroadcastChat: "Wiadomość publiczna"
+  TeamChat: "Wiadomość drużynowa"
+# Niestandardowe nazwy ról graczy w czacie
+chat_system_role_translation:
+  ClassD: "Personel klasy D"
+  FacilityGuard: "Ochroniarz"
+  ChaosConscript: "Poborowy Chaosu"
+  ChaosMarauder: "Maruder Chaosu"
+  ChaosRepressor: "Represor Chaosu"
+  ChaosRifleman: "Strzelec Chaosu"
+  NtfCaptain: "Kapitan NTF"
+  NtfPrivate: "Szeregowy NTF"
+  NtfSergeant: "Sierżant NTF"
+  NtfSpecialist: "Specjalista NTF"
+  Scientist: "Naukowiec"
+  Tutorial: "Postać tutorialowa"
+  Scp096: "SCP-096"
+  Scp049: "SCP-049"
+  Scp173: "SCP-173"
+  Scp939: "SCP-939"
+  Scp079: "SCP-079"
+  Scp0492: "SCP-049-2"
+  Scp106: "SCP-106"
+  Scp3114: "SCP-3114"
+  Spectator: "Obserwator"
+  Overwatch: "Nadzór"
+  Filmmaker: "Reżyser"
+# Niestandardowe nazwy drużyn w czacie
+chat_system_team_translation:
+  Dead: "Martwi"
+  ClassD: "Klasa D"
+  OtherAlive: "Tajemnicza drużyna"
+  Scientists: "Naukowcy"
+  SCPs: "SCP"
+  ChaosInsurgency: "Rebelianci"
+  FoundationForces: "MTF"
+# Log administratora
+admin_log: "%Nickname% o %Time% | Użył komendy: %Command% | Steam64ID: %UserId%"
+# Broadcast logu administratora
+admin_log_broadcast: "<size=30>[<color=red>Logi działań administratora</color>] <%Nickname%> właśnie użył komendy: %Command%</size>"
+# Wyświetlanie pozostałego czasu i stanu serwera
+title_text: "<size=50><color=#F0FF00><b>Oczekiwanie na graczy, {seconds}</b></color></size>"
+# Tekst wyświetlania liczby graczy
+player_count_text: "<size=40><color=#FFA600><i>{players}</i></color></size>"
+# Wiadomość serwera, gdy lobby jest zablokowane
+server_pause_text: "<size=30>Serwer wstrzymany</size>"
+# Drugi wiersz wiadomości
+second_left_text: "Pozostało {seconds}"
+# Wielolinijkowa wiadomość
+seconds_left_text: "Pozostało {seconds}"
+# Wiadomość przy rozpoczęciu rundy
+round_start_text: "Początek rundy"
+# Wiadomość po dołączeniu jednego gracza
+player_join_text: "Gracz dołączył"
+# Wiadomość po dołączeniu wielu graczy
+players_join_text: "graczy dołączyło"
+# Ostrzeżenie o buncie ochroniarzy
+guard_mutiny_broadcast: "<size=60><color=#ff0000ff>[Ostrzeżenie]</color> Ochroniarze się zbuntowali, oraz przyłączyli się do Chaosu"
+# Komunikat elitarnej ochrony
+elite_guard_broadcast: "<size=60><color=#00ffffff>[Powiadomienie]</color> Ochroniarze w tej rundzie to elitarna jednostka MTF, zostają wzmocnieni."
+# Tytuł listy obserwatorów
+watch_list_title: "<align=right><size=45%><color=(COLOR)><b>Obserwatorzy ((COUNT)):</b></color></size></align>"
+# Format listy obserwatorów
+names: "<align=right><size=45%><color=(COLOR)><br>(NAME)</color></size></align>"
+# Ostrzeżenie DNT
+d_n_t_warning: "Masz włączone DNT, wyłącz je, aby wtyczki działały poprawnie"
+# Przyczyna odbicia obrażeń SCP-073
+s_c_p073_damage_reason: "Odbicie obrażeń SCP-073"
+# Komunikat ucieczki SCP-029
+s_c_p029_escape_hint: "Udało ci się uciec i dołączyć do Chaosu"
+# Komunikat ucieczki SCP-703
+s_c_p703_escape_hint: "Udało ci się uciec i zostać specjalistą MTF"
+# CASSIE MTF Skynet
+skynet_cassie: "Mobilne Oddziały Kappa-10 i Mu-7, kryptonim Skynet, weszły do obiektu, wspierając zabezpieczenie SCP-079. Pozostało %SCPNum% SCP."
+# Opis umiejętności MTF Skynet
+skynet_skill_introduction:
+- "Jesteś [Członkiem MTF Skynet] Dbaj o swoje światło"
+- "Uruchomione przez ciebie generatory <color=red>szybko się aktywują</color>"
+# Powitanie nowego MTF Skynet
+skynet_private_broadcast: "<size=70><color=#0051FF>Jesteś nowym członkiem MTF Skynet</color></size>"
+skynet_private_custom_info: "Szeregowy Skynet"
+# Powitanie sierżanta MTF Skynet
+skynet_sergeant_broadcast: "<size=70><color=#0051FF>Jesteś sierżantem MTF Skynet</color></size>"
+skynet_sergeant_custom_info: "Sierżant Skynet"
+# Powitanie kapitana MTF Skynet
+skynet_captain_broadcast: "<size=70><color=#0051FF>Jesteś kapitanem MTF Skynet</color></size>"
+skynet_captain_custom_info: "Kapitan Skynet"
+# CASSIE MTF Eta-10
+see_no_evil_cassie: "Mobilne Oddziały Eta-10, kryptonim Nie Patrz, weszły do obiektu, wspierając zabezpieczenie SCP-096. Pozostało %SCPNum% SCP."
+# Opis umiejętności MTF Eta-10
+see_no_evil_skill_introduction:
+- "Jesteś [Członkiem MTF Eta-10] - Możesz patrzeć na SCP-096"
+- "<color=red>Trudno mu</color> cię zabić, dopóki nie wpadnie w szał"
+# Powitanie nowego MTF Eta-10
+see_no_evil_private_broadcast: "<size=70><color=#0051FF>Jesteś nowym członkiem MTF Eta-10</color></size>"
+see_no_evil_private_custom_info: "Szeregowy Eta-10"
+# Powitanie sierżanta MTF Eta-10
+see_no_evil_sergeant_broadcast: "<size=70><color=#0051FF>Jesteś sierżantem MTF Eta-10</color></size>"
+see_no_evil_sergeant_custom_info: "Sierżant Eta-10"
+# Powitanie kapitana MTF Eta-10
+see_no_evil_captain_broadcast: "<size=70><color=#0051FF>Jesteś kapitanem MTF Eta-10</color></size>"
+see_no_evil_captain_custom_info: "Kapitan Eta-10"
+# Sufiks CASSIE Info
+special_role_contain_cassie: "Został pomyślnie zlikwidowany"
+# Nazwa roli lidera Chaosu
+chaos_leader_role_name: "Lider Chaosu"
+# Broadcast odrodzenia lidera Chaosu
+chaos_leader_spawn_broadcast: "<size=80><color=#00ff00ff>Jesteś liderem Chaosu</color></size>"
+# CASSIE śmierci lidera Chaosu
+chaos_leader_death_cassie: "Lider Chaosu zginął"
+# Broadcast odrodzenia SCP-2936-1
+s_c_p29361_spawn_broadcast: "<size=70>Jesteś <color=red>SCP-2936-1 Gigantyczny Niemiecki Robot</color></size>"
+# Opis umiejętności SCP-2936-1
+s_c_p29361_skill_introduction: "Jesteś [SCP-2936-1] Masz ogromne ciało i dużą ilość zdrowia"
+# Broadcast SCP-073 Abel
+s_c_p073_abel_spawn_broadcast: "Jesteś <color=green>SCP-073 Abel</color>"
+# Opis umiejętności SCP-073 Abel
+s_c_p073_abel_skill_introduction: "Jesteś [SCP-073] Odbijasz <color=red>część obrażeń</color> do wrogów"
+# Broadcast SCP-073 Cain
+s_c_p073_cain_spawn_broadcast: "Jesteś <color=green>SCP-073 Cain</color>"
+# Opis umiejętności SCP-073 Cain
+s_c_p073_cain_skill_introduction: "Jesteś [SCP-073] Masz <color=red>nieskończoną</color> regenerację, odpocznij chwilę"
+# Broadcast SCP-703
+s_c_p703_spawn_broadcast: "<size=80><color=#00ffffff>Jesteś SCP-703</color></size>"
+# Opis umiejętności SCP-703
+s_c_p703_skill_introduction:
+- "Jesteś [SCP-703] Co jakiś czas otrzymujesz losowy przedmiot"
+- "Czas do otrzymania kolejnego przedmiotu <color=red>%Time%</color>"
+# Komunikat otrzymania przedmiotu SCP-703
+s_c_p703_received_item_hint: "Otrzymałeś przedmiot"
+# Broadcast SCP-029
+s_c_p029_spawn_broadcast: "<size=60><color=#ff0000ff>Jesteś SCP-029 'Córka Cienia'</color></size>"
+# Opis umiejętności SCP-029
+s_c_p029_skill_introduction: "Jesteś [SCP-029] Biegniesz z <color=red>ogromną</color> prędkością"
+# Broadcast SCP-347
+s_c_p347_spawn_broadcast: "Jesteś <color=red>SCP-347 Niewidzialna Kobieta</color>"
+# Opis umiejętności SCP-347
+s_c_p347_skill_introduction: "Jesteś [SCP-347] Jesteś <color=red>zawsze</color> niewidzialny, ruszaj się ostrożnie"
+# Broadcast SCP-1093
+s_c_p1093_spawn_broadcast: "Jesteś <color=yellow>SCP-1093 Człowiek-Lampa</color>"
+# Opis umiejętności SCP-1093
+s_c_p1093_skill_introduction:
+- "Jesteś [SCP-1093] Rozświetlasz obszar w promieniu 5 metrów i promieniujesz w promieniu 1 metra"
+- "Twoja głowa jest pusta, nie można zadać ci obrażeń w głowę"
+# Broadcast kapitana ochrony
+guard_captain_spawn_broadcast: "<size=60><color=#E5DADA>Jesteś kapitanem ochrony</color></size>"
+# Broadcast SCP-191
+s_c_p191_spawn_broadcast: "Stałeś się <color=red>SCP-191 Mechaniczna Dziewczyna</color>"
+# Opis umiejętności SCP-191
+s_c_p191_skill_introduction:
+- "Jesteś [SCP-191] Twoje ciało zostało zmodyfikowane"
+- "Masz <color=red>wysoką odporność</color> na obrażenia inne niż elektromagnetyczne i wybuchowe"
+- "Nie zapomnij naładować się w pomieszczeniu SCP-079"
+# Wyświetlanie energii SCP-191
+s_c_p191_battery_hint_show: "<align=right><size=40><b>Masz obecnie <color=yellow>%Battery% amperów</color> baterii</size></b></align>"
+# Przyczyna śmierci SCP-191 przy braku energii
+s_c_p191_battery_depletion_death_reason: "Umarłeś poprzez wyczerpanie baterii"
+# Komunikat o podniesieniu SCP-1056
+s_c_p1056_pickup_hint: "Podniosłeś <color=red>SCP-1056</color> Zmniejszacz!"
+# Komunikat użycia SCP-1056
+s_c_p1056_used_hint: "boom! Zmniejszyłeś się!!!"
+# Komunikat o podniesieniu SCP-1068
+s_c_p1068_pickup_hint: "Podniosłeś <color=red>SCP-1068</color> Nieszkodliwą Bombę Atomową!"
+# Broadcast użycia SCP-1068
+s_c_p1068_used_broadcast: "Ktoś użył <color=red>SCP-1068</color> Nieszkodliwej Bomby Atomowej!"
+# Specjalne opisy SCP
+s_c_p029_special_introduction: "<color=red>SCP-029 Córka Cienia</color>"
+s_c_p703_special_introduction: "<color=blue>SCP-703 W Szafie</color>"
+s_c_p347_special_introduction: "<color=red>SCP-347 Niewidzialna Kobieta</color>"
+s_c_p1093_special_introduction: "<color=yellow>SCP-1093 Człowiek-Lampa</color>"
+s_c_p073_abel_special_introduction: "<color=green>SCP-073 Abel</color>"
+s_c_p073_cain_special_introduction: "<color=green>SCP-073 Cain</color>"
+s_c_p191_special_introduction: "<color=red>SCP-191 Mechaniczna Dziewczyna</color>"
+s_c_p2936_special_introduction: "<color=red>SCP-2936-1 Gigantyczny Niemiecki Robot</color>"
+# Specjalne opisy MTF
+skynet_special_introduction: "<color=blue>MTF Skynet</color>"
+see_no_evil_special_introduction: "<color=blue>MTF Eta-10</color>"
