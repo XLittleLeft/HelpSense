@@ -1,0 +1,45 @@
+# Polecenie informacji o graczu_Tytuł
+info_command_title: "Od zainstalowania wtyczki grasz już na tym serwerze"
+# Polecenie informacji o graczu_Czas
+info_command_played_time: "<color=red>%day%</color> dni <color=red>%hour%</color> godzin <color=red>%minutes%</color> minut"
+# Polecenie informacji o graczu_Rola
+info_command_role_played: "Rozegrałeś już rundę <color=red>%rolePlayed%</color> razy"
+# Polecenie informacji o graczu_Zabicia i obrażenia
+info_command_kills_damages: "Łącznie zabiłeś <color=red>%kills%</color> osób oraz <color=red>%scpKills%</color> SCP | Zadałeś <color=red>%playerDamage%</color> punktów obrażeń (wliczając nieważne) | Zginąłeś <color=red>%playerDeath%</color> razy"
+# Polecenie informacji o graczu_Strzały
+info_command_shot: "Oddałeś w sumie <color=red>%shot%</color> strzałów"
+# Komunikat przy niepowodzeniu z powodu tagu DNT
+info_command_failed: "Nie udało się pobrać danych, wyłącz DNT - jeżeli to nie pomaga, wtyczka mogła zostać wyłączona"
+# Błąd w komendzie rescue
+rescue_command_error: "Wystąpił błąd podczas wykonywania polecenia, spróbuj ponownie później"
+# Błąd w komendzie rescue: Niepowodzenie
+rescue_command_failed: "Niepowodzenie, polecenie może być wyłączone lub nie masz uprawnień"
+# Komenda rescue: Sukces
+rescue_command_ok: "Pomyślnie uratowano gracza"
+# Komenda czatu_Błąd
+chat_command_error: "Podczas wysyłania wiadomości wystąpił błąd, spróbuj ponownie"
+# Komenda czatu_Niepowodzenie
+chat_command_failed: "Wiadomość nie została wysłana – możesz być wyciszony, wiadomość jest pusta lub czat jest wyłączony"
+# Komenda czatu_Sukces
+chat_command_ok: "Wiadomość wysłana pomyślnie"
+# Sprawdź wersję wtyczki HelpSense
+version_command:
+  PluginVersion: "Bieżąca wersja wtyczki: {0}"
+  LastUpdateTime: "Ostatnia aktualizacja: {0}"
+  RequiredGameVersion: "Zalecana wersja gry: {0}"
+  Text: "Lista włączonych funkcji (zawiera tylko ważniejsze):"
+  SeeNoEvil: "Mobilna jednostka zadaniowa SeeNoEvil: {0}"
+  Skynet: "Mobilna jednostka zadaniowa Skynet: {0}"
+  SCP023: "SCP-023 Czarny Pies: {0}"
+  SCP029: "SCP-029 Córka Cieni: {0}"
+  SCP073: "SCP-073 Cain: {0}"
+  SCP191: "SCP-191 Mechaniczna dziewczyna: {0}"
+  SCP347: "SCP-347 Niewidzialna kobieta: {0}"
+  SCP703: "SCP-703 W szafie: {0}"
+  SCP1056: "SCP-1056 Zmieniacz rozmiaru: {0}"
+  SCP1068: "SCP-1068 Nieszkodliwa bomba nuklearna: {0}"
+  ChaosLeader: "Dowódca Rebelii Chaosu: {0}"
+  SCP2936: "SCP-2936-1 Ogromny niemiecki robot: {0}"
+  SCP1093: "SCP-1093 Człowiek-latarnia: {0}"
+  InfiniteAmmo: "Nieskończona amunicja: {0}"
+  InfiniteAmmoType: "Tryb nieskończonej amunicji: {0}"

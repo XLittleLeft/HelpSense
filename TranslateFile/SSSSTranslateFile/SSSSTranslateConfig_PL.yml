@@ -1,0 +1,12 @@
+# Umiejętność przechodzenia przez drzwi  
+door_piercing_ability: Umiejętność przenikania przez drzwi  
+# Przycisk umiejętności przechodzenia przez drzwi  
+door_piercing_ability_key: Przycisk umiejętności przenikania przez drzwi  
+# Opis przycisku umiejętności przechodzenia przez drzwi  
+door_piercing_ability_key_description: Wciśnij raz lub przytrzymaj, aby przeniknąć przez drzwi  
+# Tryb aktywacji umiejętności przechodzenia przez drzwi  
+piercing_skill_activation_mode: Tryb przechodzenia przez drzwi włączony
+# Przytrzymaj  
+hold: Przytrzymaj  
+# Przełącznik  
+toggle: Przełącznik  
