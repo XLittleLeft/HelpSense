@@ -58,7 +58,7 @@ Download the **latest zip file from the Release section** and extract everything
   **QQ:** 3298837494
 
 # Thanks list:
-## For Development
+## For Development(In alphabetical order)
 - moddedmcplayer
 - sssssssthedev
 - SrLicht
@@ -69,7 +69,7 @@ Download the **latest zip file from the Release section** and extract everything
 - YongAn404
 - Axwabo
 
-## For Translation
+## For Translation(In alphabetical order)
 - English: SpankyR
 - German : moddedmcplayer
 - French: SmulCapa
@@ -80,8 +80,9 @@ Download the **latest zip file from the Release section** and extract everything
 - Russian : Bread[IDDQD] , RisottoMan
 - Slovak : blackstrikesk
 - Traditional Chinese : Alter
+- Polish : Kanekuu
 
-## Reference code
+## Reference code(In alphabetical order)
 - [Lobby](https://github.com/MrAfitol/Lobby)
 - [RespawnTimer](https://github.com/Michal78900/RespawnTimer)
 - [SpectatorList](https://github.com/TTypiarz/SpectatorList)
