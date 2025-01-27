@@ -1,0 +1,45 @@
+# Player Info Command_Title  
+info_command_title: "Since the plugin was installed, you have been playing on this server"  
+# Player Info Command_Time  
+info_command_played_time: "<color=red>%day%</color> days <color=red>%hour%</color> hours <color=red>%minutes%</color> minutes"  
+# Player Info Command_Role  
+info_command_role_played: "You have played as <color=red>%rolePlayed%</color> times"  
+# Player Info Command_Kills and Damage  
+info_command_kills_damages: "You have killed <color=red>%kills%</color> players and <color=red>%scpKills%</color> SCPs | Dealt <color=red>%playerDamage%</color> damage points (including invalid) | Died <color=red>%playerDeath%</color> times"  
+# Player Info Command_Shots  
+info_command_shot: "You have fired a total of <color=red>%shot%</color> shots"  
+# Failure Message Due to DNT Tag  
+info_command_failed: "Failed to retrieve data, disable DNT - if this doesn't help, the plugin might be disabled"  
+# Rescue Command Error  
+rescue_command_error: "An error occurred while executing the command, please try again later"  
+# Rescue Command: Failure  
+rescue_command_failed: "Failure, the command may be disabled or you lack the required permissions"  
+# Rescue Command: Success  
+rescue_command_ok: "Player rescued successfully"  
+# Chat Command_Error  
+chat_command_error: "An error occurred while sending the message, please try again"  
+# Chat Command_Failure  
+chat_command_failed: "Message not sent – you may be muted, the message is empty, or the chat is disabled"  
+# Chat Command_Success  
+chat_command_ok: "Message sent successfully"  
+# Check HelpSense Plugin Version  
+version_command:  
+  PluginVersion: "Current plugin version: {0}"  
+  LastUpdateTime: "Last update: {0}"  
+  RequiredGameVersion: "Recommended game version: {0}"  
+  Text: "List of enabled features (only major ones are included):"  
+  SeeNoEvil: "Mobile Task Force SeeNoEvil: {0}"  
+  Skynet: "Mobile Task Force Skynet: {0}"  
+  SCP023: "SCP-023 Black Dog: {0}"  
+  SCP029: "SCP-029 Daughter of Shadows: {0}"  
+  SCP073: "SCP-073 Cain: {0}"  
+  SCP191: "SCP-191 Mechanical Girl: {0}"  
+  SCP347: "SCP-347 Invisible Woman: {0}"  
+  SCP703: "SCP-703 In the Closet: {0}"  
+  SCP1056: "SCP-1056 Size Changer: {0}"  
+  SCP1068: "SCP-1068 Harmless Nuclear Bomb: {0}"  
+  ChaosLeader: "Chaos Insurgency Leader: {0}"  
+  SCP2936: "SCP-2936-1 Giant German Robot: {0}"  
+  SCP1093: "SCP-1093 Lantern Man: {0}"  
+  InfiniteAmmo: "Infinite Ammo: {0}"  
+  InfiniteAmmoType: "Infinite Ammo Mode: {0}"  
