@@ -1,0 +1,12 @@
+# Door Piercing Ability  
+door_piercing_ability: Ability to phase through doors  
+# Door Piercing Ability Button  
+door_piercing_ability_key: Door piercing ability key  
+# Door Piercing Ability Button Description  
+door_piercing_ability_key_description: Press once or hold to phase through doors  
+# Door Piercing Skill Activation Mode  
+piercing_skill_activation_mode: Door piercing mode enabled  
+# Hold  
+hold: Hold  
+# Toggle  
+toggle: Toggle  
