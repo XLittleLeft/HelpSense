@@ -70,7 +70,7 @@ Download the **latest zip file from the Release section** and extract everything
 - Axwabo
 
 ## For Translation(In alphabetical order)
-- English: SpankyR
+- English: SpankyR,Kanekuu
 - German : moddedmcplayer
 - French: SmulCapa
 - Italian : Zurna_sever_58
