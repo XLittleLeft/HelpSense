@@ -28,12 +28,17 @@ namespace HelpSense.Patches
 
             if (!__instance.TryContinueDeserialization(reader, Firearm.ItemSerial, header, AutosyncMessageType.Cmd))
             {
+                reader.Position -= sizeof(byte);
                 return true;
             }
 
             if (header is ReloaderMessageHeader.Reload && IReloadUnloadValidatorModule.ValidateReload(Firearm))
             {
-                if (Firearm.ItemTypeId is ItemType.ParticleDisruptor) return true;
+                if (Firearm.ItemTypeId is ItemType.ParticleDisruptor)
+                {
+                    reader.Position -= sizeof(byte);
+                    return true;
+                }
                 if (Firearm.TryGetModule<MagazineModule>(out var MagazineModule))
                 {
                     switch (Plugin.Instance.Config.InfiniteAmmoType)

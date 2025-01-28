@@ -12,7 +12,7 @@ namespace HelpSense.Commands
 
         public string[] Aliases => ["VersionInfo", "VI"];
 
-        public string Description => "查询HelpSense插件版本和信息";
+        public string Description => "查询HelpSense插件版本和信息-Plugin Info";
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
