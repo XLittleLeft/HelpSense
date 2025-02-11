@@ -2,9 +2,12 @@
 using HelpSense.ConfigSystem;
 using HelpSense.Helper;
 using MEC;
-using PluginAPI.Core;
+using LabApi.Features.Wrappers;
 using RelativePositioning;
 using System;
+
+using Log = LabApi.Features.Console.Logger;
+using HelpSense.API.Events;
 
 namespace HelpSense.Commands
 {
@@ -20,7 +23,7 @@ namespace HelpSense.Commands
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             Player player;
-            CommandTranslateConfig CommandTranslateConfig = Plugin.Instance.CommandTranslateConfig;
+            CommandTranslateConfig CommandTranslateConfig = CustomEventHandler.CommandTranslateConfig;
 
             if (sender is null || (player = Player.Get(sender)) is null)
             {

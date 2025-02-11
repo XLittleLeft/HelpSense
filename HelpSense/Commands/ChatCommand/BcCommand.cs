@@ -1,8 +1,11 @@
 ﻿using CommandSystem;
 using HelpSense.Helper.Chat;
 using HelpSense.ConfigSystem;
-using PluginAPI.Core;
+using LabApi.Features.Wrappers;
 using System;
+
+using Log = LabApi.Features.Console.Logger;
+using HelpSense.API.Events;
 
 namespace HelpSense.Commands.ChatCommand
 {
@@ -17,7 +20,7 @@ namespace HelpSense.Commands.ChatCommand
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            CommandTranslateConfig CommandTranslateConfig = Plugin.Instance.CommandTranslateConfig;
+            CommandTranslateConfig CommandTranslateConfig = CustomEventHandler.CommandTranslateConfig;
             Player player;
 
             if (sender is null || (player = Player.Get(sender)) is null)
@@ -26,7 +29,7 @@ namespace HelpSense.Commands.ChatCommand
                 return false;
             }
 
-            if (arguments.Count == 0 || player.IsMuted || !Plugin.Instance.Config.EnableChatSystem)
+            if (arguments.Count == 0 || player.IsMuted || !CustomEventHandler.Config.EnableChatSystem)
             {
                 response = CommandTranslateConfig.ChatCommandFailed;
                 return false;

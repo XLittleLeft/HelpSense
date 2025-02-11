@@ -5,7 +5,7 @@ using Mirror;
 using PlayerRoles;
 using PlayerRoles.FirstPersonControl;
 using PlayerStatsSystem;
-using PluginAPI.Core;
+using LabApi.Features.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UserSettings.ServerSpecific;
 using UserSettings.ServerSpecific.Examples;
+using HelpSense.API.Events;
 
 namespace HelpSense.SSSS
 {
@@ -22,7 +23,7 @@ namespace HelpSense.SSSS
     {
         public override string Name => SSSSTranslateConfig.DoorPiercingAbility;
 
-        public static SSSSTranslateConfig SSSSTranslateConfig = Plugin.Instance.SSSSTranslateConfig;
+        public static SSSSTranslateConfig SSSSTranslateConfig = CustomEventHandler.SSSSTranslateConfig;
 
         public static List<ReferenceHub> _activeGhostly = [];
 

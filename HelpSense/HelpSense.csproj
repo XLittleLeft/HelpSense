@@ -43,6 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="API\API.cs" />
+    <Compile Include="API\Events\CustomEventHandler.cs" />
     <Compile Include="API\InfoExtension.cs" />
     <Compile Include="API\Features\Pool\IPool.cs" />
     <Compile Include="API\Features\Pool\StringBuilderPool.cs" />
@@ -59,8 +60,6 @@
     <Compile Include="ConfigSystem\TranslateConfig.cs" />
     <Compile Include="Handler\LobbyLocationHandler.cs" />
     <Compile Include="Helper\Chat\ChatHelper.cs" />
-    <Compile Include="Helper\Event\EventHelper.cs" />
-    <Compile Include="Helper\Misc\HideTutorialsHelper.cs" />
     <Compile Include="Helper\SCP\SCPHelper.cs" />
     <Compile Include="Helper\Misc\SpectatorHelper.cs" />
     <Compile Include="Helper\SpecialRole\SpecialRoleHelper.cs" />
@@ -72,10 +71,8 @@
     <Compile Include="MonoBehaviors\PlayerGlowBehavior.cs" />
     <Compile Include="MonoBehaviors\PlayerLightBehavior.cs" />
     <Compile Include="SSSS\GhostlyAbility.cs" />
-    <Compile Include="Patches\MaxHealthGetPatch.cs" />
-    <Compile Include="Patches\PositionSyncingPatch.cs" />
     <Compile Include="Patches\ReloaderModulePatch.cs" />
-    <Compile Include="Plugin.cs" />
+    <Compile Include="Plugins.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -86,54 +83,98 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.3.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Harmony.2.3.3\lib\net48\0Harmony.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>..\lib\net48\Assembly-CSharp-firstpass.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp-Publicized">
-      <HintPath>..\lib\net48\Assembly-CSharp-Publicized.dll</HintPath>
-    </Reference>
-    <Reference Include="CommandSystem.Core">
-      <HintPath>..\lib\net48\CommandSystem.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="HintServiceMeow-NWAPI">
-      <HintPath>..\lib\net48\HintServiceMeow-NWAPI.dll</HintPath>
-    </Reference>
-    <Reference Include="LiteDB, Version=5.0.21.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
-      <HintPath>..\packages\LiteDB.5.0.21\lib\net45\LiteDB.dll</HintPath>
-    </Reference>
-    <Reference Include="Mirror-Publicized">
-      <HintPath>..\lib\net48\Mirror-Publicized.dll</HintPath>
-    </Reference>
-    <Reference Include="NorthwoodLib">
-      <HintPath>..\lib\net48\NorthwoodLib.dll</HintPath>
-    </Reference>
-    <Reference Include="PluginAPI">
-      <HintPath>..\lib\net48\PluginAPI.dll</HintPath>
-    </Reference>
-    <Reference Include="Pooling">
-      <HintPath>..\lib\net48\Pooling.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AudioModule">
-      <HintPath>..\lib\net48\UnityEngine.AudioModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\lib\net48\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="YamlDotNet, Version=11.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
-      <HintPath>..\packages\YamlDotNet.11.2.1\lib\net45\YamlDotNet.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.11.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.11.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\..\必要依赖 -LabAPI\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\必要依赖 -LabAPI\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>..\..\..\必要依赖 -LabAPI\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-Publicized">
+      <HintPath>..\..\..\必要依赖 -LabAPI\Assembly-CSharp-Publicized.dll</HintPath>
+    </Reference>
+    <Reference Include="Caress">
+      <HintPath>..\..\..\必要依赖 -LabAPI\Caress.dll</HintPath>
+    </Reference>
+    <Reference Include="CommandSystem.Core">
+      <HintPath>..\..\..\必要依赖 -LabAPI\CommandSystem.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="HintServiceMeow-NWAPI">
+      <HintPath>..\..\..\其他依赖\HintServiceMeow-NWAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="LabApi">
+      <HintPath>..\..\..\必要依赖 -LabAPI\LabApi.dll</HintPath>
+    </Reference>
+    <Reference Include="LiteDB, Version=5.0.20.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiteDB.5.0.20\lib\net45\LiteDB.dll</HintPath>
+    </Reference>
+    <Reference Include="Mirror">
+      <HintPath>..\..\..\必要依赖 -LabAPI\Mirror.dll</HintPath>
+    </Reference>
+    <Reference Include="Mirror-Publicized">
+      <HintPath>..\..\..\必要依赖 -LabAPI\Mirror-Publicized.dll</HintPath>
+    </Reference>
+    <Reference Include="Mirror.Components">
+      <HintPath>..\..\..\必要依赖 -LabAPI\Mirror.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Security">
+      <HintPath>..\..\..\必要依赖 -LabAPI\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\..\必要依赖 -LabAPI\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="netstandard">
+      <HintPath>..\..\..\必要依赖 -LabAPI\netstandard.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\必要依赖 -LabAPI\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NorthwoodLib">
+      <HintPath>..\..\..\必要依赖 -LabAPI\NorthwoodLib.dll</HintPath>
+    </Reference>
+    <Reference Include="NWAPIPermissionSystem">
+      <HintPath>..\..\..\必要依赖 -LabAPI\NWAPIPermissionSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Pooling">
+      <HintPath>..\..\..\必要依赖 -LabAPI\Pooling.dll</HintPath>
+    </Reference>
+    <Reference Include="SCPSLAudioApi">
+      <HintPath>..\..\..\必要依赖 -LabAPI\SCPSLAudioApi.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\..\必要依赖 -LabAPI\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline">
+      <HintPath>..\..\..\必要依赖 -LabAPI\Unity.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\必要依赖 -LabAPI\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\..\必要依赖 -LabAPI\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\必要依赖 -LabAPI\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\必要依赖 -LabAPI\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\..\必要依赖 -LabAPI\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\必要依赖 -LabAPI\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="YamlDotNet">
+      <HintPath>..\..\..\必要依赖 -LabAPI\YamlDotNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,10 +2,11 @@
 using NorthwoodLib.Pools;
 using PlayerRoles;
 using PlayerRoles.Spectating;
-using PluginAPI.Core;
+using LabApi.Features.Wrappers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using HelpSense.API.Events;
 
 namespace HelpSense.Helper.Misc
 {
@@ -17,22 +18,22 @@ namespace HelpSense.Helper.Misc
             {
                 yield return Timing.WaitForSeconds(1);
 
-                StringBuilder list = StringBuilderPool.Shared.Rent().Append(Plugin.Instance.TranslateConfig.WatchListTitle);
+                StringBuilder list = StringBuilderPool.Shared.Rent().Append(CustomEventHandler.TranslateConfig.WatchListTitle);
 
                 int count = 0;
                 foreach (Player deadPlayers in XHelper.PlayerList.Where(x => x.Team == Team.Dead))
                 {
-                    if (Plugin.Instance.TranslateConfig.Names.Contains("(NONE)")) break;
+                    if (CustomEventHandler.TranslateConfig.Names.Contains("(NONE)")) break;
 
                     if (((SpectatorRole)deadPlayers.ReferenceHub.roleManager.CurrentRole).SyncedSpectatedNetId != player.NetworkId) continue;
 
                     if (deadPlayers.IsGlobalModerator ||
                         (deadPlayers.IsOverwatchEnabled) ||
                         (deadPlayers.IsNorthwoodStaff) ||
-                        Plugin.Instance.Config.IgnoredRoles.Contains(deadPlayers.ReferenceHub.serverRoles.name))
+                        CustomEventHandler.Config.IgnoredRoles.Contains(deadPlayers.ReferenceHub.serverRoles.name))
                         continue;
 
-                    list.Append(Plugin.Instance.TranslateConfig.Names.Replace("(NAME)", deadPlayers.Nickname));
+                    list.Append(CustomEventHandler.TranslateConfig.Names.Replace("(NAME)", deadPlayers.Nickname));
                     count++;
                 }
 
@@ -43,7 +44,7 @@ namespace HelpSense.Helper.Misc
                         .Replace("(COLOR)", player.ReferenceHub.roleManager.CurrentRole.RoleColor.ToHex()
                         .Replace("<br>", "\n"));
 
-                player.ReceiveHint(spectatorList, 2f); //Use compatibility adapter
+                player.SendHint(spectatorList, 2f); //Use compatibility adapter
             }
         }
     }

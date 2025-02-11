@@ -1,4 +1,4 @@
-﻿using PluginAPI.Core.Zones;
+﻿using MapGeneration;
 using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -25,13 +25,13 @@ namespace HelpSense.Handler
 
         public static void IntercomLocation()
         {
-            var intercomRoom = EntranceZone.Rooms.FirstOrDefault(x => x.GameObject.name == "EZ_Intercom");
+            var intercomRoom = RoomIdentifier.AllRoomIdentifiers.FirstOrDefault(x => x.Name is RoomName.EzIntercom);
 
             if (intercomRoom == null)
                 return;
 
-            LobbyPosition = intercomRoom.Transform.TransformPoint(new Vector3(-4.16f, -3.860f, -2.113f));
-            LobbyRotation = Quaternion.Euler(intercomRoom.Rotation.eulerAngles.x, intercomRoom.Rotation.eulerAngles.y + 180, intercomRoom.Rotation.eulerAngles.z);
+            LobbyPosition = intercomRoom.transform.TransformPoint(new Vector3(-4.16f, -3.860f, -2.113f));
+            LobbyRotation = Quaternion.Euler(intercomRoom.transform.rotation.eulerAngles.x, intercomRoom.transform.rotation.eulerAngles.y + 180, intercomRoom.transform.rotation.eulerAngles.z);
         }
 
         public static void MountainLocation()

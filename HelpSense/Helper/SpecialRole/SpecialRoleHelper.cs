@@ -4,8 +4,9 @@ using HintServiceMeow.UI.Extension;
 using InventorySystem.Items;
 using MEC;
 using PlayerRoles;
-using PluginAPI.Core;
+using LabApi.Features.Wrappers;
 using System.Collections.Generic;
+using HelpSense.API.Events;
 
 namespace HelpSense.Helper.SpecialRole
 {
@@ -16,7 +17,7 @@ namespace HelpSense.Helper.SpecialRole
 
         public static IEnumerator<float> SpecialRoleInfoHandle()
         {
-            TranslateConfig config = Plugin.Instance.TranslateConfig;
+            TranslateConfig config = CustomEventHandler.TranslateConfig;
             string SCP029SpecialIntroduction = config.SCP029SpecialIntroduction;
             string SCP703SpecialIntroduction = config.SCP703SpecialIntroduction;
             string SCP347SpecialIntroduction = config.SCP347SpecialIntroduction;
@@ -40,29 +41,29 @@ namespace HelpSense.Helper.SpecialRole
                     yield break;
                 }
 
-                if (Plugin.Instance.SCP029 != null && Plugin.Instance.SCP029.Player != null)
+                if (CustomEventHandler.SCP029 != null && CustomEventHandler.SCP029.Player != null)
                 {
-                    Plugin.Instance.SCP029.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP029SpecialIntroduction, config.SCP029SkillIntroduction, 1.25f);
+                    CustomEventHandler.SCP029.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP029SpecialIntroduction, config.SCP029SkillIntroduction, 1.25f);
                 }
 
-                if (Plugin.Instance.SCP703 != null && Plugin.Instance.SCP703.Player != null)
+                if (CustomEventHandler.SCP703 != null && CustomEventHandler.SCP703.Player != null)
                 {
                     if (SCP703ItemTime == 0)
                     {
-                        if (!Plugin.Instance.SCP703.Player.IsInventoryFull)
+                        if (!CustomEventHandler.SCP703.Player.IsInventoryFull)
                         {
                             ItemType itemType = XHelper.GetRandomItem();
                             if (itemType.IsWeapon())
                             {
-                                var firearm = Plugin.Instance.SCP703.Player.AddItem(itemType, ItemAddReason.AdminCommand);
+                                var firearm = CustomEventHandler.SCP703.Player.AddItem(itemType, ItemAddReason.AdminCommand);
                             }
                             else
                             {
-                                Plugin.Instance.SCP703.Player.AddItem(itemType);
+                                CustomEventHandler.SCP703.Player.AddItem(itemType);
                             }
 
-                            Plugin.Instance.SCP703.Player.GetPlayerUi().CommonHint.ShowOtherHint(config.SCP703ReceivedItemHint, 5);
-                            SCP703ItemTime = Plugin.Instance.Config.SCP703ItemTime * 60;
+                            CustomEventHandler.SCP703.Player.GetPlayerUi().CommonHint.ShowOtherHint(config.SCP703ReceivedItemHint, 5);
+                            SCP703ItemTime = CustomEventHandler.Config.SCP703ItemTime * 60;
                         }
                     }
                     else
@@ -79,47 +80,46 @@ namespace HelpSense.Helper.SpecialRole
                         }
                     });
 
-                    Plugin.Instance.SCP703.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP703SpecialIntroduction, [.. SCP703StringList], 1.25f);
+                    CustomEventHandler.SCP703.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP703SpecialIntroduction, [.. SCP703StringList], 1.25f);
                 }
 
-                if (Plugin.Instance.SCP347 != null && Plugin.Instance.SCP347.Player != null)
+                if (CustomEventHandler.SCP347 != null && CustomEventHandler.SCP347.Player != null)
                 {
-                    Plugin.Instance.SCP347.Player.EffectsManager.EnableEffect<Invisible>();
-                    Plugin.Instance.SCP347.Player.EffectsManager.ChangeState<Invisible>(1, 2);
+                    CustomEventHandler.SCP347.Player.EnableEffect<Invisible>(1 , 2);
 
-                    Plugin.Instance.SCP347.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP347SpecialIntroduction, config.SCP347SkillIntroduction, 1.25f);
+                    CustomEventHandler.SCP347.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP347SpecialIntroduction, config.SCP347SkillIntroduction, 1.25f);
                 }
 
-                if (Plugin.Instance.SCP1093 != null && Plugin.Instance.SCP1093.Player != null)
+                if (CustomEventHandler.SCP1093 != null && CustomEventHandler.SCP1093.Player != null)
                 {
-                    Plugin.Instance.SCP1093.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP1093SpecialIntroduction, [.. config.SCP1093SkillIntroduction], 1.25f);
+                    CustomEventHandler.SCP1093.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP1093SpecialIntroduction, [.. config.SCP1093SkillIntroduction], 1.25f);
                 }
 
-                if (Plugin.Instance.SCP2936 != null && Plugin.Instance.SCP2936.Player != null)
+                if (CustomEventHandler.SCP2936 != null && CustomEventHandler.SCP2936.Player != null)
                 {
-                    Plugin.Instance.SCP2936.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP2936SpecialIntroduction, config.SCP29361SkillIntroduction, 1.25f);
+                    CustomEventHandler.SCP2936.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP2936SpecialIntroduction, config.SCP29361SkillIntroduction, 1.25f);
                 }
 
-                if (Plugin.Instance.SCP073 != null && Plugin.Instance.SCP073.Player != null)
+                if (CustomEventHandler.SCP073 != null && CustomEventHandler.SCP073.Player != null)
                 {
-                    switch (Plugin.Instance.SCP073.Player.Team)
+                    switch (CustomEventHandler.SCP073.Player.Team)
                     {
                         case Team.FoundationForces:
-                            Plugin.Instance.SCP073.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP073AbelSpecialIntroduction, config.SCP073AbelSkillIntroduction, 1.25f);
+                            CustomEventHandler.SCP073.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP073AbelSpecialIntroduction, config.SCP073AbelSkillIntroduction, 1.25f);
                             break;
                         case Team.ChaosInsurgency:
-                            Plugin.Instance.SCP073.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP073CainSpecialIntroduction, config.SCP073CainSkillIntroduction, 1.25f);
+                            CustomEventHandler.SCP073.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP073CainSpecialIntroduction, config.SCP073CainSkillIntroduction, 1.25f);
                             break;
                     }
                 }
 
-                if (Plugin.Instance.SCP191 != null && Plugin.Instance.SCP191.Player != null)
+                if (CustomEventHandler.SCP191 != null && CustomEventHandler.SCP191.Player != null)
                 {
-                    Plugin.Instance.SCP191.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP191SpecialIntroduction, [.. config.SCP191SkillIntroduction], 1.25f);
+                    CustomEventHandler.SCP191.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP191SpecialIntroduction, [.. config.SCP191SkillIntroduction], 1.25f);
 
-                    Plugin.Instance.SCP191.Player.ReceiveHint(Plugin.Instance.TranslateConfig.SCP191BatteryHintShow.Replace("%Battery%", battry.ToString()), 1.25f);//Use compatibility adapter
+                    CustomEventHandler.SCP191.Player.SendHint(CustomEventHandler.TranslateConfig.SCP191BatteryHintShow.Replace("%Battery%", battry.ToString()), 1.25f);//Use compatibility adapter
 
-                    if (Plugin.Instance.SCP191.Player.Room.Name is MapGeneration.RoomName.Hcz079)
+                    if (CustomEventHandler.SCP191.Player.Room.Name is MapGeneration.RoomName.Hcz079)
                     {
                         if (battry <= 4000)
                             battry += 1000;
@@ -130,24 +130,24 @@ namespace HelpSense.Helper.SpecialRole
                     battry -= 10;
 
                     if (battry <= 0)
-                        Plugin.Instance.SCP191.Player.Kill(Plugin.Instance.TranslateConfig.SCP191BatteryDepletionDeathReason);
+                        CustomEventHandler.SCP191.Player.Kill(CustomEventHandler.TranslateConfig.SCP191BatteryDepletionDeathReason);
                 }
 
-                if (Plugin.Instance.SCP023 != null && Plugin.Instance.SCP023.Player != null)
+                if (CustomEventHandler.SCP023 != null && CustomEventHandler.SCP023.Player != null)
                 {
-                    Plugin.Instance.SCP023.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP023SpecialIntroduction, [.. config.SCP023SkillIntroduction], 1.25f);
+                    CustomEventHandler.SCP023.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP023SpecialIntroduction, [.. config.SCP023SkillIntroduction], 1.25f);
                 }
 
-                if (!Plugin.Instance.SkynetPlayers.IsEmpty())
+                if (!CustomEventHandler.SkynetPlayers.IsEmpty())
                 {
-                    foreach (Player Player in Plugin.Instance.SkynetPlayers)
+                    foreach (Player Player in CustomEventHandler.SkynetPlayers)
                     {
                         Player.GetPlayerUi().CommonHint.ShowRoleHint(SkynetSpecialIntroduction, [.. config.SkynetSkillIntroduction], 1.25f);
                     }
                 }
-                if (!Plugin.Instance.SeePlayers.IsEmpty())
+                if (!CustomEventHandler.SeePlayers.IsEmpty())
                 {
-                    foreach (Player Player in Plugin.Instance.SeePlayers)
+                    foreach (Player Player in CustomEventHandler.SeePlayers)
                     {
                         Player.GetPlayerUi().CommonHint.ShowRoleHint(SeeNoEvilSpecialIntroduction, [.. config.SeeNoEvilSkillIntroduction], 1.25f);
                     }

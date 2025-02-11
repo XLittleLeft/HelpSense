@@ -1,4 +1,5 @@
 ﻿using CommandSystem;
+using HelpSense.API.Events;
 using HelpSense.API.Features.Pool;
 using HelpSense.ConfigSystem;
 using System;
@@ -16,14 +17,14 @@ namespace HelpSense.Commands
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            var config = Plugin.Instance.Config;
-            CommandTranslateConfig CommandTranslateConfig = Plugin.Instance.CommandTranslateConfig;
+            var config = CustomEventHandler.Config;
+            CommandTranslateConfig CommandTranslateConfig = CustomEventHandler.CommandTranslateConfig;
             var sb = StringBuilderPool.Pool.Get();
 
             //Version and update time
-            sb.AppendFormat(CommandTranslateConfig.VersionCommand["PluginVersion"], Plugin.PluginVersion).AppendLine();
-            sb.AppendFormat(CommandTranslateConfig.VersionCommand["LastUpdateTime"], Plugin.LastUpdateTime).AppendLine();
-            sb.AppendFormat(CommandTranslateConfig.VersionCommand["RequiredGameVersion"], Plugin.RequiredGameVersion).AppendLine();
+            sb.AppendFormat(CommandTranslateConfig.VersionCommand["PluginVersion"], Plugins.Instance.Version).AppendLine();
+            sb.AppendFormat(CommandTranslateConfig.VersionCommand["LastUpdateTime"], Plugins.LastUpdateTime).AppendLine();
+            sb.AppendFormat(CommandTranslateConfig.VersionCommand["RequiredGameVersion"], Plugins.RequiredGameVersion).AppendLine();
 
             //Function list
             sb.AppendLine(CommandTranslateConfig.VersionCommand["Text"]);
@@ -41,7 +42,7 @@ namespace HelpSense.Commands
             sb.AppendFormat(CommandTranslateConfig.VersionCommand["SCP2936"], BoolTranslate(config.SCP2936)).AppendLine();
             sb.AppendFormat(CommandTranslateConfig.VersionCommand["SCP1093"], BoolTranslate(config.SCP1093)).AppendLine();
             sb.AppendFormat(CommandTranslateConfig.VersionCommand["InfiniteAmmo"], BoolTranslate(config.InfiniteAmmo)).AppendLine();
-            sb.AppendFormat(CommandTranslateConfig.VersionCommand["InfiniteAmmoType"], Plugin.Instance.Config.InfiniteAmmoType).AppendLine();
+            sb.AppendFormat(CommandTranslateConfig.VersionCommand["InfiniteAmmoType"], CustomEventHandler.Config.InfiniteAmmoType).AppendLine();
 
             //Copyright
             sb.AppendLine("-Made By X小左(XLittleLeft)-");

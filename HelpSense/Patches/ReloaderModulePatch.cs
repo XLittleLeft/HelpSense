@@ -5,13 +5,14 @@ using InventorySystem.Items.Firearms;
 using InventorySystem.Items.Firearms.Modules;
 using MEC;
 using Mirror;
-using PluginAPI.Core;
+using LabApi.Features.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static InventorySystem.Items.Firearms.Modules.AnimatorReloaderModuleBase;
+using HelpSense.API.Events;
 
 namespace HelpSense.Patches
 {
@@ -20,11 +21,11 @@ namespace HelpSense.Patches
     {
         public static bool Prefix(AnimatorReloaderModuleBase __instance , NetworkReader reader)
         {
-            if (!Plugin.Instance.Config.InfiniteAmmo) return true;
+            if (!CustomEventHandler.Config.InfiniteAmmo) return true;
 
             ReloaderMessageHeader header = (ReloaderMessageHeader)reader.ReadByte();
             Firearm Firearm = __instance.Firearm;
-            Player Player = Player.Get(Firearm.Owner);
+            Player Player = Player.Get(Firearm.Owner.authManager.UserId);
 
             if (!__instance.TryContinueDeserialization(reader, Firearm.ItemSerial, header, AutosyncMessageType.Cmd))
             {
@@ -41,7 +42,7 @@ namespace HelpSense.Patches
                 }
                 if (Firearm.TryGetModule<MagazineModule>(out var MagazineModule))
                 {
-                    switch (Plugin.Instance.Config.InfiniteAmmoType)
+                    switch (CustomEventHandler.Config.InfiniteAmmoType)
                     {
                         case InfiniteAmmoType.Normal:
                             Player.SetAmmo(MagazineModule.AmmoType, (ushort)(MagazineModule.AmmoMax - MagazineModule.AmmoStored + 1));

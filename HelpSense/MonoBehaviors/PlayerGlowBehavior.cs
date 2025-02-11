@@ -1,9 +1,9 @@
 ﻿using AdminToys;
 using HelpSense.Helper;
+using LabApi.Features.Wrappers;
 using MEC;
 using Mirror;
 using PlayerRoles;
-using PluginAPI.Core;
 using UnityEngine;
 
 namespace HelpSense.MonoBehaviors
@@ -27,7 +27,7 @@ namespace HelpSense.MonoBehaviors
             NetworkServer.Spawn(_glowLight.gameObject);
             _glowLight.NetworkLightColor = Color.yellow;
             //_glowLight.NetworkLightShadows = true;
-            _glowLight.NetworkLightRange = 5f;
+            _glowLight.NetworkLightRange = 2f;
             _glowLight.NetworkLightIntensity = 1f;
         }
 

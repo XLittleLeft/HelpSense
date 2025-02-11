@@ -1,8 +1,9 @@
-﻿using HelpSense.API.Features.Pool;
+﻿using HelpSense.API.Events;
+using HelpSense.API.Features.Pool;
 using HintServiceMeow.Core.Utilities;
+using LabApi.Features.Wrappers;
 using MEC;
 using PlayerRoles;
-using PluginAPI.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,7 @@ namespace HelpSense.Helper.Chat
         public MessageType Type { get; } = type;
         public string Message { get; } = message;
 
-        public string SenderName { get; } = sender.DisplayNickname;
+        public string SenderName { get; } = sender.DisplayName;
         public Team SenderTeam { get; } = sender.Team;
         public RoleTypeId SenderRole { get; } = sender.Role;
     }
@@ -47,7 +48,7 @@ namespace HelpSense.Helper.Chat
 
         private static bool HaveAccess(Player player, ChatMessage message)
         {
-            if ((DateTime.Now - message.TimeSent).TotalSeconds > Plugin.Instance.Config.MessageTime)
+            if ((DateTime.Now - message.TimeSent).TotalSeconds > CustomEventHandler.Config.MessageTime)
                 return false;
 
             return message.Type switch
@@ -73,23 +74,23 @@ namespace HelpSense.Helper.Chat
                         continue;
                     }
 
-                    sb.AppendLine(Plugin.Instance.TranslateConfig.ChatMessageTitle);
+                    sb.AppendLine(CustomEventHandler.TranslateConfig.ChatMessageTitle);
 
                     foreach (var message in MessageList)
                     {
                         if (HaveAccess(messageSlot.Key, message))
                         {
-                            string messageStr = Plugin.Instance.Config.MessageTemplate
+                            string messageStr = CustomEventHandler.Config.MessageTemplate
                                 .Replace("{Message}", message.Message)
-                                .Replace("{MessageType}", Plugin.Instance.TranslateConfig.MessageTypeName[message.Type])
+                                .Replace("{MessageType}", CustomEventHandler.TranslateConfig.MessageTypeName[message.Type])
                                 .Replace("{MessageTypeColor}", message.Type switch
                                 {
                                     ChatMessage.MessageType.AdminPrivateChat => "red",
                                     _ => "{SenderTeamColor}",//Replace by sender's team color later
                                 })
                                 .Replace("{SenderNickname}", message.SenderName)
-                                .Replace("{SenderTeam}", Plugin.Instance.TranslateConfig.ChatSystemTeamTranslation[message.SenderTeam])
-                                .Replace("{SenderRole}", Plugin.Instance.TranslateConfig.ChatSystemRoleTranslation[message.SenderRole])
+                                .Replace("{SenderTeam}", CustomEventHandler.TranslateConfig.ChatSystemTeamTranslation[message.SenderTeam])
+                                .Replace("{SenderRole}", CustomEventHandler.TranslateConfig.ChatSystemRoleTranslation[message.SenderRole])
                                 .Replace("{SenderTeamColor}", message.SenderTeam switch
                                 {
                                     Team.SCPs => "red",
@@ -100,7 +101,7 @@ namespace HelpSense.Helper.Chat
                                     Team.FoundationForces => "#4EFAFF",
                                     _ => "white"
                                 })
-                                .Replace("{CountDown}", (Plugin.Instance.Config.MessageTime - (int)(DateTime.Now - message.TimeSent).TotalSeconds).ToString());
+                                .Replace("{CountDown}", (CustomEventHandler.Config.MessageTime - (int)(DateTime.Now - message.TimeSent).TotalSeconds).ToString());
 
 
                             sb.AppendLine(messageStr);
@@ -129,7 +130,7 @@ namespace HelpSense.Helper.Chat
             {
                 Alignment = HintServiceMeow.Core.Enum.HintAlignment.Left,
                 YCoordinate = 250,
-                FontSize = Plugin.Instance.Config.ChatSystemSize,
+                FontSize = CustomEventHandler.Config.ChatSystemSize,
                 LineHeight = 5
             };
 

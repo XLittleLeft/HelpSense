@@ -1,8 +1,10 @@
-﻿using Interactables.Interobjects.DoorUtils;
+﻿using HelpSense.API.Events;
+using Interactables.Interobjects.DoorUtils;
 using InventorySystem.Items.Keycards;
 using MapGeneration.Distributors;
-using PluginAPI.Core;
 using System.Linq;
+
+using Player = LabApi.Features.Wrappers.Player;
 
 namespace HelpSense.Helper.Misc
 {
@@ -16,13 +18,13 @@ namespace HelpSense.Helper.Misc
 
         public static bool HasKeycardPermission(this DoorVariant door, Player player)
         {
-            if (Plugin.Instance.Config.AffectAmnesia &&
-                player.EffectsManager.GetEffect<CustomPlayerEffects.AmnesiaItems>().IsEnabled)
+            if (CustomEventHandler.Config.AffectAmnesia &&
+                player.GetEffect<CustomPlayerEffects.AmnesiaItems>().IsEnabled)
             {
                 return false;
             }
 
-            foreach (var keycard in player.Items.Where(t => t is KeycardItem))
+            foreach (var keycard in player.ReferenceHub.inventory.UserInventory.Items.Values.Where(t => t is KeycardItem))
             {
                 if (door.RequiredPermissions.CheckPermissions(keycard, player.ReferenceHub))
                 {
@@ -36,13 +38,13 @@ namespace HelpSense.Helper.Misc
 
         public static bool HasKeycardPermission(this LockerChamber chamber, Player player)
         {
-            if (Plugin.Instance.Config.AffectAmnesia &&
-                player.EffectsManager.GetEffect<CustomPlayerEffects.AmnesiaItems>().IsEnabled)
+            if (CustomEventHandler.Config.AffectAmnesia &&
+                player.GetEffect<CustomPlayerEffects.AmnesiaItems>().IsEnabled)
             {
                 return false;
             }
 
-            foreach (var keycard in player.Items.Where(t => t is KeycardItem))
+            foreach (var keycard in player.ReferenceHub.inventory.UserInventory.Items.Values.Where(t => t is KeycardItem))
             {
                 if (((KeycardItem)keycard).Permissions.HasFlagFast(chamber.RequiredPermissions))
                 {
@@ -55,13 +57,13 @@ namespace HelpSense.Helper.Misc
 
         public static bool HasKeycardPermission(this Scp079Generator generator, Player player)
         {
-            if (Plugin.Instance.Config.AffectAmnesia &&
-                                player.EffectsManager.GetEffect<CustomPlayerEffects.AmnesiaItems>().IsEnabled && !player.IsBypassEnabled)
+            if (CustomEventHandler.Config.AffectAmnesia &&
+                                player.GetEffect<CustomPlayerEffects.AmnesiaItems>().IsEnabled && !player.IsBypassEnabled)
             {
                 return false;
             }
 
-            foreach (var keycard in player.Items.Where(t => t is KeycardItem))
+            foreach (var keycard in player.ReferenceHub.inventory.UserInventory.Items.Values.Where(t => t is KeycardItem))
             {
                 if (((KeycardItem)keycard).Permissions.HasFlagFast(generator._requiredPermission))
                 {

@@ -4,8 +4,9 @@ using HelpSense.API.Features.Pool;
 using HelpSense.API.Serialization;
 using HelpSense.ConfigSystem;
 using PlayerRoles;
-using PluginAPI.Core;
+using LabApi.Features.Wrappers;
 using System;
+using HelpSense.API.Events;
 
 namespace HelpSense.Commands
 {
@@ -21,7 +22,7 @@ namespace HelpSense.Commands
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             Player player;
-            CommandTranslateConfig CommandTranslateConfig = Plugin.Instance.CommandTranslateConfig;
+            CommandTranslateConfig CommandTranslateConfig = CustomEventHandler.CommandTranslateConfig;
 
             if (sender is null || (player = Player.Get(sender)) is null)
             {
@@ -29,7 +30,7 @@ namespace HelpSense.Commands
                 return false;
             }
 
-            if (player.DoNotTrack || !Plugin.Instance.Config.SavePlayersInfo)
+            if (player.DoNotTrack || !CustomEventHandler.Config.SavePlayersInfo)
             {
                 response = CommandTranslateConfig.InfoCommandFailed;
                 return false;

@@ -1,10 +1,13 @@
 ﻿using HelpSense.Handler;
 using MEC;
 using PlayerRoles.Voice;
-using PluginAPI.Core;
+using LabApi.Features.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HelpSense.API.Events;
+
+using Log = LabApi.Features.Console.Logger;
 
 namespace HelpSense.Helper.Lobby
 {
@@ -14,22 +17,22 @@ namespace HelpSense.Helper.Lobby
         {
             try
             {
-                if (Plugin.Instance.Config.PracticeHall)
+                if (CustomEventHandler.Config.PracticeHall)
                 {
                     LobbyLocationHandler.ChaosLocation();
-                    Plugin.CurLobbyLocationType = LobbyLocationType.Chaos;
+                    CustomEventHandler.CurLobbyLocationType = LobbyLocationType.Chaos;
                     return;
                 }
 
-                if (Plugin.Instance.Config.LobbyLocation.Count <= 0)
+                if (CustomEventHandler.Config.LobbyLocation.Count <= 0)
                 {
                     LobbyLocationHandler.TowerLocation();
                     return;
                 }
 
-                Plugin.CurLobbyLocationType = Plugin.Instance.Config.LobbyLocation.RandomItem();
+                CustomEventHandler.CurLobbyLocationType = CustomEventHandler.Config.LobbyLocation.RandomItem();
 
-                switch (Plugin.CurLobbyLocationType)
+                switch (CustomEventHandler.CurLobbyLocationType)
                 {
                     case LobbyLocationType.Tower:
                         LobbyLocationHandler.TowerLocation();
@@ -57,39 +60,39 @@ namespace HelpSense.Helper.Lobby
         {
             while (!Round.IsRoundStarted)
             {
-                Plugin.Instance.Text = string.Empty;
+                CustomEventHandler.Text = string.Empty;
 
-                Plugin.Instance.Text += Plugin.Instance.TranslateConfig.TitleText;
+                CustomEventHandler.Text += CustomEventHandler.TranslateConfig.TitleText;
 
-                Plugin.Instance.Text += "\n" + Plugin.Instance.TranslateConfig.PlayerCountText;
+                CustomEventHandler.Text += "\n" + CustomEventHandler.TranslateConfig.PlayerCountText;
 
                 short NetworkTimer = GameCore.RoundStart.singleton.NetworkTimer;
 
-                Plugin.Instance.Text = NetworkTimer switch
+                CustomEventHandler.Text = NetworkTimer switch
                 {
-                    -2 => Plugin.Instance.Text.Replace("{seconds}", Plugin.Instance.TranslateConfig.ServerPauseText),
-                    -1 => Plugin.Instance.Text.Replace("{seconds}", Plugin.Instance.TranslateConfig.RoundStartText),
-                    1 => Plugin.Instance.Text.Replace("{seconds}", Plugin.Instance.TranslateConfig.SecondLeftText.Replace("{seconds}", NetworkTimer.ToString())),
-                    0 => Plugin.Instance.Text.Replace("{seconds}", Plugin.Instance.TranslateConfig.RoundStartText),
-                    _ => Plugin.Instance.Text.Replace("{seconds}", Plugin.Instance.TranslateConfig.SecondsLeftText.Replace("{seconds}", NetworkTimer.ToString())),
+                    -2 => CustomEventHandler.Text.Replace("{seconds}", CustomEventHandler.TranslateConfig.ServerPauseText),
+                    -1 => CustomEventHandler.Text.Replace("{seconds}", CustomEventHandler.TranslateConfig.RoundStartText),
+                    1 => CustomEventHandler.Text.Replace("{seconds}", CustomEventHandler.TranslateConfig.SecondLeftText.Replace("{seconds}", NetworkTimer.ToString())),
+                    0 => CustomEventHandler.Text.Replace("{seconds}", CustomEventHandler.TranslateConfig.RoundStartText),
+                    _ => CustomEventHandler.Text.Replace("{seconds}", CustomEventHandler.TranslateConfig.SecondsLeftText.Replace("{seconds}", NetworkTimer.ToString())),
                 };
                 if (XHelper.PlayerList.Count() == 1)
                 {
-                    Plugin.Instance.Text = Plugin.Instance.Text.Replace("{players}", $"{XHelper.PlayerList.Count()} " + Plugin.Instance.TranslateConfig.PlayerJoinText);
+                    CustomEventHandler.Text = CustomEventHandler.Text.Replace("{players}", $"{XHelper.PlayerList.Count()} " + CustomEventHandler.TranslateConfig.PlayerJoinText);
                 }
                 else
                 {
-                    Plugin.Instance.Text = Plugin.Instance.Text.Replace("{players}", $"{XHelper.PlayerList.Count()} " + Plugin.Instance.TranslateConfig.PlayersJoinText);
+                    CustomEventHandler.Text = CustomEventHandler.Text.Replace("{players}", $"{XHelper.PlayerList.Count()} " + CustomEventHandler.TranslateConfig.PlayersJoinText);
                 }
 
                 for (int i = 0; i < 25; i++)
                 {
-                    Plugin.Instance.Text += "\n";
+                    CustomEventHandler.Text += "\n";
                 }
 
                 foreach (Player ply in XHelper.PlayerList)
                 {
-                    ply.ReceiveHint(Plugin.Instance.Text.ToString(), 1f);//Use compatibility adapter
+                    ply.SendHint(CustomEventHandler.Text.ToString(), 1f);//Use compatibility adapter
                 }
 
                 yield return Timing.WaitForSeconds(1f);
@@ -100,40 +103,40 @@ namespace HelpSense.Helper.Lobby
         {
             while (!Round.IsRoundStarted)
             {
-                Plugin.Instance.Text = string.Empty;
+                CustomEventHandler.Text = string.Empty;
 
-                Plugin.Instance.Text += Plugin.Instance.TranslateConfig.TitleText;
+                CustomEventHandler.Text += CustomEventHandler.TranslateConfig.TitleText;
 
-                Plugin.Instance.Text += "\n" + Plugin.Instance.TranslateConfig.PlayerCountText;
+                CustomEventHandler.Text += "\n" + CustomEventHandler.TranslateConfig.PlayerCountText;
 
                 short NetworkTimer = GameCore.RoundStart.singleton.NetworkTimer;
 
-                Plugin.Instance.Text = NetworkTimer switch
+                CustomEventHandler.Text = NetworkTimer switch
                 {
-                    -2 => Plugin.Instance.Text.Replace("{seconds}", Plugin.Instance.TranslateConfig.ServerPauseText),
-                    -1 => Plugin.Instance.Text.Replace("{seconds}", Plugin.Instance.TranslateConfig.RoundStartText),
-                    1 => Plugin.Instance.Text.Replace("{seconds}", Plugin.Instance.TranslateConfig.SecondLeftText.Replace("{seconds}", NetworkTimer.ToString())),
-                    0 => Plugin.Instance.Text.Replace("{seconds}", Plugin.Instance.TranslateConfig.RoundStartText),
-                    _ => Plugin.Instance.Text.Replace("{seconds}", Plugin.Instance.TranslateConfig.SecondsLeftText.Replace("{seconds}", NetworkTimer.ToString())),
+                    -2 => CustomEventHandler.Text.Replace("{seconds}", CustomEventHandler.TranslateConfig.ServerPauseText),
+                    -1 => CustomEventHandler.Text.Replace("{seconds}", CustomEventHandler.TranslateConfig.RoundStartText),
+                    1 => CustomEventHandler.Text.Replace("{seconds}", CustomEventHandler.TranslateConfig.SecondLeftText.Replace("{seconds}", NetworkTimer.ToString())),
+                    0 => CustomEventHandler.Text.Replace("{seconds}", CustomEventHandler.TranslateConfig.RoundStartText),
+                    _ => CustomEventHandler.Text.Replace("{seconds}", CustomEventHandler.TranslateConfig.SecondsLeftText.Replace("{seconds}", NetworkTimer.ToString())),
                 };
                 if (XHelper.PlayerList.Count() == 1)
                 {
-                    Plugin.Instance.Text = Plugin.Instance.Text.Replace("{players}", $"{XHelper.PlayerList.Count()} " + Plugin.Instance.TranslateConfig.PlayerJoinText);
+                    CustomEventHandler.Text = CustomEventHandler.Text.Replace("{players}", $"{XHelper.PlayerList.Count()} " + CustomEventHandler.TranslateConfig.PlayerJoinText);
                 }
                 else
                 {
-                    Plugin.Instance.Text = Plugin.Instance.Text.Replace("{players}", $"{XHelper.PlayerList.Count()} " + Plugin.Instance.TranslateConfig.PlayersJoinText);
+                    CustomEventHandler.Text = CustomEventHandler.Text.Replace("{players}", $"{XHelper.PlayerList.Count()} " + CustomEventHandler.TranslateConfig.PlayersJoinText);
                 }
 
                 if (25 != 0 && 25 > 0)
                 {
                     for (int i = 0; i < 25; i++)
                     {
-                        Plugin.Instance.Text += "\n";
+                        CustomEventHandler.Text += "\n";
                     }
                 }
 
-                IntercomDisplay._singleton.Network_overrideText = $"<size={Plugin.Instance.Config.IcomTextSize}>" + Plugin.Instance.Text + "</size>";
+                IntercomDisplay._singleton.Network_overrideText = $"<size={CustomEventHandler.Config.IcomTextSize}>" + CustomEventHandler.Text + "</size>";
 
                 yield return Timing.WaitForSeconds(1f);
             }

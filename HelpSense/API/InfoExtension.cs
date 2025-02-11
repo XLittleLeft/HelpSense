@@ -6,8 +6,9 @@ namespace HelpSense.API
     using HelpSense.Helper;
     using LiteDB;
     using MEC;
-    using PluginAPI.Core;
+    using LabApi.Features.Wrappers;
     using System;
+    using HelpSense.API.Events;
 
     public static class InfoExtension
     {
@@ -30,7 +31,7 @@ namespace HelpSense.API
                     RolePlayed = 0,
                     PlayerShot = 0,
                 };
-                using LiteDatabase database = new(Plugin.Instance.Config.SavePath);
+                using LiteDatabase database = new(CustomEventHandler.Config.SavePath);
                 database.GetCollection<PlayerLog>("Players").Insert(toInsert);
             }
 
@@ -59,7 +60,7 @@ namespace HelpSense.API
                     RolePlayed = 0,
                     PlayerShot = 0,
                 };
-                using LiteDatabase database = new(Plugin.Instance.Config.SavePath);
+                using LiteDatabase database = new(CustomEventHandler.Config.SavePath);
                 database.GetCollection<PlayerLog>("Players").Insert(toInsert);
             }
 
@@ -70,7 +71,7 @@ namespace HelpSense.API
 
         public static void UpdateLog(this PlayerLog log)
         {
-            using LiteDatabase database = new(Plugin.Instance.Config.SavePath);
+            using LiteDatabase database = new(CustomEventHandler.Config.SavePath);
             database.GetCollection<PlayerLog>("Players").Update(log);
         }
 

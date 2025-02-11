@@ -1,10 +1,10 @@
 ﻿using HelpSense.Helper.Lobby;
 using PlayerRoles;
-using PluginAPI.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using LabApi.Loader.Features.Paths;
 
 namespace HelpSense.ConfigSystem
 {
@@ -15,7 +15,7 @@ namespace HelpSense.ConfigSystem
         [Description("玩家信息储存")]
         public bool SavePlayersInfo { get; set; } = true;
         [Description("保存位置")]
-        public string SavePath { get; set; } = Path.Combine(Paths.Configs ?? Environment.CurrentDirectory, @"HelpSense_玩家信息储存.Database");
+        public string SavePath { get; set; } = Path.Combine(PathManager.Configs.FullName ?? Environment.CurrentDirectory, @"HelpSense_玩家信息储存.Database");
         [Description("是否打开开局给D级人员一张卡")]
         public bool EnableRoundSupplies { get; set; } = true;
         [Description("给D级人员什么卡？")]
@@ -170,8 +170,6 @@ namespace HelpSense.ConfigSystem
         public bool AdminLogShow { get; set; } = false;
         [Description("记录管理日志地址")]
         public string AdminLogPath { get; set; } = $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\管理记录.txt";
-        [Description("隐藏教程角色")]
-        public bool HideTutorials { get; set; } = false;
         [Description("自救指令")]
         public bool ZiJiuCommand { get; set; } = true;
 

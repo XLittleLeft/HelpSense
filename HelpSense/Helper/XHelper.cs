@@ -1,18 +1,21 @@
-﻿using HelpSense.API.Features.Pool;
+﻿using HelpSense.API.Events;
+using HelpSense.API.Features.Pool;
 using Interactables.Interobjects.DoorUtils;
+using InventorySystem.Configs;
+using InventorySystem.Items.Pickups;
+using LabApi.Features.Wrappers;
 using MEC;
 using Mirror;
 using PlayerRoles;
 using PlayerRoles.FirstPersonControl;
 using PlayerRoles.FirstPersonControl.Spawnpoints;
-using PluginAPI.Core;
-using PluginAPI.Core.Items;
 using Respawning;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using Log = LabApi.Features.Console.Logger;
 
 namespace HelpSense.Helper
 {
@@ -97,12 +100,12 @@ namespace HelpSense.Helper
         {
             for (int i = 0; i < amount; i++)
             {
-                ItemPickup.Create(typeid, position, new Quaternion(0, 0, 0, 0)).Spawn();
+                Pickup.Create(typeid, position, new Quaternion(0, 0, 0, 0)).Spawn();
             }
         }
-        public static ItemPickup SpawnItem(ItemType typeid, Vector3 position)
+        public static Pickup SpawnItem(ItemType typeid, Vector3 position)
         {
-            var item = ItemPickup.Create(typeid, position, new Quaternion(0, 0, 0, 0));
+            var item = Pickup.Create(typeid, position, new Quaternion(0, 0, 0, 0));
             item.Spawn();
             return item;
         }
@@ -153,7 +156,7 @@ namespace HelpSense.Helper
                 {
                     yield break;
                 }
-                Broadcast("<size=35><align=center><color=#F6511D>此服务器在运行X小左的插件，享受你的游戏时间~</color></align></size>", 6, global::Broadcast.BroadcastFlags.Normal);
+                Server.SendBroadcast("<size=35><align=center><color=#F6511D>此服务器在运行X小左的插件，享受你的游戏时间~</color></align></size>", 6, global::Broadcast.BroadcastFlags.Normal);
             }
         }
         public static IEnumerator<float> AutoServerBroadcast()
@@ -165,14 +168,14 @@ namespace HelpSense.Helper
                     yield break;
                 }
 
-                Broadcast(Plugin.Instance.TranslateConfig.AutoServerMessageText, Plugin.Instance.Config.AutoServerMessageTimer, global::Broadcast.BroadcastFlags.Normal);
-                yield return Timing.WaitForSeconds(Plugin.Instance.Config.AutoServerMessageTime * 60f);
+                Server.SendBroadcast(CustomEventHandler.TranslateConfig.AutoServerMessageText, CustomEventHandler.Config.AutoServerMessageTimer, global::Broadcast.BroadcastFlags.Normal);
+                yield return Timing.WaitForSeconds(CustomEventHandler.Config.AutoServerMessageTime * 60f);
             }
         }
 
         public static bool IsSpecialPlayer(this Player player)
         {
-            return player.RoleName is "SCP-029" or "SCP-703" or "SCP-191" or "SCP-073" or "SCP-2936-1" || player.RoleName == Plugin.Instance.TranslateConfig.ChaosLeaderRoleName;
+            return player.ReferenceHub.serverRoles.Network_myText is "SCP-029" or "SCP-703" or "SCP-191" or "SCP-073" or "SCP-2936-1" || player.ReferenceHub.serverRoles.Network_myText == CustomEventHandler.TranslateConfig.ChaosLeaderRoleName;
         }
 
         public static bool BreakDoor(DoorVariant doorBase, DoorDamageType type = DoorDamageType.ServerCommand)
@@ -295,16 +298,6 @@ namespace HelpSense.Helper
             };
         }
 
-        public static void Broadcast(string text, ushort time, Broadcast.BroadcastFlags broadcastFlags)
-        {
-            global::Broadcast.Singleton.GetComponent<Broadcast>().RpcAddElement(text, time, broadcastFlags);
-        }
-
-        public static void ShowBroadcast(this Player player, string text, ushort time, Broadcast.BroadcastFlags broadcastFlags)
-        {
-            global::Broadcast.Singleton.GetComponent<Broadcast>().TargetAddElement(player.ReferenceHub.characterClassManager.connectionToClient, text, time, broadcastFlags);
-        }
-
         public static Vector3 GetRandomSpawnLocation(this RoleTypeId roleType)
         {
             if (!PlayerRoleLoader.TryGetRoleTemplate(roleType, out PlayerRoleBase @base))
@@ -370,19 +363,21 @@ namespace HelpSense.Helper
             }
         }
 
-        public static bool IsSameTeam(this Player player1, Player player2)
+        public static string GetRoleName(this Player player)
         {
-            if (player1.Team is Team.FoundationForces && player2.Team is Team.Scientists)
-            {
-                return true;
-            }
-
-            if (player1.Team is Team.ChaosInsurgency && player2.Team is Team.ClassD)
-            {
-                return true;
-            }
-
-            return false;
+            return player.ReferenceHub.serverRoles.Network_myText;
+        }
+        public static void SetRoleName(this Player player , string i)
+        {
+            player.ReferenceHub.serverRoles.SetText(i);
+        }
+        public static string GetRoleColor(this Player player)
+        {
+            return player.ReferenceHub.serverRoles.Network_myColor;
+        }
+        public static void SetRoleColor(this Player player , string i)
+        {
+            player.ReferenceHub.serverRoles.SetColor(i);
         }
     }
 }

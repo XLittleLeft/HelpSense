@@ -1,4 +1,5 @@
-﻿using HelpSense.API.Serialization;
+﻿using HelpSense.API.Events;
+using HelpSense.API.Serialization;
 using LiteDB;
 using System.Collections.Generic;
 
@@ -15,7 +16,7 @@ namespace HelpSense.API
             {
                 return true;
             }
-            using LiteDatabase database = new(Plugin.Instance.Config.SavePath);
+            using LiteDatabase database = new(CustomEventHandler.Config.SavePath);
             log = database.GetCollection<PlayerLog>("Players")?.FindById(id);
             if (log != null)
             {
