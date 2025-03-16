@@ -18,7 +18,7 @@ Instalndo este plugin, você pode ganhar muitos novos recursos não disponíveis
 - Limpeza no server (limpa corpos e itens inúteis para reduzir o carregamento do servidor)
 - Vários times de segurança (no começo, Guardas da Instalação tem a chance de virar elite ou desertores, caso contrário, eles permanecem normais com um líder de equipe)
 - Cartão de proximidade (Não se preocupe mais em ficar preso em salas enquanto você carrega uma Micro H.I.D.)
-- Chance de respawn, temp, ogiva alfa (nuke) display (Are we respawning?)
+- Chance de respawn, tempo, ogiva alfa (nuke) display (Estamos reaparecendo?)
 - Vá a qualquer lugar do mapa antes do round começar (Sem mais olhar para a chata tela de carregamento!)
 - .ac Mensagem privada para o admin (Quando alguém está usando cheat? Violando as regras? Use .ac para avisar o admin para a punição ser feita!)
 - Avisos do servidor personalizado (Quer que os jogadores entre em seu Discord? Avisos de servidor personalizado ajudará você!)
@@ -44,7 +44,7 @@ Instalndo este plugin, você pode ganhar muitos novos recursos não disponíveis
 - SCP-1093 (Uma pessoa segurança uma lampada? Parece ruim. Ele não parece ter cabeça.)
 
 ## Instalando o plugin
-Faça download do ** zip arquivo zip mais recente na seção de Release** e extraia tudo no diretório: `\PluginAPI\plugins\glabol`.
+Faça download do **zip arquivo zip mais recente na seção de Release** e extraia tudo no diretório: `\PluginAPI\plugins\global`.
 
 ## Contato:
 ### X小左
