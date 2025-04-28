@@ -141,7 +141,7 @@ namespace HelpSense.API.Events
             base.OnPlayerJoined(ev);
 
             Player player = ev.Player;
-
+            
             if (player == null || string.IsNullOrEmpty(player.UserId)) return;
             XHelper.PlayerList.Add(player);
             XHelper.SpecialPlayerList.Add(player);
@@ -218,8 +218,8 @@ namespace HelpSense.API.Events
 
         public override void OnPlayerHurting(PlayerHurtingEventArgs ev)
         {
-            Player Target = ev.Target;
-            Player Attacker = ev.Player;
+            Player Target = ev.Player;
+            Player Attacker = ev.Attacker;
             DamageHandlerBase DamageHandler = ev.DamageHandler;
 
             if (Target != null && Attacker != null)
@@ -328,11 +328,11 @@ namespace HelpSense.API.Events
 
         public override void OnServerWaveRespawned(WaveRespawnedEventArgs ev)
         {
-            var Team = ev.Team;
+            var Wave = ev.Wave;
             var players = ev.Players;
             var specialPlayers = ev.Players.ToList();
 
-            if (Team is Team.FoundationForces)
+            if (Wave is NtfSpawnWave)
             {
                 Timing.CallDelayed(0.5f, () =>
                 {
@@ -1315,8 +1315,8 @@ namespace HelpSense.API.Events
         public override void OnPlayerChangedRole(PlayerChangedRoleEventArgs ev)
         {
             Player player = ev.Player;
-            var oldRole = ev.OldRole.RoleTypeId;
-            var newRole = ev.NewRole;
+            var oldRole = ev.OldRole;
+            var newRole = ev.NewRole.RoleTypeId;
             if (player == null || string.IsNullOrEmpty(player.UserId)) return;
             Timing.CallDelayed(3f, () =>
             {

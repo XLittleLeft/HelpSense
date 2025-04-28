@@ -156,9 +156,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\net48\NWAPIPermissionSystem.dll</HintPath>
     </Reference>
-    <Reference Include="PluginAPI">
-      <HintPath>..\lib\net48\PluginAPI.dll</HintPath>
-    </Reference>
     <Reference Include="Pooling, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\net48\Pooling.dll</HintPath>

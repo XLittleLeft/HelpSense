@@ -2,6 +2,7 @@
 using Mirror;
 using LabApi.Features.Wrappers;
 using UnityEngine;
+using LightSourceToy = AdminToys.LightSourceToy;
 
 namespace HelpSense.MonoBehaviors
 {

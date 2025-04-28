@@ -5,6 +5,7 @@ using MEC;
 using Mirror;
 using PlayerRoles;
 using UnityEngine;
+using LightSourceToy = AdminToys.LightSourceToy;
 
 namespace HelpSense.MonoBehaviors
 {
