@@ -23,19 +23,23 @@ namespace HelpSense.Helper.Misc
             {
                 return false;
             }
-
+        
             foreach (var keycard in player.ReferenceHub.inventory.UserInventory.Items.Values.Where(t => t is KeycardItem))
             {
-                if (door.RequiredPermissions.CheckPermissions(keycard, player.ReferenceHub))
+                if (door.CheckPermissions((ChaosKeycardItem)keycard, out var __))
+                {
+                    return true;
+                }
+                if (door.CheckPermissions((KeycardItem)keycard, out var __2))
                 {
                     return true;
                 }
             }
-
+        
             return false;
-
+        
         }
-
+        
         public static bool HasKeycardPermission(this LockerChamber chamber, Player player)
         {
             if (CustomEventHandler.Config.AffectAmnesia &&
@@ -43,18 +47,22 @@ namespace HelpSense.Helper.Misc
             {
                 return false;
             }
-
+        
             foreach (var keycard in player.ReferenceHub.inventory.UserInventory.Items.Values.Where(t => t is KeycardItem))
             {
-                if (((KeycardItem)keycard).Permissions.HasFlagFast(chamber.RequiredPermissions))
+                if (chamber.CheckPermissions((ChaosKeycardItem)keycard, out var __))
+                {
+                    return true;
+                }
+                if (chamber.CheckPermissions((KeycardItem)keycard, out var __2))
                 {
                     return true;
                 }
             }
-
+        
             return false;
         }
-
+        
         public static bool HasKeycardPermission(this Scp079Generator generator, Player player)
         {
             if (CustomEventHandler.Config.AffectAmnesia &&
@@ -62,15 +70,19 @@ namespace HelpSense.Helper.Misc
             {
                 return false;
             }
-
+        
             foreach (var keycard in player.ReferenceHub.inventory.UserInventory.Items.Values.Where(t => t is KeycardItem))
             {
-                if (((KeycardItem)keycard).Permissions.HasFlagFast(generator._requiredPermission))
+                if (generator.CheckPermissions((ChaosKeycardItem)keycard, out var __))
+                {
+                    return true;
+                }
+                if (generator.CheckPermissions((KeycardItem)keycard, out var __2))
                 {
                     return true;
                 }
             }
-
+        
             return false;
         }
 
