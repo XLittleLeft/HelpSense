@@ -27,7 +27,7 @@ namespace HelpSense.MonoBehaviors
             _glowLight.NetworkLightRange = 2f;
             _glowLight.NetworkLightIntensity = 1f;
         }
-
+        
         void Update()
         {
             if (_player == null || _glowLight == null)
