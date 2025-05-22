@@ -332,7 +332,7 @@ namespace HelpSense.API.Events
             var players = ev.Players;
             var specialPlayers = ev.Players.ToList();
 
-            if (Wave is NtfSpawnWave)
+            if (Wave.Faction == Faction.FoundationStaff)
             {
                 Timing.CallDelayed(0.5f, () =>
                 {
