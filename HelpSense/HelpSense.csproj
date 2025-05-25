@@ -110,9 +110,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\net48\CommandSystem.Core.dll</HintPath>
     </Reference>
-    <Reference Include="HintServiceMeow-NWAPI, Version=5.3.12.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\net48\HintServiceMeow-NWAPI.dll</HintPath>
+    <Reference Include="HintServiceMeow-LabAPI">
+      <HintPath>..\lib\net48\HintServiceMeow-LabAPI.dll</HintPath>
     </Reference>
     <Reference Include="LabApi, Version=0.4.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>

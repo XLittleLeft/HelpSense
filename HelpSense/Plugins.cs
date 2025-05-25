@@ -25,7 +25,7 @@ namespace HelpSense
             CustomEventHandler.CommandTranslateConfig = this.LoadConfig<CommandTranslateConfig>("CommandTranslateConfig.yml");
         }
 
-        public static DateTime LastUpdateTime => new(2025, 2, 11, 14, 29, 39);
+        public static DateTime LastUpdateTime => new(2025, 5, 25, 11, 03, 27);
         public static System.Version RequiredGameVersion => new(14, 1, 0);
 
         public static Plugins Instance { get; private set; }
@@ -36,7 +36,7 @@ namespace HelpSense
 
         public override string Author => "X小左";
 
-        public override System.Version Version => new(1, 4, 1);
+        public override System.Version Version => new(1, 4, 2);
 
         public override System.Version RequiredApiVersion => new(LabApiProperties.CompiledVersion);
 

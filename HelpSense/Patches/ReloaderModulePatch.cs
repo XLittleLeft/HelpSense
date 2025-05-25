@@ -35,7 +35,7 @@ namespace HelpSense.Patches
 
             if (header is ReloaderMessageHeader.Reload && IReloadUnloadValidatorModule.ValidateReload(Firearm))
             {
-                if (Firearm.ItemTypeId is ItemType.ParticleDisruptor)
+                if (Firearm.ItemTypeId is ItemType.ParticleDisruptor or ItemType.GunSCP127)
                 {
                     reader.Position -= sizeof(byte);
                     return true;
