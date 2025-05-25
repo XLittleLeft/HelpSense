@@ -1177,7 +1177,7 @@ namespace HelpSense.API.Events
             if (ev.Chamber.Base.HasKeycardPermission(ev.Player))
             {
                 ev.CanOpen = true;
-                ev.Chamber.Base.Toggle(ev.Locker.Base);
+                ev.Chamber.Base.Toggle(ev.Locker);
 
                 ev.IsAllowed = false;
             }

@@ -1,19 +1,23 @@
 ﻿using HelpSense.API.Events;
 using Interactables.Interobjects.DoorUtils;
 using InventorySystem.Items.Keycards;
+using LabApi.Features.Wrappers;
 using MapGeneration.Distributors;
 using System.Linq;
-
+using static InventorySystem.Items.Firearms.Modules.CylinderAmmoModule;
+using KeycardItem = InventorySystem.Items.Keycards.KeycardItem;
+using Locker = LabApi.Features.Wrappers.Locker;
+using LockerChamber = MapGeneration.Distributors.LockerChamber;
 using Player = LabApi.Features.Wrappers.Player;
 
 namespace HelpSense.Helper.Misc
 {
-    public static class LazySystem
+    public static class KeycardSystem
     {
         public static void Toggle(this LockerChamber chamber, Locker locker)
         {
-            chamber.SetDoor(!chamber.IsOpen, locker._grantedBeep);
-            locker.RefreshOpenedSyncvar();
+            chamber.SetDoor(!chamber.IsOpen, locker.Base._grantedBeep);
+            locker.Base.RefreshOpenedSyncvar();
         }
 
         public static bool HasKeycardPermission(this DoorVariant door, Player player)
@@ -26,11 +30,11 @@ namespace HelpSense.Helper.Misc
         
             foreach (var keycard in player.ReferenceHub.inventory.UserInventory.Items.Values.Where(t => t is KeycardItem))
             {
-                if (door.CheckPermissions((ChaosKeycardItem)keycard, out var __))
+                if (keycard is ChaosKeycardItem chaosKeycard && door.CheckPermissions(chaosKeycard, out var __))
                 {
                     return true;
                 }
-                if (door.CheckPermissions((KeycardItem)keycard, out var __2))
+                if (keycard is KeycardItem keycardItem && door.CheckPermissions(keycardItem, out var __2))
                 {
                     return true;
                 }
@@ -50,11 +54,11 @@ namespace HelpSense.Helper.Misc
         
             foreach (var keycard in player.ReferenceHub.inventory.UserInventory.Items.Values.Where(t => t is KeycardItem))
             {
-                if (chamber.CheckPermissions((ChaosKeycardItem)keycard, out var __))
+                if (keycard is ChaosKeycardItem chaosKeycard && chamber.CheckPermissions(chaosKeycard, out var __))
                 {
                     return true;
                 }
-                if (chamber.CheckPermissions((KeycardItem)keycard, out var __2))
+                if (keycard is KeycardItem keycardItem && chamber.CheckPermissions(keycardItem, out var __2))
                 {
                     return true;
                 }
@@ -73,11 +77,11 @@ namespace HelpSense.Helper.Misc
         
             foreach (var keycard in player.ReferenceHub.inventory.UserInventory.Items.Values.Where(t => t is KeycardItem))
             {
-                if (generator.CheckPermissions((ChaosKeycardItem)keycard, out var __))
+                if (keycard is ChaosKeycardItem chaosKeycard && generator.CheckPermissions(chaosKeycard, out var __))
                 {
                     return true;
                 }
-                if (generator.CheckPermissions((KeycardItem)keycard, out var __2))
+                if (keycard is KeycardItem keycardItem && generator.CheckPermissions(keycardItem, out var __2))
                 {
                     return true;
                 }
