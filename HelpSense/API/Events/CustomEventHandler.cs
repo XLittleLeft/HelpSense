@@ -327,7 +327,6 @@ namespace HelpSense.API.Events
                         player.AddItem(ItemType.SCP268);
                         player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.SCP029EscapeHint);
                     }
-                    Timing.RunCoroutine(Scp029InfEffect(player));
                 });
             }
             if (player.GetRoleName() == "SCP-703")
@@ -603,6 +602,8 @@ namespace HelpSense.API.Events
                         player.EnableEffect<DamageReduction>(15);
 
                         player.Health = 120;
+                        
+                        Timing.RunCoroutine(Scp029InfEffect(player));
                     };
                 });
             }
