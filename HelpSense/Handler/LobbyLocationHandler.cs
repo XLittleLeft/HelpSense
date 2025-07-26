@@ -14,12 +14,12 @@ namespace HelpSense.Handler
         {
             LobbyPosition = Random.Range(1, 6) switch
             {
-                1 => new Vector3(162.893f, 1019.470f, -13.430f),
-                2 => new Vector3(107.698f, 1014.048f, -12.555f),
-                3 => new Vector3(39.262f, 1014.112f, -31.844f),
-                4 => new Vector3(-15.854f, 1014.461f, -31.543f),
-                5 => new Vector3(130.483f, 993.366f, 20.601f),
-                _ => new Vector3(39.262f, 1014.112f, -31.844f),
+                1 => new Vector3(162.893f, 319.470f, -13.430f),
+                2 => new Vector3(107.698f, 314.048f, -12.555f),
+                3 => new Vector3(39.262f, 314.112f, -31.844f),
+                4 => new Vector3(-15.854f, 314.461f, -31.543f),
+                5 => new Vector3(130.483f, 293.366f, 20.601f),
+                _ => new Vector3(39.262f, 314.112f, -31.844f),
             };
         }
 
@@ -36,13 +36,13 @@ namespace HelpSense.Handler
 
         public static void MountainLocation()
         {
-            LobbyPosition = new Vector3(103.492f, 998.946f, 24.672f);
+            LobbyPosition = new Vector3(103.492f, 298.946f, 24.672f);
         }
 
         public static void ChaosLocation()
         {
-            LobbyPosition = new Vector3(-49.074f, 989.055f, -42.844f);
-            //LobbyPosition = new Vector3(-7.500f, 995.402f, -7.910f);
+            LobbyPosition = new Vector3(-49.074f, 289.055f, -42.844f);
+            //LobbyPosition = new Vector3(-7.500f, 295.402f, -7.910f);
         }
     }
 }
