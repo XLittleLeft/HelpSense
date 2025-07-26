@@ -96,6 +96,22 @@ namespace HelpSense.API.Events
         public static TranslateConfig TranslateConfig;
         public static SSSSTranslateConfig SSSSTranslateConfig;
         public static CommandTranslateConfig CommandTranslateConfig;
+        
+        public IEnumerator<float> Scp029InfEffect(Player player)
+        {
+            while(true)
+            {
+                yield return Timing.WaitForSeconds(1f);
+                if(!player.HasEffect<MovementBoost>())
+                    player.EnableEffect<MovementBoost>(20);
+                if (!player.HasEffect<Scp1853>())
+                    player.EnableEffect<Scp1853>(2);
+                if (!player.HasEffect<DamageReduction>())
+                    player.EnableEffect<DamageReduction>(15);
+                if (player.GetRoleName() != "SCP-029")
+                    yield break;
+            }
+        }
 
         public override void OnServerWaitingForPlayers()
         {
@@ -311,6 +327,7 @@ namespace HelpSense.API.Events
                         player.AddItem(ItemType.SCP268);
                         player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.SCP029EscapeHint);
                     }
+                    Timing.RunCoroutine(Scp029InfEffect(player));
                 });
             }
             if (player.GetRoleName() == "SCP-703")
