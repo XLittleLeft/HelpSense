@@ -96,22 +96,6 @@ namespace HelpSense.API.Events
         public static TranslateConfig TranslateConfig;
         public static SSSSTranslateConfig SSSSTranslateConfig;
         public static CommandTranslateConfig CommandTranslateConfig;
-        
-        public IEnumerator<float> Scp029InfEffect(Player player)
-        {
-            while(true)
-            {
-                yield return Timing.WaitForSeconds(1f);
-                if(!player.HasEffect<MovementBoost>())
-                    player.EnableEffect<MovementBoost>(20);
-                if (!player.HasEffect<Scp1853>())
-                    player.EnableEffect<Scp1853>(2);
-                if (!player.HasEffect<DamageReduction>())
-                    player.EnableEffect<DamageReduction>(15);
-                if (player.GetRoleName() != "SCP-029")
-                    yield break;
-            }
-        }
 
         public override void OnServerWaitingForPlayers()
         {
@@ -602,8 +586,6 @@ namespace HelpSense.API.Events
                         player.EnableEffect<DamageReduction>(15);
 
                         player.Health = 120;
-                        
-                        Timing.RunCoroutine(Scp029InfEffect(player));
                     };
                 });
             }
@@ -902,7 +884,7 @@ namespace HelpSense.API.Events
         public override void OnPlayerUsedItem(PlayerUsedItemEventArgs ev)
         {
             Player player = ev.Player;
-            var item = ev.Item;
+            var item = ev.UsableItem;
 
             if (SCP1056Base != null && item == SCP1056Base)
             {
@@ -913,9 +895,9 @@ namespace HelpSense.API.Events
 
         public override void OnPlayerThrewProjectile(PlayerThrewProjectileEventArgs ev)
         {
-            var item = ev.Item;
+            var item = ev.ThrowableItem;
 
-            if (SCP1068Base != null && item == SCP1068Base)
+            if (SCP1068Base != null && item.Base == SCP1068Base)
             {
                 Server.SendBroadcast(TranslateConfig.SCP1068UsedBroadcast, 5, BroadcastFlags.Normal);
                 Warhead.Shake();
@@ -1032,7 +1014,7 @@ namespace HelpSense.API.Events
         public override void OnPlayerShotWeapon(PlayerShotWeaponEventArgs ev)
         {
             Player player = ev.Player;
-            var Weapon = ev.Weapon;
+            var Weapon = ev.FirearmItem;
             if (player != null && Config.SavePlayersInfo)
             {
                 var pLog = player.GetLog();

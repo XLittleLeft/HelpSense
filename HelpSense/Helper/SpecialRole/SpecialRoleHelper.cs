@@ -44,6 +44,12 @@ namespace HelpSense.Helper.SpecialRole
                 if (CustomEventHandler.SCP029 != null && CustomEventHandler.SCP029.Player != null)
                 {
                     CustomEventHandler.SCP029.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP029SpecialIntroduction, config.SCP029SkillIntroduction, 1.25f);
+                    if (!CustomEventHandler.SCP029.Player.HasEffect<MovementBoost>())
+                        CustomEventHandler.SCP029.Player.EnableEffect<MovementBoost>(20);
+                    if (!CustomEventHandler.SCP029.Player.HasEffect<Scp1853>())
+                        CustomEventHandler.SCP029.Player.EnableEffect<Scp1853>(2);
+                    if (!CustomEventHandler.SCP029.Player.HasEffect<DamageReduction>())
+                        CustomEventHandler.SCP029.Player.EnableEffect<DamageReduction>(15);
                 }
 
                 if (CustomEventHandler.SCP703 != null && CustomEventHandler.SCP703.Player != null)
@@ -85,7 +91,7 @@ namespace HelpSense.Helper.SpecialRole
 
                 if (CustomEventHandler.SCP347 != null && CustomEventHandler.SCP347.Player != null)
                 {
-                    CustomEventHandler.SCP347.Player.EnableEffect<Invisible>(1 , 2);
+                    CustomEventHandler.SCP347.Player.EnableEffect<Invisible>(1);
 
                     CustomEventHandler.SCP347.Player.GetPlayerUi().CommonHint.ShowRoleHint(SCP347SpecialIntroduction, config.SCP347SkillIntroduction, 1.25f);
                 }
