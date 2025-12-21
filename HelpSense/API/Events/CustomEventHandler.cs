@@ -1,29 +1,41 @@
-﻿using CustomPlayerEffects;
+﻿using Cassie;
+using CustomPlayerEffects;
+using Discord;
 using GameCore;
 using HarmonyLib;
 using HelpSense.API.Serialization;
 using HelpSense.ConfigSystem;
 using HelpSense.Handler;
-using HelpSense.Helper.Chat;
 using HelpSense.Helper;
+using HelpSense.Helper.Chat;
 using HelpSense.Helper.Lobby;
 using HelpSense.Helper.Misc;
 using HelpSense.Helper.SCP;
 using HelpSense.Helper.SpecialRole;
 using HelpSense.MonoBehaviors;
 using HelpSense.SSSS;
+using HintServiceMeow.UI.Extension;
+using HintServiceMeow.UI.Utilities;
 using Interactables.Interobjects.DoorUtils;
+using InventorySystem;
 using InventorySystem.Items;
+using LabApi.Events.Arguments.PlayerEvents;
+using LabApi.Events.Arguments.Scp096Events;
+using LabApi.Events.Arguments.Scp173Events;
+using LabApi.Events.Arguments.Scp914Events;
+using LabApi.Events.Arguments.ServerEvents;
 using LabApi.Events.CustomHandlers;
 using LabApi.Features.Wrappers;
-using MapGeneration.Distributors;
 using MapGeneration;
+using MapGeneration.Distributors;
 using MEC;
+using PlayerRoles;
+using PlayerRoles.PlayableScps.Scp079;
 using PlayerRoles.PlayableScps.Scp096;
 using PlayerRoles.Voice;
-using PlayerRoles;
 using PlayerStatsSystem;
 using Respawning;
+using Respawning.Waves;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -31,21 +43,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using static Broadcast;
 using UnityEngine;
-using Log = LabApi.Features.Console.Logger;
-using LabApi.Events.Arguments.PlayerEvents;
-using LabApi.Events.Arguments.ServerEvents;
-using HintServiceMeow.UI.Utilities;
-using PlayerRoles.PlayableScps.Scp079;
-using Respawning.Waves;
-using LabApi.Events.Arguments.Scp173Events;
-using LabApi.Events.Arguments.Scp096Events;
-using LabApi.Events.Arguments.Scp914Events;
-using InventorySystem;
+using static Broadcast;
 using static PlayerList;
-using Discord;
-using HintServiceMeow.UI.Extension;
+using Log = LabApi.Features.Console.Logger;
 
 namespace HelpSense.API.Events
 {
@@ -349,7 +350,7 @@ namespace HelpSense.API.Events
                         if (player079Leave >= 3)
                         {
                             SkynetSpawned = true;
-                            Cassie.Clear();
+                            CassieAnnouncementDispatcher.ClearAll();
                             XHelper.MessageTranslated($"MTFUnit Kappa , 10 , and , Mu , 7 , designated scan neck , HasEntered , they will help contain scp 0 7 9 , AllRemaining , AwaitingRecontainment {XHelper.PlayerList.Where(x => x.IsSCP).Count()} SCPSubjects", TranslateConfig.SkynetCassie.Replace("%SCPNum%", XHelper.PlayerList.Where(x => x.IsSCP).Count().ToString()));
 
                             foreach (Player player in players)
@@ -384,7 +385,7 @@ namespace HelpSense.API.Events
                             {
                                 if (XHelper.PlayerList.Any(x => x.Role is RoleTypeId.Scp096))
                                 {
-                                    Cassie.Clear();
+                                    CassieAnnouncementDispatcher.ClearAll();
                                     XHelper.MessageTranslated($"MTFUnit Eta , 10 , designated see no evil , HasEntered , they will help contain scp 0 9 6 , AllRemaining , AwaitingRecontainment {XHelper.PlayerList.Where(x => x.IsSCP).Count()} SCPSubjects", TranslateConfig.SeeNoEvilCassie.Replace("%SCPNum%", XHelper.PlayerList.Where(x => x.IsSCP).Count().ToString()));
                                     SeeSpawned = true;
                                     foreach (Player player in players)
