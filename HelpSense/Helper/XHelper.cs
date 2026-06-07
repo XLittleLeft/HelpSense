@@ -1,4 +1,5 @@
-﻿using HelpSense.API.Events;
+﻿using Cassie;
+using HelpSense.API.Events;
 using HelpSense.API.Features.Pool;
 using Interactables.Interobjects.DoorUtils;
 using InventorySystem.Configs;
@@ -136,14 +137,7 @@ namespace HelpSense.Helper
 
         public static void MessageTranslated(string message, string translation, bool isHeld = false, bool isNoisy = true, bool isSubtitles = true)
         {
-            StringBuilder announcement = StringBuilderPool.Pool.Get();
-            string[] cassies = message.Split('\n');
-            string[] translations = translation.Split('\n');
-            for (int i = 0; i < cassies.Length; i++)
-                announcement.Append($"{translations[i].Replace(' ', ' ')}<size=0> {cassies[i]} </size><split>");
-
-            RespawnEffectsController.PlayCassieAnnouncement(announcement.ToString(), isHeld, isNoisy, isSubtitles);
-            StringBuilderPool.Pool.Return(announcement);
+            new CassieAnnouncement(new CassieTtsPayload(message, translation, isHeld), 0f, isNoisy ? 1 : 0).AddToQueue();
         }
 
         //防倒卖
@@ -320,7 +314,7 @@ namespace HelpSense.Helper
         {
             foreach (var pl in PlayerList.Where(x => x.PlayerId != player.PlayerId && x.IsReady))
             {
-                pl.Connection.Send(new RoleSyncInfo(player.ReferenceHub, type, pl.ReferenceHub));
+                pl.Connection.Send(new RoleSyncInfo(player.ReferenceHub, type, pl.ReferenceHub , null));
             }
         }
 
