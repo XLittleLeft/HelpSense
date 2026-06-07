@@ -46,7 +46,7 @@ namespace HelpSense.Commands
 
             //Copyright
             sb.AppendLine("-Made By X小左(XLittleLeft)-");
-            sb.AppendLine("Copyright © X小左(XLittleLeft) 2022-2025");
+            sb.AppendLine("Copyright © X小左(XLittleLeft) 2022-2026");
 
             response = sb.ToString();
             StringBuilderPool.Pool.Return(sb);

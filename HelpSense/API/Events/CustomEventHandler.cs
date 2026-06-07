@@ -89,7 +89,7 @@ namespace HelpSense.API.Events
         public static ItemBase SCP1068Base;
 
         public static ushort SCP1056Id = 0;
-        public static Item SCP1056Base;
+        public static UsableItem SCP1056Base;
 
         public static System.Random Random = new(DateTime.Now.GetHashCode());
 
@@ -825,7 +825,7 @@ namespace HelpSense.API.Events
                 if (item.Base.Info.Serial == SCP1056Id && item.Base.Info.ItemId is ItemType.Medkit && Config.SCP1056)
                 {
                     player.RemoveItem(item);
-                    var items = player.AddItem(ItemType.Medkit);
+                    var items = player.AddItem(ItemType.Medkit) as UsableItem;
                     SCP1056Base = items;
                     player.GetPlayerUi().CommonHint.ShowOtherHint(TranslateConfig.SCP1056PickupHint);
                 }
