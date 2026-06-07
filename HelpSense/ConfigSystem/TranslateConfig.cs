@@ -8,25 +8,25 @@ namespace HelpSense.ConfigSystem
     public class TranslateConfig
     {
         [Description("当玩家进入服务器的欢迎消息")]
-        public string WelcomeMessage { get; set; } = "欢迎 %playername%~";
+        public string WelcomeMessage { get; set; } = "<b>欢迎 %playername%~</b>";
         [Description("回合结束消息")]
-        public string RoundEndInfo { get; set; } = "回合结束啦！不要离开，下局再见ヾ(￣▽￣)~";
+        public string RoundEndInfo { get; set; } = "<b>回合结束啦！不要离开，下局再见ヾ(￣▽￣)~</b>";
         [Description("友伤开启时玩家将收到的消息")]
-        public string FFMessage { get; set; } = "<align=center><voffset=28em> <color=#F6511D> ~友伤已开启~ </color></voffset></align>";
+        public string FFMessage { get; set; } = "<b><align=center><voffset=28em> <color=#F6511D> ~友伤已开启~ </color></voffset></align></b>";
         [Description("服务器广播文本")]
-        public string AutoServerMessageText { get; set; } = "服务器广播";
+        public string AutoServerMessageText { get; set; } = "<b>服务器广播</b>";
         /// <summary>
         /// 
         /// </summary>
         [Description("聊天中消息列表的标题")]
-        public string ChatMessageTitle { get; set; } = "消息列表:";
+        public string ChatMessageTitle { get; set; } = "<b>消息列表:</b>";
 
         [Description("聊天中每种消息的名字")]
         public Dictionary<ChatMessage.MessageType, string> MessageTypeName { get; set; } = new()
         {
-            { ChatMessage.MessageType.AdminPrivateChat, "管理私聊" },
-            { ChatMessage.MessageType.BroadcastChat, "公共消息" },
-            { ChatMessage.MessageType.TeamChat, "队友消息" },
+            { ChatMessage.MessageType.AdminPrivateChat, "<b>管理私聊</b>" },
+            { ChatMessage.MessageType.BroadcastChat, "<b>公共消息</b>" },
+            { ChatMessage.MessageType.TeamChat, "<b>队友消息</b>" },
         };
         /// <summary>
         /// 
@@ -34,40 +34,40 @@ namespace HelpSense.ConfigSystem
         [Description("聊天系统自定义玩家角色名称")]
         public Dictionary<RoleTypeId, string> ChatSystemRoleTranslation { get; set; } = new Dictionary<RoleTypeId, string>
         {
-            {RoleTypeId.ClassD , "D级人员"},
-            {RoleTypeId.FacilityGuard , "保安" },
-            {RoleTypeId.ChaosConscript , "混沌征召兵"},
-            {RoleTypeId.ChaosMarauder , "混沌掠夺者"},
-            {RoleTypeId.ChaosRepressor , "混沌压制者"},
-            {RoleTypeId.ChaosRifleman , "混沌步枪兵"},
-            {RoleTypeId.NtfCaptain , "九尾狐指挥官"},
-            {RoleTypeId.NtfPrivate , "九尾狐列兵"},
-            {RoleTypeId.NtfSergeant , "九尾狐中士"},
-            {RoleTypeId.NtfSpecialist , "九尾狐收容专家"},
-            {RoleTypeId.Scientist , "科学家"},
-            {RoleTypeId.Tutorial , "教程角色"},
-            {RoleTypeId.Scp096 , "SCP-0肘6" },
-            {RoleTypeId.Scp049 , "SCP-049" },
-            {RoleTypeId.Scp173 , "SCP-173" },
-            {RoleTypeId.Scp939 , "SCP-肘3肘" },
-            {RoleTypeId.Scp079 , "SCP-07肘" },
-            {RoleTypeId.Scp0492 , "SCP-049-2" },
-            {RoleTypeId.Scp106 , "SCP-106" },
-            {RoleTypeId.Scp3114 , "SCP-3114" },
-            {RoleTypeId.Spectator , "观察者" },
-            {RoleTypeId.Overwatch , "监管" },
-            {RoleTypeId.Filmmaker , "导演" }
+            {RoleTypeId.ClassD , "<b>D级人员</b>"},
+            {RoleTypeId.FacilityGuard , "<b>保安</b>" },
+            {RoleTypeId.ChaosConscript , "<b>混沌征召兵</b>"},
+            {RoleTypeId.ChaosMarauder , "<b>混沌掠夺者</b>"},
+            {RoleTypeId.ChaosRepressor , "<b>混沌压制者</b>"},
+            {RoleTypeId.ChaosRifleman , "<b>混沌步枪兵</b>"},
+            {RoleTypeId.NtfCaptain , "<b>九尾狐指挥官</b>"},
+            {RoleTypeId.NtfPrivate , "<b>九尾狐列兵</b>"},
+            {RoleTypeId.NtfSergeant , "<b>九尾狐中士</b>"},
+            {RoleTypeId.NtfSpecialist , "<b>九尾狐收容专家</b>"},
+            {RoleTypeId.Scientist , "<b>科学家</b>"},
+            {RoleTypeId.Tutorial , "<b>教程角色</b>"},
+            {RoleTypeId.Scp096 , "<b>SCP-0肘6</b>" },
+            {RoleTypeId.Scp049 , "<b>SCP-049</b>" },
+            {RoleTypeId.Scp173 , "<b>SCP-173</b>" },
+            {RoleTypeId.Scp939 , "<b>SCP-肘3肘</b>" },
+            {RoleTypeId.Scp079 , "<b>SCP-07肘</b>" },
+            {RoleTypeId.Scp0492 , "<b>SCP-049-2</b>" },
+            {RoleTypeId.Scp106 , "<b>SCP-106</b>" },
+            {RoleTypeId.Scp3114 , "<b>SCP-3114</b>" },
+            {RoleTypeId.Spectator , "<b>观察者</b>" },
+            {RoleTypeId.Overwatch , "<b>监管</b>" },
+            {RoleTypeId.Filmmaker , "<b>导演</b>" }
         };
         [Description("聊天系统自定义玩家团队名称")]
         public Dictionary<Team, string> ChatSystemTeamTranslation { get; set; } = new Dictionary<Team, string>
         {
-            {Team.Dead , "死亡阵营" },
-            {Team.ClassD , "DD阵营" },
-            {Team.OtherAlive , "神秘阵营" },
-            {Team.Scientists , "博士阵营" },
-            {Team.SCPs , "SCP阵营" },
-            {Team.ChaosInsurgency , "混沌阵营" },
-            {Team.FoundationForces , "九尾狐阵营" },
+            {Team.Dead , "<b>死亡阵营</b>" },
+            {Team.ClassD , "<b>DD阵营</b>" },
+            {Team.OtherAlive , "<b>神秘阵营</b>" },
+            {Team.Scientists , "<b>博士阵营</b>" },
+            {Team.SCPs , "<b>SCP阵营</b>" },
+            {Team.ChaosInsurgency , "<b>混沌阵营</b>" },
+            {Team.FoundationForces , "<b>九尾狐阵营</b>" },
         };
         /// <summary>
         /// 
@@ -80,55 +80,55 @@ namespace HelpSense.ConfigSystem
         /// 
         /// </summary>
         [Description("显示距离启动还剩多少时间和服务器状态")]
-        public string TitleText { get; set; } = "<size=50><color=#F0FF00><b>正在等待玩家, {seconds}</b></color></size>";
+        public string TitleText { get; set; } = "<b><size=50><color=#F0FF00><b>正在等待玩家, {seconds}</b></color></size></b>";
         [Description("显示玩家数量的文本")]
-        public string PlayerCountText { get; set; } = "<size=40><color=#FFA600><i>{players}</i></color></size>";
+        public string PlayerCountText { get; set; } = "<b><size=40><color=#FFA600><i>{players}</i></color></size></b>";
 
         [Description("如果大厅被锁定显示的消息")]
-        public string ServerPauseText { get; set; } = "服务器已暂停";
+        public string ServerPauseText { get; set; } = "<b>服务器已暂停</b>";
 
         [Description("第二行的消息")]
-        public string SecondLeftText { get; set; } = "还剩 {seconds}";
+        public string SecondLeftText { get; set; } = "<b>还剩 {seconds}</b>";
 
         [Description("多行的消息")]
-        public string SecondsLeftText { get; set; } = "还剩 {seconds}";
+        public string SecondsLeftText { get; set; } = "<b>还剩 {seconds}</b>";
 
         [Description("回合开始时显示的消息")]
-        public string RoundStartText { get; set; } = "回合开始";
+        public string RoundStartText { get; set; } = "<b>回合开始</b>";
 
         [Description("当服务器当玩家加入时显示的消息")]
-        public string PlayerJoinText { get; set; } = "玩家加入";
+        public string PlayerJoinText { get; set; } = "<b>玩家加入</b>";
 
         [Description("当服务器上有多个玩家加入时显示的消息")]
-        public string PlayersJoinText { get; set; } = "名玩家加入";
+        public string PlayersJoinText { get; set; } = "<b>名玩家加入</b>";
         /// <summary>
         /// 
         /// </summary>
         [Description("警卫叛变显示的公告")]
-        public string GuardMutinyBroadcast { get; set; } = "<size=30><color=#ff0000ff>[警告]</color>此设施警卫已被混沌分裂者策反</size>";
+        public string GuardMutinyBroadcast { get; set; } = "<b><size=30><color=#ff0000ff>[警告]</color>此设施警卫已被混沌分裂者策反</size></b>";
         [Description("警卫为精英队显示的公告")]
-        public string EliteGuardBroadcast { get; set; } = "<size=30><color=#00ffffff>[通知]</color>此设施警卫为九尾狐精英队员，保安实力大增</size>";
+        public string EliteGuardBroadcast { get; set; } = "<b><size=30><color=#00ffffff>[通知]</color>此设施警卫为九尾狐精英队员，保安实力大增</size></b>";
         /// <summary>
         /// 
         /// </summary>
         [Description("观战列表标题")]
-        public string WatchListTitle { get; set; } = "<align=right><size=45%><color=(COLOR)><b>观察者 ((COUNT)):</b></color></size></align>";
+        public string WatchListTitle { get; set; } = "<b><align=right><size=45%><color=(COLOR)><b>观察者 ((COUNT)):</b></color></size></align></b>";
         [Description("观战列表格式")]
-        public string Names { get; set; } = "<align=right><size=45%><color=(COLOR)><br>(NAME)</color></size></align>";
+        public string Names { get; set; } = "<b><align=right><size=45%><color=(COLOR)><br>(NAME)</color></size></align></b>";
         /// <summary>
         /// 
         /// </summary>
         [Description("DNT提醒")]
-        public string DNTWarning { get; set; } = "你打开了DNT，请关闭，否则某些插件无法正常运行";
+        public string DNTWarning { get; set; } = "<b>你打开了DNT，请关闭，否则某些插件无法正常运行</b>";
         /// <summary>
         /// 
         /// </summary>
         [Description("SCP-073反伤原因")]
-        public string SCP073DamageReason { get; set; } = "SCP073反伤";
+        public string SCP073DamageReason { get; set; } = "<b>SCP073反伤</b>";
         [Description("SCP-029逃离设施Hint")]
-        public string SCP029EscapeHint { get; set; } = "成功逃离设施变为混沌得到混沌分裂者的一个遗产";
+        public string SCP029EscapeHint { get; set; } = "<b>成功逃离设施变为混沌得到混沌分裂者的一个遗产</b>";
         [Description("SCP-703逃离设施Hint")]
-        public string SCP703EscapeHint { get; set; } = "成功逃离设施成为九尾狐收容专家，获得3x";
+        public string SCP703EscapeHint { get; set; } = "<b>成功逃离设施成为九尾狐收容专家，获得3x</b>";
         /// <summary>
         /// 
         /// </summary>
@@ -137,41 +137,41 @@ namespace HelpSense.ConfigSystem
         [Description("天网机动特遣队技能描述")]
         public List<string> SkynetSkillIntroduction { get; set; } =
         [
-            "你是 [天网机动特遣队队员] 珍惜手中的鬼灯",
-            "你启动的发电机会<color=red>很快激活</color>"
+            "<b>你是 [天网机动特遣队队员] 珍惜手中的鬼灯</b>",
+            "<b>你启动的发电机会<color=red>很快激活</color></b>"
         ];
         [Description("天网机动特遣队新兵广播")]
-        public string SkynetPrivateBroadcast { get; set; } = "<size=70><color=#0051FF>你是机动特遣队-天网 新兵</color></size>";
+        public string SkynetPrivateBroadcast { get; set; } = "<b><size=70><color=#0051FF>你是机动特遣队-天网 新兵</color></size></b>";
         [Description("天网机动特遣队新兵自定义信息")]
-        public string SkynetPrivateCustomInfo { get; set; } = "天网 新兵";
+        public string SkynetPrivateCustomInfo { get; set; } = "<b>天网 新兵</b>";
         [Description("天网机动特遣队中士广播")]
-        public string SkynetSergeantBroadcast { get; set; } = "<size=70><color=#0051FF>你是机动特遣队-天网 中士</color></size>";
+        public string SkynetSergeantBroadcast { get; set; } = "<b><size=70><color=#0051FF>你是机动特遣队-天网 中士</color></size></b>";
         [Description("天网机动特遣队新兵自定义信息")]
-        public string SkynetSergeantCustomInfo { get; set; } = "天网 中士";
+        public string SkynetSergeantCustomInfo { get; set; } = "<b>天网 中士</b>";
         [Description("天网机动特遣队指挥官广播")]
-        public string SkynetCaptainBroadcast { get; set; } = "<size=70><color=#0051FF>你是机动特遣队-天网 指挥官</color></size>";
+        public string SkynetCaptainBroadcast { get; set; } = "<b><size=70><color=#0051FF>你是机动特遣队-天网 指挥官</color></size></b>";
         [Description("天网机动特遣队指挥官自定义信息")]
-        public string SkynetCaptainCustomInfo { get; set; } = "天网 指挥官";
+        public string SkynetCaptainCustomInfo { get; set; } = "<b>天网 指挥官</b>";
         [Description("非礼勿视机动特遣队Cassie广播")]
         public string SeeNoEvilCassie { get; set; } = "机动特遣队Eta-10代号非礼勿视已经进入设施,他们会帮助收容SCP-096,建议所有幸存人员执行标准撤离方案,直到MTF小队到达你的地点,目前还剩%SCPNum%个SCP";
         [Description("非礼勿视机动特遣队技能描述")]
         public List<string> SeeNoEvilSkillIntroduction { get; set; } =
         [
-            "你是 [非礼勿视机动特遣队队员] 大胆盯着SCP096吧",
-            "他<color=red>很难</color>杀死你,在他还没狂暴的时候你可以随意盯着他"
+            "<b>你是 [非礼勿视机动特遣队队员] 大胆盯着SCP096吧</b>",
+            "<b>他<color=red>很难</color>杀死你,在他还没狂暴的时候你可以随意盯着他</b>"
         ];
         [Description("非礼勿视机动特遣队新兵广播")]
-        public string SeeNoEvilPrivateBroadcast { get; set; } = "<size=70><color=#0051FF>你是机动特遣队-非礼勿视 新兵</color></size>";
+        public string SeeNoEvilPrivateBroadcast { get; set; } = "<b><size=70><color=#0051FF>你是机动特遣队-非礼勿视 新兵</color></size></b>";
         [Description("非礼勿视机动特遣队新兵自定义信息")]
-        public string SeeNoEvilPrivateCustomInfo { get; set; } = "非礼勿视 新兵";
+        public string SeeNoEvilPrivateCustomInfo { get; set; } = "<b>非礼勿视 新兵</b>";
         [Description("非礼勿视机动特遣队中士广播")]
-        public string SeeNoEvilSergeantBroadcast { get; set; } = "<size=70><color=#0051FF>你是机动特遣队-非礼勿视 中士</color></size>";
+        public string SeeNoEvilSergeantBroadcast { get; set; } = "<b><size=70><color=#0051FF>你是机动特遣队-非礼勿视 中士</color></size></b>";
         [Description("非礼勿视机动特遣队新兵自定义信息")]
-        public string SeeNoEvilSergeantCustomInfo { get; set; } = "非礼勿视 中士";
+        public string SeeNoEvilSergeantCustomInfo { get; set; } = "<b>非礼勿视 中士</b>";
         [Description("非礼勿视机动特遣队指挥官广播")]
-        public string SeeNoEvilCaptainBroadcast { get; set; } = "<size=70><color=#0051FF>你是机动特遣队-非礼勿视 指挥官</color></size>";
+        public string SeeNoEvilCaptainBroadcast { get; set; } = "<b><size=70><color=#0051FF>你是机动特遣队-非礼勿视 指挥官</color></size></b>";
         [Description("非礼勿视机动特遣队指挥官自定义信息")]
-        public string SeeNoEvilCaptainCustomInfo { get; set; } = "非礼勿视 指挥官";
+        public string SeeNoEvilCaptainCustomInfo { get; set; } = "<b>非礼勿视 指挥官</b>";
         /// <summary>
         /// 
         /// </summary>
@@ -181,109 +181,109 @@ namespace HelpSense.ConfigSystem
         /// 
         /// </summary>
         [Description("混沌领导者名字")]
-        public string ChaosLeaderRoleName { get; set; } = "混沌领导者";
+        public string ChaosLeaderRoleName { get; set; } = "<b>混沌领导者</b>";
         [Description("混沌领导者刷新广播")]
-        public string ChaosLeaderSpawnBroadcast { get; set; } = "<size=80><color=#00ff00ff>你是混沌分裂者 领导者</color></size>";
+        public string ChaosLeaderSpawnBroadcast { get; set; } = "<b><size=80><color=#00ff00ff>你是混沌分裂者 领导者</color></size></b>";
         [Description("混沌领导者死亡Cassie")]
-        public string ChaosLeaderDeathCassie { get; set; } = "混沌领导者死亡";
+        public string ChaosLeaderDeathCassie { get; set; } = "<b>混沌领导者死亡</b>";
         [Description("SCP-2936-1刷新广播")]
-        public string SCP29361SpawnBroadcast { get; set; } = "<size=70>你是 <color=red>SCP-2936-1 巨型德国机器人</color></size>";
+        public string SCP29361SpawnBroadcast { get; set; } = "<b><size=70>你是 <color=red>SCP-2936-1 巨型德国机器人</color></size></b>";
         [Description("SCP-2936-1技能介绍")]
-        public string SCP29361SkillIntroduction { get; set; } = "你是 [SCP-2936-1] 你拥有庞大的身躯和厚实的血量";
+        public string SCP29361SkillIntroduction { get; set; } = "<b>你是 [SCP-2936-1] 你拥有庞大的身躯和厚实的血量</b>";
         [Description("SCP-073亚伯刷新广播")]
-        public string SCP073AbelSpawnBroadcast { get; set; } = "你是<color=green>SCP-073 亚伯</color>";
+        public string SCP073AbelSpawnBroadcast { get; set; } = "<b>你是<color=green>SCP-073 亚伯</color></b>";
         [Description("SCP-073亚伯技能介绍")]
-        public string SCP073AbelSkillIntroduction { get; set; } = "你是[SCP-073] 你将被动的<color=red>反弹</color>部分伤害给敌人";
+        public string SCP073AbelSkillIntroduction { get; set; } = "<b>你是[SCP-073] 你将被动的<color=red>反弹</color>部分伤害给敌人</b>";
         [Description("SCP-073该隐刷新广播")]
-        public string SCP073CainSpawnBroadcast { get; set; } = "你是<color=green>SCP-073 该隐</color>";
+        public string SCP073CainSpawnBroadcast { get; set; } = "<b>你是<color=green>SCP-073 该隐</color></b>";
         [Description("SCP-073该隐技能介绍")]
-        public string SCP073CainSkillIntroduction { get; set; } = "你是[SCP-073] 你有<color=red>无限</color>的自愈能力,停下来休息一下吧";
+        public string SCP073CainSkillIntroduction { get; set; } = "<b>你是[SCP-073] 你有<color=red>无限</color>的自愈能力,停下来休息一下吧</b>";
         [Description("SCP-703刷新广播")]
-        public string SCP703SpawnBroadcast { get; set; } = "<size=80><color=#00ffffff>你是SCP-703</color></size>";
+        public string SCP703SpawnBroadcast { get; set; } = "<b><size=80><color=#00ffffff>你是SCP-703</color></size></b>";
         [Description("SCP-703技能介绍")]
         public List<string> SCP703SkillIntroduction { get; set; } =
         [
-            "你是 [SCP-703] 你每过一段时间你会获得随机物品",
-            "距离下次获得物品<color=red>%Time%</color>"
+            "<b>你是 [SCP-703] 你每过一段时间你会获得随机物品</b>",
+            "<b>距离下次获得物品<color=red>%Time%</color></b>"
         ];
         [Description("SCP-703获得物品Hint提示")]
-        public string SCP703ReceivedItemHint { get; set; } = "获得一件物品";
+        public string SCP703ReceivedItemHint { get; set; } = "<b>获得一件物品</b>";
         [Description("SCP-029刷新广播")]
-        public string SCP029SpawnBroadcast { get; set; } = "<size=60><color=#ff0000ff>你是SCP-029“暗影之女”</color></size>";
+        public string SCP029SpawnBroadcast { get; set; } = "<b><size=60><color=#ff0000ff>你是SCP-029“暗影之女”</color></size></b>";
         [Description("SCP-029技能介绍")]
-        public string SCP029SkillIntroduction { get; set; } = "你是[SCP-029] 你拥有<color=red>无限</color>的速度加成";
+        public string SCP029SkillIntroduction { get; set; } = "<b>你是[SCP-029] 你拥有<color=red>无限</color>的速度加成</b>";
         [Description("SCP-347刷新广播")]
-        public string SCP347SpawnBroadcast { get; set; } = "你是<color=red>SCP-347 隐形女</color>";
+        public string SCP347SpawnBroadcast { get; set; } = "<b>你是<color=red>SCP-347 隐形女</color></b>";
         [Description("SCP-347技能介绍")]
-        public string SCP347SkillIntroduction { get; set; } = "你是[SCP-347] 你<color=red>永远</color>是隐身的,但不要乱动";
+        public string SCP347SkillIntroduction { get; set; } = "<b>你是[SCP-347] 你<color=red>永远</color>是隐身的,但不要乱动</b>";
         [Description("SCP-1093刷新广播")]
-        public string SCP1093SpawnBroadcast { get; set; } = "你是 <color=yellow>SCP-1093 人灯</color>";
+        public string SCP1093SpawnBroadcast { get; set; } = "<b>你是 <color=yellow>SCP-1093 人灯</color></b>";
         [Description("SCP-1093技能介绍")]
         public List<string> SCP1093SkillIntroduction { get; set; } =
         [
-            "你是 [SCP-1093] 持续照亮附近5米范围,并辐射附近1米范围内的人",
-            "你的头是虚无的,任何人对你头部没有伤害"
+            "<b>你是 [SCP-1093] 持续照亮附近5米范围,并辐射附近1米范围内的人</b>",
+            "<b>你的头是虚无的,任何人对你头部没有伤害</b>"
         ];
         [Description("SCP-023刷新广播")]
-        public string SCP023SpawnBroadcast { get; set; } = "你是 <color=red>SCP-023 黑煞星</color>";
+        public string SCP023SpawnBroadcast { get; set; } = "<b>你是 <color=red>SCP-023 黑煞星</color></b>";
         [Description("SCP-023技能介绍")]
         public List<string> SCP023SkillIntroduction { get; set; } =
         [
-            "你是 [SCP-023] 按对应的按键可以发动穿门技能",
-            "使用SCP-1344的攻击你的人会遭到反噬"
+            "<b>你是 [SCP-023] 按对应的按键可以发动穿门技能</b>",
+            "<b>使用SCP-1344的攻击你的人会遭到反噬</b>"
         ];
         [Description("SCP-023被带SCP1344的人伤害时攻击者被反噬的死亡原因")]
-        public string SCP023ReversedCauseOfDeath { get; set; } = "你不应该带着SCP-1344出现在SCP-023面前的";
+        public string SCP023ReversedCauseOfDeath { get; set; } = "<b>你不应该带着SCP-1344出现在SCP-023面前的</b>";
         [Description("警卫队长刷新广播")]
-        public string GuardCaptainSpawnBroadcast { get; set; } = "<size=60><color=#E5DADA>你是安保队长</color></size>";
+        public string GuardCaptainSpawnBroadcast { get; set; } = "<b><size=60><color=#E5DADA>你是安保队长</color></size></b>";
         [Description("SCP-191刷新广播")]
-        public string SCP191SpawnBroadcast { get; set; } = "你成为了<color=red>SCP-191 机械少女</color>";
+        public string SCP191SpawnBroadcast { get; set; } = "<b>你成为了<color=red>SCP-191 机械少女</color></b>";
         [Description("SCP-191技能介绍")]
         public List<string> SCP191SkillIntroduction { get; set; } =
         [
-            "你是 [SCP-191] 因为你的身体的改造",
-            "你对除了电磁和爆炸伤害的<color=red>抗性很高</color>",
-            "但别忘了去079收容室充电"
+            "<b>你是 [SCP-191] 因为你的身体的改造</b>",
+            "<b>你对除了电磁和爆炸伤害的<color=red>抗性很高</color></b>",
+            "<b>但别忘了去079收容室充电</b>"
         ];
         [Description("SCP-191电量显示")]
-        public string SCP191BatteryHintShow { get; set; } = "<align=right><size=30><b>你目前剩余的电量:<color=yellow>%Battery%安</color></size></b></align>";
+        public string SCP191BatteryHintShow { get; set; } = "<b><align=right><size=30><b>你目前剩余的电量:<color=yellow>%Battery%安</color></size></b></align></b>";
         [Description("SCP-191电量耗尽死亡原因")]
-        public string SCP191BatteryDepletionDeathReason { get; set; } = "电量耗尽";
+        public string SCP191BatteryDepletionDeathReason { get; set; } = "<b>电量耗尽</b>";
         /// <summary>
         /// 
         /// </summary>
         [Description("SCP-1056缩小仪拾取Hint")]
-        public string SCP1056PickupHint { get; set; } = "你捡起了<color=red>SCP-1056</color> 缩小仪!";
+        public string SCP1056PickupHint { get; set; } = "<b>你捡起了<color=red>SCP-1056</color> 缩小仪!</b>";
         [Description("SCP-1056缩小仪使用Hint")]
-        public string SCP1056UsedHint { get; set; } = "boom!你变小了!!!";
+        public string SCP1056UsedHint { get; set; } = "<b>boom!你变小了!!!</b>";
         [Description("SCP-1068无害核弹拾取Hint")]
-        public string SCP1068PickupHint { get; set; } = "你捡起了<color=red>SCP-1068</color> 无害核弹!";
+        public string SCP1068PickupHint { get; set; } = "<b>你捡起了<color=red>SCP-1068</color> 无害核弹!</b>";
         [Description("SCP-1056无害核弹使用广播")]
-        public string SCP1068UsedBroadcast { get; set; } = "有人使用了<color=red>SCP-1068</color> 无害核弹!";
+        public string SCP1068UsedBroadcast { get; set; } = "<b>有人使用了<color=red>SCP-1068</color> 无害核弹!</b>";
         /// <summary>
         /// 
         /// </summary>
         [Description("SCP-029特殊介绍")]
-        public string SCP029SpecialIntroduction { get; set; } = "<color=red>SCP-029 暗影之女</color>";
+        public string SCP029SpecialIntroduction { get; set; } = "<b><color=red>SCP-029 暗影之女</color></b>";
         [Description("SCP-703特殊介绍")]
-        public string SCP703SpecialIntroduction { get; set; } = "<color=blue>SCP-703 壁橱之中</color>";
+        public string SCP703SpecialIntroduction { get; set; } = "<b><color=blue>SCP-703 壁橱之中</color></b>";
         [Description("SCP-347特殊介绍")]
-        public string SCP347SpecialIntroduction { get; set; } = "<color=red>SCP-347 隐形女</color>";
+        public string SCP347SpecialIntroduction { get; set; } = "<b><color=red>SCP-347 隐形女</color></b>";
         [Description("SCP-1093特殊介绍")]
-        public string SCP1093SpecialIntroduction { get; set; } = "<color=yellow>SCP-1093 人灯</color>";
+        public string SCP1093SpecialIntroduction { get; set; } = "<b><color=yellow>SCP-1093 人灯</color></b>";
         [Description("SCP-073亚伯特殊介绍")]
-        public string SCP073AbelSpecialIntroduction { get; set; } = "<color=green>SCP-073 亚伯</color>";
+        public string SCP073AbelSpecialIntroduction { get; set; } = "<b><color=green>SCP-073 亚伯</color></b>";
         [Description("SCP-073该隐特殊介绍")]
-        public string SCP073CainSpecialIntroduction { get; set; } = "<color=green>SCP-073 该隐</color>";
+        public string SCP073CainSpecialIntroduction { get; set; } = "<b><color=green>SCP-073 该隐</color></b>";
         [Description("SCP-191特殊介绍")]
-        public string SCP191SpecialIntroduction { get; set; } = "<color=red>SCP-191 机械少女</color>";
+        public string SCP191SpecialIntroduction { get; set; } = "<b><color=red>SCP-191 机械少女</color></b>";
         [Description("SCP-2936特殊介绍")]
-        public string SCP2936SpecialIntroduction { get; set; } = "<color=red>SCP-2936-1 巨型德国机器人</color>";
+        public string SCP2936SpecialIntroduction { get; set; } = "<b><color=red>SCP-2936-1 巨型德国机器人</color></b>";
         [Description("SCP-023特殊介绍")]
-        public string SCP023SpecialIntroduction { get; set; } = "<color=red>SCP-023 黑煞星</color>";
+        public string SCP023SpecialIntroduction { get; set; } = "<b><color=red>SCP-023 黑煞星</color></b>";
         [Description("天网机动特遣队特殊介绍")]
-        public string SkynetSpecialIntroduction { get; set; } = "<color=blue>天网 机动特遣队</color>";
+        public string SkynetSpecialIntroduction { get; set; } = "<b><color=blue>天网 机动特遣队</color></b>";
         [Description("非礼勿视机动特遣队特殊介绍")]
-        public string SeeNoEvilSpecialIntroduction { get; set; } = "<color=blue>非礼勿视 机动特遣队</color>";
+        public string SeeNoEvilSpecialIntroduction { get; set; } = "<b><color=blue>非礼勿视 机动特遣队</color></b>";
     }
 }

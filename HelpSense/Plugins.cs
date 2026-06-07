@@ -24,8 +24,6 @@ namespace HelpSense
             CustomEventHandler.CommandTranslateConfig = this.LoadConfig<CommandTranslateConfig>("CommandTranslateConfig.yml");
 
             base.LoadConfigs();
-
-            VersionCommand.LoadVersionInfo();
         }
 
         public static DateTime LastUpdateTime => new(2025, 12, 21, 15, 13, 58);
@@ -50,6 +48,8 @@ namespace HelpSense
             CustomHandlersManager.RegisterEventsHandler(Events);
 
             _harmony.PatchAll();
+
+            VersionCommand.LoadVersionInfo();
         }
 
         public override void Disable()

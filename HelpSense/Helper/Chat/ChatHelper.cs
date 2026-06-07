@@ -65,7 +65,7 @@ namespace HelpSense.Helper.Chat
             while (true)
             {
                 var sb = StringBuilderPool.Pool.Get();
-
+                sb.Append("<b>");
                 foreach (var messageSlot in MessageSlot)
                 {
                     if (!MessageList.Any(x => HaveAccess(messageSlot.Key, x)))
@@ -107,6 +107,7 @@ namespace HelpSense.Helper.Chat
                             sb.AppendLine(messageStr);
                         }
                     }
+                    sb.Append("</b>");
 
                     messageSlot.Value.Text = sb.ToString();
                     sb.Clear();
