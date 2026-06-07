@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using HelpSense.API.Events;
+using HelpSense.Commands;
 using HelpSense.ConfigSystem;
 using LabApi.Events.CustomHandlers;
 using LabApi.Features;
@@ -17,12 +18,14 @@ namespace HelpSense
 
         public override void LoadConfigs()
         {
-            base.LoadConfigs();
-
             CustomEventHandler.Config = this.LoadConfig<Config>("config.yml");
             CustomEventHandler.TranslateConfig = this.LoadConfig<TranslateConfig>("TranslateConfig.yml");
             CustomEventHandler.SSSSTranslateConfig = this.LoadConfig<SSSSTranslateConfig>("SSSSTranslateConfig.yml");
             CustomEventHandler.CommandTranslateConfig = this.LoadConfig<CommandTranslateConfig>("CommandTranslateConfig.yml");
+
+            base.LoadConfigs();
+
+            VersionCommand.LoadVersionInfo();
         }
 
         public static DateTime LastUpdateTime => new(2025, 12, 21, 15, 13, 58);

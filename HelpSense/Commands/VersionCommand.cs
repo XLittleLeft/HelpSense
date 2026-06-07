@@ -3,6 +3,7 @@ using HelpSense.API.Events;
 using HelpSense.API.Features.Pool;
 using HelpSense.ConfigSystem;
 using System;
+using System.Text;
 
 namespace HelpSense.Commands
 {
@@ -15,11 +16,12 @@ namespace HelpSense.Commands
 
         public string Description => "查询HelpSense插件版本和信息-Plugin Info";
 
-        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
+        public static StringBuilder sb = new();
+
+        public static void LoadVersionInfo()
         {
             var config = CustomEventHandler.Config;
             CommandTranslateConfig CommandTranslateConfig = CustomEventHandler.CommandTranslateConfig;
-            var sb = StringBuilderPool.Pool.Get();
 
             //Version and update time
             sb.AppendFormat(CommandTranslateConfig.VersionCommand["PluginVersion"], Plugins.Instance.Version).AppendLine();
@@ -47,13 +49,15 @@ namespace HelpSense.Commands
             //Copyright
             sb.AppendLine("-Made By X小左(XLittleLeft)-");
             sb.AppendLine("Copyright © X小左(XLittleLeft) 2022-2026");
+        }
 
+        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
+        {
             response = sb.ToString();
-            StringBuilderPool.Pool.Return(sb);
 
             return true;
         }
 
-        public string BoolTranslate(bool value) => value ? "✔" : "✖";
+        public static string BoolTranslate(bool value) => value ? "✔" : "✖";
     }
 }
