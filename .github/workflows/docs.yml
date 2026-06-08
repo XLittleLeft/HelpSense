@@ -40,7 +40,9 @@ jobs:
     - name: Restore NuGet packages
       run: nuget restore HelpSense.sln
 
-    - name: Install DocFX as .NET tool
+    # 我劝所有人都不要动这个玩意儿，任何改动此处的PR都将被驳回 — by YongAn404
+    # I advise everyone not to mess with this thing. Any changes to this PR will be rejected. — by YongAn404
+    - name: Install DocFX
       run: dotnet tool update -g docfx --version 2.74.1
     
     - name: Build Documentation
