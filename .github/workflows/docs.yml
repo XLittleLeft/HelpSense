@@ -35,7 +35,7 @@ jobs:
       run: dotnet tool install -g docfx
 
     - name: Build Documentation
-      run: dotnet docfx docs/docfx.json
+      run: docfx docs/docfx.json
       env:
         DOCFX_ENABLE_RESTAPI_VALIDATION: false
 
