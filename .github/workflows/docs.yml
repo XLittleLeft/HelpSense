@@ -34,9 +34,15 @@ jobs:
     - name: Install DocFX
       run: dotnet tool install -g docfx
 
-    # 将 .NET 工具目录加入 PATH，以便直接调用 docfx 命令
-    - name: Add dotnet tools to PATH
-      run: echo "$env:USERPROFILE\.dotnet\tools" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+    - name: Configure environment (add tools to PATH, set MSBuild path)
+      shell: pwsh
+      run: |
+        # 将 .NET 全局工具目录加入 PATH
+        echo "$env:USERPROFILE\.dotnet\tools" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+        # 找到最新的 .NET SDK 目录下的 MSBuild.exe
+        $msbuildPath = (Get-ChildItem "C:\Program Files\dotnet\sdk" -Directory | Sort-Object -Descending | Select-Object -First 1).FullName + "\MSBuild.exe"
+        # 设置环境变量 MSBUILD_EXE_PATH，DocFX 会优先使用它
+        echo "MSBUILD_EXE_PATH=$msbuildPath" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
     - name: Build Documentation
       run: docfx docs/docfx.json
