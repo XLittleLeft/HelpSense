@@ -32,10 +32,12 @@ jobs:
       run: dotnet restore HelpSense.sln
 
     - name: Install DocFX
-      run: dotnet tool install -g docfx
+      run: |
+        dotnet tool install -g docfx
+        echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
 
     - name: Build Documentation
-      run: dotnet tool run docfx docs/docfx.json
+      run: docfx docs/docfx.json
       env:
         DOCFX_ENABLE_RESTAPI_VALIDATION: false
 
