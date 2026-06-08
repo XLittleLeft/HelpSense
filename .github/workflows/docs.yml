@@ -31,8 +31,10 @@ jobs:
     - name: Dotnet Checkout
       uses: actions/checkout@v4
 
-    - name: Dotnet Setup
+    - name: Setup .NET SDK
       uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '6.0.x'
 
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v2
@@ -40,8 +42,11 @@ jobs:
     - name: Restore NuGet packages
       run: nuget restore HelpSense.sln
 
-    - run: dotnet tool update -g docfx
-    - run: docfx docs/docfx.json
+    - name: Install DocFX as .NET tool
+      run: dotnet tool update -g docfx
+    
+    - name: Build Documentation
+      run: docfx docs/docfx.json
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
