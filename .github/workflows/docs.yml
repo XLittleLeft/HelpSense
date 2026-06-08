@@ -1,15 +1,22 @@
+# Simple workflow for deploying static content to GitHub Pages
 name: Build and Publish Docfx Pages
 
 on:
+  # Runs on pushes targeting the default branch
   push:
     branches: ["master"]
+
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -21,39 +28,29 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v4
+    - name: Dotnet Checkout
+      uses: actions/checkout@v4
 
-    - name: Setup .NET 10 SDK
+    - name: Setup Dotnet Setup
       uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '10.x'
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v2
 
     - name: Restore NuGet packages
-      run: dotnet restore HelpSense.sln
+      run: nuget restore HelpSense.sln
 
-    - name: Install DocFX
-      run: dotnet tool install -g docfx
-
-    - name: Configure environment (add tools to PATH, set MSBuild path)
-      shell: pwsh
-      run: |
-        # 将 .NET 全局工具目录加入 PATH
-        echo "$env:USERPROFILE\.dotnet\tools" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-        # 找到最新的 .NET SDK 目录下的 MSBuild.exe
-        $msbuildPath = (Get-ChildItem "C:\Program Files\dotnet\sdk" -Directory | Sort-Object -Descending | Select-Object -First 1).FullName + "\MSBuild.exe"
-        # 设置环境变量 MSBUILD_EXE_PATH，DocFX 会优先使用它
-        echo "MSBUILD_EXE_PATH=$msbuildPath" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-
+    - name: Install DocFX as .NET tool
+      run: dotnet tool update -g docfx --version 2.74.1
+    
     - name: Build Documentation
       run: docfx docs/docfx.json
-      env:
-        DOCFX_ENABLE_RESTAPI_VALIDATION: false
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
+        # Upload entire repository
         path: 'docs/_site'
-
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4
